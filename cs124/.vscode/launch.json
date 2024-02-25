@@ -14,8 +14,9 @@
             "cwd": "${fileDirname}",
             "environment": [],
             "externalConsole": true,
-            "MIMode": "lldb",
-            "preLaunchTask": "build_task"
+            "MIMode": "lldb"
+            //,
+            //"preLaunchTask": "build_task"
         }
 
     ]
