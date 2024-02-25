@@ -9,24 +9,16 @@
  * Description: This program implements a class that displays a menu for a user.
 
  *******************************************************/
- 
- void UserMenu::initData() {}
-    
-     choice = 0;
-#include #include "UserMenu.h"
 
-fs.tffsUserMenu::USER_DATAU
-SER_ccout << 
- inFile
- int main() {}inFile
-    inFile
-      UserMenu userMenu;
-    inFile
-     inFileRS_DATA);
-     
-  usersData.close();
-}return 0;
-initData
-     
-     
-userMenu.
+#include "UserMenu.h"
+
+UserMenu::UserMenu() {
+    inFile.open(USERS_DATA);
+    this->user = User(0, "", "", DateTime(), DateTime());
+    this->users = vector<User>();
+};
+
+    // Destructor
+    UserMenu::~UserMenu() {
+        std::cout << "UserMenu object is being destroyed" << std::endl;
+    }

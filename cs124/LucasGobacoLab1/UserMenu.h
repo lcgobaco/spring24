@@ -16,11 +16,15 @@ enu.h
 #define USERMENU_H
 
 #include "Menu.h"
+#include "User.h"
+#include <string>
+#include <fstream>
+#include <vector>
 
 enum USER_MENU_OPTION
 {
     USER_MENU_SIGNIN = '1',
-    USER_MENU_CREATE = '2',
+    USER_MENU_SIGNOUT = '2',
     USER_MENU_CREATE = '3',
     USER_MENU_REMOVE = '4',
     USER_MENU_RESET = '5',
@@ -32,9 +36,12 @@ const string USERS_DATA = "users_data.csv";
 
 class UserMenu : public Menu
     {
+        public:
+            UserMenu();
+            ~UserMenu();
     private:
         // Member variables and any other variables if necessary
-        fstream inFile;
+        ifstream inFile;
         User user;
         vector<User> users;
 
@@ -54,7 +61,7 @@ class UserMenu : public Menu
         void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
     public:
         bool signOut(); // Save loginDateTime and logoutDateTime data to file users_data.csv
-}
+};
 
     /*
     - Prompt username and password, and authentication

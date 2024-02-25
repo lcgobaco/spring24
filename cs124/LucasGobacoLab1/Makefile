@@ -1,6 +1,7 @@
 all: main
+	rm -f main *.o
 
-main: main.o Time.o DateTime.o User.o Menu.o
+main: main.o Time.o DateTime.o User.o Menu.o UserMenu.o
 	g++ -std=c++14 -o $@ $^
 
 Time.o: Time.cpp
@@ -13,6 +14,9 @@ main.o: main.cpp Time.o DateTime.o User.o Menu.o
 	g++ -std=c++14 -c $<
 
 User.o: User.cpp
+	g++ -std=c++14 -c $<
+
+UserMenu.o: UserMenu.cpp
 	g++ -std=c++14 -c $<
 
 Menu.o: Menu.cpp
