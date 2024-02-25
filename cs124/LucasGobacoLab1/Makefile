@@ -1,4 +1,4 @@
-all: clean main
+all: main
 
 main: main.o Time.o DateTime.o User.o Menu.o UserMenu.o Utils.o
 	g++ -std=c++14 -o $@ $^

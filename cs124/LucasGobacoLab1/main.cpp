@@ -31,6 +31,34 @@ int main()
         main_menu.add_option("Quit");
         input = main_menu.get_input();
 
+        switch (input)
+        {
+
+        case 1:
+            cout << "Sign-in" << endl;
+            break;
+
+        case 2:
+            cout << "Sign-out" << endl;
+            break;
+
+        case 3:
+            cout << "Reset Password" << endl;
+            break;
+
+        case 4:
+            cout << "Create Account" << endl;
+            break;
+
+        case 5:
+            cout << "Manage Profiles" << endl;
+            break;
+
+        case 6:
+            cout << "Quit" << endl;
+            break;
+        }
+
     } while (input != 6);
     return 0;
 }
