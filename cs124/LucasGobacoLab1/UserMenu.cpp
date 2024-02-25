@@ -149,24 +149,27 @@ bool UserMenu::isAdmin() {
     return user.getRole() == "admin";
 }
 
-bool UserMenu::manageProfile(string username) {
+bool UserMenu::manageProfile(User user) {
         for (int i = 0; i < users.size(); i++) {
-        if (users[i].getUsername() == username) {
-            // Display the user profile
-            cout << "User Profile:" << endl;
-            cout << "Username: " << users[i].getUsername() << endl;
-            cout << "Role: " << users[i].getRole() << endl;
-            // Add more profile information display as needed
-            cout << "Email: " << users[i].getEmail() << endl;
-            cout << "Phone: " << users[i].getPhone() << endl;
-            // Add more profile information display as needed
-            cout << "Address: " << users[i].getAddress() << endl;
-            cout << "City: " << users[i].getCity() << endl;
-            cout << "State: " << users[i].getState() << endl;
-            cout << "Zip: " << users[i].getZip() << endl;
-            // Add more profile information display as needed
+        if (users[i].getUsername() == user.getUsername()) {
+            users[i] = user;
+            saveUserData();
+            cout << "User " << user.getUsername() << " profile updated." << endl;
             return true;
         }
     }
     return false;
+}
+
+User UserMenu::getSignedInUser() {
+    return user;
+}
+
+User UserMenu::getUserByUsername(string username) {
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getUsername() == username) {
+            return users[i];
+        }
+    }
+    return User();
 }

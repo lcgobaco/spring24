@@ -113,8 +113,53 @@ int main()
                 cout << "Username to manage: ";
                 string username;
                 cin >> username;
-                bool managed =main_menu.manageProfile(username);
-                cout << "Managed: " << managed << endl;
+
+                User userToManage = main_menu.getUserByUsername(username);
+                if (userToManage.getUsername() == "") {
+                    cout << "Error: User not found." << endl;
+                    break;
+                }
+
+                string role, firstName, lastName, email, phone, address, city, state, zip;
+
+                cout << "Role:" << userToManage.getRole() << endl;
+                cout << "New Role: ";
+                cin >> role;
+                cout << "First Name: " << userToManage.getFirstName() << endl;
+                cout << "New First Name: ";
+                cin >> firstName;
+                cout << "Last Name: " << userToManage.getLastName() << endl;
+                cout << "New Last Name: ";
+                cin >> lastName;
+                cout << "Email: " << userToManage.getEmail() << endl;
+                cout << "New Email: ";
+                cin >> email;
+                cout << "Phone: " << userToManage.getPhone() << endl;
+                cout << "New Phone: ";
+                cin >> phone;
+                cout << "Address: " << userToManage.getAddress() << endl;
+                cout << "New Address: ";
+                cin >> address;
+                cout << "City: " << userToManage.getCity() << endl;
+                cout << "New City: ";
+                cin >> city;
+                cout << "State: " << userToManage.getState() << endl;
+                cout << "New State: ";
+                cin >> state;
+                cout << "Zip: " << userToManage.getZip() << endl;
+                cout << "New Zip: ";
+                cin >> zip;
+
+                userToManage.setRole(role);
+                userToManage.setFirstName(firstName);
+                userToManage.setLastName(lastName);
+                userToManage.setEmail(email);
+                userToManage.setPhone(phone);
+                userToManage.setAddress(address);
+                userToManage.setCity(city);
+                userToManage.setState(state);
+                userToManage.setZip(zip);
+                bool managed =main_menu.manageProfile(userToManage);
                 break;
             }
 

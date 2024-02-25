@@ -63,9 +63,20 @@ public:
     string getEmail() const { return email; }
 
 
-    void setPassword(string pass) { password = pass; }
-    void setLoginDateTime(DateTime loginDT) { loginDateTime = loginDT; }
-    void setLogoutDateTime(DateTime logoutDT) { logoutDateTime = logoutDT; }
+    void setUserId(int id) { this->userId = id; }
+    void setRole(string role) { this->role = role; }
+    void setUsername(string name) { this->username = name; }
+    void setFirstName(string first) { this->firstName = first; }
+    void setLastName(string last) { this->lastName = last; }
+    void setAddress(string address) { this->address = address; }
+    void setCity(string city) { this->city = city; }
+    void setState(string state) { this->state = state; }
+    void setZip(string zip) { this->zip = zip; }
+    void setPhone(string phone) { this->phone = phone; }
+    void setEmail(string email) { this->email = email; }
+    void setPassword(string pass) { this->password = pass; }
+    void setLoginDateTime(DateTime loginDT) { this->loginDateTime = loginDT; }
+    void setLogoutDateTime(DateTime logoutDT) { this->logoutDateTime = logoutDT; }
 
     // Other methods...
 };
