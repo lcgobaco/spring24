@@ -43,14 +43,16 @@ class UserMenu : public Menu
         ifstream inFile;
         User user;
         vector<User> users;
+        int maxUserId = 0;
 
     private:
         void initUserData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
         void saveUserData();
     public:
+        bool isSignedIn();
         bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
     public:
-        bool create(); // Add a member method create user definition and implementation
+        bool createAccount(string firstName, string lastName, string phone, string email, string password); // Add a member method create user definition and implementation
     public:
         bool remove(); // Add a member method remove user definition and implementation
     public:

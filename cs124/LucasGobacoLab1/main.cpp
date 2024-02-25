@@ -51,6 +51,7 @@ int main()
                     }
                     tries++;
                 }
+                break;
             }
 
             case 2:
@@ -63,6 +64,10 @@ int main()
 
             case 3:
             {
+                if (main_menu.isSignedIn() == false) {
+                    cout << "Error: You must be signed in to reset your password." << endl;
+                    break;
+                }
                 cout << "Reset Password" << endl;
                 cout << "Old Password: ";
                 string oldPassword;
@@ -76,7 +81,34 @@ int main()
 
             case 4:
             {
+                /*
+                - Enter first and last name
+- Enter mobile number or email
+- Enter password
+- Enter re-enter password
+- Forgot your password? Only role=admin can reset your password.
+- Save new sign-in, sign-out datetime, and data to users_data.csv
+*/
                 cout << "Create Account" << endl;
+                string firstName, lastName, phone, email, password, reEnterPassword;
+                cout << "Enter first name: ";
+                cin >> firstName;
+                cout << "Enter last name: ";
+                cin >> lastName;
+                cout << "Enter mobile number or email: ";
+                cin >> phone;
+                cout << "Enter password: ";
+                cin >> password;
+                cout << "Enter re-enter password: ";
+                cin >> reEnterPassword;
+                if (password != reEnterPassword)
+                {
+                    cout << "Passwords do not match." << endl;
+                    break;
+                }
+
+                bool created = main_menu.createAccount(firstName, lastName, phone, email, password);
+                cout << "Created: " << created << endl;
                 break;
             }
 
