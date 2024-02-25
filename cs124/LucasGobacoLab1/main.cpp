@@ -13,6 +13,7 @@
 #include "DateTime.h"
 #include "UserMenu.h"
 #include "User.h"
+#include <ctime>
 
 using namespace std;
 
@@ -20,15 +21,15 @@ int main()
 {
 
     int input;
+    UserMenu main_menu;
+    main_menu.add_option("Sign-in");
+    main_menu.add_option("Sign-out");
+    main_menu.add_option("Reset Password");
+    main_menu.add_option("Create Account");
+    main_menu.add_option("Manage Profiles");
+    main_menu.add_option("Quit");
     do
     {
-        UserMenu main_menu;
-        main_menu.add_option("Sign-in");
-        main_menu.add_option("Sign-out");
-        main_menu.add_option("Reset Password");
-        main_menu.add_option("Create Account");
-        main_menu.add_option("Manage Profiles");
-        main_menu.add_option("Quit");
         input = main_menu.get_input();
 
         switch (input)
@@ -50,6 +51,8 @@ int main()
             case 2:
             {
                 cout << "Sign-out" << endl;
+                bool signedOut = main_menu.signOut();
+                cout << "Signed out: " << signedOut << endl;
                 break;
             }
 

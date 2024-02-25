@@ -48,15 +48,10 @@ void UserMenu::initUserData() {
     std::getline(inFile, line);
 
     while (std::getline(inFile, line)) {
-        cout << line << endl;
         vector<string> tokens = splitString(line, ',');
         User user (std::stoi(tokens[0]), tokens[1], tokens[2], tokens[3], DateTime(tokens[4]), DateTime(tokens[5]),
         tokens[6], tokens[7], tokens[8], tokens[9], tokens[10], tokens[11], tokens[12], tokens[13]);
         users.push_back(user);
-    }
-
-    for (int i = 0; i < users.size(); i++) {
-        cout << users[i].getUserId() << " " << users[i].getUsername() << " " << users[i].getPassword() << endl;
     }
 
     // Close the file
@@ -108,14 +103,21 @@ bool UserMenu::signIn(string username, string password) {
     return false;
 }
 
-/*bool UserMenu::signOut() {
+bool UserMenu::signOut() {
+    if (user.getUserId() == 0) {
+        cout << "No user signed in." << endl;
+        return false;
+    }
+
+    cout << "Signing out " << user.getUsername() << "..." << endl;
+
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == user.getUsername()) {
-            users[i] = user;
+            users[i].setLogoutDateTime(DateTime(std::chrono::system_clock::now()));
+            saveUserData();
             cout << "User " << user.getUsername() << " signed out." << endl;
             return true;
         }
     }
     return false;
 }
-*/
