@@ -1,21 +1,21 @@
 all: main
 
-main: main.o time.o datetime.o user.o menu.o
+main: main.o Time.o DateTime.o User.o Menu.o
 	g++ -std=c++14 -o $@ $^
 
-time.o: Time.cpp
+Time.o: Time.cpp
 	g++ -std=c++14 -c $<
 
-datetime.o: DateTime.cpp
+DateTime.o: DateTime.cpp
 	g++ -std=c++14 -c $<
 
-main.o: main.cpp time.o datetime.o user.o menu.o
+main.o: main.cpp Time.o DateTime.o User.o Menu.o
 	g++ -std=c++14 -c $<
 
-user.o: User.cpp
+User.o: User.cpp
 	g++ -std=c++14 -c $<
 
-menu.o: Menu.cpp
+Menu.o: Menu.cpp
 	g++ -std=c++14 -c $<
 
 clean:

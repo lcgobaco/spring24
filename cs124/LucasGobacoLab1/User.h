@@ -1,3 +1,6 @@
+#ifndef USER_H
+#define USER_H
+
 #include <iostream>
 #include <string>
 #include <fstream>
@@ -14,7 +17,7 @@ private:
 
 public:
     // Constructor
-    User(int id, const std::string& uname, const std::string& pwd, const DateTime& loginDT, const DateTime& logoutDT) 
+    User(int id, const std::string& uname, const std::string& pwd, const DateTime& loginDT, const DateTime& logoutDT)
         : userId(id), username(uname), password(pwd), loginDateTime(loginDT), logoutDateTime(logoutDT) {}
 
     // Getter methods
@@ -26,4 +29,6 @@ public:
 
     // Other methods...
 };
+
+#endif // USER_H
 
