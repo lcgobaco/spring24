@@ -20,15 +20,15 @@ DateTime::DateTime(int h, int m, int s, int mon, int d, int y)
     : Time(h, m, s), month(mon), day(d), year(y) {}
 
 DateTime::DateTime(string datetime) {
-    vector<string> tokens = splitString(datetime, '-');
-    setYear(stoi(tokens[0]));
-    setMonth(stoi(tokens[1]));
-    setDay(stoi(tokens[2]));
+    // 2/10/2024 20:30:14
+    std::replace(datetime.begin(), datetime.end(), ' ', '/');
+    std::replace(datetime.begin(), datetime.end(), ':', '/');
+    vector<string> tokens = splitString(datetime, '/');
+    *this = DateTime(stoi(tokens[3]), stoi(tokens[4]), stoi(tokens[5]), stoi(tokens[3]), stoi(tokens[1]), stoi(tokens[2]));
 }
 
 // Destructor
 DateTime::~DateTime() {
-    std::cout << "DateTime object is being destroyed" << std::endl;
 }
 
 // Setter methods

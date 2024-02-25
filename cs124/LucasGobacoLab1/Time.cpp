@@ -16,7 +16,6 @@
 Time::Time(int h, int m, int s) : hour(h), minute(m), second(s) {}
 
 Time::~Time() {
-    std::cout << "Time object is being destroyed" << std::endl;
 }
 
 void Time::setHour(int h) {
