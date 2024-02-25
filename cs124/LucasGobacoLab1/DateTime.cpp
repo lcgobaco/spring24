@@ -11,10 +11,20 @@
  *******************************************************/
 
 #include "DateTime.h"
+#include "Utils.h"
+
+using namespace std;
 
 // Constructor
 DateTime::DateTime(int h, int m, int s, int mon, int d, int y)
     : Time(h, m, s), month(mon), day(d), year(y) {}
+
+DateTime::DateTime(string datetime) {
+    vector<string> tokens = splitString(datetime, '-');
+    setYear(stoi(tokens[0]));
+    setMonth(stoi(tokens[1]));
+    setDay(stoi(tokens[2]));
+}
 
 // Destructor
 DateTime::~DateTime() {

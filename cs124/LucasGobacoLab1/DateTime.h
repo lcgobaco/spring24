@@ -16,6 +16,8 @@
 #include <iostream>
 #include "Time.h"
 
+using namespace std;
+
 class DateTime : public Time {
 private:
     int month;
@@ -25,6 +27,8 @@ private:
 public:
     // Constructor
     DateTime(int h = 0, int m = 0, int s = 0, int mon = 0, int d = 0, int y = 0);
+
+    DateTime(string datetime);
 
     // Destructor
     ~DateTime();
