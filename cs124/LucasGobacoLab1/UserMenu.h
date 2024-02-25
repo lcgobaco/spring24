@@ -50,6 +50,7 @@ class UserMenu : public Menu
         void saveUserData();
     public:
         bool isSignedIn();
+        bool isAdmin();
         bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
     public:
         bool createAccount(string firstName, string lastName, string phone, string email, string password); // Add a member method create user definition and implementation
@@ -58,7 +59,7 @@ class UserMenu : public Menu
     public:
         bool resetPassword(string oldPassword, string newPassword); // Add a member method reset user definition and implementation
     public:
-        bool manageProfiles(); // Add a member method to manage user definition and implementation
+        bool manageProfile(string username); // Add a member method to manage user definition and implementation
     public:
         void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
     public:

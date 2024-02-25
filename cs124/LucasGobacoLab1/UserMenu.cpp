@@ -134,7 +134,7 @@ bool UserMenu::createAccount(string firstName, string lastName, string phone, st
         return false;
     }
     maxUserId++;
-    User newUser(maxUserId, "student", email, password, DateTime(std::chrono::system_clock::now()), DateTime(std::chrono::system_clock::now()),
+    User newUser(maxUserId, "guest", email, password, DateTime(std::chrono::system_clock::now()), DateTime(std::chrono::system_clock::now()),
     firstName, lastName, "", "", "", "", phone, email);
     users.push_back(newUser);
     saveUserData();
@@ -142,8 +142,31 @@ bool UserMenu::createAccount(string firstName, string lastName, string phone, st
 }
 
 bool UserMenu::isSignedIn() {
-    if (user.getUserId() == 0) {
-        return false;
+    return user.getUserId() != 0;
+}
+
+bool UserMenu::isAdmin() {
+    return user.getRole() == "admin";
+}
+
+bool UserMenu::manageProfile(string username) {
+        for (int i = 0; i < users.size(); i++) {
+        if (users[i].getUsername() == username) {
+            // Display the user profile
+            cout << "User Profile:" << endl;
+            cout << "Username: " << users[i].getUsername() << endl;
+            cout << "Role: " << users[i].getRole() << endl;
+            // Add more profile information display as needed
+            cout << "Email: " << users[i].getEmail() << endl;
+            cout << "Phone: " << users[i].getPhone() << endl;
+            // Add more profile information display as needed
+            cout << "Address: " << users[i].getAddress() << endl;
+            cout << "City: " << users[i].getCity() << endl;
+            cout << "State: " << users[i].getState() << endl;
+            cout << "Zip: " << users[i].getZip() << endl;
+            // Add more profile information display as needed
+            return true;
+        }
     }
-    return true;
+    return false;
 }

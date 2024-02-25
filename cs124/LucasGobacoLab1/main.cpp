@@ -81,14 +81,6 @@ int main()
 
             case 4:
             {
-                /*
-                - Enter first and last name
-- Enter mobile number or email
-- Enter password
-- Enter re-enter password
-- Forgot your password? Only role=admin can reset your password.
-- Save new sign-in, sign-out datetime, and data to users_data.csv
-*/
                 cout << "Create Account" << endl;
                 string firstName, lastName, phone, email, password, reEnterPassword;
                 cout << "Enter first name: ";
@@ -114,6 +106,15 @@ int main()
 
             case 5: {
                 cout << "Manage Profiles" << endl;
+                if (main_menu.isAdmin() == false) {
+                    cout << "Error: You must be an admin to manage profiles." << endl;
+                    break;
+                }
+                cout << "Username to manage: ";
+                string username;
+                cin >> username;
+                bool managed =main_menu.manageProfile(username);
+                cout << "Managed: " << managed << endl;
                 break;
             }
 
