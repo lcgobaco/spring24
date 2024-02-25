@@ -1,5 +1,4 @@
-all: main
-	rm -f main *.o
+all: clean main
 
 main: main.o Time.o DateTime.o User.o Menu.o UserMenu.o
 	g++ -std=c++14 -o $@ $^
