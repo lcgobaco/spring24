@@ -8,13 +8,14 @@
             "name": "(lldb) Launch",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceRoot}/LucasGobacoWeek2InClassAssignment/main",
+            "program": "${workspaceFolder}/LucasGobacoLab1/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
-            "externalConsole": false,
+            "externalConsole": true,
             "MIMode": "lldb",
+            "preLaunchTask": "build_task"
         }
 
     ]

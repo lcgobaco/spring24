@@ -1,6 +1,22 @@
 {
     "tasks": [
         {
+            "label": "build_task",
+            "type": "shell",
+            "command": "g++",
+            "args": [
+                "-g",
+                "${file}"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "always",
+                "focus": true,
+                "panel": "new"
+            },
+            "problemMatcher": "$gcc"
+        },
+        {
             "type": "cppbuild",
             "label": "C/C++: clang build active file",
             "command": "/usr/bin/clang",
