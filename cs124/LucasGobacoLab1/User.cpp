@@ -26,5 +26,9 @@ User::User(int id, string name, string pass, DateTime loginDT, DateTime logoutDT
     logoutDateTime = logoutDT;
 }
 
+User::User()
+{
+}
+
 // Destructor
 User::~User() {}

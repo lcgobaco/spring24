@@ -14,7 +14,8 @@
 
 UserMenu::UserMenu() {
     inFile.open(USERS_DATA);
-    this->user = User(0, "", "", DateTime(), DateTime());
+    User u (0, "", "", DateTime(), DateTime());
+    this->user = u;
     this->users = vector<User>();
 };
 

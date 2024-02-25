@@ -31,6 +31,8 @@ public:
     // Constructor
     User(int id, string name, string pass, DateTime loginDT, DateTime logoutDT);
 
+    User();
+
     // Destructor
     ~User();
 
