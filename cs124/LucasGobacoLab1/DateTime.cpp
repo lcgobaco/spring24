@@ -12,6 +12,8 @@
 
 #include "DateTime.h"
 #include "Utils.h"
+#include <vector>
+#include <string>
 
 using namespace std;
 

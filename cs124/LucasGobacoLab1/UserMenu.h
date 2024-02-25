@@ -1,13 +1,12 @@
 /*******************************************************
 
- * Program Name: User
-enu.h
+ * Program Name: UserMenu.h
 
-     * Author: Lucas Gobaco
+* Author: Lucas Gobaco
 
-     * Date: 24 February 2024
+* Date: 24 February 2024
 
-     * Description: This program defines a class that displays a menu for a user in the console.
+* Description: This program defines a class that displays a menu for a user in the console.
 
  *******************************************************/
 
@@ -36,9 +35,9 @@ const string USERS_DATA = "users_data.csv";
 
 class UserMenu : public Menu
     {
-        public:
-            UserMenu();
-            ~UserMenu();
+    public:
+        UserMenu();
+        ~UserMenu();
     private:
         // Member variables and any other variables if necessary
         ifstream inFile;
@@ -48,7 +47,7 @@ class UserMenu : public Menu
     private:
         void initUserData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
     public:
-        bool signIn(); // Add a member method LoginMenu::signIn definition and implementation
+        bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
     public:
         bool create(); // Add a member method create user definition and implementation
     public:

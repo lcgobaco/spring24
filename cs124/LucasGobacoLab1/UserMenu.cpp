@@ -71,8 +71,14 @@ UserMenu::UserMenu() {
 UserMenu::~UserMenu() {
 }
 
-/*
-UserMenu::signIn() {
-    return true;
+bool UserMenu::signIn(string username, string password) {
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getUsername() == username && users[i].getPassword() == password) {
+            cout << "User " << username << " signed in." << endl;
+            user = users[i];
+            cout << "User " << user.getUsername() << " signed in." << endl;
+            return true;
+        }
+    }
+    return false;
 }
-*/

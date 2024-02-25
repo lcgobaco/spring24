@@ -36,6 +36,10 @@ int main()
 
         case 1:
             cout << "Sign-in" << endl;
+            string username, password;
+            cin >> username;
+            cin >> password;
+            main_menu.signIn(username, password);
             break;
 
         case 2:
