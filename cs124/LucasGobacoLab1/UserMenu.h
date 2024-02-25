@@ -46,6 +46,7 @@ class UserMenu : public Menu
 
     private:
         void initUserData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
+        void saveUserData();
     public:
         bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
     public:

@@ -50,7 +50,8 @@ void UserMenu::initUserData() {
     while (std::getline(inFile, line)) {
         cout << line << endl;
         vector<string> tokens = splitString(line, ',');
-        User user (std::stoi(tokens[0]), tokens[2], tokens[3], DateTime(tokens[4]), DateTime(tokens[5]));
+        User user (std::stoi(tokens[0]), tokens[1], tokens[2], tokens[3], DateTime(tokens[4]), DateTime(tokens[5]),
+        tokens[6], tokens[7], tokens[8], tokens[9], tokens[10], tokens[11], tokens[12], tokens[13]);
         users.push_back(user);
     }
 
@@ -60,6 +61,29 @@ void UserMenu::initUserData() {
 
     // Close the file
     inFile.close();
+}
+
+void UserMenu::saveUserData() {
+    ofstream outFile;
+    outFile.open(USERS_DATA);
+
+    if (!outFile) {
+        std::cerr << "Error: Unable to open the file." << std::endl;
+    }
+
+    outFile << "Id,Role,Username,Password,Sign-in datetime,Sign out datetime,First Name,Last Name,Address,City,State,Zip,Phone,Email" << endl;
+
+    for (int i = 0; i < users.size(); i++) {
+        outFile << users[i].getUserId()
+        << "," << users[i].getRole() << "," << users[i].getUsername() << "," << users[i].getPassword()
+        << "," << users[i].getLoginDateTime().toString() << "," << users[i].getLogoutDateTime().toString()
+        << "," << users[i].getFirstName() << "," << users[i].getLastName() << "," << users[i].getAddress()
+        << "," << users[i].getCity() << "," << users[i].getState() << "," << users[i].getZip()
+        << "," << users[i].getPhone() << "," << users[i].getEmail()
+        << endl;
+    }
+
+    outFile.close();
 }
 
 
@@ -74,9 +98,10 @@ UserMenu::~UserMenu() {
 bool UserMenu::signIn(string username, string password) {
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == username && users[i].getPassword() == password) {
-            cout << "User " << username << " signed in." << endl;
             user = users[i];
+            users[i].setLoginDateTime(DateTime(std::chrono::system_clock::now()));
             cout << "User " << user.getUsername() << " signed in." << endl;
+            saveUserData();
             return true;
         }
     }
@@ -93,4 +118,4 @@ bool UserMenu::signIn(string username, string password) {
     }
     return false;
 }
-*
+*/

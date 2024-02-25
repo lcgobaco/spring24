@@ -26,7 +26,25 @@ DateTime::DateTime(string datetime) {
     std::replace(datetime.begin(), datetime.end(), ' ', '/');
     std::replace(datetime.begin(), datetime.end(), ':', '/');
     vector<string> tokens = splitString(datetime, '/');
-    *this = DateTime(stoi(tokens[3]), stoi(tokens[4]), stoi(tokens[5]), stoi(tokens[3]), stoi(tokens[1]), stoi(tokens[2]));
+    *this = DateTime(stoi(tokens[3]), stoi(tokens[4]), stoi(tokens[5]), stoi(tokens[0]), stoi(tokens[1]), stoi(tokens[2]));
+}
+
+DateTime::DateTime(std::chrono::system_clock::time_point datetime) {
+
+    std::time_t currentTime = std::chrono::system_clock::to_time_t(datetime);
+
+    // Convert the time_t object to a tm struct
+    std::tm* timeInfo = std::localtime(&currentTime);
+
+    // Extract individual components of the current datetime
+    int year = timeInfo->tm_year + 1900;   // tm_year is years since 1900
+    int month = timeInfo->tm_mon + 1;       // tm_mon is months since January (0-based)
+    int day = timeInfo->tm_mday;
+    int hour = timeInfo->tm_hour;
+    int minute = timeInfo->tm_min;
+    int second = timeInfo->tm_sec;
+    // DateTime(int h, int m, int s, int mon, int d, int y)
+    *this = DateTime(hour, minute, second, month, day, year);
 }
 
 // Destructor
@@ -57,4 +75,9 @@ int DateTime::getDay() const {
 
 int DateTime::getYear() const {
     return year;
+}
+
+// Other methods
+std::string DateTime::toString() const {
+    return to_string(month) + "/" + to_string(day) + "/" + to_string(year) + " " + to_string(hour) + ":" + to_string(minute) + ":" + to_string(second);
 }

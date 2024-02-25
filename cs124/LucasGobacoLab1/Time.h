@@ -16,7 +16,7 @@
 #include <iostream>
 
 class Time {
-private:
+public:
     int hour;
     int minute;
     int second;

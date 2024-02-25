@@ -14,6 +14,7 @@
 #define DATE_TIME_H
 
 #include <iostream>
+#include <ctime>
 #include "Time.h"
 
 using namespace std;
@@ -30,6 +31,8 @@ public:
 
     DateTime(string datetime);
 
+    DateTime(std::chrono::system_clock::time_point datetime);
+
     // Destructor
     ~DateTime();
 
@@ -42,6 +45,9 @@ public:
     int getMonth() const;
     int getDay() const;
     int getYear() const;
+
+    // Other methods
+    string toString() const;
 };
 
 #endif // DATE_TIME_H
