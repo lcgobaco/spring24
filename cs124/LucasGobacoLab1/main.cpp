@@ -34,33 +34,43 @@ int main()
         switch (input)
         {
 
-        case 1:
-            cout << "Sign-in" << endl;
-            string username, password;
-            cin >> username;
-            cin >> password;
-            main_menu.signIn(username, password);
-            break;
+            case 1:
+            {
+                cout << "Sign-in" << endl;
+                string username, password;
+                cin >> username;
+                cin >> password;
+                main_menu.signIn(username, password);
+                break;
+            }
 
-        case 2:
-            cout << "Sign-out" << endl;
-            break;
+            case 2:
+            {
+                cout << "Sign-out" << endl;
+                break;
+            }
 
-        case 3:
-            cout << "Reset Password" << endl;
-            break;
+            case 3:
+            {
+                cout << "Reset Password" << endl;
+                break;
+            }
 
-        case 4:
-            cout << "Create Account" << endl;
-            break;
+            case 4:
+            {
+                cout << "Create Account" << endl;
+                break;
+            }
 
-        case 5:
-            cout << "Manage Profiles" << endl;
-            break;
+            case 5: {
+                cout << "Manage Profiles" << endl;
+                break;
+            }
 
-        case 6:
-            cout << "Quit" << endl;
-            break;
+            case 6: {
+                cout << "Quit" << endl;
+                break;
+            }
         }
 
     } while (input != 6);
