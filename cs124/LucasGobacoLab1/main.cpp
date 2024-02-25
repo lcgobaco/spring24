@@ -38,9 +38,12 @@ int main()
             {
                 cout << "Sign-in" << endl;
                 string username, password;
+                cout << "Enter username: ";
                 cin >> username;
+                cout << "Enter password: ";
                 cin >> password;
-                main_menu.signIn(username, password);
+                bool signedIn = main_menu.signIn(username, password);
+                cout << "Signed in: " << signedIn << endl;
                 break;
             }
 

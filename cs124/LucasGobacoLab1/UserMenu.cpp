@@ -82,3 +82,15 @@ bool UserMenu::signIn(string username, string password) {
     }
     return false;
 }
+
+/*bool UserMenu::signOut() {
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getUsername() == user.getUsername()) {
+            users[i] = user;
+            cout << "User " << user.getUsername() << " signed out." << endl;
+            return true;
+        }
+    }
+    return false;
+}
+*
