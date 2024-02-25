@@ -20,7 +20,7 @@ using namespace std;
 int main()
 {
 
-    int input;
+    string input;
     UserMenu main_menu;
     main_menu.add_option("Sign-in");
     main_menu.add_option("Sign-out");
@@ -32,7 +32,17 @@ int main()
     {
         input = main_menu.get_input();
 
-        switch (input)
+        cout << "Input == x " << input << " " << (input == "x") << " " << endl;
+
+        if (input == "x") {
+            cout << "Quit" << endl;
+            break;
+        }
+
+        int option = std::stoi(input);
+
+        cout << "Option: " << option << endl;
+        switch (option)
         {
 
             case 1:
@@ -105,16 +115,9 @@ int main()
             }
 
             case 5: {
-                cout << "Manage Profiles" << endl;
-                if (main_menu.isAdmin() == false) {
-                    cout << "Error: You must be an admin to manage profiles." << endl;
-                    break;
-                }
-                cout << "Username to manage: ";
-                string username;
-                cin >> username;
+                cout << "Manage Profile" << endl;
 
-                User userToManage = main_menu.getUserByUsername(username);
+                User userToManage = main_menu.getSignedInUser();
                 if (userToManage.getUsername() == "") {
                     cout << "Error: User not found." << endl;
                     break;
@@ -169,7 +172,7 @@ int main()
             }
         }
 
-    } while (input != 6);
+    } while (input != "6" );
     return 0;
 }
 
