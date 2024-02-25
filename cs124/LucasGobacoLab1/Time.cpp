@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: Time.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 24 February 2024
+
+ * Description: This program implements a class that stores a time.
+
+ *******************************************************/
+
 #include "Time.h"
 
 // Time class implementation

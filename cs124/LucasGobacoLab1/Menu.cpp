@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 24 January 2024
+ * Date: 24 February 2024
 
  * Description: This program implements a class that displays a menu into the console.
 
@@ -16,9 +16,7 @@
 
 using namespace std;
 
-Menu::Menu()
-{
-}
+Menu::Menu() {}
 
 void Menu::add_option(string option)
 {

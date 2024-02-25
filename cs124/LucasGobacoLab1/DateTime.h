@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: DateTime.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 24 February 2024
+
+ * Description: This program defines a class that stores a date and time.
+
+ *******************************************************/
+
 #ifndef DATE_TIME_H
 #define DATE_TIME_H
 

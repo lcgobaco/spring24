@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: Time.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 24 February 2024
+
+ * Description: This program defines a class that stores a time.
+
+ *******************************************************/
+
 #ifndef TIME_H
 #define TIME_H
 

@@ -1,15 +1,28 @@
+/*******************************************************
+
+ * Program Name: main.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 24 February 2024
+
+ * Description: This program manages user accounts.
+
+ *******************************************************/
+
 #include "DateTime.h"
 #include "Menu.h"
+#include "UserMenu.h"
 
 using namespace std;
 
 int main()
 {
-    bool loggedIn = false;
+
     int input;
     do
     {
-        Menu main_menu;
+        UserMenu main_menu;
         main_menu.add_option("Sign-in");
         main_menu.add_option("Sign-out");
         main_menu.add_option("Reset Password");
