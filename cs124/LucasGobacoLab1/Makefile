@@ -1,28 +1,29 @@
+COMPILER = g++ -std=c++14 -g
 all: main
 
 main: main.o Time.o DateTime.o User.o Menu.o UserMenu.o Utils.o
-	g++ -std=c++14 -o $@ $^
+	$(COMPILER) -o $@ $^
 
 Time.o: Time.cpp
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 DateTime.o: DateTime.cpp
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 main.o: main.cpp Time.o DateTime.o User.o Menu.o
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 User.o: User.cpp
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 UserMenu.o: UserMenu.cpp
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 Menu.o: Menu.cpp
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 Utils.o: Utils.cpp
-	g++ -std=c++14 -c $<
+	$(COMPILER) -c $<
 
 clean:
 	rm -f main *.o
