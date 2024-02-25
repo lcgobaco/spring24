@@ -37,15 +37,20 @@ int main()
 
             case 1:
             {
-                cout << "Sign-in" << endl;
-                string username, password;
-                cout << "Enter username: ";
-                cin >> username;
-                cout << "Enter password: ";
-                cin >> password;
-                bool signedIn = main_menu.signIn(username, password);
-                cout << "Signed in: " << signedIn << endl;
-                break;
+                int tries = 0;
+                while (tries < 3) {
+                    cout << "Sign-in" << endl;
+                    string username, password;
+                    cout << "Enter username: ";
+                    cin >> username;
+                    cout << "Enter password: ";
+                    cin >> password;
+                    bool signedIn = main_menu.signIn(username, password);
+                    if (signedIn) {
+                        break;
+                    }
+                    tries++;
+                }
             }
 
             case 2:
