@@ -54,7 +54,7 @@ class UserMenu : public Menu
     public:
         bool remove(); // Add a member method remove user definition and implementation
     public:
-        bool reset(); // Add a member method reset user definition and implementation
+        bool resetPassword(string oldPassword, string newPassword); // Add a member method reset user definition and implementation
     public:
         bool manageProfiles(); // Add a member method to manage user definition and implementation
     public:

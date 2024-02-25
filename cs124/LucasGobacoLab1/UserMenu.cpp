@@ -121,3 +121,25 @@ bool UserMenu::signOut() {
     }
     return false;
 }
+
+bool UserMenu::resetPassword(string oldPassword, string newPassword) {
+    if (user.getUserId() == 0) {
+        cout << "No user signed in." << endl;
+        return false;
+    }
+
+    for (int i = 0; i < users.size(); i++) {
+        if (users[i].getUsername() == user.getUsername()) {
+            if (users[i].getPassword() == oldPassword) {
+                users[i].setPassword(newPassword);
+                saveUserData();
+                cout << "User " << user.getUsername() << " password reset." << endl;
+                return true;
+            }
+            cout << "Incorrect password." << endl;
+            return false;
+        }
+    }
+
+    return true;
+}

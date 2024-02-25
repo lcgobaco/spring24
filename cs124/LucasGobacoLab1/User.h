@@ -63,7 +63,7 @@ public:
     string getEmail() const { return email; }
 
 
-
+    void setPassword(string pass) { password = pass; }
     void setLoginDateTime(DateTime loginDT) { loginDateTime = loginDT; }
     void setLogoutDateTime(DateTime logoutDT) { logoutDateTime = logoutDT; }
 

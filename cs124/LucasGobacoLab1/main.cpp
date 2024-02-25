@@ -64,6 +64,13 @@ int main()
             case 3:
             {
                 cout << "Reset Password" << endl;
+                cout << "Old Password: ";
+                string oldPassword;
+                cin >> oldPassword;
+                cout << "New Password: ";
+                string newPassword;
+                cin >> newPassword;
+                bool reset = main_menu.resetPassword(oldPassword, newPassword);
                 break;
             }
 
