@@ -6,7 +6,7 @@
 
     // Destructor
     DateTime::~DateTime() {
-        std::cout << "DateTime object is being destroyed" << std::endl;
+        std::cout << "Destroying DateTime Object" << std::endl;
     }
 
     // Setter methods

@@ -5,12 +5,6 @@ using namespace std;
 
 int main()
 {
-    // Create a new DateTime object
-    DateTime dt(12, 30, 45, 6, 15, 2020);
-
-    // Print the date and time
-    std::cout << "Date: " << dt.getMonth() << "/" << dt.getDay() << "/" << dt.getYear() << std::endl;
-
    Menu main_menu;
    main_menu.add_option("Sign-in");
    main_menu.add_option("Sign out");
