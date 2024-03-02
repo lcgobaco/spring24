@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 8 February 2024
+ * Date: 24 February 2024
 
  * Description: This program defines a class that stores a user's account.
 
@@ -78,15 +78,7 @@ public:
     void setLoginDateTime(DateTime loginDT) { this->loginDateTime = loginDT; }
     void setLogoutDateTime(DateTime logoutDT) { this->logoutDateTime = logoutDT; }
 
-    bool operator==(const User&) const;
-    bool operator!=(const User&) const;
-    bool operator>(const User&) const;
-    bool operator<(const User&) const;
-    bool operator>=(const User&) const;
-    bool operator<=(const User&) const;
-
-    friend istream& operator>>(istream& in, User& user);
-    friend ostream& operator<<(ostream& out, User& user);
+    // Other methods...
 };
 
 #endif // USER_H

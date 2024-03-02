@@ -5,10 +5,10 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "(lldb) Launch",
+            "name": "LucasGobacoWeek5InClassAssignment",
             "type": "cppdbg",
             "request": "launch",
-            "program": "${workspaceFolder}/LucasGobacoLab1/main",
+            "program": "${workspaceFolder}/LucasGobacoWeek5InClassAssignment/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
