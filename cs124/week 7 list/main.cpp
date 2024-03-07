@@ -14,11 +14,9 @@
 #include <iostream>
 #include "list.h"
 
-using namespace std;
-
 int main()
 {
-    List<string> names;
+    List<std::string> names;
 
     names.push_back("Tom");
     names.push_back("Diana");
@@ -27,7 +25,7 @@ int main()
 
     // Add a value in fourth place
 
-    Iterator<string> pos = names.begin();
+    Iterator<std::string> pos = names.begin();
     pos.next();
     pos.next();
     pos.next();
@@ -45,30 +43,30 @@ int main()
 
     for (pos = names.begin(); !pos.equals(names.end()); pos.next())
     {
-        cout << pos.get() << endl;
+        std::cout << pos.get() << std::endl;
     }
 
     // Now access using index
     for (int i = 0; i < 4; i++)
     {
-        cout << i << ": " << names.get(i) << endl;
+        std::cout << i << ": " << names.get(i) << std::endl;
     }
     names.erase(names.begin());
     // Now access using index
-    cout << "After deleting first element" << endl;
+    std::cout << "After deleting first element" << std::endl;
     for (int i = 0; i < 3; i++)
     {
-        cout << i << ": " << names.get(i) << endl;
+        std::cout << i << ": " << names.get(i) << std::endl;
     }
-    Iterator<string> iter = names.begin();
+    Iterator<std::string> iter = names.begin();
     iter.next();
     iter.next();
     names.erase(iter);
-    cout << "After deleting last element" << endl;
+    std::cout << "After deleting last element" << std::endl;
     for (int i = 0; i < 2; i++)
     {
-        cout << i << endl;
-        cout << i << ": " << names.get(i) << endl;
+        std::cout << i << std::endl;
+        std::cout << i << ": " << names.get(i) << std::endl;
     }
 
     return 0;
