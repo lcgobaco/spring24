@@ -4,11 +4,26 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
+
         {
             "name": "LucasGobacoWeek5InClassAssignment",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/LucasGobacoWeek5InClassAssignment/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+            //,
+            //"preLaunchTask": "build_task"
+        },
+        {
+            "name": "LucasGobacoLab2",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/LucasGobacoLab2/main",
             "args": [],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
