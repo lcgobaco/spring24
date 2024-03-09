@@ -5,7 +5,7 @@ all: main
 main: main.o
 	$(COMPILER) -o $@ $^
 
-main.o: main.cpp
+main.o: main.cpp list.h
 	$(COMPILER) -c $<
 
 clean:

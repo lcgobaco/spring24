@@ -151,6 +151,7 @@ int ArrayList<T>::partition(int first, int last) {
     return smallIndex;
 } //end partition
 
+template <typename T>
 void ArrayList<T>::recQuickSort(int first, int last) {
     int pivotLocation;
 

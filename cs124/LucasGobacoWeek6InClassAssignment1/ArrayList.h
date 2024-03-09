@@ -116,12 +116,16 @@ public:
     //               is decremented by one.
     virtual void remove(const T& removeItem) = 0;
 
-    template <typename T>
+    //Function that swaps element at index first and index second
     void swap(int first, int second);
-    template <typename T>
+
+    //Partitions the list into two halves with the first half's elements all being less than a pivot element and the second half's elements all being greater and returns the index of the pivot
     int partition(int first, int last);
+
+    //Recursively sorts the list using the quick sort algorithm
     void recQuickSort(int first, int last);
-    template <typename T>
+    
+    //Sorts the list using the quick sort algorithm
     void quickSort(int length);
 
     //Overloads the assignment operator

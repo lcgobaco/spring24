@@ -27,6 +27,7 @@ public:
        @param element the data to store in this node
     */
     Node(T element);
+    T get_data() const { return data; }
 private:
     T data;
     Node<T>* previous;
@@ -294,5 +295,6 @@ bool Iterator<T>::equals(Iterator other) const
 {
     return position == other.position;
 }
+
 
 #endif

@@ -19,7 +19,7 @@ const int MAX_SIZE = 100000;
 using namespace std;
 
 template <typename T>
-void swapInt(T list[], int first, int second);
+void swap(T list[], int first, int second);
 template <typename T>
 void bubbleSort(T list[], int length);
 template <typename T>
@@ -56,7 +56,7 @@ int main() {
 * Swaps two integer values
 */
 template <typename T>
-void swapInt(T list[], int first, int second) {
+void swap(T list[], int first, int second) {
     T temp;
     temp = list[first];
     list[first] = list[second];
@@ -71,7 +71,7 @@ void bubbleSort(T list[], int length) {
     for (int iteration = 1; iteration < length; iteration++) {
         for (int index = 0; index < length - iteration; index++) {            
             if (list[index] > list[index + 1]) {
-                swapInt(list, index, index + 1);
+                swap(list, index, index + 1);
             }
         }
     }
