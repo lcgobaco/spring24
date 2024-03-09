@@ -9,7 +9,7 @@
 
 int main() {
     ArrayList<Course> courses;
-    std::ifstream file("sample_data.txt");
+    std::ifstream file("cs_transfer_courses.dat");
 
     if (!file.is_open()) {
         std::cerr << "Error opening file." << std::endl;
