@@ -39,6 +39,6 @@ int Menu::get_input() const
       display();
       cin >> input;
    }
-   while (input < 1 || input > options.size());
+   while (input < 1 && input > options.size());
    return input;
 }

@@ -10,7 +10,7 @@ public:
     ~ComputerScienceTransferCourses() {};
 
     void sort();
-    void search(const std::string& key);
+    int search(const std::string& key);
 
 private:
     void quickSort(int low, int high);

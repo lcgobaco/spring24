@@ -143,9 +143,11 @@ x) Exit - save data to file cs_transfer_course.dat
 
             case 2:
             {
-                cout << "Sign-out" << endl;
-                main_menu.viewCourse("");
-                //cout << "Signed out: " << signedOut << endl;
+                string title;
+                cout << "Title:";
+                cin.ignore();
+                std::getline(cin, title);
+                main_menu.viewCourse(title);
                 break;
             }
 

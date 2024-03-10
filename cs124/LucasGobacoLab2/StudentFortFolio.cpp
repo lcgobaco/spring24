@@ -23,9 +23,16 @@ void StudentFortfolio::showList(bool ascending) {
 
 }
 
-void StudentFortfolio::viewCourse(const std::string& courseName) {
+void StudentFortfolio::viewCourse(const std::string& title) {
     // Search for the course
-    courses.search(courseName);
+    cout << title;
+    int x = courses.search(title);
+    if (x >= 0) {
+        std::cout << courses.get(x) << endl;
+    }
+    else {
+        std::cout << "Not Found" << endl;
+    }
 }
 
 void StudentFortfolio::addCourse(const Course& newCourse) {

@@ -18,8 +18,8 @@
 
 
     // Sort method using QuickSort algorithm
-    void ComputerScienceTransferCourses::search(const std::string& key) {
-        binarySearch(key, 0, this->size() - 1);
+    int ComputerScienceTransferCourses::search(const std::string& key) {
+       return binarySearch(key, 0, this->size() - 1);
     }
 
     // Sort method using QuickSort algorithm
@@ -42,7 +42,7 @@
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (this->get(j).getCourseNumber() < pivot.getCourseNumber()) {
+            if (this->get(j).getTitle() < pivot.getTitle()) {
                 i++;
                 std::swap(this->get(i), this->get(j));
             }
@@ -56,9 +56,13 @@
     int ComputerScienceTransferCourses::binarySearch(const std::string& key, int low, int high) {
         if (high >= low) {
             int mid = low + (high - low) / 2;
-            if (this->get(mid).getCourseNumber() == 0)
+
+            std::string str1 = this->get(mid).getTitle();
+            int comparison = key.compare(str1);
+
+            if (comparison == 0)
                 return mid;
-            if (this->get(mid).getCourseNumber()< 0)
+            if (comparison < 0)
                 return binarySearch(key, low, mid - 1);
             return binarySearch(key, mid + 1, high);
         }
