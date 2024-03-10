@@ -7,9 +7,17 @@
 #include "ComputerScienceTransferCourses.h"
 #include "StudentFortFolio.h"
 
-/*
-    ArrayList<Course> courses;
-*/
+std::string trim(const std::string& str) {
+    size_t start = str.find_first_not_of(" \t\n\r");
+    size_t end = str.find_last_not_of(" \t\n\r");
+
+    if (start == std::string::npos) // No non-whitespace characters found
+        return "";
+
+    return str.substr(start, end - start + 1);
+}
+
+
 int main() {
 
 
@@ -41,7 +49,6 @@ ENGL 151B
 
         std::string department;
         int courseNumber;
-        std::getline(file, line);
         std::istringstream xx(line);
 
         xx >> department >> courseNumber;
@@ -49,8 +56,27 @@ ENGL 151B
         std::string title;
         std::getline(file, title);
 
+        std::string input;
         std::string description;
-        std::getline(file, description);
+       //std::getline(file, description);
+
+       //std::string multilineInput;
+
+    // Read lines until a line does not end with backslash
+        while (true) {
+            std::getline(file, input);
+            
+            // Check if the line ends with a backslash
+            if (!input.empty() && trim(input).back() == '\\') {
+                // Remove the backslash at the end and append the input
+                description += input.substr(0, input.size() - 1) + "\n";
+            } else {
+                // Append the input as it is (no backslash at the end)
+                description += input;
+                break; // Exit the loop since line does not end with backslash
+            }
+        }
+
 
         std::string prerequisite;
         std::getline(file, prerequisite);
@@ -154,3 +180,5 @@ x) Exit - save data to file cs_transfer_course.dat
 
     return 0;
 }
+
+
