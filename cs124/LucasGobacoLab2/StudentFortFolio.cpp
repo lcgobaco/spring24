@@ -4,7 +4,7 @@
 #include "ComputerScienceTransferCourses.h"
 #include "Course.h"
 
-StudentFortfolio::StudentFortfolio(ComputerScienceTransferCourses<Course> courses) {
+StudentFortfolio::StudentFortfolio(ComputerScienceTransferCourses courses) {
     // Load data from file cs_transfer_course.dat
     // Implement loading logic here
     this->courses = courses;
@@ -24,6 +24,8 @@ void StudentFortfolio::showList(bool ascending) {
 }
 
 void StudentFortfolio::viewCourse(const std::string& courseName) {
+    // Search for the course
+    courses.search(courseName);
 }
 
 void StudentFortfolio::addCourse(const Course& newCourse) {

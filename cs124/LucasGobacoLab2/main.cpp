@@ -13,7 +13,7 @@
 int main() {
 
 
-    ComputerScienceTransferCourses<Course> courses;
+    ComputerScienceTransferCourses courses;
     std::ifstream file("cs_transfer_courses.dat");
 
     if (!file.is_open()) {
@@ -45,7 +45,7 @@ ENGL 151B
         std::istringstream xx(line);
 
         xx >> department >> courseNumber;
-        
+
         std::string title;
         std::getline(file, title);
 
@@ -71,7 +71,7 @@ ENGL 151B
         std::cout << "Course " << i + 1 << ":\n" << courses.get(i) << "\n";
     }
     */
-    
+
 
     /*
     1) List of courses - prompt user for sort preference, default sorting by ascending order, and option to sort by descending order  (see above 5) )
@@ -140,7 +140,7 @@ x) Exit - save data to file cs_transfer_course.dat
                 main_menu.removeCourse("Data Structures");
                 break;
             }
-      
+
 
             case 6: // Quit
             {

@@ -9,10 +9,10 @@
 
 class StudentFortfolio : public Menu {
 private:
-    ComputerScienceTransferCourses<Course> courses;
+    ComputerScienceTransferCourses courses;
 
 public:
-    StudentFortfolio(ComputerScienceTransferCourses<Course> courses);
+    StudentFortfolio(ComputerScienceTransferCourses courses);
     void showList(bool ascending = true);
     void viewCourse(const std::string& courseName);
     void addCourse(const Course& newCourse);
