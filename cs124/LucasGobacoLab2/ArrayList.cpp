@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: ArrayList.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 9 March 2024
+
+ * Description: This program implements a class manages an array list.
+
+ *******************************************************/
+
 #include "ArrayList.h"
 
 template <typename T>
