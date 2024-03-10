@@ -58,7 +58,7 @@
             int mid = low + (high - low) / 2;
 
             std::string str1 = this->get(mid).getTitle();
-            int comparison = key.compare(str1);
+            int comparison = (key+"\r").compare(str1);
 
             if (comparison == 0)
                 return mid;

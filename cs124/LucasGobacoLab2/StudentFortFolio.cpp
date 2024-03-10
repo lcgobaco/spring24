@@ -28,7 +28,7 @@ void StudentFortfolio::viewCourse(const std::string& title) {
     cout << title;
     int x = courses.search(title);
     if (x >= 0) {
-        std::cout << courses.get(x) << endl;
+        std::cout << endl << courses.get(x) << endl;
     }
     else {
         std::cout << "Not Found" << endl;
@@ -36,6 +36,7 @@ void StudentFortfolio::viewCourse(const std::string& title) {
 }
 
 void StudentFortfolio::addCourse(const Course& newCourse) {
+    courses.add(newCourse);
 }
 
 void StudentFortfolio::editCourse(const std::string& courseName) {

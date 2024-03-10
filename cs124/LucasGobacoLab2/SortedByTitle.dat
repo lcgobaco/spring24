@@ -1,0 +1,113 @@
+Course 1:
+Department: MATH
+Course Number: 101
+Title: Calculus With Analytic Geometry
+Description: This course includes techniques of integration, related applications, infinite series, an\
+advanced treatment of conics, parametric equations, and polar coordinates.
+Prerequisite: MATH 101A
+Units: 5
+
+Course 2:
+Department: MATH
+Course Number: 101
+Title: Calculus With Analytic Geometry
+Description: This course includes a review of functions and graphs; elements of analytic geometry;\
+limits; continuity; differentiation of algebraic, trigonometric, logarithmic, exponential,\
+and inverse trigonometric functions; applications of the derivative; introduction to\
+integration; and some applications of the definite integral.
+Prerequisite: MATH 187
+Units: 5
+
+Course 3:
+Department: CS
+Course Number: 113
+Title: Discrete Structures
+Description: This course is an introduction to the discrete structures used in computer science with an\
+emphasis on their applications. Topics covered include functions, relations, and sets;\
+basic logic; proof techniques; basics of counting; graphs and trees; and discrete\
+probability.
+Prerequisite: CS 102
+Units: 3
+
+Course 4:
+Department: PHYS
+Course Number: 141
+Title: Electricity and Magnetism
+Description: This course is the second semester of a three-semester sequence of calculus-based\
+introductory physics for scientists and engineers.
+Prerequisite: PHYS 140
+Units: 4
+
+Course 5:
+Department: CHEM
+Course Number: 101
+Title: General Chemistry
+Description: This course is the first half of general college chemistry series for science, pre-medical,\
+pre-engineering majors. Students must purchase lab coat, goggles w\indirect\
+venting\side shielding, lab notebook, calculator, and online homework access code.
+Prerequisite: MATH 152
+Units: 5
+
+Course 6:
+Department: CS
+Course Number: 118
+Title: Introduction to Assembly Language Programming
+Description: This course is designed primarily for computer science and related\
+This course is an introduction to assembly language for computers. Topics include\
+numbering systems, architecture, native machine instructions, memory addressing,\
+subroutines, system calls, file I\O, and interaction between assembly language\
+programs, the operating system, and other languages.
+Prerequisite: CS 102
+Units: 3
+
+Course 7:
+Department: CS
+Course Number: 102
+Title: Introduction to Computer Programming Using C++
+Description: This course is an introduction to computer programming. Its primary objective is to\
+teach problem solving using the C++ programming language. Emphasis is placed on\
+structured procedural programming with an introduction to object-oriented\
+transfer majors.
+Prerequisite: CS 101
+Units: 3
+
+Course 8:
+Department: CS
+Course Number: 101
+Title: Introduction to Computers and Information Technology
+Description: This course is a general introduction to the area of computers and information\
+technology, and is designed for all students. This survey course examines a broad\
+overview of topics including software, hardware, the networking of computer systems,\
+information technology, and survey of programming languages. Students explore the\
+implications of this technology with regard to today's information society.
+Prerequisite: ENGL 151B
+Units: 3
+
+Course 9:
+Department: PHYS
+Course Number: 140
+Title: Mechanics
+Description: This course is the first semester of a three-semester sequence of calculus-based\
+introductory physics for scientists and engineers.
+Prerequisite: MATH 101A
+Units: 4
+
+Course 10:
+Department: CS
+Course Number: 116
+Title: Object-Oriented Programming Using C++
+Description: This intermediate-level programming class presents a comprehensive study of C++ as OOP.
+Prerequisite: CS 102
+Units: 4
+
+Course 11:
+Department: CS
+Course Number: 124
+Title: Programming with Data Structures
+Description: This course involves the study and implementation of data structure programming\
+techniques. The emphasis is on the data structures of stacks, queues, lists, trees, and hash\
+tables; the use of recursion; and the application of these tools primarily to searching and\
+sorting. Students implement these concepts by writing programs in an object-oriented\
+language such as C++.
+Prerequisite: CS 102
+Units: 3

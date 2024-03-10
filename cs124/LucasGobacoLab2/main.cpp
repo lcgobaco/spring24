@@ -55,7 +55,12 @@ ENGL 151B
 
         std::string title;
         std::getline(file, title);
+        size_t end = title.find_last_not_of("\r");
 
+        if (end != std::string::npos) {
+            title.substr(0, end + 1);
+        }
+ 
         std::string input;
         std::string description;
        //std::getline(file, description);
@@ -90,6 +95,8 @@ ENGL 151B
     }
 
     file.close();
+
+    courses.sort();
 
     /*
     // Print all courses
@@ -153,7 +160,33 @@ x) Exit - save data to file cs_transfer_course.dat
 
             case 3: // Add a new course
             {
-                main_menu.addCourse(Course("CS", 124, "Data Structures", "Data Structures and Algorithms", "CS 123", 4));
+                string department;
+                cout << "Department:" << endl;
+                cin >> department;
+
+                int courseNumber;
+                cout << "Course Number:" << endl;
+                cin >> courseNumber;
+
+                string title;
+                cout << "Title:" << endl;
+                cin.ignore();
+                std::getline(cin, title);
+                
+                string description;
+                cout << "Description:" << endl;
+                std::getline(cin, description);
+
+                string prerequisite;
+                cout << "Prerequisite:" << endl;
+                std::getline(cin, prerequisite);
+
+                int units;
+                cout << "Units:" << endl;
+                cin >> units;
+
+                main_menu.addCourse(Course(department, courseNumber, title, description, prerequisite, units));
+
                 break;
             }
 
