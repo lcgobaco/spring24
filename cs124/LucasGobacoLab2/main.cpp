@@ -11,6 +11,8 @@
     ArrayList<Course> courses;
 */
 int main() {
+
+
     ComputerScienceTransferCourses<Course> courses;
     std::ifstream file("cs_transfer_courses.dat");
 
@@ -20,14 +22,30 @@ int main() {
     }
 
     std::string line;
+
+/*
+CS 101
+Introduction to Computers and Information Technology
+This course is a general introduction to the area of computers and information\
+technology, and is designed for all students. This survey course examines a broad\
+overview of topics including software, hardware, the networking of computer systems,\
+information technology, and survey of programming languages. Students explore the\
+implications of this technology with regard to today's information society.
+ENGL 151B
+3*/
+
     while (std::getline(file, line)) {
         if (line.empty()) continue; // Skip empty lines
 
-        std::string department = line;
+        // i.e. CS 101
+
+        std::string department;
         int courseNumber;
         std::getline(file, line);
-        std::istringstream(line) >> courseNumber;
+        std::istringstream xx(line);
 
+        xx >> department >> courseNumber;
+        
         std::string title;
         std::getline(file, title);
 
@@ -53,7 +71,7 @@ int main() {
         std::cout << "Course " << i + 1 << ":\n" << courses.get(i) << "\n";
     }
     */
-    string input;
+    
 
     /*
     1) List of courses - prompt user for sort preference, default sorting by ascending order, and option to sort by descending order  (see above 5) )
@@ -64,6 +82,7 @@ int main() {
 x) Exit - save data to file cs_transfer_course.dat
 */
 
+    int input;
     StudentFortfolio main_menu(courses);
     main_menu.add_option("List of Courses");
     main_menu.add_option("View the course details");
@@ -76,33 +95,23 @@ x) Exit - save data to file cs_transfer_course.dat
     {
         input = main_menu.get_input();
 
-        cout << "Input == x " << input << " " << (input == "x") << " " << endl;
+        //cout << "Input == x " << input << " " << (input == "x") << " " << endl;
 
-        if (input == "x") {
+        if (cin.fail()) {
             cout << "Quit" << endl;
             break;
         }
 
-        int option = std::stoi(input);
+        //int option = std::stoi(input);
 
-        cout << "Option: " << option << endl;
-        switch (option)
+        cout << "Option: " << input << endl;
+        switch (input)
         {
 
             case 1: // List of Courses
             {
-                int tries = 0;
-                while (tries < 3) {
-                    cout << "Sign-in" << endl;
-                    string username, password;
-                    cout << "Enter username: ";
-                    cin >> username;
-                    cout << "Enter password: ";
-                    cin >> password;
-                    main_menu.showList(true);
+                main_menu.showList(true);
 
-                    tries++;
-                }
                 break;
             }
 
@@ -140,7 +149,7 @@ x) Exit - save data to file cs_transfer_course.dat
             }
         }
 
-    } while (input != "6" );
+    } while (input != 6 );
 
 
     return 0;
