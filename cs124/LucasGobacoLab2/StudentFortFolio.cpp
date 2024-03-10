@@ -10,10 +10,16 @@ StudentFortfolio::StudentFortfolio(ComputerScienceTransferCourses courses) {
     this->courses = courses;
 }
 
-void StudentFortfolio::showList(bool ascending) {
+void StudentFortfolio::showList() {
     // Sort the courses
-    if (ascending) {
-        courses.sort();
+    string ascending;
+    cout << "Ascending or Descending? (a/d)" << endl;
+    cin >> ascending;
+    if (ascending == "a") {
+        courses.sort(true);
+    }
+    else {
+        courses.sort(false);
     }
 
     // Print the courses
@@ -23,9 +29,13 @@ void StudentFortfolio::showList(bool ascending) {
 
 }
 
-void StudentFortfolio::viewCourse(const std::string& title) {
+void StudentFortfolio::viewCourse() {
     // Search for the course
-    cout << title;
+    string title;
+    cout << "Title:";
+    cin.ignore();
+    std::getline(cin, title);
+
     int x = courses.search(title);
     if (x >= 0) {
         std::cout << endl << courses.get(x) << endl;
@@ -35,15 +45,95 @@ void StudentFortfolio::viewCourse(const std::string& title) {
     }
 }
 
-void StudentFortfolio::addCourse(const Course& newCourse) {
+void StudentFortfolio::addCourse() {
+
+    string department;
+    cout << "Department:" << endl;
+    cin >> department;
+
+    int courseNumber;
+    cout << "Course Number:" << endl;
+    cin >> courseNumber;
+
+    string title;
+    cout << "Title:" << endl;
+    cin.ignore();
+    std::getline(cin, title);
+    
+    string description;
+    cout << "Description:" << endl;
+    std::getline(cin, description);
+
+    string prerequisite;
+    cout << "Prerequisite:" << endl;
+    std::getline(cin, prerequisite);
+
+    int units;
+    cout << "Units:" << endl;
+    cin >> units;
+
+    Course newCourse = Course(department, courseNumber, title, description, prerequisite, units);
     courses.add(newCourse);
 }
 
-void StudentFortfolio::editCourse(const std::string& courseName) {
+void StudentFortfolio::editCourse() {
+
+
+    string title;
+    cout << "Title:";
+    cin.ignore();
+    std::getline(cin, title);
+    int x = courses.search(title);
+
+    
+    if (x >= 0) {
+        std::cout << "Enter new course details" << std::endl;
+
+        string department;
+        cout << "Department:" << endl;
+        cin >> department;
+
+        int courseNumber;
+        cout << "Course Number:" << endl;
+        cin >> courseNumber;
+
+        string title;
+        cout << "Title:" << endl;
+        cin.ignore();
+        std::getline(cin, title);
+
+        string description;
+        cout << "Description:" << endl;
+        std::getline(cin, description);
+
+        string prerequisite;
+        cout << "Prerequisite:" << endl;
+        std::getline(cin, prerequisite);
+
+        int units;
+        cout << "Units:" << endl;
+        cin >> units;
+
+        Course newCourse = Course(department, courseNumber, title, description, prerequisite, units);
+        courses.set(x, newCourse);
+    }
+    else {
+        std::cout << "Not Found" << std::endl;
+    }
 }
 
-void StudentFortfolio::removeCourse(const std::string& courseName) {
-
+void StudentFortfolio::removeCourse() {
+    string title;
+    cout << "Title:";
+    cin.ignore();
+    std::getline(cin, title);
+    int x = courses.search(title);
+    if (x >= 0) {
+        courses.remove(x);
+    }
+    else {
+        std::cout << "Not Found" << std::endl;
+    }
 }
 
 void StudentFortfolio::quit() {

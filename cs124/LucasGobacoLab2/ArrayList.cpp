@@ -29,6 +29,11 @@ T& ArrayList<T>::get(int index) {
 }
 
 template <typename T>
+void ArrayList<T>::set(int index, const T& element) {
+    elements[index] = element;
+}
+
+template <typename T>
 int ArrayList<T>::size() const {
     return elements.size();
 }
@@ -41,4 +46,9 @@ void ArrayList<T>::clear() {
 template <typename T>
 T& ArrayList<T>::operator[](int index) {
     return elements[index];
+}
+
+template <typename T>
+void ArrayList<T>::remove(int index) {
+    elements.erase(elements.begin() + index);
 }

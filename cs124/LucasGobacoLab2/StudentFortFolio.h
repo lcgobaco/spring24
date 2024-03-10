@@ -13,11 +13,11 @@ private:
 
 public:
     StudentFortfolio(ComputerScienceTransferCourses courses);
-    void showList(bool ascending = true);
-    void viewCourse(const std::string& courseName);
-    void addCourse(const Course& newCourse);
-    void editCourse(const std::string& courseName);
-    void removeCourse(const std::string& courseName);
+    void showList();
+    void viewCourse();
+    void addCourse();
+    void editCourse();
+    void removeCourse();
     void quit();
 };
 

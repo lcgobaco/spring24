@@ -9,7 +9,7 @@ public:
     ComputerScienceTransferCourses() {};
     ~ComputerScienceTransferCourses() {};
 
-    void sort();
+    void sort(bool ascending = true);
     int search(const std::string& key);
 
 private:

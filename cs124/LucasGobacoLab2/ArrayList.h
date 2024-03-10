@@ -25,7 +25,9 @@ public:
     ~ArrayList();
 
     void add(const T& element);
+    void remove(int index);
     T& get(int index);
+    void set(int index, const T& element);
     int size() const;
     void clear();
     T& operator[](int index);

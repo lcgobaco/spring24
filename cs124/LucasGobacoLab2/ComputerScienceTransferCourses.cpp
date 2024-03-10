@@ -23,8 +23,16 @@
     }
 
     // Sort method using QuickSort algorithm
-    void ComputerScienceTransferCourses::sort() {
-        quickSort(0, this->size() - 1);
+    void ComputerScienceTransferCourses::sort(bool ascending) {
+
+        if (this->size() == 0) {
+            return;
+        }
+
+        if (ascending)
+            quickSort(0, this->size() - 1);
+        else
+            quickSort(this->size() - 1, 0);
     }
 
     // Helper function for QuickSort algorithm
@@ -57,8 +65,13 @@
         if (high >= low) {
             int mid = low + (high - low) / 2;
 
+
             std::string str1 = this->get(mid).getTitle();
-            int comparison = (key+"\r").compare(str1);
+
+            if (!str1.empty() && str1[str1.size() - 1] == '\r')
+                str1.erase(str1.size() - 1);
+
+            int comparison = key.compare(str1);
 
             if (comparison == 0)
                 return mid;

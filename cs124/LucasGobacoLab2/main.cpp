@@ -96,7 +96,7 @@ ENGL 151B
 
     file.close();
 
-    courses.sort();
+    courses.sort(true);
 
     /*
     // Print all courses
@@ -143,62 +143,35 @@ x) Exit - save data to file cs_transfer_course.dat
 
             case 1: // List of Courses
             {
-                main_menu.showList(true);
+                main_menu.showList();
 
                 break;
             }
 
             case 2:
             {
-                string title;
-                cout << "Title:";
-                cin.ignore();
-                std::getline(cin, title);
-                main_menu.viewCourse(title);
+                main_menu.viewCourse();
                 break;
             }
 
             case 3: // Add a new course
             {
-                string department;
-                cout << "Department:" << endl;
-                cin >> department;
-
-                int courseNumber;
-                cout << "Course Number:" << endl;
-                cin >> courseNumber;
-
-                string title;
-                cout << "Title:" << endl;
-                cin.ignore();
-                std::getline(cin, title);
-                
-                string description;
-                cout << "Description:" << endl;
-                std::getline(cin, description);
-
-                string prerequisite;
-                cout << "Prerequisite:" << endl;
-                std::getline(cin, prerequisite);
-
-                int units;
-                cout << "Units:" << endl;
-                cin >> units;
-
-                main_menu.addCourse(Course(department, courseNumber, title, description, prerequisite, units));
+                 main_menu.addCourse();
 
                 break;
             }
 
             case 4: // Edit course
             {
-                main_menu.editCourse("Data Structures");
+
+                main_menu.editCourse();
                 break;
             }
 
             case 5: // Remove course
             {
-                main_menu.removeCourse("Data Structures");
+
+                main_menu.removeCourse();
                 break;
             }
 
