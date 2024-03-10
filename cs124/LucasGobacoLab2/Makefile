@@ -1,13 +1,16 @@
 COMPILER = g++ -std=c++14 -g
 all: main
 
-main: main.o Course.o ArrayList.o ComputerScienceTransferCourses.o
+main: main.o Course.o ComputerScienceTransferCourses.o StudentFortFolio.o Menu.o
 	$(COMPILER) -o $@ $^
 
 Course.o: Course.cpp
 	$(COMPILER) -c $<
 
-ArrayList.o: ArrayList.cpp
+Menu.o: Menu.cpp
+	$(COMPILER) -c $<
+	
+StudentFortFolio.o: StudentFortFolio.cpp
 	$(COMPILER) -c $<
 
 ComputerScienceTransferCourses.o: ComputerScienceTransferCourses.cpp

@@ -1,12 +1,12 @@
 /*******************************************************
 
- * Program Name: Menu.h
+ * Program Name: ArrayList.h
 
  * Author: Lucas Gobaco
 
  * Date: 9 March 2024
 
- * Description: This program defines a class that displays a menu into the console.
+ * Description: This program defines a class manages an array list.
 
  *******************************************************/
 
@@ -30,5 +30,7 @@ public:
     void clear();
     T& operator[](int index);
 };
+
+#include "ArrayList.cpp"
 
 #endif // ARRAYLIST_H
