@@ -13,8 +13,8 @@ public:
     int search(const std::string& key);
 
 private:
-    void quickSort(int low, int high);
-    int partition(int low, int high);
+    void quickSort(int low, int high, bool ascending);
+    int partition(int low, int high, bool ascending);
     int binarySearch(const std::string& key, int low, int high);
 };
 

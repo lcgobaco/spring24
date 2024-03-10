@@ -19,6 +19,7 @@
 
     // Sort method using QuickSort algorithm
     int ComputerScienceTransferCourses::search(const std::string& key) {
+        sort(true);
        return binarySearch(key, 0, this->size() - 1);
     }
 
@@ -29,31 +30,38 @@
             return;
         }
 
-        if (ascending)
-            quickSort(0, this->size() - 1);
-        else
-            quickSort(this->size() - 1, 0);
+        quickSort(0, this->size() - 1, ascending);
     }
 
     // Helper function for QuickSort algorithm
-    void ComputerScienceTransferCourses::quickSort(int low, int high) {
+    void ComputerScienceTransferCourses::quickSort(int low, int high, bool ascending) {
         if (low < high) {
-            int pi = partition(low, high);
-            quickSort(low, pi - 1);
-            quickSort(pi + 1, high);
+            int pi = partition(low, high, ascending);
+            quickSort(low, pi - 1, ascending);
+            quickSort(pi + 1, high, ascending);
         }
     }
 
     // Helper function to partition the array for QuickSort
-    int ComputerScienceTransferCourses::partition(int low, int high) {
+    int ComputerScienceTransferCourses::partition(int low, int high, bool ascending) {
         Course pivot = this->get(high);
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (this->get(j).getTitle() < pivot.getTitle()) {
-                i++;
-                std::swap(this->get(i), this->get(j));
+
+            if (ascending) {
+                if (this->get(j).getTitle() < pivot.getTitle()) {
+                    i++;
+                    std::swap(this->get(i), this->get(j));
+                }
             }
+            else {
+                if (this->get(j).getTitle() > pivot.getTitle()) {
+                    i++;
+                    std::swap(this->get(i), this->get(j));
+                }
+            }
+
         }
 
         std::swap(this->get(i + 1), this->get(high));
