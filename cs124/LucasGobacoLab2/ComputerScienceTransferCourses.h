@@ -4,7 +4,7 @@
 #include "ArrayList.h"
 #include "Course.h"
 
-template <typename T>
+template <class T>
 class ComputerScienceTransferCourses : public ArrayList<Course> {
 public:
     ComputerScienceTransferCourses();
@@ -17,5 +17,7 @@ private:
     int partition(int low, int high);
     int binarySearch(const Course& key, int low, int high);
 };
+
+#include "ComputerScienceTransferCourses.cpp"
 
 #endif // COMPUTER_SCIENCE_TRANSFER_COURSES_H

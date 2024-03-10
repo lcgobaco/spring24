@@ -5,12 +5,14 @@
 #include <vector>
 #include "Course.h"
 #include "Menu.h"
+#include "ComputerScienceTransferCourses.h"
 
 class StudentFortfolio : public Menu {
 private:
-    std::vector<Course> courses;
+    ComputerScienceTransferCourses<Course> courses;
 
 public:
+    StudentFortfolio(ComputerScienceTransferCourses<Course> courses);
     void showList(bool ascending = true);
     void viewCourse(const std::string& courseName);
     void addCourse(const Course& newCourse);

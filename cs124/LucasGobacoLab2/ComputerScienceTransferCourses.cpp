@@ -1,28 +1,36 @@
+/*******************************************************
+
+ * Program Name: ArrayList.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 9 March 2024
+
+ * Description: This program defines a class manages an array list.
+
+ *******************************************************/
+
 #include "ArrayList.h" // Assuming ArrayList.h contains the definition of ArrayList
 #include "Course.h"    // Assuming Course.h contains the definition of the Course class
+#include "ComputerScienceTransferCourses.h" // Assuming ComputerScienceTransferCourses.h contains the definition of ComputerScienceTransferCourses
 
-template <typename T>
-class ComputerScienceTransferCourses : public ArrayList<Course> {
-public:
     // Constructor
-    ComputerScienceTransferCourses() {}
+template <class T>
+ComputerScienceTransferCourses<T>::ComputerScienceTransferCourses() {}
 
     // Destructor
-    ~ComputerScienceTransferCourses() {}
+template <class T>
+ComputerScienceTransferCourses<T>::~ComputerScienceTransferCourses() {}
 
     // Sort method using QuickSort algorithm
-    void sort() {
+template <class T>
+    void ComputerScienceTransferCourses<T>::sort() {
         quickSort(0, this->size() - 1);
     }
 
-    // Search method using Binary Search algorithm
-    int search(const Course& key) {
-        return binarySearch(key, 0, this->size() - 1);
-    }
-
-private:
     // Helper function for QuickSort algorithm
-    void quickSort(int low, int high) {
+template <class T>
+    void ComputerScienceTransferCourses<T>::quickSort(int low, int high) {
         if (low < high) {
             int pi = partition(low, high);
             quickSort(low, pi - 1);
@@ -31,12 +39,13 @@ private:
     }
 
     // Helper function to partition the array for QuickSort
-    int partition(int low, int high) {
+template <class T>
+    int ComputerScienceTransferCourses<T>::partition(int low, int high) {
         Course pivot = this->get(high);
         int i = low - 1;
 
         for (int j = low; j < high; j++) {
-            if (this->get(j) < pivot) {
+            if (this->get(j).getCourseNumber() < pivot.getCourseNumber()) {
                 i++;
                 std::swap(this->get(i), this->get(j));
             }
@@ -47,7 +56,8 @@ private:
     }
 
     // Helper function for Binary Search algorithm
-    int binarySearch(const Course& key, int low, int high) {
+    template <class T>
+    int ComputerScienceTransferCourses<T>::binarySearch(const Course& key, int low, int high) {
         if (high >= low) {
             int mid = low + (high - low) / 2;
             if (this->get(mid) == key)
@@ -58,4 +68,3 @@ private:
         }
         return -1; // Element not found
     }
-};

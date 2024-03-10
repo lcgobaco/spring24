@@ -4,12 +4,14 @@
 #include <fstream>
 #include <sstream>
 #include "Course.h"
-#include "ArrayList.h"
 #include "ComputerScienceTransferCourses.h"
 #include "StudentFortFolio.h"
 
-int main() {
+/*
     ArrayList<Course> courses;
+*/
+int main() {
+    ComputerScienceTransferCourses<Course> courses;
     std::ifstream file("cs_transfer_courses.dat");
 
     if (!file.is_open()) {
@@ -62,7 +64,7 @@ int main() {
 x) Exit - save data to file cs_transfer_course.dat
 */
 
-       StudentFortfolio main_menu;
+    StudentFortfolio main_menu(courses);
     main_menu.add_option("List of Courses");
     main_menu.add_option("View the course details");
     main_menu.add_option("Add a new course");
