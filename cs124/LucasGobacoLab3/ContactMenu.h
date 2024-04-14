@@ -33,11 +33,11 @@ enum USER_MENU_OPTION
 
 const string USERS_DATA = "users_data.csv";
 
-class UserMenu : public Menu
+class ContactMenu : public Menu
     {
     public:
-        UserMenu();
-        ~UserMenu();
+        ContactMenu();
+        ~ContactMenu();
     private:
         // Member variables and any other variables if necessary
         ifstream inFile;

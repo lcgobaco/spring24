@@ -10,11 +10,11 @@
 
  *******************************************************/
 
-#include "UserMenu.h"
+#include "ContactMenu.h"
 #include "Utils.h"
 
 using namespace std;
-void UserMenu::initUserData() {
+void ContactMenu::initUserData() {
 
     inFile.open(USERS_DATA);
 
@@ -41,7 +41,7 @@ void UserMenu::initUserData() {
     inFile.close();
 }
 
-void UserMenu::saveUserData() {
+void ContactMenu::saveUserData() {
     ofstream outFile;
     outFile.open(USERS_DATA);
 
@@ -65,15 +65,15 @@ void UserMenu::saveUserData() {
 }
 
 
-UserMenu::UserMenu() {
+ContactMenu::ContactMenu() {
     //initUserData();
 };
 
     // Destructor
-UserMenu::~UserMenu() {
+ContactMenu::~ContactMenu() {
 }
 
-bool UserMenu::signIn(string username, string password) {
+bool ContactMenu::signIn(string username, string password) {
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == username && users[i].getPassword() == password) {
             user = users[i];
@@ -86,7 +86,7 @@ bool UserMenu::signIn(string username, string password) {
     return false;
 }
 
-bool UserMenu::signOut() {
+bool ContactMenu::signOut() {
     if (user.getUserId() == 0) {
         cout << "No user signed in." << endl;
         return false;
@@ -105,7 +105,7 @@ bool UserMenu::signOut() {
     return false;
 }
 
-bool UserMenu::resetPassword(string oldPassword, string newPassword) {
+bool ContactMenu::resetPassword(string oldPassword, string newPassword) {
     if (user.getUserId() == 0) {
         cout << "No user signed in." << endl;
         return false;
@@ -127,7 +127,7 @@ bool UserMenu::resetPassword(string oldPassword, string newPassword) {
     return true;
 }
 
-bool UserMenu::createAccount(string firstName, string lastName, string phone, string email, string password) {
+bool ContactMenu::createAccount(string firstName, string lastName, string phone, string email, string password) {
 
     if (user.getRole() != "admin") {
         cout << "Only admins can create accounts." << endl;
@@ -141,15 +141,15 @@ bool UserMenu::createAccount(string firstName, string lastName, string phone, st
     return true;
 }
 
-bool UserMenu::isSignedIn() {
+bool ContactMenu::isSignedIn() {
     return user.getUserId() != 0;
 }
 
-bool UserMenu::isAdmin() {
+bool ContactMenu::isAdmin() {
     return user.getRole() == "admin";
 }
 
-bool UserMenu::manageProfile(User user) {
+bool ContactMenu::manageProfile(User user) {
         for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == user.getUsername()) {
             users[i] = user;
@@ -161,11 +161,11 @@ bool UserMenu::manageProfile(User user) {
     return false;
 }
 
-User UserMenu::getSignedInUser() {
+User ContactMenu::getSignedInUser() {
     return user;
 }
 
-User UserMenu::getUserByUsername(string username) {
+User ContactMenu::getUserByUsername(string username) {
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == username) {
             return users[i];
