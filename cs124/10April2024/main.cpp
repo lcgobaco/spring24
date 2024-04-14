@@ -1,32 +1,47 @@
+/*******************************************************
+
+ * Program Name: main.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 10 April 2024
+
+ * Description: This program implements a program that prompts the user to input the filename and read the list of items from a file. If this function can’t find the file, it should throw an exception.
+
+ *******************************************************/
+
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
 
-void loadFile(const std::string& filename) {
-    std::ifstream file(filename);
+using namespace std;
+
+void loadFile(const string& filename) {
+    ifstream file(filename);
     if (!file.is_open()) {
-        throw std::runtime_error("Unable to open file: " + filename);
+        throw runtime_error("Unable to open file: " + filename);
     }
 
     // File is open, do something with it
-    std::cout << "File opened successfully." << std::endl;
+    cout << "File opened successfully." << endl;
 
-    // Example: Read contents of the file
     char ch;
     while (file.get(ch)) {
-        std::cout << ch;
+        cout << ch;
     }
 
     file.close();
 }
 
 int main() {
-    std::string filename = "example.txt"; // Change this to the file you want to load
+    cout << "Input file name: ";
+    string filename;
+    cin >> filename;
 
     try {
         loadFile(filename);
-    } catch (const std::runtime_error& e) {
-        std::cerr << "Error: " << e.what() << std::endl;
+    } catch (const runtime_error& e) {
+        cerr << "Error: " << e.what() << endl;
         return 1;
     }
 
