@@ -32,6 +32,20 @@
             "MIMode": "lldb"
             //,
             //"preLaunchTask": "build_task"
+        },
+        {
+            "name": "LucasGobacoLab3",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/LucasGobacoLab3/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+            //,
+            //"preLaunchTask": "build_task"
         }
 
     ]

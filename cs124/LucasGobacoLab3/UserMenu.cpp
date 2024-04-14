@@ -66,7 +66,7 @@ void UserMenu::saveUserData() {
 
 
 UserMenu::UserMenu() {
-    initUserData();
+    //initUserData();
 };
 
     // Destructor
