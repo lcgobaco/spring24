@@ -1,7 +1,7 @@
 COMPILER = g++ -std=c++14 -g
 all: main
 
-main: main.o Person.o DateTime.o Time.o Utils.o
+main: main.o Person.o DateTime.o Time.o Utils.o UserMenu.o Menu.o User.o
 	$(COMPILER) -o $@ $^
 
 main.o: main.cpp
@@ -17,6 +17,15 @@ Time.o: Time.cpp
 	$(COMPILER) -c $<
 
 Utils.o: Utils.cpp
+	$(COMPILER) -c $<
+
+UserMenu.o: UserMenu.cpp
+	$(COMPILER) -c $<
+
+Menu.o: Menu.cpp
+	$(COMPILER) -c $<
+
+User.o: User.cpp
 	$(COMPILER) -c $<
 
 clean:
