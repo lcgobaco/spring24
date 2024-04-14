@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: StudentFortFolio.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 9 March 2024
+
+ * Description: This program defines a class that manages a student's portfolio.
+
+ *******************************************************/
+
 #ifndef STUDENTFORTFOLIO_H
 #define STUDENTFORTFOLIO_H
 

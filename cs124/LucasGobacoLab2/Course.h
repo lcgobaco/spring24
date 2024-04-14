@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: Course.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 9 March 2024
+
+ * Description: This program defines a class that stores a course's details.
+
+ *******************************************************/
+
 #ifndef COURSE_H
 #define COURSE_H
 

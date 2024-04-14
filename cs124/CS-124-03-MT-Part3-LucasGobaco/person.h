@@ -35,6 +35,12 @@ public:
     //setter for last name
     void setLastName(string last);
 
+    //input operator
+    friend istream& operator>>(istream& in, Person& person);
+
+    //output operator
+    friend ostream& operator<<(ostream& out, const Person& person);
+
  private:
     string firstName; //variable to store the first name
     string lastName;  //variable to store the last name

@@ -14,11 +14,11 @@
 #include <iomanip>
 #include <ctime>
 #include <vector>
-#include "patient.h"
+#include "billing.h"
 
 using namespace std;
 
-vector<Patient> patients;
+vector<Billing> billings;
 
 // Function to display the program banner
 void displayBanner() {
@@ -52,15 +52,14 @@ int main() {
             case '1':
             {
                 // Add Patient
-                Patient p;
-                cin >> p;
-                patients.push_back(p);
-                break;
+                Billing billing;
+                cin >> billing;
+                billings.push_back(billing);
             }
             case '2':
                 // Display all Patients
-                for (Patient p : patients) {
-                    cout << p;
+                for (Billing b : billings) {
+                    cout << b << endl;
                 }
                 break;
             case 'x':

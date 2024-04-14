@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: Course.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 9 March 2024
+
+ * Description: This program implements a class that stores a course's details.
+
+ *******************************************************/
+
 #include "Course.h"
 
 // Constructors

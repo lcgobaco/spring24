@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: ComputerScienceTransferCourses.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 9 March 2024
+
+ * Description: This program defines a class that manages a list of computer science transfer courses.
+
+ *******************************************************/
+
 #ifndef COMPUTER_SCIENCE_TRANSFER_COURSES_H
 #define COMPUTER_SCIENCE_TRANSFER_COURSES_H
 

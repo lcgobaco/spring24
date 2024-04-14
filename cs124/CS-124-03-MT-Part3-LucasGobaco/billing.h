@@ -27,19 +27,24 @@ private:
 
 public:
     // Constructor
+    Billing() : patient(nullptr), pharmacyCharges(0), doctorFees(0), roomCharges(0) {}
     Billing(Patient* patient, double pharmacyCharges, double doctorFees, double roomCharges);
 
     // Getter functions
     Patient* getPatient() const;
-    double getPharmacyCharges() const { return pharmacyCharges; }
-    double getDoctorFees() const { return doctorFees; }
-    double getRoomCharges() const { return roomCharges; }
+    double getPharmacyCharges() const;
+    double getDoctorFees() const;
+    double getRoomCharges() const;
 
     // Setter functions
-    void setPatient(Patient* patient) { this->patient = patient; }
-    void setPharmacyCharges(double pharmacyCharges) { this->pharmacyCharges = pharmacyCharges; }
-    void setDoctorFees(double doctorFees) { this->doctorFees = doctorFees; }
-    void setRoomCharges(double roomCharges) { this->roomCharges = roomCharges; }
+    void setPatient(Patient* patient);
+    void setPharmacyCharges(double pharmacyCharges);
+    void setDoctorFees(double doctorFees);
+    void setRoomCharges(double roomCharges);
+
+    // Overloaded input/output operators
+    friend istream& operator>>(istream& in, Billing& billing);
+    friend ostream& operator<<(ostream& out, const Billing& billing);
 };
 
 #endif

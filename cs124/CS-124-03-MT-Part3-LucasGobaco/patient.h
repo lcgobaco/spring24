@@ -10,6 +10,9 @@
 
  *******************************************************/
 
+#ifndef PATIENT_H
+#define PATIENT_H
+
 #include <iostream>
 #include <string>
 #include "datetype.h"
@@ -26,70 +29,39 @@ private:
 
 public:
     // Constructors
-    Patient() {
-        // Default constructor
-    }
+    Patient();
 
-    Patient(std::string id, int patientAge, DateType dob, Doctor physician, DateType admit, DateType discharge) {
-        patientID = id;
-        age = patientAge;
-        dateOfBirth = dob;
-        attendingPhysician = physician;
-        admitDate = admit;
-        dischargeDate = discharge;
-    }
+    Patient(std::string id, int patientAge, DateType dob, Doctor physician, DateType admit, DateType discharge);
 
     // Accessors
-    std::string getPatientID() const {
-        return patientID;
-    }
+    std::string getPatientID() const;
 
-    int getAge() const {
-        return age;
-    }
+    int getAge() const;
 
-    DateType getDateOfBirth() const {
-        return dateOfBirth;
-    }
+    DateType getDateOfBirth() const;
 
-    Doctor getAttendingPhysician() const {
-        return attendingPhysician;
-    }
+    Doctor getAttendingPhysician() const;
 
-    DateType getAdmitDate() const {
-        return admitDate;
-    }
+    DateType getAdmitDate() const;
 
-    DateType getDischargeDate() const {
-        return dischargeDate;
-    }
+    DateType getDischargeDate() const;
 
     // Mutators
-    void setPatientID(std::string id) {
-        patientID = id;
-    }
+    void setPatientID(std::string id);
 
-    void setAge(int patientAge) {
-        age = patientAge;
-    }
+    void setAge(int patientAge);
 
-    void setDateOfBirth(DateType dob) {
-        dateOfBirth = dob;
-    }
+    void setDateOfBirth(DateType dob);
 
-    void setAttendingPhysician(Doctor physician) {
-        attendingPhysician = physician;
-    }
+    void setAttendingPhysician(Doctor physician);
 
-    void setAdmitDate(DateType admit) {
-        admitDate = admit;
-    }
+    void setAdmitDate(DateType admit);
 
-    void setDischargeDate(DateType discharge) {
-        dischargeDate = discharge;
-    }
+    void setDischargeDate(DateType discharge);
 
     // Input and Output operators
     friend std::istream& operator>>(std::istream& in, Patient& patient);
     friend std::ostream& operator<<(std::ostream& out, const Patient& patient);
 };
+
+#endif

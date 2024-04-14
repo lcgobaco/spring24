@@ -1,12 +1,12 @@
 /*******************************************************
 
- * Program Name: ArrayList.h
+ * Program Name: ComputerScienceTransferCourses.cpp
 
  * Author: Lucas Gobaco
 
  * Date: 9 March 2024
 
- * Description: This program defines a class manages an array list.
+ * Description: This program implements a class that manages a list of computer science transfer courses.
 
  *******************************************************/
 

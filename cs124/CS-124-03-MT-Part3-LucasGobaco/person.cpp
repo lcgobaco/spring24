@@ -10,6 +10,7 @@
 
  *******************************************************/
 
+#include <iostream>
 #include "person.h"
 
 //constructor
@@ -36,4 +37,16 @@ string Person::getLastName() const {
 //setter for last name
 void Person::setLastName(string last) {
     lastName = last;
+}
+
+//input operator
+istream& operator>>(istream& in, Person& person) {
+    in >> person.firstName >> person.lastName;
+    return in;
+}
+
+//output operator
+ostream& operator<<(ostream& out, const Person& person) {
+    out << person.firstName << " " << person.lastName;
+    return out;
 }
