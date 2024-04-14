@@ -57,6 +57,7 @@ int main() {
                     cin >> username;
                     cout << "Enter password: ";
                     cin >> password;
+
                     bool signedIn = main_menu.signIn(username, password);
                     if (signedIn) {
                         break;
@@ -118,8 +119,9 @@ int main() {
 
             case 5: {
                 cout << "Manage Profile" << endl;
+                /*
 
-                User userToManage = main_menu.getSignedInUser();
+                Contact userToManage = main_menu.getSignedInUser();
                 if (userToManage.getUsername() == "") {
                     cout << "Error: User not found." << endl;
                     break;
@@ -166,6 +168,7 @@ int main() {
                 userToManage.setZip(zip);
                 bool managed =main_menu.manageProfile(userToManage);
                 break;
+                */
             }
 
             case 6: {

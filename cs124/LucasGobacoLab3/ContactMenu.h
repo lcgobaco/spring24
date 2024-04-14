@@ -15,23 +15,23 @@
 #define USERMENU_H
 
 #include "Menu.h"
-#include "User.h"
+#include "Contact.h"
 #include <string>
 #include <fstream>
 #include <vector>
 
-enum USER_MENU_OPTION
+enum CONTACT_MENU_OPTION
 {
-    USER_MENU_SIGNIN = '1',
-    USER_MENU_SIGNOUT = '2',
-    USER_MENU_CREATE = '3',
-    USER_MENU_REMOVE = '4',
-    USER_MENU_RESET = '5',
-    USER_MENU_MANAGE_PROFILE = '6',
-    USER_MENU_EXIT = 'x'
+    CONTACT_MENU_SIGNIN = '1',
+    CONTACT_MENU_SIGNOUT = '2',
+    CONTACT_MENU_CREATE = '3',
+    CONTACT_MENU_REMOVE = '4',
+    CONTACT_MENU_RESET = '5',
+    CONTACT_MENU_MANAGE_PROFILE = '6',
+    CONTACT_MENU_EXIT = 'x'
 };
 
-const string USERS_DATA = "users_data.csv";
+const string CONTACTS_DATA = "contacts_data.csv";
 
 class ContactMenu : public Menu
     {
@@ -41,16 +41,16 @@ class ContactMenu : public Menu
     private:
         // Member variables and any other variables if necessary
         ifstream inFile;
-        User user;
-        vector<User> users;
-        int maxUserId = 0;
+        Contact contact;
+        vector<Contact> contacts;
+        int maxContactId = 0;
 
     private:
-        void initUserData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
-        void saveUserData();
+        void initContactData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
+        void saveContactsToFile();
     public:
-        User getUserByUsername(string username);
-        User getSignedInUser();
+        Contact getUserByUsername(string username);
+        Contact getSignedInUser();
         bool isSignedIn();
         bool isAdmin();
         bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
@@ -61,7 +61,7 @@ class ContactMenu : public Menu
     public:
         bool resetPassword(string oldPassword, string newPassword); // Add a member method reset user definition and implementation
     public:
-        bool manageProfile(User user); // Add a member method to manage user definition and implementation
+        bool manageProfile(Contact user); // Add a member method to manage user definition and implementation
     public:
         void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
     public:

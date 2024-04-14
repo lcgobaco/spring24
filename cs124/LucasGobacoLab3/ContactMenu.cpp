@@ -11,12 +11,13 @@
  *******************************************************/
 
 #include "ContactMenu.h"
+#include "Contact.h"
 #include "Utils.h"
 
 using namespace std;
-void ContactMenu::initUserData() {
+void ContactMenu::initContactData() {
 
-    inFile.open(USERS_DATA);
+    inFile.open(CONTACTS_DATA);
 
     if (!inFile) {
         std::cerr << "Error: Unable to open the file." << std::endl;
@@ -28,45 +29,71 @@ void ContactMenu::initUserData() {
 
     while (std::getline(inFile, line)) {
         vector<string> tokens = splitString(line, ',');
-        int userId = stoi(tokens[0]);
-        if (userId > maxUserId) {
-            maxUserId = userId;
+        int contactId = stoi(tokens[0]);
+        if (contactId > maxContactId) {
+            maxContactId = contactId;
         }
-        User user (userId, tokens[1], tokens[2], tokens[3], DateTime(tokens[4]), DateTime(tokens[5]),
-        tokens[6], tokens[7], tokens[8], tokens[9], tokens[10], tokens[11], tokens[12], tokens[13]);
-        users.push_back(user);
+        /*
+            Contact(int id,
+            std::string first, std::string middle, std::string last,
+            DateTime dob,
+            std::string addr, std::string cty, std::string cnty, std::string st, std::string zp,
+            std::string ph1, std::string ph2, std::string pro, std::string em, std::string role,
+            std::string company_name);
+        */
+        Contact contact (contactId,
+        tokens[1], tokens[2], tokens[3],
+        DateTime(tokens[4]),
+        tokens[5], tokens[6], tokens[7], tokens[8], tokens[9],
+        tokens[10], tokens[11], tokens[12], tokens[13], tokens[14], tokens[15]);
+        contacts.push_back(contact);
     }
 
     // Close the file
     inFile.close();
 }
 
-void ContactMenu::saveUserData() {
-    ofstream outFile;
-    outFile.open(USERS_DATA);
 
-    if (!outFile) {
-        std::cerr << "Error: Unable to open the file." << std::endl;
+#include <fstream>
+
+// Function to save contacts from a ContactList to a CSV file
+void ContactMenu::saveContactsToFile() {
+    std::ofstream file(CONTACTS_DATA);
+
+    // Check if the file is opened successfully
+    if (!file.is_open()) {
+        std::cerr << "Error: Unable to open file " << CONTACTS_DATA << " for writing." << std::endl;
+        return;
     }
 
-    outFile << "Id,Role,Username,Password,Sign-in datetime,Sign out datetime,First Name,Last Name,Address,City,State,Zip,Phone,Email" << endl;
+    file << "id,first_name,middle_name,last_name,role,company_name,address,city,county,state,zip,phone1,phone,email";
 
-    for (int i = 0; i < users.size(); i++) {
-        outFile << users[i].getUserId()
-        << "," << users[i].getRole() << "," << users[i].getUsername() << "," << users[i].getPassword()
-        << "," << users[i].getLoginDateTime().toString() << "," << users[i].getLogoutDateTime().toString()
-        << "," << users[i].getFirstName() << "," << users[i].getLastName() << "," << users[i].getAddress()
-        << "," << users[i].getCity() << "," << users[i].getState() << "," << users[i].getZip()
-        << "," << users[i].getPhone() << "," << users[i].getEmail()
-        << endl;
+    // Iterate through the contact list
+for (int i = 0; i < contacts.size(); i++) {
+        Contact contact = contacts[i];
+        file << contact.getId() << ","
+             << contact.getFirstName() << ","
+             << contact.getMiddleName() << ","
+             << contact.getLastName() << ","
+             << contact.getRole() << ","
+             << contact.getCompanyName() << ","
+             << contact.getAddress() << ","
+             << contact.getCity() << ","
+             << contact.getCounty() << ","
+             << contact.getState() << ","
+             << contact.getZip() << ","
+             << contact.getPhone1() << ","
+             << contact.getPhone2() << ","
+             << contact.getEmail() << std::endl;
     }
 
-    outFile.close();
+    // Close the file
+    file.close();
 }
 
 
 ContactMenu::ContactMenu() {
-    //initUserData();
+    initContactData();
 };
 
     // Destructor
@@ -74,7 +101,8 @@ ContactMenu::~ContactMenu() {
 }
 
 bool ContactMenu::signIn(string username, string password) {
-    for (int i = 0; i < users.size(); i++) {
+    /*
+    for (int i = 0; i < contacts.size(); i++) {
         if (users[i].getUsername() == username && users[i].getPassword() == password) {
             user = users[i];
             users[i].setLoginDateTime(DateTime(std::chrono::system_clock::now()));
@@ -83,10 +111,12 @@ bool ContactMenu::signIn(string username, string password) {
             return true;
         }
     }
+    */
     return false;
 }
 
 bool ContactMenu::signOut() {
+    /*
     if (user.getUserId() == 0) {
         cout << "No user signed in." << endl;
         return false;
@@ -102,10 +132,12 @@ bool ContactMenu::signOut() {
             return true;
         }
     }
+    */
     return false;
 }
 
 bool ContactMenu::resetPassword(string oldPassword, string newPassword) {
+    /*
     if (user.getUserId() == 0) {
         cout << "No user signed in." << endl;
         return false;
@@ -123,12 +155,12 @@ bool ContactMenu::resetPassword(string oldPassword, string newPassword) {
             return false;
         }
     }
-
+    */
     return true;
 }
 
 bool ContactMenu::createAccount(string firstName, string lastName, string phone, string email, string password) {
-
+    /*
     if (user.getRole() != "admin") {
         cout << "Only admins can create accounts." << endl;
         return false;
@@ -138,18 +170,22 @@ bool ContactMenu::createAccount(string firstName, string lastName, string phone,
     firstName, lastName, "", "", "", "", phone, email);
     users.push_back(newUser);
     saveUserData();
+    */
     return true;
 }
 
 bool ContactMenu::isSignedIn() {
-    return user.getUserId() != 0;
+    return false;
+    //return user.getUserId() != 0;
 }
 
 bool ContactMenu::isAdmin() {
-    return user.getRole() == "admin";
+    return false;
+    //return user.getRole() == "admin";
 }
 
-bool ContactMenu::manageProfile(User user) {
+bool ContactMenu::manageProfile(Contact user) {
+    /*
         for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == user.getUsername()) {
             users[i] = user;
@@ -158,18 +194,11 @@ bool ContactMenu::manageProfile(User user) {
             return true;
         }
     }
+    */
     return false;
 }
 
-User ContactMenu::getSignedInUser() {
-    return user;
+Contact ContactMenu::getSignedInUser() {
+    return contact;
 }
 
-User ContactMenu::getUserByUsername(string username) {
-    for (int i = 0; i < users.size(); i++) {
-        if (users[i].getUsername() == username) {
-            return users[i];
-        }
-    }
-    return User();
-}

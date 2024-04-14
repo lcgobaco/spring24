@@ -12,6 +12,7 @@ private:
 public:
     // Constructor
     Contact(int id, std::string first, std::string middle, std::string last, DateTime dob, std::string addr, std::string cty, std::string cnty, std::string st, std::string zp, std::string ph1, std::string ph2, std::string pro, std::string em, std::string role, std::string company_name);
+    Contact();
 
     // Destructor
     ~Contact();

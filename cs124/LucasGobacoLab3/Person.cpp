@@ -4,6 +4,8 @@
 Person::Person(std::string first, std::string middle, std::string last, DateTime dob, std::string addr, std::string cty, std::string cnty, std::string st, std::string zp, std::string ph1, std::string ph2, std::string pro, std::string em)
     : first_name(first), middle_name(middle), last_name(last), birthdate(dob), address(addr), city(cty), county(cnty), state(st), zip(zp), phone1(ph1), phone2(ph2), pronouns(pro), email(em) {}
 
+Person::Person() {}
+
 // Destructor definition
 Person::~Person() {}
 
