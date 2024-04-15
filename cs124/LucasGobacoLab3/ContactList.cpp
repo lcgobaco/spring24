@@ -35,7 +35,7 @@ void ContactList::sortBy(string fieldName) {
     Iterator<Contact> b = begin();
 
     while (!b.equals(end())) {
-        Iterator<Contact> r = b;
+        Iterator<Contact> r = Iterator<Contact>(b.getPosition(),b.getContainer());
         string minFirstName = r.get().getFirstName();
         Iterator<Contact> minContact = r;
         //find min
@@ -43,6 +43,7 @@ void ContactList::sortBy(string fieldName) {
             string a = r.get().getFirstName();
             if (a.compare(minFirstName) < 0) {
                 minContact = r;
+                minFirstName = a;
             }
             r.next();
         }

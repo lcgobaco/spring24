@@ -26,11 +26,17 @@ int main() {
         cout << "Option: " << option << endl;
         switch (option)
         {
-
             case 1:
             {
                 cout << "List of contacts:" << endl;
                 cout << "Sort by:" << endl;
+                Menu sort_menu;
+                contact_menu.add_option("Sort by ID");
+                contact_menu.add_option("View a contact");
+                contact_menu.add_option("Add new contact");
+                contact_menu.add_option("Edit contact");
+                contact_menu.add_option("Delete contact");
+
                 contact_menu.doSortBy("first_name");
                 contact_menu.doList();
                 break;

@@ -57,10 +57,6 @@ class ContactMenu : public Menu
         void doEdit();
         void doDelete();
         void doExit();
-    public:
-        void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
-    public:
-        bool signOut(); // Save loginDateTime and logoutDateTime data to file users_data.csv
 };
 
     /*

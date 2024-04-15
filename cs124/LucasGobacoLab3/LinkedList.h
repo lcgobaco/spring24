@@ -102,6 +102,9 @@ public:
         Constructs an iterator that does not point into any list.
     */
     Iterator();
+
+    Iterator(Node<T> *pos, LinkedList<T> *cont);
+
     /**
         Looks up the value at a position.
         @return the value of the node to which the iterator points
@@ -131,6 +134,7 @@ public:
     // postfix decrement
     Iterator<T> operator--(int);
     Node<T> *getPosition() const;
+    LinkedList<T> *getContainer() const;
 
 private:
     Node<T> *position;
@@ -141,6 +145,17 @@ private:
 template <typename T>
 Node<T> *Iterator<T>::getPosition() const {
     return position;
+}
+
+template <typename T>
+LinkedList<T> *Iterator<T>::getContainer() const {
+    return container;
+}
+
+template <typename T>
+Iterator<T>::Iterator(Node<T> *pos, LinkedList<T> *cont) {
+    position = pos;
+    container = cont;
 }
 
 template <typename T>
