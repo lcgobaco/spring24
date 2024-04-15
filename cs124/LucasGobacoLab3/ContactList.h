@@ -19,6 +19,9 @@ public:
     void moveNext();
     void movePrevious();
 
+    private:
+    Iterator<Contact> current;
+
 };
 
 #endif // CONTACTLIST_H

@@ -60,25 +60,20 @@ public:
         erased element
     */
     Iterator<T> erase(Iterator<T> iter);
+
     /**
         Gets the beginning position of the list.
         @return an iterator pointing to the beginning of the list
     */
     Iterator<T> begin();
+
     /**
         Gets the past-the-end position of the list.
         @return an iterator pointing past the end of the list
     */
     Iterator<T> end();
 
-    // prefix increment
-    Iterator<T>& operator++();
-    // postfix increment
-    Iterator<T> operator++(int);
-    // prefix decrement
-    Iterator<T>& operator--();
-    // postfix decrement
-    Iterator<T> operator--(int);
+
 
 private:
     Node<T> *first;
@@ -114,6 +109,15 @@ public:
         @return true if this iterator and other are equal
     */
     bool equals(Iterator other) const;
+
+    // prefix increment
+    Iterator<T>& operator++();
+    // postfix increment
+    Iterator<T> operator++(int);
+    // prefix decrement
+    Iterator<T>& operator--();
+    // postfix decrement
+    Iterator<T> operator--(int);
 
 private:
     Node<T> *position;
@@ -241,6 +245,43 @@ Iterator<T> LinkedList<T>::end() {
 }
 
 template <typename T>
+Iterator<T>& Iterator<T>::operator++() {
+    next();
+    Iterator<T> iter;
+    iter.position = position;
+    iter.container = this->container;
+    return iter;
+}
+
+template <typename T>
+Iterator<T>& Iterator<T>::operator--() {
+    previous();
+    Iterator<T> iter;
+    iter.position = position;
+    iter.container = this->container;
+    return iter;
+}
+
+template <typename T>
+Iterator<T> Iterator<T>::operator++(int n) {
+    next();
+    Iterator<T> iter;
+    iter.position = position;
+    iter.container = this->container;
+    return iter;
+}
+
+template <typename T>
+Iterator<T> Iterator<T>::operator--(int) {
+    previous();
+    Iterator<T> iter;
+    iter.position = position;
+    iter.container = this->container;
+    return iter;
+}
+
+
+template <typename T>
 Iterator<T>::Iterator() {
     position = nullptr;
     container = nullptr;
@@ -264,26 +305,6 @@ void Iterator<T>::previous() {
     else {
         position = position->previous;
     }
-}
-
-template <typename T>
-Iterator<T>& LinkedList<T>::operator++() {
-    //next();
-}
-
-template <typename T>
-Iterator<T>& LinkedList<T>::operator--() {
-    //previous();
-}
-
-template <typename T>
-Iterator<T> LinkedList<T>::operator++(int) {
-    //next();
-}
-
-template <typename T>
-Iterator<T> LinkedList<T>::operator--(int) {
-    //previous();
 }
 
 template <typename T>

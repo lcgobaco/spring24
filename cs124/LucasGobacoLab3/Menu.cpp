@@ -27,18 +27,21 @@ void Menu::display() const
 {
    for (int i = 0; i < options.size(); i++)
    {
-      cout << i + 1 << ") " << options[i] << endl; 
+      cout << i + 1 << ") " << options[i] << endl;
    }
 }
 
-int Menu::get_input() const
+string Menu::get_input() const
 {
-   int input;
+   string input;
+   int n = -1;
    do
    {
       display();
       cin >> input;
+      n = std::stoi(input);
+
    }
-   while (input < 1 || input > options.size());
+   while (n < 1 || n > options.size());
    return input;
 }

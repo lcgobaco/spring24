@@ -20,7 +20,7 @@ int main() {
 
         cout << "Input == x " << input << " " << (input == "x") << " " << endl;
 
-        if (input == "x") {
+            if (input == "x") {
             cout << "Quit" << endl;
             break;
         }
