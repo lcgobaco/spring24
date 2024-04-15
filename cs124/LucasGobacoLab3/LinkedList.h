@@ -39,12 +39,14 @@ public:
         @param element the value to append
     */
     void push_back(T element);
+
     /**
         Inserts an element into the list.
         @param iter the position before which to insert
         @param element the value to insert
     */
     void insert(Iterator<T> iter, T element);
+
     /**
         Retrieves the k'th element of the list
         @param k the position to be retrieved (zero-based)
@@ -68,6 +70,15 @@ public:
         @return an iterator pointing past the end of the list
     */
     Iterator<T> end();
+
+    // prefix increment
+    Iterator<T>& operator++();
+    // postfix increment
+    Iterator<T> operator++(int);
+    // prefix decrement
+    Iterator<T>& operator--();
+    // postfix decrement
+    Iterator<T> operator--(int);
 
 private:
     Node<T> *first;
@@ -253,6 +264,26 @@ void Iterator<T>::previous() {
     else {
         position = position->previous;
     }
+}
+
+template <typename T>
+Iterator<T>& LinkedList<T>::operator++() {
+    //next();
+}
+
+template <typename T>
+Iterator<T>& LinkedList<T>::operator--() {
+    //previous();
+}
+
+template <typename T>
+Iterator<T> LinkedList<T>::operator++(int) {
+    //next();
+}
+
+template <typename T>
+Iterator<T> LinkedList<T>::operator--(int) {
+    //previous();
 }
 
 template <typename T>

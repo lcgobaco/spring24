@@ -12,7 +12,7 @@ int main() {
     contact_menu.add_option("Delete contact");
     contact_menu.add_option("Exit");
 
-    contact_menu.displayContacts();
+    contact_menu.displayContactList();
 
     do
     {

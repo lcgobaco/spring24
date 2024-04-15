@@ -44,15 +44,13 @@ class ContactMenu : public Menu
         ifstream inFile;
         Contact contact;
         ContactList contactList;
-        vector<Contact> contacts;
         int maxContactId = 0;
 
     private:
         void initContactData(); // Initialize and read from contacts_data.csv; and populate the list (vector<User> users;)
         void saveContactsToFile();
     public:
-        vector<Contact> getContacts();
-        void displayContacts();
+        void displayContactList();
         Contact getUserByUsername(string username);
         Contact getSignedInUser();
         bool isSignedIn();

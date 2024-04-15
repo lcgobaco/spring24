@@ -35,32 +35,12 @@ void ContactMenu::initContactData() {
             maxContactId = contactId;
         }
 
-
-        /* contacts_data file:
-        id,
-        first_name,
-        middle_name,
-        last_name,
-        role, 4
-        company_name, 5
-        address,city,county,state,zip,phone1,phone,email
-
-        */
-
-        /*
-            Contact(int id,
-            std::string first, std::string middle, std::string last,
-            DateTime dob,
-            std::string addr, std::string cty, std::string cnty, std::string st, std::string zp,
-            std::string ph1, std::string ph2, std::string pro, std::string em,
-            std::string role,std::string company_name);
-        */
         Contact contact (contactId,
         tokens[1], tokens[2], tokens[3],
         tokens[6], tokens[7], tokens[8], tokens[9], tokens[10],
         tokens[11], tokens[12], tokens[13],
         tokens[4], tokens[5]);
-        contacts.push_back(contact);
+        contactList.push_back(contact);
     }
 
     // Close the file
@@ -80,8 +60,8 @@ void ContactMenu::saveContactsToFile() {
     file << "id,first_name,middle_name,last_name,role,company_name,address,city,county,state,zip,phone1,phone,email";
 
     // Iterate through the contact list
-for (int i = 0; i < contacts.size(); i++) {
-        Contact contact = contacts[i];
+    for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next()) {
+        Contact contact = itr.get();
         file << contact.getId() << ","
              << contact.getFirstName() << ","
              << contact.getMiddleName() << ","
@@ -102,14 +82,12 @@ for (int i = 0; i < contacts.size(); i++) {
     file.close();
 }
 
-vector<Contact> ContactMenu::getContacts() {
-    return contacts;
-}
-
-void ContactMenu::displayContacts() {
+void ContactMenu::displayContactList() {
     // Iterate through the contact list
-    for (int i = 0; i < contacts.size(); i++) {
-        Contact contact = contacts[i];
+    for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next())
+    {
+    //for (int i = 0; i < contactList.size(); i++) {
+        Contact contact = itr.get();
         std::cout << "ID: " << contact.getId() << std::endl;
         std::cout << "Name: " << contact.getFirstName() << " " << contact.getMiddleName() << " " << contact.getLastName() << std::endl;
         std::cout << "Role: " << contact.getRole() << std::endl;
@@ -123,6 +101,7 @@ void ContactMenu::displayContacts() {
         std::cout << "Phone 2: " << contact.getPhone2() << std::endl;
         std::cout << "Email: " << contact.getEmail() << std::endl;
         std::cout << std::endl;
+        itr.next();
     }
 }
 ContactMenu::ContactMenu() {

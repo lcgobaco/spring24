@@ -12,6 +12,13 @@ public:
     // Destructor
     ~ContactList();
 
+    void sortBy();
+    Contact search();
+    void moveFirst();
+    void moveLast();
+    void moveNext();
+    void movePrevious();
+
 };
 
 #endif // CONTACTLIST_H
