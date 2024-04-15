@@ -51,7 +51,7 @@ class ContactMenu : public Menu
     public:
         void doList();
         void doListWithIterator();
-        void doSortBy(string fieldName);
+        void doSortBy(string fieldName, string direction);
         void doView(string id);
         void doAdd();
         void doEdit();

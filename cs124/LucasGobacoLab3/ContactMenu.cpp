@@ -57,7 +57,7 @@ void ContactMenu::doExit() {
         return;
     }
 
-    file << "id,first_name,middle_name,last_name,role,company_name,address,city,county,state,zip,phone1,phone,email";
+    file << "id,first_name,middle_name,last_name,role,company_name,address,city,county,state,zip,phone1,phone,email" << std::endl;
 
     // Iterate through the contact list
     for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next()) {
@@ -84,7 +84,9 @@ void ContactMenu::doExit() {
 
 void printContact(Contact contact) {
     std::cout << "ID: " << contact.getId() << std::endl;
-        std::cout << "Name: " << contact.getFirstName() << " " << contact.getMiddleName() << " " << contact.getLastName() << std::endl;
+        std::cout << "First Name: " << contact.getFirstName() << std::endl;
+        std::cout << "Middle Name: " << contact.getMiddleName() << std::endl;
+        std::cout << "Last Name: "  << contact.getLastName() << std::endl;
         std::cout << "Role: " << contact.getRole() << std::endl;
         std::cout << "Company: " << contact.getCompanyName() << std::endl;
         std::cout << "Address: " << contact.getAddress() << std::endl;
@@ -151,8 +153,8 @@ void ContactMenu::doView(string id) {
 
 }
 
-void ContactMenu::doSortBy(string fieldName) {
-    contactList.sortBy(fieldName);
+void ContactMenu::doSortBy(string fieldName, string direction) {
+    contactList.sortBy(fieldName, direction);
 }
 
 

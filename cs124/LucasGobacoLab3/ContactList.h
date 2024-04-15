@@ -12,7 +12,7 @@ public:
     // Destructor
     ~ContactList();
 
-    void sortBy(string fieldName);
+    void sortBy(string fieldName, string direction);
     Contact search(int id);
     void moveFirst();
     void moveLast();
