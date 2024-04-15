@@ -4,15 +4,16 @@
 
  * Author: Lucas Gobaco
 
- * Date: 24 February 2024
+ * Date: 14 April 2024
 
- * Description: This program implements a class that displays a menu for a user.
+ * Description: This program implements a class that displays a menu for a contact.
 
  *******************************************************/
 
 #include "ContactMenu.h"
 #include "Contact.h"
 #include "Utils.h"
+#include <fstream>
 
 using namespace std;
 void ContactMenu::initContactData() {
@@ -33,19 +34,32 @@ void ContactMenu::initContactData() {
         if (contactId > maxContactId) {
             maxContactId = contactId;
         }
+
+
+        /* contacts_data file:
+        id,
+        first_name,
+        middle_name,
+        last_name,
+        role, 4
+        company_name, 5
+        address,city,county,state,zip,phone1,phone,email
+
+        */
+
         /*
             Contact(int id,
             std::string first, std::string middle, std::string last,
             DateTime dob,
             std::string addr, std::string cty, std::string cnty, std::string st, std::string zp,
-            std::string ph1, std::string ph2, std::string pro, std::string em, std::string role,
-            std::string company_name);
+            std::string ph1, std::string ph2, std::string pro, std::string em,
+            std::string role,std::string company_name);
         */
         Contact contact (contactId,
         tokens[1], tokens[2], tokens[3],
-        DateTime(tokens[4]),
-        tokens[5], tokens[6], tokens[7], tokens[8], tokens[9],
-        tokens[10], tokens[11], tokens[12], tokens[13], tokens[14], tokens[15]);
+        tokens[6], tokens[7], tokens[8], tokens[9], tokens[10],
+        tokens[11], tokens[12], "", tokens[13],
+        tokens[4], tokens[5]);
         contacts.push_back(contact);
     }
 
@@ -53,8 +67,6 @@ void ContactMenu::initContactData() {
     inFile.close();
 }
 
-
-#include <fstream>
 
 // Function to save contacts from a ContactList to a CSV file
 void ContactMenu::saveContactsToFile() {
@@ -91,6 +103,9 @@ for (int i = 0; i < contacts.size(); i++) {
     file.close();
 }
 
+vector<Contact> ContactMenu::getContacts() {
+    return contacts;
+}
 
 ContactMenu::ContactMenu() {
     initContactData();

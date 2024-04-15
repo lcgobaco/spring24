@@ -4,9 +4,9 @@
 
 * Author: Lucas Gobaco
 
-* Date: 24 February 2024
+* Date: 14 April 2024
 
-* Description: This program defines a class that displays a menu for a user in the console.
+* Description: This program defines a class that displays a menu for a contact in the console.
 
  *******************************************************/
 
@@ -46,9 +46,10 @@ class ContactMenu : public Menu
         int maxContactId = 0;
 
     private:
-        void initContactData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
+        void initContactData(); // Initialize and read from contacts_data.csv; and populate the list (vector<User> users;)
         void saveContactsToFile();
     public:
+        vector<Contact> getContacts();
         Contact getUserByUsername(string username);
         Contact getSignedInUser();
         bool isSignedIn();

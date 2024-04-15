@@ -1,38 +1,40 @@
 #include "Person.h"
 #include "ContactMenu.h"
 
-int test() {
-    // Example usage
-    DateTime dob(1990, 5, 15); // Assuming DateTime class is implemented
-    Person person("John", "Doe", "", dob, "123 Main St", "Anytown", "Anycounty", "Anystate", "12345", "123-456-7890", "987-654-3210", "he", "john.doe@example.com");
-
-    // Accessing data members using accessor functions
-    cout << "First Name: " << person.getFirstName() << endl;
-    cout << "Middle Name: " << person.getMiddleName() << endl;
-    cout << "Last Name: " << person.getLastName() << endl;
-    // Similarly, access other data members using accessor functions
-
-    // Modifying data members using mutator functions
-    person.setFirstName("Jane");
-    person.setEmail("jane.doe@example.com");
-
-    return 0;
-}
-
 int main() {
     string input;
-    ContactMenu main_menu;
+    ContactMenu contact_menu;
 
-    main_menu.add_option("List of contacts");
-    main_menu.add_option("View a contact");
-    main_menu.add_option("Add new contact");
-    main_menu.add_option("Edit contact");
-    main_menu.add_option("Delete contact");
-    main_menu.add_option("Exit");
+    contact_menu.add_option("List of contacts");
+    contact_menu.add_option("View a contact");
+    contact_menu.add_option("Add new contact");
+    contact_menu.add_option("Edit contact");
+    contact_menu.add_option("Delete contact");
+    contact_menu.add_option("Exit");
+
+    vector<Contact> contacts = contact_menu.getContacts();
+
+    // Iterate through the contact list
+    for (int i = 0; i < contact_menu.getContacts().size(); i++) {
+        Contact contact = contacts[i];
+        std::cout << "ID: " << contact.getId() << std::endl;
+        std::cout << "Name: " << contact.getFirstName() << " " << contact.getMiddleName() << " " << contact.getLastName() << std::endl;
+        std::cout << "Role: " << contact.getRole() << std::endl;
+        std::cout << "Company: " << contact.getCompanyName() << std::endl;
+        std::cout << "Address: " << contact.getAddress() << std::endl;
+        std::cout << "City: " << contact.getCity() << std::endl;
+        std::cout << "County: " << contact.getCounty() << std::endl;
+        std::cout << "State: " << contact.getState() << std::endl;
+        std::cout << "ZIP: " << contact.getZip() << std::endl;
+        std::cout << "Phone 1: " << contact.getPhone1() << std::endl;
+        std::cout << "Phone 2: " << contact.getPhone2() << std::endl;
+        std::cout << "Email: " << contact.getEmail() << std::endl;
+        std::cout << std::endl;
+    }
 
     do
     {
-        input = main_menu.get_input();
+        input = contact_menu.get_input();
 
         cout << "Input == x " << input << " " << (input == "x") << " " << endl;
 
@@ -58,7 +60,7 @@ int main() {
                     cout << "Enter password: ";
                     cin >> password;
 
-                    bool signedIn = main_menu.signIn(username, password);
+                    bool signedIn = contact_menu.signIn(username, password);
                     if (signedIn) {
                         break;
                     }
@@ -70,14 +72,14 @@ int main() {
             case 2:
             {
                 cout << "Sign-out" << endl;
-                bool signedOut = main_menu.signOut();
+                bool signedOut = contact_menu.signOut();
                 cout << "Signed out: " << signedOut << endl;
                 break;
             }
 
             case 3:
             {
-                if (main_menu.isSignedIn() == false) {
+                if (contact_menu.isSignedIn() == false) {
                     cout << "Error: You must be signed in to reset your password." << endl;
                     break;
                 }
@@ -88,7 +90,7 @@ int main() {
                 cout << "New Password: ";
                 string newPassword;
                 cin >> newPassword;
-                bool reset = main_menu.resetPassword(oldPassword, newPassword);
+                bool reset = contact_menu.resetPassword(oldPassword, newPassword);
                 break;
             }
 
@@ -112,7 +114,7 @@ int main() {
                     break;
                 }
 
-                bool created = main_menu.createAccount(firstName, lastName, phone, email, password);
+                bool created = contact_menu.createAccount(firstName, lastName, phone, email, password);
                 cout << "Created: " << created << endl;
                 break;
             }
@@ -178,6 +180,4 @@ int main() {
         }
 
     } while (input != "6" );
-
-    test();
 }

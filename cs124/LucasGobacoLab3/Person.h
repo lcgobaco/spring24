@@ -9,7 +9,7 @@ private:
     std::string first_name;
     std::string middle_name;
     std::string last_name;
-    DateTime birthdate; // Assuming DateTime class is declared in DateTime.h
+    DateTime* birthdate;
     std::string address;
     std::string city;
     std::string county;
@@ -22,7 +22,7 @@ private:
 
 public:
     // Constructor
-    Person(std::string first, std::string middle, std::string last, DateTime dob, std::string addr, std::string cty, std::string cnty, std::string st, std::string zp, std::string ph1, std::string ph2, std::string pro, std::string em);
+    Person(std::string first, std::string middle, std::string last, DateTime* dob, std::string addr, std::string cty, std::string cnty, std::string st, std::string zp, std::string ph1, std::string ph2, std::string pro, std::string em);
     Person();
     // Destructor
     ~Person();
@@ -46,7 +46,7 @@ public:
     void setFirstName(std::string first);
     void setMiddleName(std::string middle);
     void setLastName(std::string last);
-    void setBirthdate(DateTime dob);
+    void setBirthdate(DateTime* dob);
     void setAddress(std::string addr);
     void setCity(std::string cty);
     void setCounty(std::string cnty);
