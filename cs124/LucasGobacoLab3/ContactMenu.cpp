@@ -58,7 +58,7 @@ void ContactMenu::initContactData() {
         Contact contact (contactId,
         tokens[1], tokens[2], tokens[3],
         tokens[6], tokens[7], tokens[8], tokens[9], tokens[10],
-        tokens[11], tokens[12], "", tokens[13],
+        tokens[11], tokens[12], tokens[13],
         tokens[4], tokens[5]);
         contacts.push_back(contact);
     }
