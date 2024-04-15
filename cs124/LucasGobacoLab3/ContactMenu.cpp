@@ -48,7 +48,7 @@ void ContactMenu::initContactData() {
 }
 
 // Function to save contacts from a ContactList to a CSV file
-void ContactMenu::saveContactsToFile() {
+void ContactMenu::doExit() {
     std::ofstream file(CONTACTS_DATA);
 
     // Check if the file is opened successfully
@@ -82,13 +82,8 @@ void ContactMenu::saveContactsToFile() {
     file.close();
 }
 
-void ContactMenu::displayContactList() {
-    // Iterate through the contact list
-    for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next())
-    {
-    //for (int i = 0; i < contactList.size(); i++) {
-        Contact contact = itr.get();
-        std::cout << "ID: " << contact.getId() << std::endl;
+void printContact(Contact contact) {
+    std::cout << "ID: " << contact.getId() << std::endl;
         std::cout << "Name: " << contact.getFirstName() << " " << contact.getMiddleName() << " " << contact.getLastName() << std::endl;
         std::cout << "Role: " << contact.getRole() << std::endl;
         std::cout << "Company: " << contact.getCompanyName() << std::endl;
@@ -101,9 +96,67 @@ void ContactMenu::displayContactList() {
         std::cout << "Phone 2: " << contact.getPhone2() << std::endl;
         std::cout << "Email: " << contact.getEmail() << std::endl;
         std::cout << std::endl;
+}
+void ContactMenu::doList() {
+    contactList.moveFirst();
+
+    Iterator<Contact> current = contactList.getCurrent();
+    while (!current.equals(contactList.end())) {
+        Contact contact = current.get();
+        printContact(contact);
+        contactList.moveNext();
+        current = contactList.getCurrent();
+    }
+
+}
+
+void ContactMenu::doListWithIterator() {
+    // Iterate through the contact list
+    for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next())
+    {
+    //for (int i = 0; i < contactList.size(); i++) {
+        Contact contact = itr.get();
+        printContact(contact);
         itr.next();
     }
 }
+
+void ContactMenu::doAdd() {
+    // TODO: Add new contact
+}
+
+void ContactMenu::doEdit() {
+    // TODO: Edit contact
+}
+
+void ContactMenu::doDelete() {
+    // TODO: Delete contact
+}
+
+void ContactMenu::doView(string id) {
+
+    Contact found = Contact();
+    contactList.moveFirst();
+    Iterator<Contact> current = contactList.getCurrent();
+    while (!current.equals(contactList.end())) {
+        Contact contact = current.get();
+        if (contact.getId() == stoi(id)) {
+            found = contact;
+            break;
+        }
+        contactList.moveNext();
+        current = contactList.getCurrent();
+    }
+    printContact(found);
+
+}
+
+void ContactMenu::doSortBy(string fieldName) {
+    contactList.sortBy(fieldName);
+}
+
+
+
 ContactMenu::ContactMenu() {
     initContactData();
 };
@@ -112,105 +165,4 @@ ContactMenu::ContactMenu() {
 ContactMenu::~ContactMenu() {
 }
 
-bool ContactMenu::signIn(string username, string password) {
-    /*
-    for (int i = 0; i < contacts.size(); i++) {
-        if (users[i].getUsername() == username && users[i].getPassword() == password) {
-            user = users[i];
-            users[i].setLoginDateTime(DateTime(std::chrono::system_clock::now()));
-            cout << "User " << user.getUsername() << " signed in." << endl;
-            saveUserData();
-            return true;
-        }
-    }
-    */
-    return false;
-}
-
-bool ContactMenu::signOut() {
-    /*
-    if (user.getUserId() == 0) {
-        cout << "No user signed in." << endl;
-        return false;
-    }
-
-    cout << "Signing out " << user.getUsername() << "..." << endl;
-
-    for (int i = 0; i < users.size(); i++) {
-        if (users[i].getUsername() == user.getUsername()) {
-            users[i].setLogoutDateTime(DateTime(std::chrono::system_clock::now()));
-            saveUserData();
-            cout << "User " << user.getUsername() << " signed out." << endl;
-            return true;
-        }
-    }
-    */
-    return false;
-}
-
-bool ContactMenu::resetPassword(string oldPassword, string newPassword) {
-    /*
-    if (user.getUserId() == 0) {
-        cout << "No user signed in." << endl;
-        return false;
-    }
-
-    for (int i = 0; i < users.size(); i++) {
-        if (users[i].getUsername() == user.getUsername()) {
-            if (users[i].getPassword() == oldPassword) {
-                users[i].setPassword(newPassword);
-                saveUserData();
-                cout << "User " << user.getUsername() << " password reset." << endl;
-                return true;
-            }
-            cout << "Incorrect password." << endl;
-            return false;
-        }
-    }
-    */
-    return true;
-}
-
-bool ContactMenu::createAccount(string firstName, string lastName, string phone, string email, string password) {
-    /*
-    if (user.getRole() != "admin") {
-        cout << "Only admins can create accounts." << endl;
-        return false;
-    }
-    maxUserId++;
-    User newUser(maxUserId, "guest", email, password, DateTime(std::chrono::system_clock::now()), DateTime(std::chrono::system_clock::now()),
-    firstName, lastName, "", "", "", "", phone, email);
-    users.push_back(newUser);
-    saveUserData();
-    */
-    return true;
-}
-
-bool ContactMenu::isSignedIn() {
-    return false;
-    //return user.getUserId() != 0;
-}
-
-bool ContactMenu::isAdmin() {
-    return false;
-    //return user.getRole() == "admin";
-}
-
-bool ContactMenu::manageProfile(Contact user) {
-    /*
-        for (int i = 0; i < users.size(); i++) {
-        if (users[i].getUsername() == user.getUsername()) {
-            users[i] = user;
-            saveUserData();
-            cout << "User " << user.getUsername() << " profile updated." << endl;
-            return true;
-        }
-    }
-    */
-    return false;
-}
-
-Contact ContactMenu::getSignedInUser() {
-    return contact;
-}
 

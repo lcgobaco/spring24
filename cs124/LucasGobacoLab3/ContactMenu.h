@@ -48,22 +48,15 @@ class ContactMenu : public Menu
 
     private:
         void initContactData(); // Initialize and read from contacts_data.csv; and populate the list (vector<User> users;)
-        void saveContactsToFile();
     public:
-        void displayContactList();
-        Contact getUserByUsername(string username);
-        Contact getSignedInUser();
-        bool isSignedIn();
-        bool isAdmin();
-        bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
-    public:
-        bool createAccount(string firstName, string lastName, string phone, string email, string password); // Add a member method create user definition and implementation
-    public:
-        bool remove(); // Add a member method remove user definition and implementation
-    public:
-        bool resetPassword(string oldPassword, string newPassword); // Add a member method reset user definition and implementation
-    public:
-        bool manageProfile(Contact user); // Add a member method to manage user definition and implementation
+        void doList();
+        void doListWithIterator();
+        void doSortBy(string fieldName);
+        void doView(string id);
+        void doAdd();
+        void doEdit();
+        void doDelete();
+        void doExit();
     public:
         void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
     public:

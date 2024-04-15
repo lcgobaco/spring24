@@ -12,12 +12,13 @@ public:
     // Destructor
     ~ContactList();
 
-    void sortBy();
-    Contact search();
+    void sortBy(string fieldName);
+    Contact search(int id);
     void moveFirst();
     void moveLast();
     void moveNext();
     void movePrevious();
+    Iterator<Contact> getCurrent();
 
     private:
     Iterator<Contact> current;
