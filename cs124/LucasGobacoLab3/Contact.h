@@ -5,13 +5,13 @@
 
 class Contact : public Person {
 private:
-    int id;
+    string id;
     std::string role;
     std::string company_name;
 
 public:
     // Constructor
-    Contact(int id,
+    Contact(string id,
     std::string first, std::string middle, std::string last,
     std::string addr, std::string cty, std::string cnty, std::string st, std::string zp,
     std::string ph1, std::string ph2, std::string em,
@@ -22,12 +22,12 @@ public:
     ~Contact();
 
     // Accessor functions
-    int getId() const;
+    string getId() const;
     std::string getRole() const;
     std::string getCompanyName() const;
 
     // Mutator functions
-    void setId(int id);
+    void setId(string id);
     void setRole(std::string role);
     void setCompanyName(std::string company_name);
 };

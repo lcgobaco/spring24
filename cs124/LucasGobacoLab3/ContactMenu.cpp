@@ -35,7 +35,7 @@ void ContactMenu::initContactData() {
             maxContactId = contactId;
         }
 
-        Contact contact (contactId,
+        Contact contact (tokens[0],
         tokens[1], tokens[2], tokens[3],
         tokens[6], tokens[7], tokens[8], tokens[9], tokens[10],
         tokens[11], tokens[12], tokens[13],
@@ -140,7 +140,7 @@ void ContactMenu::doView(string id) {
     Iterator<Contact> current = contactList.getCurrent();
     while (!current.equals(contactList.end())) {
         Contact contact = current.get();
-        if (contact.getId() == stoi(id)) {
+        if (contact.getId().compare(id) == 0) {
             found = contact;
             break;
         }
