@@ -18,6 +18,8 @@ public:
         @param element the data to store in this node
     */
     Node(T element);
+    T getData() const;
+    void setData(T element);
 
 private:
     T data;
@@ -26,6 +28,16 @@ private:
     friend class LinkedList<T>;
     friend class Iterator<T>;
 };
+
+template <typename T>
+T Node<T>::getData() const {
+    return data;
+}
+
+template <typename T>
+void Node<T>::setData(T element) {
+    data = element;
+}
 
 template <typename T>
 class LinkedList {
@@ -118,12 +130,18 @@ public:
     Iterator<T>& operator--();
     // postfix decrement
     Iterator<T> operator--(int);
+    Node<T> *getPosition() const;
 
 private:
     Node<T> *position;
     LinkedList<T> *container;
     friend class LinkedList<T>;
 };
+
+template <typename T>
+Node<T> *Iterator<T>::getPosition() const {
+    return position;
+}
 
 template <typename T>
 Node<T>::Node(T element) {
@@ -263,7 +281,7 @@ Iterator<T>& Iterator<T>::operator--() {
 }
 
 template <typename T>
-Iterator<T> Iterator<T>::operator++(int n) {
+Iterator<T> Iterator<T>::operator++(int) {
     next();
     Iterator<T> iter;
     iter.position = position;

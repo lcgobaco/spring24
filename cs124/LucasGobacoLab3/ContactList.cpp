@@ -31,11 +31,29 @@ Contact ContactList::search(int id) {
 }
 
 void ContactList::sortBy(string fieldName) {
-    moveFirst();
-    while (!current.equals(end())) {
-        moveNext();
-    }
-}
 
+    Iterator<Contact> b = begin();
+
+    while (!b.equals(end())) {
+        Iterator<Contact> r = b;
+        string minFirstName = r.get().getFirstName();
+        Iterator<Contact> minContact = r;
+        //find min
+        while (!r.equals(end())) {
+            string a = r.get().getFirstName();
+            if (a.compare(minFirstName) < 0) {
+                minContact = r;
+            }
+            r.next();
+        }
+        //swap two iterator values
+        Contact c1 = b.getPosition()->getData();
+        Contact c2 = minContact.getPosition()->getData();
+        b.getPosition()->setData(c2);
+        minContact.getPosition()->setData(c1);
+        b.next();
+    }
+
+}
 
 
