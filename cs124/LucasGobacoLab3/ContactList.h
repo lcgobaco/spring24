@@ -7,10 +7,10 @@
 class ContactList : public LinkedList<Contact> {
 public:
     // Constructor
-    ContactList() : LinkedList<Contact>() {}
+    ContactList();
 
     // Destructor
-    ~ContactList() {}
+    ~ContactList();
 
 };
 

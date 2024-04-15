@@ -17,6 +17,7 @@
 #include "Menu.h"
 #include "Contact.h"
 #include <string>
+#include "ContactList.h"
 #include <fstream>
 #include <vector>
 
@@ -42,6 +43,7 @@ class ContactMenu : public Menu
         // Member variables and any other variables if necessary
         ifstream inFile;
         Contact contact;
+        ContactList contactList;
         vector<Contact> contacts;
         int maxContactId = 0;
 
@@ -50,6 +52,7 @@ class ContactMenu : public Menu
         void saveContactsToFile();
     public:
         vector<Contact> getContacts();
+        void displayContacts();
         Contact getUserByUsername(string username);
         Contact getSignedInUser();
         bool isSignedIn();

@@ -12,25 +12,7 @@ int main() {
     contact_menu.add_option("Delete contact");
     contact_menu.add_option("Exit");
 
-    vector<Contact> contacts = contact_menu.getContacts();
-
-    // Iterate through the contact list
-    for (int i = 0; i < contact_menu.getContacts().size(); i++) {
-        Contact contact = contacts[i];
-        std::cout << "ID: " << contact.getId() << std::endl;
-        std::cout << "Name: " << contact.getFirstName() << " " << contact.getMiddleName() << " " << contact.getLastName() << std::endl;
-        std::cout << "Role: " << contact.getRole() << std::endl;
-        std::cout << "Company: " << contact.getCompanyName() << std::endl;
-        std::cout << "Address: " << contact.getAddress() << std::endl;
-        std::cout << "City: " << contact.getCity() << std::endl;
-        std::cout << "County: " << contact.getCounty() << std::endl;
-        std::cout << "State: " << contact.getState() << std::endl;
-        std::cout << "ZIP: " << contact.getZip() << std::endl;
-        std::cout << "Phone 1: " << contact.getPhone1() << std::endl;
-        std::cout << "Phone 2: " << contact.getPhone2() << std::endl;
-        std::cout << "Email: " << contact.getEmail() << std::endl;
-        std::cout << std::endl;
-    }
+    contact_menu.displayContacts();
 
     do
     {
