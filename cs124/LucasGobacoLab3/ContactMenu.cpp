@@ -29,7 +29,7 @@ void ContactMenu::initContactData() {
     std::getline(inFile, line);
 
     while (std::getline(inFile, line)) {
-        vector<string> tokens = splitString(line, ',');
+        vector<string> tokens = splitStringDoubleQuotes(line, ',');
         int contactId = stoi(tokens[0]);
         if (contactId > maxContactId) {
             maxContactId = contactId;
@@ -66,7 +66,6 @@ void ContactMenu::initContactData() {
     // Close the file
     inFile.close();
 }
-
 
 // Function to save contacts from a ContactList to a CSV file
 void ContactMenu::saveContactsToFile() {
