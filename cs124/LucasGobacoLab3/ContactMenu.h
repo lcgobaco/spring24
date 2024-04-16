@@ -52,7 +52,7 @@ class ContactMenu : public Menu
         void doList();
         void doListWithIterator();
         void doSortBy(string fieldName, string direction);
-        void doView(string id);
+        void doView();
         void doAdd();
         void doEdit();
         void doDelete();

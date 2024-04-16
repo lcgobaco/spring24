@@ -124,31 +124,99 @@ void ContactMenu::doListWithIterator() {
 }
 
 void ContactMenu::doAdd() {
-    // TODO: Add new contact
+    Contact contact = Contact();
+    contact.setId(std::to_string(++maxContactId));
+
+    cout << "Adding new contact" << endl;
+    cout << "First name: " << endl;
+    string firstName;
+    cin >> firstName;
+    contact.setFirstName(firstName);
+
+    cout << "Middle name: " << endl;
+    string middleName;
+    cin >> middleName;
+    contact.setMiddleName(middleName);
+
+    cout << "Last name: " << endl;
+    string lastName;
+    cin >> lastName;
+    contact.setLastName(lastName);
+
+    cout << "Role: " << endl;
+    string role;
+    cin >> role;
+    contact.setRole(role);
+
+    cout << "Company name: " << endl;
+    string companyName;
+    cin >> companyName;
+    contact.setCompanyName(companyName);
+
+    cout << "Address: " << endl;
+    string address;
+    cin >> address;
+    contact.setAddress(address);
+
+    cout << "City: " << endl;
+    string city;
+    cin >> city;
+    contact.setCity(city);
+
+    cout << "County: " << endl;
+    string county;
+    cin >> county;
+    contact.setCounty(county);
+
+    cout << "State: " << endl;
+    string state;
+    cin >> state;
+    contact.setState(state);
+
+    cout << "ZIP: " << endl;
+    string zip;
+    cin >> zip;
+    contact.setZip(zip);
+
+    cout << "Phone 1: " << endl;
+    string phone1;
+    cin >> phone1;
+    contact.setPhone1(phone1);
+
+    cout << "Phone 2: " << endl;
+    string phone2;
+    cin >> phone2;
+    contact.setPhone2(phone2);
+
+    cout << "Email: " << endl;
+    string email;
+    cin >> email;
+    contact.setEmail(email);
+
+    contactList.push_back(contact);
+
+    cout << "Contact added" << endl;
+
+    printContact(contact);
 }
 
 void ContactMenu::doEdit() {
-    // TODO: Edit contact
+    cout << "Edit Contact:" << endl;
+    cout << "Enter Contact ID: ";
+    string contact_id;
+    cin >> contact_id;
 }
 
 void ContactMenu::doDelete() {
     // TODO: Delete contact
 }
 
-void ContactMenu::doView(string id) {
-
-    Contact found = Contact();
-    contactList.moveFirst();
-    Iterator<Contact> current = contactList.getCurrent();
-    while (!current.equals(contactList.end())) {
-        Contact contact = current.get();
-        if (contact.getId().compare(id) == 0) {
-            found = contact;
-            break;
-        }
-        contactList.moveNext();
-        current = contactList.getCurrent();
-    }
+void ContactMenu::doView() {
+    cout << "View Contact:" << endl;
+    cout << "Enter Contact ID: ";
+    string contact_id;
+    cin >> contact_id;
+    Contact found = contactList.search(contact_id);
     printContact(found);
 
 }

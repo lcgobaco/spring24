@@ -31,18 +31,6 @@ int main() {
                 cout << "List of contacts:" << endl;
                 cout << "Sort by:" << endl;
 
-                /*
-                id,
-                first_name,
-                middle_name,
-                last_name,
-                role,
-                company_name,
-                address,
-                city,
-                county,
-                state,zip,phone1,phone,email
-                */
                 Menu sort_menu;
                 sort_menu.add_option("Sort by ID"); // 0
                 sort_menu.add_option("Sort by First Name");
@@ -128,15 +116,12 @@ int main() {
 
             case 2:
             {
-                cout << "View Contact:" << endl;
-                cout << "Enter Contact ID: ";
-                string contact_id;
-                cin >> contact_id;
-                contact_menu.doView(contact_id);
+
+                contact_menu.doView();
                 break;
             }
 
-            case 3:
+            case 3: // Add new contact
             {
                 contact_menu.doAdd();
                 break;
@@ -161,4 +146,11 @@ int main() {
         }
 
     } while (input != "6" );
+}
+
+bool is_number(const std::string& s)
+{
+    std::string::const_iterator it = s.begin();
+    while (it != s.end() && std::isdigit(*it)) ++it;
+    return !s.empty() && it == s.end();
 }

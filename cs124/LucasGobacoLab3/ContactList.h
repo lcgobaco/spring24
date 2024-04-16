@@ -13,7 +13,7 @@ public:
     ~ContactList();
 
     void sortBy(string fieldName, string direction);
-    Contact search(int id);
+    Contact search(string id);
     void moveFirst();
     void moveLast();
     void moveNext();

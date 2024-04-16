@@ -26,8 +26,18 @@ void ContactList::movePrevious() {
     current.previous();
 }
 
-Contact ContactList::search(int id) {
-    return Contact();
+Contact ContactList::search(string id) {
+    Contact found = Contact();
+    Iterator<Contact> current = begin();
+    while (!current.equals(end())) {
+        Contact contact = current.get();
+        if (contact.getId().compare(id) == 0) {
+            found = contact;
+            break;
+        }
+        current.next();
+    }
+    return found;
 }
 
 bool compareContacts(Contact a, Contact b, string fieldName, string direction) {
@@ -85,8 +95,6 @@ bool compareContacts(Contact a, Contact b, string fieldName, string direction) {
     } else if (direction.compare("desc") == 0) {
         result = aValue.compare(bValue) < 0;
     }
-
-    cout << "aId: " << aId << " aValue: " << aValue << " bId: " << bId << " bValue: " << bValue << " result: " << result << endl;
 
     return result;
 }
