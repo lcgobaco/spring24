@@ -26,18 +26,16 @@ void ContactList::movePrevious() {
     current.previous();
 }
 
-Contact ContactList::search(string id) {
-    Contact found = Contact();
+Iterator<Contact> ContactList::search(string id) {
     Iterator<Contact> current = begin();
     while (!current.equals(end())) {
-        Contact contact = current.get();
-        if (contact.getId().compare(id) == 0) {
-            found = contact;
+        if (current.get().getId().compare(id) == 0) {
+            return current;
             break;
         }
         current.next();
     }
-    return found;
+    return Iterator<Contact>(nullptr, this);
 }
 
 bool compareContacts(Contact a, Contact b, string fieldName, string direction) {
@@ -102,8 +100,6 @@ void ContactList::sortBy(string fieldName, string direction) {
 
     Iterator<Contact> b = begin();
 
-    cout << "b.id: " << b.get().getId() << endl;
-
     while (!b.equals(end())) {
         Iterator<Contact> r = Iterator<Contact>(b.getPosition(), b.getContainer());
         Node<Contact> *minContact = b.getPosition();
@@ -119,7 +115,6 @@ void ContactList::sortBy(string fieldName, string direction) {
 
         //swap two iterator values
         if (b.getPosition() != minContact) {
-            cout << "Swapping b: " << b.getPosition()->getData().getId() << " min: " << minContact->getData().getId() << endl;
             Contact c1 = b.getPosition()->getData();
             Contact c2 = minContact->getData();
             b.getPosition()->setData(c2);

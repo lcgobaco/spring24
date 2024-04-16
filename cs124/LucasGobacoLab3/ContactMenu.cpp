@@ -123,78 +123,84 @@ void ContactMenu::doListWithIterator() {
     }
 }
 
-void ContactMenu::doAdd() {
-    Contact contact = Contact();
-    contact.setId(std::to_string(++maxContactId));
 
+Contact inputContact(Contact contact) {
     cout << "Adding new contact" << endl;
-    cout << "First name: " << endl;
+    cout << "First name: ";
     string firstName;
     cin >> firstName;
     contact.setFirstName(firstName);
 
-    cout << "Middle name: " << endl;
+    cout << "Middle name: ";
     string middleName;
     cin >> middleName;
     contact.setMiddleName(middleName);
 
-    cout << "Last name: " << endl;
+    cout << "Last name: ";
     string lastName;
     cin >> lastName;
     contact.setLastName(lastName);
 
-    cout << "Role: " << endl;
+    cout << "Role: ";
     string role;
     cin >> role;
     contact.setRole(role);
 
-    cout << "Company name: " << endl;
+    cout << "Company name: ";
     string companyName;
     cin >> companyName;
     contact.setCompanyName(companyName);
 
-    cout << "Address: " << endl;
+    cout << "Address: ";
     string address;
     cin >> address;
     contact.setAddress(address);
 
-    cout << "City: " << endl;
+    cout << "City: ";
     string city;
     cin >> city;
     contact.setCity(city);
 
-    cout << "County: " << endl;
+    cout << "County: ";
     string county;
     cin >> county;
     contact.setCounty(county);
 
-    cout << "State: " << endl;
+    cout << "State: ";
     string state;
     cin >> state;
     contact.setState(state);
 
-    cout << "ZIP: " << endl;
+    cout << "ZIP: ";
     string zip;
     cin >> zip;
     contact.setZip(zip);
 
-    cout << "Phone 1: " << endl;
+    cout << "Phone 1: ";
     string phone1;
     cin >> phone1;
     contact.setPhone1(phone1);
 
-    cout << "Phone 2: " << endl;
+    cout << "Phone 2: ";
     string phone2;
     cin >> phone2;
     contact.setPhone2(phone2);
 
-    cout << "Email: " << endl;
+    cout << "Email: ";
     string email;
     cin >> email;
     contact.setEmail(email);
 
-    contactList.push_back(contact);
+    return contact;
+}
 
+void ContactMenu::doAdd() {
+    Contact contact = Contact();
+    contact.setId(std::to_string(++maxContactId));
+    contact = inputContact(contact);
+
+    cout << "Adding new contact" << endl;
+    contactList.insert(contactList.end(), contact);
     cout << "Contact added" << endl;
 
     printContact(contact);
@@ -205,10 +211,23 @@ void ContactMenu::doEdit() {
     cout << "Enter Contact ID: ";
     string contact_id;
     cin >> contact_id;
+    Iterator<Contact> found = contactList.search(contact_id);
+
+    printContact(found.get());
+    cout << "Enter new values" << endl;
+    Contact contact = inputContact(found.get());
+    found.getPosition()->setData(contact);
 }
 
 void ContactMenu::doDelete() {
-    // TODO: Delete contact
+    cout << "Delete Contact:" << endl;
+    cout << "Enter Contact ID: ";
+    string contact_id;
+    cin >> contact_id;
+    Iterator<Contact> found = contactList.search(contact_id);
+    printContact(found.get());
+    contactList.erase(found);
+    cout << "Contact deleted" << endl;
 }
 
 void ContactMenu::doView() {
@@ -216,8 +235,8 @@ void ContactMenu::doView() {
     cout << "Enter Contact ID: ";
     string contact_id;
     cin >> contact_id;
-    Contact found = contactList.search(contact_id);
-    printContact(found);
+    Iterator<Contact> found = contactList.search(contact_id);
+    printContact(found.get());
 
 }
 
