@@ -11,6 +11,7 @@
  *******************************************************/
 
 #include <iostream>
+#include <string>
 #include "binarytree.h"
 
 using namespace std;
@@ -36,6 +37,7 @@ void display(const Binary_tree<string>& tree)
         ind -= 4;
     }
 }
+
 int main()
 {
     Binary_tree<string> tree (
