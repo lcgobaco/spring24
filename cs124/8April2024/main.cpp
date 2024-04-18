@@ -22,6 +22,10 @@ public:
     int id;
     string name;
     string grade;
+
+    bool operator==(const Person& other) const {
+        return name == other.name && grade == other.grade;
+    }
 };
 
 int main()
