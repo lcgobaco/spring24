@@ -24,7 +24,7 @@ private:
     T data;
     Node* left;
     Node* right;
-   friend class Binary_tree;
+friend class Binary_tree<T>;
 };
 
 /*

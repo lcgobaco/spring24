@@ -11,7 +11,7 @@
  *******************************************************/
 
 #include <iostream>
-#include "binarytree.cpp"
+#include "binarytree.h"
 
 using namespace std;
 
