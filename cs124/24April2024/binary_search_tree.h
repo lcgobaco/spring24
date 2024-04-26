@@ -34,6 +34,7 @@ class BinarySearchTree
 {
 
 public:
+   int depth = 0;
     /**
        Constructs an empty tree.
     */
