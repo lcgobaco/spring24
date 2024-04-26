@@ -1,5 +1,19 @@
+/*******************************************************
+
+ * Program Name: main.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 6 April 2024
+
+ * Description: This program is a contact manager that allows the user to list, view, add, edit, and delete contacts.
+
+ *******************************************************/
+
 #include "Person.h"
 #include "ContactMenu.h"
+
+using namespace std;
 
 int main() {
     string input;
@@ -21,7 +35,7 @@ int main() {
             break;
         }
 
-        int option = std::stoi(input);
+        int option = stoi(input);
 
         cout << "Option: " << option << endl;
         switch (option)
@@ -32,24 +46,24 @@ int main() {
                 cout << "Sort by:" << endl;
 
                 Menu sort_menu;
-                sort_menu.add_option("Sort by ID"); // 0
+                sort_menu.add_option("Sort by ID"); 
                 sort_menu.add_option("Sort by First Name");
                 sort_menu.add_option("Sort by Middle Name");
                 sort_menu.add_option("Sort by Last Name");
-                sort_menu.add_option("Sort by Role"); // 4
+                sort_menu.add_option("Sort by Role"); 
                 sort_menu.add_option("Sort by Company Name");
                 sort_menu.add_option("Sort by Address");
                 sort_menu.add_option("Sort by City");
-                sort_menu.add_option("Sort by County"); // 8
+                sort_menu.add_option("Sort by County"); 
                 sort_menu.add_option("Sort by State");
                 sort_menu.add_option("Sort by Zip");
                 sort_menu.add_option("Sort by Phone1");
-                sort_menu.add_option("Sort by Phone"); // 12
-                sort_menu.add_option("Sort by Email"); // 13
+                sort_menu.add_option("Sort by Phone"); 
+                sort_menu.add_option("Sort by Email"); 
 
                 string input =sort_menu.get_input();
                 string sort_field = "id";
-                switch (std::stoi(input)) {
+                switch (stoi(input)) {
                     case 1:
                         sort_field = "id";
                         break;
@@ -101,7 +115,7 @@ int main() {
 
                 input = sort_order.get_input();
 
-                switch(std::stoi(input)) {
+                switch(stoi(input)) {
                     case 1:
                         contact_menu.doSortBy(sort_field, "asc");
                         break;
@@ -110,7 +124,7 @@ int main() {
                         break;
                 }
 
-                //contact_menu.doList();
+                contact_menu.doList();
                 break;
             }
 
@@ -121,7 +135,7 @@ int main() {
                 break;
             }
 
-            case 3: // Add new contact
+            case 3:
             {
                 contact_menu.doAdd();
                 break;
@@ -148,9 +162,14 @@ int main() {
     } while (input != "6" );
 }
 
-bool is_number(const std::string& s)
+/**
+ * Determines if a string is a number.
+ * @param s the string to check
+ * @return true if the string is a number, false otherwise
+*/
+bool is_number(const string& s)
 {
-    std::string::const_iterator it = s.begin();
-    while (it != s.end() && std::isdigit(*it)) ++it;
+    string::const_iterator it = s.begin();
+    while (it != s.end() && isdigit(*it)) ++it;
     return !s.empty() && it == s.end();
 }

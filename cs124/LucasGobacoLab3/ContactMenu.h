@@ -1,18 +1,17 @@
 /*******************************************************
 
- * Program Name: UserMenu.h
+ * Program Name: ContactMenu.h
 
-* Author: Lucas Gobaco
+ * Author: Lucas Gobaco
 
-* Date: 14 April 2024
+ * Date: 6 April 2024
 
-* Description: This program defines a class that displays a menu for a contact in the console.
+ * Description: This program defines a contact menu with options to sign in, sign out, create, remove, reset, manage profile, and exit.
 
  *******************************************************/
 
-
-#ifndef USERMENU_H
-#define USERMENU_H
+#ifndef CONTACTMENU_H
+#define CONTACTMENU_H
 
 #include "Menu.h"
 #include "Contact.h"
@@ -37,32 +36,68 @@ const string CONTACTS_DATA = "contacts_data.csv";
 class ContactMenu : public Menu
     {
     public:
+        /**
+         * Constructs a contact menu with options to sign in, sign out, create, remove, reset, manage profile, and exit.
+        */
         ContactMenu();
+
+        /**
+         * Destructs a contact menu.
+        */
         ~ContactMenu();
+
     private:
-        // Member variables and any other variables if necessary
         ifstream inFile;
         Contact contact;
         ContactList contactList;
         int maxContactId = 0;
 
     private:
-        void initContactData(); // Initialize and read from contacts_data.csv; and populate the list (vector<User> users;)
+        /**
+         * Initializes the contact data by reading from contacts_data.csv and populating the list.
+        */
+        void initContactData(); 
+
     public:
+        /**
+         * Displays the contact menu.
+        */
         void doList();
+
+        /**
+         * Displays the contact menu with an iterator.
+        */
         void doListWithIterator();
+
+        /**
+         * Uses selection sort to sort the contacts in this list by a field name and direction.
+        */
         void doSortBy(string fieldName, string direction);
+
+        /**
+         * Selects a contact from the list and shows the contact details.
+        */
         void doView();
+
+        /**
+         * Adds a new contact to the list.
+        */
         void doAdd();
+
+        /**
+         * Edits an existing contact in the list.
+        */
         void doEdit();
+
+        /**
+         * Deletes an existing contact from the list.
+        */
         void doDelete();
+
+        /**
+         * Exits the contact menu.
+        */
         void doExit();
 };
-
-    /*
-    - Prompt username and password, and authentication
-    - Allow 3 retries if the user enters an invalid username and password
-    - If the user enters a valid username and password, output a message to indicate successful login or error*/
-
 
 #endif

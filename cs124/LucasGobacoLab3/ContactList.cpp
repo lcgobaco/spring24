@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: ContactList.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 6 April 2024
+
+ * Description: This program implements a contact list with a linked list of contacts.
+
+ *******************************************************/
+
 #include "ContactList.h"
 
 ContactList::ContactList() {
@@ -96,6 +108,7 @@ bool compareContacts(Contact a, Contact b, string fieldName, string direction) {
 
     return result;
 }
+
 void ContactList::sortBy(string fieldName, string direction) {
 
     Iterator<Contact> b = begin();
@@ -103,9 +116,7 @@ void ContactList::sortBy(string fieldName, string direction) {
     while (!b.equals(end())) {
         Iterator<Contact> r = Iterator<Contact>(b.getPosition(), b.getContainer());
         Node<Contact> *minContact = b.getPosition();
-        //find min
         while (!r.equals(end())) {
-            // Compare b and r
             bool res = compareContacts(minContact->getData(), r.get(), fieldName, direction);
             if (res) {
                 minContact = r.getPosition();
@@ -113,7 +124,6 @@ void ContactList::sortBy(string fieldName, string direction) {
             r.next();
         }
 
-        //swap two iterator values
         if (b.getPosition() != minContact) {
             Contact c1 = b.getPosition()->getData();
             Contact c2 = minContact->getData();
@@ -122,7 +132,4 @@ void ContactList::sortBy(string fieldName, string direction) {
         }
         b.next();
     }
-
 }
-
-

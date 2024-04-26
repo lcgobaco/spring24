@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 24 February 2024
+ * Date: 6 April 2024
 
  * Description: This program implements a class that stores a time.
 
@@ -12,11 +12,9 @@
 
 #include "Time.h"
 
-// Time class implementation
 Time::Time(int h, int m, int s) : hour(h), minute(m), second(s) {}
 
-Time::~Time() {
-}
+Time::~Time() {}
 
 void Time::setHour(int h) {
     hour = h;

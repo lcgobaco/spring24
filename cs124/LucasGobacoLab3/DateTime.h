@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 24 February 2024
+ * Date: 6 April 2024
 
  * Description: This program defines a class that stores a date and time.
 
@@ -26,9 +26,15 @@ private:
     int year;
 
 public:
-    // Constructor
+    /**
+     * Constructs a date and time with no hour, minute, second, month, day, or year.
+     */
     DateTime(int h = 0, int m = 0, int s = 0, int mon = 0, int d = 0, int y = 0);
 
+    /**
+     * Constructs a date and time with a given hour, minute, second, month, day, and year.
+     * @param datetime the date and time in the format "YYYY-MM-DD HH:MM:SS"
+     */
     DateTime(string datetime);
 
     DateTime(std::chrono::system_clock::time_point datetime);

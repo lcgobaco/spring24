@@ -1,3 +1,15 @@
+/*******************************************************
+
+ * Program Name: LinkedList.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 6 April 2024
+
+ * Description: This program defines a linked list and an iterator for the linked list.
+
+ *******************************************************/
+
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 
@@ -18,7 +30,17 @@ public:
         @param element the data to store in this node
     */
     Node(T element);
+
+    /**
+     * Returns the data stored in this node.
+     * @return the data stored in this node
+    */
     T getData() const;
+
+    /**
+     * Sets the data stored in this node.
+     * @param element the data to store in this node
+    */
     void setData(T element);
 
 private:
@@ -46,6 +68,7 @@ public:
         Constructs an empty list.
     */
     LinkedList();
+
     /**
         Appends an element to the list.
         @param element the value to append
@@ -65,6 +88,7 @@ public:
         @return the element at position k, error if no such position
     */
     T get(int k);
+
     /**
         Removes an element from the list.
         @param iter the position to remove
@@ -85,8 +109,6 @@ public:
     */
     Iterator<T> end();
 
-
-
 private:
     Node<T> *first;
     Node<T> *last;
@@ -103,6 +125,11 @@ public:
     */
     Iterator();
 
+    /**
+        Constructs an iterator that points to a given position.
+        @param pos a node in the list
+        @param cont a pointer to the list
+    */
     Iterator(Node<T> *pos, LinkedList<T> *cont);
 
     /**
@@ -110,14 +137,17 @@ public:
         @return the value of the node to which the iterator points
     */
     T get() const;
+
     /**
         Advances the iterator to the next node.
     */
     void next();
+
     /**
         Moves the iterator to the previous node.
     */
     void previous();
+
     /**
         Compares two iterators.
         @param other the iterator to compare with this iterator
@@ -133,7 +163,17 @@ public:
     Iterator<T>& operator--();
     // postfix decrement
     Iterator<T> operator--(int);
+
+    /**
+     * Returns the position of this iterator.
+     * @return the position of this iterator
+    */
     Node<T> *getPosition() const;
+
+    /**
+     * Returns the container of this iterator.
+     * @return the container of this iterator
+    */
     LinkedList<T> *getContainer() const;
 
 private:
@@ -255,7 +295,6 @@ Iterator<T> LinkedList<T>::erase(Iterator<T> iter) {
     Iterator<T> r;
     r.position = after;
     r.container = this;
-    // Invalid last access
     last_node = nullptr;
     last_index = -1;
     return r;

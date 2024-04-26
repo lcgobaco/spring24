@@ -1,14 +1,27 @@
+/*******************************************************
+
+ * Program Name: Utils.cpp
+
+ * Author: Lucas Gobaco
+
+ * Date: 6 April 2024
+
+ * Description: This program implements a class that provides utility functions.
+
+ *******************************************************/
+
 #include <iostream>
 #include <string>
 #include <vector>
+
 using namespace std;
 
-std::vector<std::string> splitString(const std::string str, char delimiter) {
-    std::vector<std::string> tokens;
+vector<string> splitString(const string str, char delimiter) {
+    vector<string> tokens;
     int start = 0;
     int end = str.find(delimiter);
 
-    while (end != std::string::npos) {
+    while (end != string::npos) {
         tokens.push_back(str.substr(start, end - start));
         start = end + 1;
         end = str.find(delimiter, start);
@@ -19,9 +32,9 @@ std::vector<std::string> splitString(const std::string str, char delimiter) {
     return tokens;
 }
 
-std::vector<std::string> splitStringDoubleQuotes(const std::string& input, char delimiter) {
-    std::vector<std::string> tokens;
-    std::string token;
+vector<string> splitStringDoubleQuotes(const string& input, char delimiter) {
+    vector<string> tokens;
+    string token;
     bool insideQuotes = false;
 
     for (char c : input) {
@@ -37,8 +50,7 @@ std::vector<std::string> splitStringDoubleQuotes(const std::string& input, char 
         }
     }
 
-    tokens.push_back(token); // Add the last token
+    tokens.push_back(token);
 
     return tokens;
 }
-

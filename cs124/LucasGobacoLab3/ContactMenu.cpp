@@ -16,21 +16,22 @@
 #include <fstream>
 
 using namespace std;
+
 void ContactMenu::initContactData() {
 
     inFile.open(CONTACTS_DATA);
 
     if (!inFile) {
-        std::cerr << "Error: Unable to open the file." << std::endl;
+        cerr << "Error: Unable to open the file." << endl;
     }
 
-    // Read and print the contents of the file line by line
-    std::string line;
-    std::getline(inFile, line);
+    string line;
+    getline(inFile, line);
 
-    while (std::getline(inFile, line)) {
+    while (getline(inFile, line)) {
         vector<string> tokens = splitStringDoubleQuotes(line, ',');
         int contactId = stoi(tokens[0]);
+
         if (contactId > maxContactId) {
             maxContactId = contactId;
         }
@@ -43,23 +44,19 @@ void ContactMenu::initContactData() {
         contactList.push_back(contact);
     }
 
-    // Close the file
     inFile.close();
 }
 
-// Function to save contacts from a ContactList to a CSV file
 void ContactMenu::doExit() {
-    std::ofstream file(CONTACTS_DATA);
+    ofstream file(CONTACTS_DATA);
 
-    // Check if the file is opened successfully
     if (!file.is_open()) {
-        std::cerr << "Error: Unable to open file " << CONTACTS_DATA << " for writing." << std::endl;
+        cerr << "Error: Unable to open file " << CONTACTS_DATA << " for writing." << endl;
         return;
     }
 
-    file << "id,first_name,middle_name,last_name,role,company_name,address,city,county,state,zip,phone1,phone,email" << std::endl;
+    file << "id,first_name,middle_name,last_name,role,company_name,address,city,county,state,zip,phone1,phone,email" << endl;
 
-    // Iterate through the contact list
     for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next()) {
         Contact contact = itr.get();
         file << contact.getId() << ","
@@ -75,30 +72,34 @@ void ContactMenu::doExit() {
              << contact.getZip() << ","
              << contact.getPhone1() << ","
              << contact.getPhone2() << ","
-             << contact.getEmail() << std::endl;
+             << contact.getEmail() << endl;
     }
 
-    // Close the file
     file.close();
 }
 
+/**
+ * Prints a contact.
+ * @param contact the contact to print
+*/
 void printContact(Contact contact) {
-    std::cout << "ID: " << contact.getId() << std::endl;
-        std::cout << "First Name: " << contact.getFirstName() << std::endl;
-        std::cout << "Middle Name: " << contact.getMiddleName() << std::endl;
-        std::cout << "Last Name: "  << contact.getLastName() << std::endl;
-        std::cout << "Role: " << contact.getRole() << std::endl;
-        std::cout << "Company: " << contact.getCompanyName() << std::endl;
-        std::cout << "Address: " << contact.getAddress() << std::endl;
-        std::cout << "City: " << contact.getCity() << std::endl;
-        std::cout << "County: " << contact.getCounty() << std::endl;
-        std::cout << "State: " << contact.getState() << std::endl;
-        std::cout << "ZIP: " << contact.getZip() << std::endl;
-        std::cout << "Phone 1: " << contact.getPhone1() << std::endl;
-        std::cout << "Phone 2: " << contact.getPhone2() << std::endl;
-        std::cout << "Email: " << contact.getEmail() << std::endl;
-        std::cout << std::endl;
+    cout << "ID: " << contact.getId() << endl;
+        cout << "First Name: " << contact.getFirstName() << endl;
+        cout << "Middle Name: " << contact.getMiddleName() << endl;
+        cout << "Last Name: "  << contact.getLastName() << endl;
+        cout << "Role: " << contact.getRole() << endl;
+        cout << "Company: " << contact.getCompanyName() << endl;
+        cout << "Address: " << contact.getAddress() << endl;
+        cout << "City: " << contact.getCity() << endl;
+        cout << "County: " << contact.getCounty() << endl;
+        cout << "State: " << contact.getState() << endl;
+        cout << "ZIP: " << contact.getZip() << endl;
+        cout << "Phone 1: " << contact.getPhone1() << endl;
+        cout << "Phone 2: " << contact.getPhone2() << endl;
+        cout << "Email: " << contact.getEmail() << endl;
+        cout << endl;
 }
+
 void ContactMenu::doList() {
     contactList.moveFirst();
 
@@ -113,7 +114,6 @@ void ContactMenu::doList() {
 }
 
 void ContactMenu::doListWithIterator() {
-    // Iterate through the contact list
     for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next())
     {
     //for (int i = 0; i < contactList.size(); i++) {
@@ -123,7 +123,11 @@ void ContactMenu::doListWithIterator() {
     }
 }
 
-
+/**
+ * Prompts the user to input a contact.
+ * @param contact the contact to input
+ * @return the contact
+*/
 Contact inputContact(Contact contact) {
     cout << "Adding new contact" << endl;
     cout << "First name: ";
@@ -196,7 +200,7 @@ Contact inputContact(Contact contact) {
 
 void ContactMenu::doAdd() {
     Contact contact = Contact();
-    contact.setId(std::to_string(++maxContactId));
+    contact.setId(to_string(++maxContactId));
     contact = inputContact(contact);
 
     cout << "Adding new contact" << endl;
@@ -244,14 +248,8 @@ void ContactMenu::doSortBy(string fieldName, string direction) {
     contactList.sortBy(fieldName, direction);
 }
 
-
-
 ContactMenu::ContactMenu() {
     initContactData();
-};
-
-    // Destructor
-ContactMenu::~ContactMenu() {
 }
 
-
+ContactMenu::~ContactMenu() {}

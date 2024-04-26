@@ -46,6 +46,20 @@
             "MIMode": "lldb"
             //,
             //"preLaunchTask": "build_task"
+        },
+        {
+            "name": "24April2024",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/24April2024/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+            //,
+            //"preLaunchTask": "build_task"
         }
 
     ]

@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 24 February 2024
+ * Date: 6 April 2024
 
  * Description: This program implements a class that displays a menu into the console.
 
@@ -39,7 +39,7 @@ string Menu::get_input() const
    {
       display();
       cin >> input;
-      n = std::stoi(input);
+      n = stoi(input);
 
    }
    while (n < 1 || n > options.size());
