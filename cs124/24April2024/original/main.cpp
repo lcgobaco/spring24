@@ -9,12 +9,11 @@
  * Description: This program tests the binary search tree class.
 
  *******************************************************/
-
 #include <iostream>
-#include "binary_search_tree.cpp"
-
-using namespace std;
-
+#include "binary_search_tree.h"
+/*
+   This program tests the binary search tree class.
+*/
 int main()
 {
     BinarySearchTree<string> t;

@@ -11,18 +11,18 @@ class Node
 {
 private:
     T data;
-    Node* left;
-    Node* right;
+    Node<T>* left;
+    Node<T>* right;
 
     /**
        Inserts a new node as a descendant of a given node.
        @param parent the root node
        @param new_node the node to insert
     */
-public:
-    void add_node(Node* new_node) ;
-    void print() const;
+   public:
+
     friend class BinarySearchTree<T>;
+
 };
 
 /*
@@ -32,6 +32,7 @@ public:
 template <typename T>
 class BinarySearchTree
 {
+
 public:
     /**
        Constructs an empty tree.
@@ -63,52 +64,64 @@ public:
     */
     void print() const;
 
-private:
+   private:
+    /**
+       Prints the contents of the tree in sorted order.
+    */
+    void print_node(Node<T>* node) const;
+
+   // BinarySearchTree add_node
+    void add_node(Node<T>* new_node) ;
+
+    void add_node(Node<T>*& parent, Node<T>* new_node) ;
 
     Node<T>* root;
+
 };
 
 //  IMPLEMENTATION OF THE CLASSES
 
 template <typename T>
-void Node<T>::add_node(Node* new_node)
+void BinarySearchTree<T>::add_node(Node<T>* new_node)
 {
-    if (new_node->data < data)
-    {
-        if (left == nullptr)
-        {
-            left = new_node;
-        }
-        else
-        {
-            left->add_node( new_node);
-        }
-    }
-    else if (new_node->data > data)
-    {
-        if (right == nullptr)
-        {
-            right = new_node;
-        }
-        else
-        {
-            right->add_node( new_node);
-        }
+    add_node(root, new_node);
+}
+
+template <typename T>
+void BinarySearchTree<T>::add_node(Node<T>*& parent, Node<T>* new_node) {
+    if (parent == nullptr) {
+        // If the tree is empty, create a new node as the root
+        parent = new_node;
+    } else if (new_node->data < parent->data) {
+       // If the value is less than the root, go to the left subtree
+      add_node(parent->left, new_node);
+    } else {
+        // If the value is greater than or equal to the root, go to the right subtree
+        add_node(parent->right, new_node);
     }
 }
 
 template <typename T>
-void Node<T>::print() const
+void BinarySearchTree<T>::print_node(Node<T>* node) const
 {
-    if (left != nullptr)
-    {
-        left->print();
+    if (node == nullptr) {
+        return;
     }
-    cout << data << " " << endl;
-    if (right != nullptr)
-    {
-        right->print();
-    }
+
+    // Traverse the left subtree
+    print_node(node->left);
+
+    // Visit the current node
+    cout << node->data<< " ";
+
+    // Traverse the right subtree
+    print_node(node->right);
+}
+
+template <typename T>
+void BinarySearchTree<T>::print() const
+{
+   print_node(root);
 }
 
 template <typename T>
@@ -130,7 +143,7 @@ void BinarySearchTree<T>::insert(T element)
     }
     else
     {
-        root->add_node(new_node);
+        add_node(new_node);
     }
 }
 
@@ -245,10 +258,4 @@ void BinarySearchTree<T>::erase(T element)
     {
         smallest_parent->left = smallest->right;
     }
-}
-
-template <typename T>
-void BinarySearchTree<T>::print() const
-{
-    root->print();
 }

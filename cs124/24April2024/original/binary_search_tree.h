@@ -1,19 +1,10 @@
-/*******************************************************
-
- * Program Name: binary_search_tree.cpp
-
- * Author: Lucas Gobaco
-
- * Date: 24 April 2024
-
- * Description: This program implements a binary search tree class.
-
- *******************************************************/
-
 #include <iostream>
 #include <string>
 
 using namespace std;
+
+template <typename T>
+class BinarySearchTree;
 
 template <typename T>
 class Node
@@ -28,14 +19,10 @@ private:
        @param parent the root node
        @param new_node the node to insert
     */
-    void add_node(Node* new_node);
-
-    /**
-       Prints the contents of the tree with this node as root.
-    */
-    void print();
 public:
-    friend class BinarySearchTree;
+    void add_node(Node* new_node) ;
+    void print() const;
+    friend class BinarySearchTree<T>;
 };
 
 /*
@@ -78,13 +65,15 @@ public:
 
 private:
 
-    Node* root;
+    Node<T>* root;
 };
 
+//  IMPLEMENTATION OF THE CLASSES
+
 template <typename T>
-void add_node(Node<T>* new_node)
+void Node<T>::add_node(Node* new_node)
 {
-    if (new_node->data < this->data)
+    if (new_node->data < data)
     {
         if (left == nullptr)
         {
@@ -109,50 +98,18 @@ void add_node(Node<T>* new_node)
 }
 
 template <typename T>
-void print()
-{
-    printHelper(root, 0);
-}
-
-template <typename T>
-void printSpaces(int count)
-{
-    for (int i = 0; i < count; i++)
-    {
-        cout << " ";
-    }
-}
-
-template <typename T>
-void printHelper(Node<T>* node, int level)
-{
-    if (node == nullptr)
-    {
-        return;
-    }
-
-    printHelper(node->right, level + 1);
-
-    printSpaces(level * 4);
-    cout << node->data << endl;
-
-    printHelper(node->left, level + 1);
-}
-/*
-template <typename T>
-void print()
+void Node<T>::print() const
 {
     if (left != nullptr)
     {
         left->print();
     }
-    cout << this->data << " " << endl;
+    cout << data << " " << endl;
     if (right != nullptr)
     {
         right->print();
     }
 }
-*/
 
 template <typename T>
 BinarySearchTree<T>::BinarySearchTree()
@@ -163,7 +120,7 @@ BinarySearchTree<T>::BinarySearchTree()
 template <typename T>
 void BinarySearchTree<T>::insert(T element)
 {
-    Node* new_node = new Node;
+    Node<T>* new_node = new Node<T>;
     new_node->data = element;
     new_node->left = nullptr;
     new_node->right = nullptr;
@@ -180,7 +137,7 @@ void BinarySearchTree<T>::insert(T element)
 template <typename T>
 int BinarySearchTree<T>::count(T element) const
 {
-    Node* current = root;
+    Node<T>* current = root;
     while (current != nullptr)
     {
         if (element < current->data)
@@ -204,8 +161,8 @@ void BinarySearchTree<T>::erase(T element)
 {
     // Find node to be removed
 
-    Node* to_be_removed = root;
-    Node* parent = nullptr;
+    Node<T>* to_be_removed = root;
+    Node<T>* parent = nullptr;
     bool found = false;
     while (!found && to_be_removed != nullptr)
     {
@@ -238,7 +195,7 @@ void BinarySearchTree<T>::erase(T element)
 
     if (to_be_removed->left == nullptr || to_be_removed->right == nullptr)
     {
-        Node* new_child;
+        Node<T>* new_child;
         if (to_be_removed->left == nullptr)
         {
             new_child = to_be_removed->right;
@@ -267,8 +224,8 @@ void BinarySearchTree<T>::erase(T element)
 
     // Find smallest element of the right subtree
 
-    Node* smallest_parent = to_be_removed;
-    Node* smallest = to_be_removed->right;
+    Node<T>* smallest_parent = to_be_removed;
+    Node<T>* smallest = to_be_removed->right;
     while (smallest->left != nullptr)
     {
         smallest_parent = smallest;
