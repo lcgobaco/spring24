@@ -24,7 +24,12 @@ TaskMenu::TaskMenu() : Menu("Main Menu") {
 
 	//list = new TaskList();
 	table = new TaskHashTable();
-	init();
+	try {
+		init();}
+	catch (const exception& e) {
+		cout << e.what() << endl;
+		exit(1);
+	}
 }
 TaskMenu::~TaskMenu() {
 	//delete list;
@@ -32,8 +37,12 @@ TaskMenu::~TaskMenu() {
 	inFile.close();
 }
 
-void TaskMenu::init() {
+void TaskMenu::init(){
 	inFile.open(TASK_DATA);
+
+	if (inFile.fail()) {
+		throw runtime_error("Could not open file " + TASK_DATA);
+	}
 
 	string text;
 	string line = "";
