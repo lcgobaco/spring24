@@ -1,11 +1,11 @@
 #include <iostream>
-#include <unordered_map>
+#include <map>
 #include <string>
 
 template<typename Key, typename Value>
 class HashTable {
 private:
-    std::unordered_map<Key, Value> map;
+    std::map<Key, Value> map;
 
 public:
     // Constructor
