@@ -1,4 +1,4 @@
-COMPILER = g++ -std=c++14 -g
+COMPILER = g++ -std=c++17 -g
 all: main
 
 main: main.o dateTime.o dateType.o menu.o task.o taskList.o taskMenu.o utils.o

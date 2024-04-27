@@ -1,15 +1,15 @@
 #pragma once
 #include <string>
 #include "task.h"
-#include "linkedStack.h"
+#include "hashtable.h"
 
 using namespace std;
 
-class TaskList : public LinkedStack<Task> {
+class TaskHashTable : public HashTable<string, Task> {
 
 public:
-	TaskList();
-	~TaskList();
+	TaskHashTable();
+	~TaskHashTable();
 
 	void addNew();
 	void editTask();
