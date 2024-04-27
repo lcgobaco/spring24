@@ -8,7 +8,7 @@
 #include <fstream>
 #include "menu.h"
 #include "task.h"
-#include "taskList.h"
+//#include "taskList.h"
 #include "taskHashTable.h"
 
 using namespace std;
@@ -34,6 +34,6 @@ protected:
 
 private:
     fstream inFile;
-    TaskList* list;
+    //TaskList* list;
     TaskHashTable* table;
 };

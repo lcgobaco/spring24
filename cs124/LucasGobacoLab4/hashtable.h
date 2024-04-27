@@ -27,6 +27,14 @@ public:
         throw std::out_of_range("Key not found in hash table");
     }
 
+    vector<Value> values() {
+        std::vector<Value> values;
+        for (const auto& pair : map) {
+            values.push_back(pair.second);
+        }
+        return values;
+    }
+
     // Check if the given key exists in the hash table
     bool contains(const Key& key) {
         return map.find(key) != map.end();

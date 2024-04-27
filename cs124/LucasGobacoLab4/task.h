@@ -31,12 +31,12 @@ public:
     string getTerm() const { return term; };
     string getName() const { return name; };
     DateTime getStartDate() const;
-    DateTime getEndDate() const;    
+    DateTime getEndDate() const;
 
     bool isCompleted() const;
     bool operator >= (const Task& task) const;
     bool operator == (const Task& task) const;
-    Task& operator = (const Task& task);    
+    Task& operator = (const Task& task);
 
 private:
     string term;

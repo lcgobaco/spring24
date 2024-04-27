@@ -22,11 +22,13 @@ TaskMenu::TaskMenu() : Menu("Main Menu") {
 	addOption("c) List completed tasks");
 	addOption("x) Exit");
 
-	list = new TaskList();
+	//list = new TaskList();
+	table = new TaskHashTable();
 	init();
 }
-TaskMenu::~TaskMenu() {	
-	delete list;
+TaskMenu::~TaskMenu() {
+	//delete list;
+	delete table;
 	inFile.close();
 }
 
@@ -42,7 +44,7 @@ void TaskMenu::init() {
 			firstRow = false;
 			continue;
 		}
-		stringstream ss(line);		
+		stringstream ss(line);
 		Task task;
 		getline(ss, text, ',');
 		task.setTerm(text);
@@ -54,36 +56,42 @@ void TaskMenu::init() {
 		task.setEndDate(text);
 		getline(ss, text, ',');
 		task.setStatus(stoi(text));	// value =1 means DONE! and value = 0 is pending
-		list->push(task);
+		//list->push(task);
+		table->insert(task.getName(), task);
 	}
 	inFile.close();
 }
 
 void TaskMenu::viewPendingTasks() {
 	showOption(getName(3).substr(3));
-	list->printTable(false);
+	//list->printTable(false);
+	table->printTable(false);
 }
 
 void TaskMenu::viewCompletedTasks() {
 	showOption(getName(4).substr(3));
-	list->printTable(true);
+	//list->printTable(true);
+	table->printTable(true);
 }
 
 void TaskMenu::addNewTask() {
 	showOption(getName(0).substr(3));
-	list->addNew();
+	//list->addNew();
+	table->addNew();
 	cout << endl;
 }
 
 void TaskMenu::editTask() {
 	showOption(getName(1).substr(3));
-	list->editTask();
+	//list->editTask();
+	table->editTask();
 	cout << endl;
 }
 
 void TaskMenu::deleteTask() {
-	showOption(getName(2).substr(3));	
-	list->deleteTask();
+	showOption(getName(2).substr(3));
+	//list->deleteTask();
+	table->deleteTask();
 	cout << endl;
 }
 
@@ -91,7 +99,7 @@ void TaskMenu::activate() {
 	char command = COMMAND::ADD;
 	while (command != EXIT) {
 		command = doMenuOption();
-		switch (command) {		
+		switch (command) {
 		case ADD:
 			addNewTask();
 			break;
@@ -114,7 +122,7 @@ void TaskMenu::activate() {
 			cout << "Not a valid command. Please try again." << endl << endl;
 			break;
 		}
-	}	
+	}
 }
 
 void TaskMenu::showOption(const string title) {

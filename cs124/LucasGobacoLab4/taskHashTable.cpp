@@ -28,6 +28,12 @@ void TaskHashTable::editTask() {
 	cin.ignore();
 	getline(cin, name);
 	Task task = get(name);
+
+	if (contains(name)) {
+		cin >> task;
+		insert(name, task);
+	}
+
 }
 void TaskHashTable::deleteTask() {
 	string name;
@@ -39,8 +45,13 @@ void TaskHashTable::deleteTask() {
 }
 
 void TaskHashTable::printTable(bool complete) {
-	// reverse the list
-	for (int i = 0; i < size(); i++) {
+
+	printHeader();
+	// loop thru map
+	for (auto const& value : values()) {
+		if (value.isCompleted() == complete) {
+			printRow(value);
+		}
 	}
 
 	cout << endl;
@@ -70,19 +81,6 @@ void TaskHashTable::printRow(const Task task) {
 }
 
 void TaskHashTable::printRaw(bool complete) {
-	// assignment operator
-	TaskHashTable tmpList = *this;
 
-	// reverse the list
-	TaskHashTable reverseList;
-	tmpList.reverseStack(reverseList);
-
-	// Show pending tasks
-	while (!reverseList.isEmpty()) {
-		if (reverseList.top().isCompleted() == complete) {
-			cout << reverseList.top() << endl;
-		}
-		reverseList.pop();
-	}
 	cout << endl;
 }

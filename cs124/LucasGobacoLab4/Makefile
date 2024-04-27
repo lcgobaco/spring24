@@ -1,7 +1,7 @@
 COMPILER = g++ -std=c++17 -g
 all: main
 
-main: main.o dateTime.o dateType.o menu.o task.o taskList.o taskMenu.o utils.o
+main: main.o dateTime.o dateType.o menu.o task.o taskList.o taskHashTable.o taskMenu.o utils.o
 	$(COMPILER) -o $@ $^
 
 main.o: main.cpp
@@ -20,6 +20,9 @@ task.o: task.cpp
 	$(COMPILER) -c $<
 
 taskList.o: taskList.cpp
+	$(COMPILER) -c $<
+
+taskHashTable.o: taskHashTable.cpp
 	$(COMPILER) -c $<
 
 taskMenu.o: taskMenu.cpp
