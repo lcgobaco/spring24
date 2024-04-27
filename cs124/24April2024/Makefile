@@ -1,4 +1,4 @@
-COMPILER = g++ -std=c++14 -g
+COMPILER = g++ -std=c++17 -g
 all: main
 
 # main: main.o binary_search_tree.o

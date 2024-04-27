@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <queue>
+#include <map>
 
 using namespace std;
 
@@ -34,7 +36,6 @@ class BinarySearchTree
 {
 
 public:
-   int depth = 0;
     /**
        Constructs an empty tree.
     */
@@ -59,7 +60,7 @@ public:
        @param element the element to remove
     */
     void erase(T element);
-    
+
     /**
        Prints the contents of the tree in sorted order.
     */
@@ -70,6 +71,8 @@ public:
        Prints the contents of the tree in sorted order.
     */
     void print_node(Node<T>* node) const;
+
+    void print_level_order(Node<T>* node) const;
 
    // BinarySearchTree add_node
     void add_node(Node<T>* new_node) ;
@@ -119,10 +122,78 @@ void BinarySearchTree<T>::print_node(Node<T>* node) const
     print_node(node->right);
 }
 
+
+template <typename T>
+class IndexedNode
+{
+    public:
+    int index;
+    Node<T>* node;
+};
+
+template <typename T>
+void BinarySearchTree<T>::print_level_order(Node<T>* node) const
+{
+    if (node == nullptr) {
+        return;
+    }
+
+    int max_index = 0;
+    queue<IndexedNode<T>*> q;
+    map<int, IndexedNode<T>*> index_map;
+    IndexedNode<T>* root_node = new IndexedNode<T>;
+    root_node->index = max_index;
+    root_node->node = node;
+    q.push(root_node);
+    index_map.insert_or_assign(root_node->index, root_node);
+
+    while (!q.empty()) {
+        IndexedNode<T>* current = q.front();
+        q.pop();
+
+        //cout << current->data << " ";
+        if (current->node->left != nullptr) {
+            IndexedNode<T>* lNode = new IndexedNode<T>;
+            lNode->index = 2*current->index+1;
+            max_index = lNode->index;
+            lNode->node = current->node->left;
+            q.push(lNode);
+            index_map.insert_or_assign(lNode->index, lNode);
+        }
+        if (current->node->right != nullptr) {
+            IndexedNode<T>* lNode = new IndexedNode<T>;
+            lNode->index = 2*current->index+2;
+            max_index = lNode->index;
+            lNode->node = current->node->right;
+            q.push(lNode);
+            index_map.insert_or_assign(lNode->index, lNode);
+        }
+    }
+
+    int level = 0;
+    int index = 0;
+    while (index <= max_index) {
+        if (index >= pow(2, level)){
+            level++;
+            cout << endl;
+        }
+        if (index_map[index] == nullptr) {
+            cout << "null ";
+        } else {
+            cout << index_map[index]->node->data << " ";
+        }
+
+        index++;
+    }
+    cout << endl;
+}
+
+
+
 template <typename T>
 void BinarySearchTree<T>::print() const
 {
-   print_node(root);
+   print_level_order(root);
 }
 
 template <typename T>
