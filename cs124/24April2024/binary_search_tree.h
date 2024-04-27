@@ -1,5 +1,7 @@
 #include <iostream>
 #include <string>
+#include <map>
+#include <cmath>
 
 using namespace std;
 
@@ -34,7 +36,7 @@ class BinarySearchTree
 {
 
 public:
-   int depth = 0;
+
     /**
        Constructs an empty tree.
     */
@@ -59,7 +61,7 @@ public:
        @param element the element to remove
     */
     void erase(T element);
-    
+
     /**
        Prints the contents of the tree in sorted order.
     */
@@ -69,7 +71,7 @@ public:
     /**
        Prints the contents of the tree in sorted order.
     */
-    void print_node(Node<T>* node) const;
+    void print_node(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const;
 
    // BinarySearchTree add_node
     void add_node(Node<T>* new_node) ;
@@ -103,26 +105,48 @@ void BinarySearchTree<T>::add_node(Node<T>*& parent, Node<T>* new_node) {
 }
 
 template <typename T>
-void BinarySearchTree<T>::print_node(Node<T>* node) const
+void BinarySearchTree<T>::print_node(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const
 {
     if (node == nullptr) {
         return;
     }
 
+    *max_index =  max(*max_index, index);
+
     // Traverse the left subtree
-    print_node(node->left);
+    print_node(node->left, index_map, 2*index+1, max_index);
 
     // Visit the current node
-    cout << node->data<< " ";
+    (*index_map)[index] = node; //index_map[index] = node;
 
     // Traverse the right subtree
-    print_node(node->right);
+    print_node(node->right, index_map,2*index+2, max_index);
 }
 
 template <typename T>
 void BinarySearchTree<T>::print() const
 {
-   print_node(root);
+    int max_index = 0;
+    map<int, Node<T>*> index_map;
+
+   print_node(root, &index_map, 0, &max_index);
+
+    double previous_depth = 0;
+    for (int i = 0; i <= max_index; i++) {
+
+        double current_depth = floor(log2(i+1));
+        if (current_depth != previous_depth) {
+            cout << "\n";
+            previous_depth = current_depth;
+        }
+        if (index_map.find(i) != index_map.end()) {
+            cout << index_map[i]->data << " ";
+        } else {
+            cout << "null ";
+        }
+    }
+    cout << "\n";
+
 }
 
 template <typename T>
