@@ -6,7 +6,7 @@
     "configurations": [
 
         {
-            "name": "LucasGobacoWeek5InClassAssignment",
+            "name": "Week5InClassAssignment",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/LucasGobacoWeek5InClassAssignment/main",
@@ -20,7 +20,7 @@
             //"preLaunchTask": "build_task"
         },
         {
-            "name": "LucasGobacoLab2",
+            "name": "Lab2",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/LucasGobacoLab2/main",
@@ -34,7 +34,7 @@
             //"preLaunchTask": "build_task"
         },
         {
-            "name": "LucasGobacoLab3",
+            "name": "Lab3",
             "type": "cppdbg",
             "request": "launch",
             "program": "${workspaceFolder}/LucasGobacoLab3/main",
