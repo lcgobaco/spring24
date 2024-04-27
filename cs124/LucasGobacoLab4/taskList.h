@@ -5,6 +5,7 @@
 
 using namespace std;
 
+//TODO: Replace LinkedStack with HashTable
 class TaskList : public LinkedStack<Task> {
 
 public:
@@ -13,7 +14,7 @@ public:
 
 	void addNew();
 	void editTask();
-	void deleteTask();	
+	void deleteTask();
 	void printTable(bool complete = true);
 
 protected:
