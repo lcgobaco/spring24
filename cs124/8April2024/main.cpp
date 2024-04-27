@@ -26,6 +26,14 @@ public:
     bool operator==(const Person& other) const {
         return name == other.name && grade == other.grade;
     }
+
+    int length() const {
+        return name.length();
+    }
+
+    int at(int index) const {
+        return name.at(index);
+    }
 };
 
 int main()

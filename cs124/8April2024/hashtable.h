@@ -283,7 +283,11 @@ void Iterator<T>::next()
 template<typename T>
 int hash_code(const T str)
 {
-   return 1;
+   int h = 0;
+   for (int i = 0; i < str.length(); i++) {
+      h = 31 * h + str.at(i);
+   }
+   return h;
 }
 
 #endif
