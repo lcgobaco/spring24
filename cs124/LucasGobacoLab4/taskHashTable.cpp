@@ -19,7 +19,11 @@ TaskHashTable::~TaskHashTable() {}
 void TaskHashTable::addNew() {
 	Task task;
 	cin >> task;
-	insert(task.getName(), task);
+	if (contains(task.getName())) {
+		throw runtime_error("Cannot add. Task already exists");
+	} else {
+		insert(task.getName(), task);
+	}
 }
 
 void TaskHashTable::editTask() {
@@ -32,6 +36,8 @@ void TaskHashTable::editTask() {
 	if (contains(name)) {
 		cin >> task;
 		insert(name, task);
+	} else {
+		throw runtime_error("Cannot edit. Task not found");
 	}
 
 }
@@ -40,8 +46,11 @@ void TaskHashTable::deleteTask() {
 	cout << "Delete task name: ";
 	cin.ignore();
 	getline(cin, name);
-	bool deleteMe = false;
-	remove(name);
+	if (contains(name)) {
+		remove(name);
+	} else {
+		throw runtime_error("Cannot delete. Task not found");
+	}
 }
 
 void TaskHashTable::printTable(bool complete) {

@@ -86,22 +86,41 @@ void TaskMenu::viewCompletedTasks() {
 void TaskMenu::addNewTask() {
 	showOption(getName(0).substr(3));
 	//list->addNew();
-	table->addNew();
+	try {
+		table->addNew();
+		cout << endl;
+	} catch (const exception& e) {
+		cout << e.what() << endl;
+		cout << endl;
+		return;
+	}
 	cout << endl;
 }
 
 void TaskMenu::editTask() {
 	showOption(getName(1).substr(3));
 	//list->editTask();
-	table->editTask();
-	cout << endl;
+	try {
+		table->editTask();
+		cout << endl;
+	} catch (const exception& e) {
+		cout << e.what() << endl;
+		cout << endl;
+		return;
+	}
 }
 
 void TaskMenu::deleteTask() {
 	showOption(getName(2).substr(3));
 	//list->deleteTask();
-	table->deleteTask();
-	cout << endl;
+	try {
+		table->deleteTask();
+		cout << endl;
+	} catch (const exception& e) {
+		cout << e.what() << endl;
+		cout << endl;
+		return;
+	}
 }
 
 void TaskMenu::activate() {
