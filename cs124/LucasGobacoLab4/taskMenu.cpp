@@ -11,6 +11,7 @@
 #include "taskMenu.h"
 #include "menu.h"
 #include "dateTime.h"
+#include "taskException.h"
 
 using namespace std;
 
@@ -26,7 +27,7 @@ TaskMenu::TaskMenu() : Menu("Main Menu") {
 	table = new TaskHashTable();
 	try {
 		init();}
-	catch (const exception& e) {
+	catch (const TaskException& e) {
 		cout << e.what() << endl;
 		exit(1);
 	}
@@ -89,7 +90,7 @@ void TaskMenu::addNewTask() {
 	try {
 		table->addNew();
 		cout << endl;
-	} catch (const exception& e) {
+	} catch (const TaskException& e) {
 		cout << e.what() << endl;
 		cout << endl;
 		return;
@@ -103,7 +104,7 @@ void TaskMenu::editTask() {
 	try {
 		table->editTask();
 		cout << endl;
-	} catch (const exception& e) {
+	} catch (const TaskException& e) {
 		cout << e.what() << endl;
 		cout << endl;
 		return;
@@ -116,7 +117,7 @@ void TaskMenu::deleteTask() {
 	try {
 		table->deleteTask();
 		cout << endl;
-	} catch (const exception& e) {
+	} catch (const TaskException& e) {
 		cout << e.what() << endl;
 		cout << endl;
 		return;
