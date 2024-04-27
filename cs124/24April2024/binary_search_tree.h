@@ -71,7 +71,10 @@ public:
     /**
        Prints the contents of the tree in sorted order.
     */
-    void print_node(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const;
+   void print_node(Node<T>* node) const;
+
+    void print_tree(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const;
+
 
    // BinarySearchTree add_node
     void add_node(Node<T>* new_node) ;
@@ -105,7 +108,7 @@ void BinarySearchTree<T>::add_node(Node<T>*& parent, Node<T>* new_node) {
 }
 
 template <typename T>
-void BinarySearchTree<T>::print_node(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const
+void BinarySearchTree<T>::print_tree(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const
 {
     if (node == nullptr) {
         return;
@@ -114,13 +117,30 @@ void BinarySearchTree<T>::print_node(Node<T>* node, map<int, Node<T>*> *index_ma
     *max_index =  max(*max_index, index);
 
     // Traverse the left subtree
-    print_node(node->left, index_map, 2*index+1, max_index);
+    print_tree(node->left, index_map, 2*index+1, max_index);
 
     // Visit the current node
     (*index_map)[index] = node; //index_map[index] = node;
 
     // Traverse the right subtree
-    print_node(node->right, index_map,2*index+2, max_index);
+    print_tree(node->right, index_map,2*index+2, max_index);
+}
+
+template <typename T>
+void BinarySearchTree<T>::print_node(Node<T>* node) const
+{
+    if (node == nullptr) {
+        return;
+    }
+
+    // Traverse the left subtree
+    print_node(node->left);
+
+    // Visit the current node
+    cout << node->data<< " ";
+
+    // Traverse the right subtree
+    print_node(node->right);
 }
 
 template <typename T>
@@ -129,8 +149,11 @@ void BinarySearchTree<T>::print() const
     int max_index = 0;
     map<int, Node<T>*> index_map;
 
-   print_node(root, &index_map, 0, &max_index);
+    // Creating index_map
+    print_tree(root, &index_map, 0, &max_index);
 
+    // Printing the tree
+    cout << "Print the tree:" << endl;
     double previous_depth = 0;
     for (int i = 0; i <= max_index; i++) {
 
@@ -146,6 +169,12 @@ void BinarySearchTree<T>::print() const
         }
     }
     cout << "\n";
+
+    cout << "In order travesal: " << endl;
+    print_node(root);
+
+    cout << "\n";
+
 
 }
 
