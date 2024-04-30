@@ -9,6 +9,7 @@
 #include <string>
 #include "taskHashTable.h"
 #include "task.h"
+#include "taskException.h"
 
 using namespace std;
 
@@ -19,8 +20,9 @@ TaskHashTable::~TaskHashTable() {}
 void TaskHashTable::addNew() {
 	Task task;
 	cin >> task;
-	if (contains(task.getName())) {
-		throw runtime_error("Cannot add. Task already exists");
+	string name = task.getName();
+	if (contains(name)) {
+		throw TaskException(name, "Cannot add. Task already exists");
 	} else {
 		insert(task.getName(), task);
 	}
@@ -37,7 +39,7 @@ void TaskHashTable::editTask() {
 		cin >> task;
 		insert(name, task);
 	} else {
-		throw runtime_error("Cannot edit. Task not found");
+		throw TaskException(name, "Cannot edit. Task not found");
 	}
 
 }
@@ -49,7 +51,7 @@ void TaskHashTable::deleteTask() {
 	if (contains(name)) {
 		remove(name);
 	} else {
-		throw runtime_error("Cannot delete. Task not found");
+		throw TaskException(name,"Cannot delete. Task not found");
 	}
 }
 
