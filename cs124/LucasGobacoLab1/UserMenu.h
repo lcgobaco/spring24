@@ -48,24 +48,19 @@ class UserMenu : public Menu
     private:
         void initUserData(); // Initialize and read from users_data.csv; and populate the list (vector<User> users;)
         void saveUserData();
-    public:
         User getUserByUsername(string username);
         User getSignedInUser();
         bool isSignedIn();
         bool isAdmin();
         bool signIn(string username, string password); // Add a member method LoginMenu::signIn definition and implementation
-    public:
         bool createAccount(string firstName, string lastName, string phone, string email, string password); // Add a member method create user definition and implementation
-    public:
-        bool remove(); // Add a member method remove user definition and implementation
-    public:
+        bool remove(); // Add a member method remove user definition and implementation    public:
         bool resetPassword(string oldPassword, string newPassword); // Add a member method reset user definition and implementation
-    public:
         bool manageProfile(User user); // Add a member method to manage user definition and implementation
-    public:
         void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
-    public:
         bool signOut(); // Save loginDateTime and logoutDateTime data to file users_data.csv
+    public:
+        void activate(); // Activate the menu
 };
 
     /*
