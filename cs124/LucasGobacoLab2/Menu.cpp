@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 9 March 2024
+ * Date: 24 February 2024
 
  * Description: This program implements a class that displays a menu into the console.
 
@@ -27,18 +27,20 @@ void Menu::display() const
 {
    for (int i = 0; i < options.size(); i++)
    {
-      cout << i + 1 << ") " << options[i] << endl; 
+      cout << i + 1 << ") " << options[i] << endl;
    }
 }
 
-int Menu::get_input() const
+char Menu::get_input() const
 {
-   int input;
+   char input;
+   int n;
    do
    {
       display();
       cin >> input;
+      n = input - '0';
    }
-   while (input < 1 && input > options.size());
+   while (n < 1 && n >= options.size() && input != 'x');
    return input;
 }

@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 9 March 2024
+ * Date: 24 February 2024
 
  * Description: This program defines a class that displays a menu into the console.
 
@@ -37,11 +37,11 @@ public:
 
    /**
       Displays the menu, with options numbered starting with 1,
-      and prompts the user for input. Repeats until a valid input 
+      and prompts the user for input. Repeats until a valid input
       is supplied.
       @return the number that the user supplied
    */
-   int get_input() const;
+   char get_input() const;
 private:
     /**
       Displays the menu, with options numbered starting with 1.
