@@ -38,3 +38,27 @@ User::User() {};
 
 // Destructor
 User::~User() {}
+
+// Overloaded << operator to enable printing User object to ostream
+ostream& operator<<(ostream& os, const User& user) {
+    os << "User ID: " << user.userId << endl;
+    os << "Role: " << user.role << endl;
+    os << "Username: " << user.username << endl;
+    os << "Password: " << user.password << endl;
+    os << "Login Date/Time: " << user.loginDateTime.toString() << endl;
+    os << "Logout Date/Time: " << user.logoutDateTime.toString() << endl;
+    os << "First Name: " << user.firstName << endl;
+    os << "Last Name: " << user.lastName << endl;
+    os << "Address: " << user.address << endl;
+    os << "City: " << user.city << endl;
+    os << "State: " << user.state << endl;
+    os << "ZIP: " << user.zip << endl;
+    os << "Phone: " << user.phone << endl;
+    os << "Email: " << user.email << endl;
+    return os;
+}
+
+// Overloaded == operator to compare two User objects for equality
+bool operator==(const User& user1, const User& user2) {
+    return (user1.userId == user2.userId) && (user1.username == user2.username);
+}

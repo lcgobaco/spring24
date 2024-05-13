@@ -78,7 +78,9 @@ public:
     void setLoginDateTime(DateTime loginDT) { this->loginDateTime = loginDT; }
     void setLogoutDateTime(DateTime logoutDT) { this->logoutDateTime = logoutDT; }
 
-    // Other methods...
+    // Declare friend functions
+    friend ostream& operator<<(ostream& os, const User& user);
+    friend bool operator==(const User& user1, const User& user2);
 };
 
 #endif // USER_H

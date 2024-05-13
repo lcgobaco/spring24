@@ -316,5 +316,5 @@ void UserMenu::activate() {
             }
         }
 
-    } while (input != USER_MENU_EXIT );
+    } while (input != USER_MENU_EXIT);
 }
