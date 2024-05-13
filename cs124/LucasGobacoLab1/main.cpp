@@ -10,12 +10,7 @@
 
  *******************************************************/
 
-#include "DateTime.h"
 #include "UserMenu.h"
-#include "User.h"
-#include <ctime>
-
-using namespace std;
 
 int main()
 {
