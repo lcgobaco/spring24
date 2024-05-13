@@ -1,17 +1,18 @@
 Your submission did not fulfill the requirements for Lab 2.
 Please refer to the Lab 2 requirements.
 
-1) Implement a class Course that contains the following fields and all the common overloading operators - okay
+1) Implement a class Course that contains the following fields
+and all the common overloading operators - okay
 
 2) Implement the class template class ArrayList that holds the collection of data (-5)
 - You did not use ArrayList template as in the requirements - Use of vector was not the requirement!
 
 4) quickSort and requirements were okay. You are supposed to use the ArrayList template that I have provided. ==> Implement (-5)ComputerScienceTransferCourses::sort by <any fieldname> using quickSort
 
-8) Your main.cpp (-5) - Your program looked like a procedure program.
+8) Your main.cpp (-5) - Your program looked like a procedure program.  Fixed
 
 As I indicated in class and lab 2 template, your main should be like,
-int main() { StudentFortfolio main_menu; main_menu.activate(); }
+int main() { StudentPortfolio main_menu; main_menu.activate(); }
 - Remember that we are learning OOP and data structures.
 
 9) Compile and run (-2) - You did not use "#include<iomanip>" and format the output in rows and columns - Remember to add documentation and comments in your code

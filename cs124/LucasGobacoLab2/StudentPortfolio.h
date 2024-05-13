@@ -1,6 +1,6 @@
 /*******************************************************
 
- * Program Name: StudentFortFolio.h
+ * Program Name: StudentPortFolio.h
 
  * Author: Lucas Gobaco
 
@@ -10,8 +10,8 @@
 
  *******************************************************/
 
-#ifndef STUDENTFORTFOLIO_H
-#define STUDENTFORTFOLIO_H
+#ifndef STUDENTPORTFOLIO_H
+#define STUDENTPORTFOLIO_H
 
 #include <string>
 #include <vector>
@@ -21,17 +21,17 @@
 
 
 
-enum STUDENT_FORTFOLIO_MENU {
-    STUDENT_FORTFOLIO_MENU_LIST = '1',
-    STUDENT_FORTFOLIO_MENU_VIEW = '2',
-    STUDENT_FORTFOLIO_MENU_ADD = '3',
-    STUDENT_FORTFOLIO_MENU_EDIT = '4',
-    STUDENT_FORTFOLIO_MENU_REMOVE = '5',
-    STUDENT_FORTFOLIO_MENU_QUIT = 'x'
+enum STUDENT_PORTFOLIO_MENU {
+    STUDENT_PORTFOLIO_MENU_LIST = '1',
+    STUDENT_PORTFOLIO_MENU_VIEW = '2',
+    STUDENT_PORTFOLIO_MENU_ADD = '3',
+    STUDENT_PORTFOLIO_MENU_EDIT = '4',
+    STUDENT_PORTFOLIO_MENU_REMOVE = '5',
+    STUDENT_PORTFOLIO_MENU_QUIT = 'x'
 };
 
 
-class StudentFortfolio : public Menu {
+class StudentPortfolio : public Menu {
 private:
     ComputerScienceTransferCourses courses;
     void initData();
@@ -43,8 +43,8 @@ private:
     void quit();
 
 public:
-    StudentFortfolio();
+    StudentPortfolio();
     void activate();
 };
 
-#endif // STUDENTFORTFOLIO_H
+#endif // STUDENTPORTFOLIO_H

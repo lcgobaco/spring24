@@ -1,6 +1,6 @@
 /*******************************************************
 
- * Program Name: StudentFortFolio.h
+ * Program Name: StudentPortfolio.h
 
  * Author: Lucas Gobaco
 
@@ -14,11 +14,11 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
-#include "StudentFortfolio.h"
+#include "StudentPortfolio.h"
 #include "ComputerScienceTransferCourses.h"
 #include "Course.h"
 
-StudentFortfolio::StudentFortfolio() {
+StudentPortfolio::StudentPortfolio() {
     initData();
 }
 
@@ -32,7 +32,7 @@ std::string trim(const std::string& str) {
 
     return str.substr(start, end - start + 1);
 }
-void StudentFortfolio::initData() {
+void StudentPortfolio::initData() {
 
     std::ifstream file("cs_transfer_courses.dat");
 
@@ -99,7 +99,7 @@ void StudentFortfolio::initData() {
 
     courses.sort(true);
 }
-void StudentFortfolio::showList() {
+void StudentPortfolio::showList() {
     // Sort the courses
     string ascending;
     cout << "Ascending or Descending? (a/d)" << endl;
@@ -118,7 +118,7 @@ void StudentFortfolio::showList() {
 
 }
 
-void StudentFortfolio::viewCourse() {
+void StudentPortfolio::viewCourse() {
     // Search for the course
     string title;
     cout << "Title:";
@@ -134,7 +134,7 @@ void StudentFortfolio::viewCourse() {
     }
 }
 
-void StudentFortfolio::addCourse() {
+void StudentPortfolio::addCourse() {
 
     string department;
     cout << "Department:" << endl;
@@ -165,7 +165,7 @@ void StudentFortfolio::addCourse() {
     courses.add(newCourse);
 }
 
-void StudentFortfolio::editCourse() {
+void StudentPortfolio::editCourse() {
 
 
     string title;
@@ -211,7 +211,7 @@ void StudentFortfolio::editCourse() {
     }
 }
 
-void StudentFortfolio::removeCourse() {
+void StudentPortfolio::removeCourse() {
     string title;
     cout << "Title:";
     cin.ignore();
@@ -225,12 +225,12 @@ void StudentFortfolio::removeCourse() {
     }
 }
 
-void StudentFortfolio::quit() {
+void StudentPortfolio::quit() {
     // Save data to file cs_transfer_course.dat
     // Implement saving logic here
 }
 
-void StudentFortfolio::activate() {
+void StudentPortfolio::activate() {
 
     char input;
     add_option("List of Courses");
@@ -253,34 +253,34 @@ void StudentFortfolio::activate() {
         switch (input)
         {
 
-            case STUDENT_FORTFOLIO_MENU_LIST: // List of Courses
+            case STUDENT_PORTFOLIO_MENU_LIST: // List of Courses
             {
                 showList();
 
                 break;
             }
 
-            case STUDENT_FORTFOLIO_MENU_VIEW:
+            case STUDENT_PORTFOLIO_MENU_VIEW:
             {
                 viewCourse();
                 break;
             }
 
-            case STUDENT_FORTFOLIO_MENU_ADD: // Add a new course
+            case STUDENT_PORTFOLIO_MENU_ADD: // Add a new course
             {
                  addCourse();
 
                 break;
             }
 
-            case STUDENT_FORTFOLIO_MENU_EDIT: // Edit course
+            case STUDENT_PORTFOLIO_MENU_EDIT: // Edit course
             {
 
                 editCourse();
                 break;
             }
 
-            case STUDENT_FORTFOLIO_MENU_REMOVE: // Remove course
+            case STUDENT_PORTFOLIO_MENU_REMOVE: // Remove course
             {
 
                 removeCourse();
@@ -288,12 +288,12 @@ void StudentFortfolio::activate() {
             }
 
 
-            case STUDENT_FORTFOLIO_MENU_QUIT: // Quit
+            case STUDENT_PORTFOLIO_MENU_QUIT: // Quit
             {
                 cout << "Quit" << endl;
                 break;
             }
         }
 
-    } while (input != STUDENT_FORTFOLIO_MENU_QUIT);
+    } while (input != STUDENT_PORTFOLIO_MENU_QUIT);
 }
