@@ -10,13 +10,6 @@
 
  *******************************************************/
 
-#include <iostream>
-#include <string>
-#include <vector>
-#include <fstream>
-#include <sstream>
-#include "Course.h"
-#include "ComputerScienceTransferCourses.h"
 #include "StudentFortfolio.h"
 
 int main() {
