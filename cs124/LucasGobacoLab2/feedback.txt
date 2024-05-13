@@ -3,7 +3,8 @@ Please refer to the Lab 2 requirements.
 
 1) Implement a class Course that contains the following fields and all the common overloading operators - okay
 
-2) Implement the class template class ArrayList that holds the collection of data (-5) - You did not use ArrayList template as in the requirements - Use of vector was not the requirement!
+2) Implement the class template class ArrayList that holds the collection of data (-5)
+- You did not use ArrayList template as in the requirements - Use of vector was not the requirement!
 
 4) quickSort and requirements were okay. You are supposed to use the ArrayList template that I have provided. ==> Implement (-5)ComputerScienceTransferCourses::sort by <any fieldname> using quickSort
 
