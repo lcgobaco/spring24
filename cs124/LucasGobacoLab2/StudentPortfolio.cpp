@@ -22,7 +22,6 @@ StudentPortfolio::StudentPortfolio() {
     initData();
 }
 
-
 std::string trim(const std::string& str) {
     size_t start = str.find_first_not_of(" \t\n\r");
     size_t end = str.find_last_not_of(" \t\n\r");
@@ -64,11 +63,6 @@ void StudentPortfolio::initData() {
 
         std::string input;
         std::string description;
-       //std::getline(file, description);
-
-       //std::string multilineInput;
-
-    // Read lines until a line does not end with backslash
         while (true) {
             std::getline(file, input);
 
@@ -96,7 +90,6 @@ void StudentPortfolio::initData() {
     }
 
     file.close();
-
     courses.sort(true);
 }
 void StudentPortfolio::showList() {
@@ -167,13 +160,11 @@ void StudentPortfolio::addCourse() {
 
 void StudentPortfolio::editCourse() {
 
-
     string title;
     cout << "Title:";
     cin.ignore();
     std::getline(cin, title);
     int x = courses.search(title);
-
 
     if (x >= 0) {
         std::cout << "Enter new course details" << std::endl;
@@ -256,7 +247,6 @@ void StudentPortfolio::activate() {
             case STUDENT_PORTFOLIO_MENU_LIST: // List of Courses
             {
                 showList();
-
                 break;
             }
 
@@ -269,7 +259,6 @@ void StudentPortfolio::activate() {
             case STUDENT_PORTFOLIO_MENU_ADD: // Add a new course
             {
                  addCourse();
-
                 break;
             }
 
