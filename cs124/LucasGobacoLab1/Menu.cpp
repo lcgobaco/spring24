@@ -34,11 +34,13 @@ void Menu::display() const
 char Menu::get_input() const
 {
    char input;
+   int n;
    do
    {
       display();
       cin >> input;
+      n = input - '0';
    }
-   while (input < '1' && input > '5' && input != 'x');
+   while (n < 1 && n >= options.size() && input != 'x');
    return input;
 }
