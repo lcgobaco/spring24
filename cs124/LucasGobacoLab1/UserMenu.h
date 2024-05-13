@@ -58,6 +58,12 @@ class UserMenu : public Menu
         bool manageProfile(User user); // Add a member method to manage user definition and implementation
         void exit();                     // Enter char 'x' to exit Sign Out and update sign out datetime.
         bool signOut(); // Save loginDateTime and logoutDateTime data to file users_data.csv
+        // Menu choice methods
+        void doSignIn();
+        void doSignOut();
+        void doResetPassword();
+        void doCreateUser();
+        void doManageUserProfile();
     public:
         void activate(); // Activate the menu
 };

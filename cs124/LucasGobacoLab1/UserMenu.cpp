@@ -174,6 +174,118 @@ User UserMenu::getUserByUsername(string username) {
     return User();
 }
 
+void UserMenu::doSignIn() {
+    int tries = 0;
+    while (tries < 3) {
+        cout << "Sign-in" << endl;
+        string username, password;
+        cout << "Enter username: ";
+        cin >> username;
+        cout << "Enter password: ";
+        cin >> password;
+        bool signedIn = signIn(username, password);
+        if (signedIn) {
+            break;
+        }
+        tries++;
+    }
+}
+
+void UserMenu::doSignOut() {
+    cout << "Sign-out" << endl;
+    bool signedOut = signOut();
+    cout << "Signed out: " << signedOut << endl;
+}
+
+void UserMenu::doResetPassword() {
+    if (!isSignedIn()) {
+        cout << "Error: You must be signed in to reset your password." << endl;
+        return;
+    }
+    cout << "Reset Password" << endl;
+    cout << "Old Password: ";
+    string oldPassword;
+    cin >> oldPassword;
+    cout << "New Password: ";
+    string newPassword;
+    cin >> newPassword;
+    bool reset = this->resetPassword(oldPassword, newPassword);
+}
+
+void UserMenu::doCreateUser() {
+cout << "Create Account" << endl;
+    string firstName, lastName, phone, email, password, reEnterPassword;
+    cout << "Enter first name: ";
+    cin >> firstName;
+    cout << "Enter last name: ";
+    cin >> lastName;
+    cout << "Enter mobile number or email: ";
+    cin >> phone;
+    cout << "Enter password: ";
+    cin >> password;
+    cout << "Enter re-enter password: ";
+    cin >> reEnterPassword;
+    if (password != reEnterPassword)
+    {
+        cout << "Passwords do not match." << endl;
+        return;
+    }
+
+    bool created = createAccount(firstName, lastName, phone, email, password);
+    cout << "Created: " << created << endl;
+}
+
+void UserMenu::doManageUserProfile() {
+    cout << "Manage Profile" << endl;
+
+    User userToManage = getSignedInUser();
+    if (userToManage.getUsername() == "") {
+        cout << "Error: User not found." << endl;
+        return;
+    }
+
+    string role, firstName, lastName, email, phone, address, city, state, zip;
+
+    cout << "Role:" << userToManage.getRole() << endl;
+    cout << "New Role: ";
+    cin >> role;
+    cout << "First Name: " << userToManage.getFirstName() << endl;
+    cout << "New First Name: ";
+    cin >> firstName;
+    cout << "Last Name: " << userToManage.getLastName() << endl;
+    cout << "New Last Name: ";
+    cin >> lastName;
+    cout << "Email: " << userToManage.getEmail() << endl;
+    cout << "New Email: ";
+    cin >> email;
+    cout << "Phone: " << userToManage.getPhone() << endl;
+    cout << "New Phone: ";
+    cin >> phone;
+    cout << "Address: " << userToManage.getAddress() << endl;
+    cout << "New Address: ";
+    cin >> address;
+    cout << "City: " << userToManage.getCity() << endl;
+    cout << "New City: ";
+    cin >> city;
+    cout << "State: " << userToManage.getState() << endl;
+    cout << "New State: ";
+    cin >> state;
+    cout << "Zip: " << userToManage.getZip() << endl;
+    cout << "New Zip: ";
+    cin >> zip;
+
+    userToManage.setRole(role);
+    userToManage.setFirstName(firstName);
+    userToManage.setLastName(lastName);
+    userToManage.setEmail(email);
+    userToManage.setPhone(phone);
+    userToManage.setAddress(address);
+    userToManage.setCity(city);
+    userToManage.setState(state);
+    userToManage.setZip(zip);
+    bool managed = manageProfile(userToManage);
+}
+
 void UserMenu::activate() {
     char input;
     add_option("Sign-in");
@@ -191,122 +303,31 @@ void UserMenu::activate() {
         {
             case USER_MENU_SIGNIN:
             {
-                int tries = 0;
-                while (tries < 3) {
-                    cout << "Sign-in" << endl;
-                    string username, password;
-                    cout << "Enter username: ";
-                    cin >> username;
-                    cout << "Enter password: ";
-                    cin >> password;
-                    bool signedIn = signIn(username, password);
-                    if (signedIn) {
-                        break;
-                    }
-                    tries++;
-                }
+                doSignIn();
                 break;
             }
 
             case USER_MENU_SIGNOUT:
             {
-                cout << "Sign-out" << endl;
-                bool signedOut = this->signOut();
-                cout << "Signed out: " << signedOut << endl;
+                doSignOut();
                 break;
             }
 
             case USER_MENU_RESET:
             {
-                if (this->isSignedIn() == false) {
-                    cout << "Error: You must be signed in to reset your password." << endl;
-                    break;
-                }
-                cout << "Reset Password" << endl;
-                cout << "Old Password: ";
-                string oldPassword;
-                cin >> oldPassword;
-                cout << "New Password: ";
-                string newPassword;
-                cin >> newPassword;
-                bool reset = this->resetPassword(oldPassword, newPassword);
+                doResetPassword();
                 break;
             }
 
             case USER_MENU_CREATE:
             {
-                cout << "Create Account" << endl;
-                string firstName, lastName, phone, email, password, reEnterPassword;
-                cout << "Enter first name: ";
-                cin >> firstName;
-                cout << "Enter last name: ";
-                cin >> lastName;
-                cout << "Enter mobile number or email: ";
-                cin >> phone;
-                cout << "Enter password: ";
-                cin >> password;
-                cout << "Enter re-enter password: ";
-                cin >> reEnterPassword;
-                if (password != reEnterPassword)
-                {
-                    cout << "Passwords do not match." << endl;
-                    break;
-                }
-
-                bool created = createAccount(firstName, lastName, phone, email, password);
-                cout << "Created: " << created << endl;
+                doCreateUser();
                 break;
             }
 
             case USER_MENU_MANAGE_PROFILE: {
-                cout << "Manage Profile" << endl;
 
-                User userToManage = getSignedInUser();
-                if (userToManage.getUsername() == "") {
-                    cout << "Error: User not found." << endl;
-                    break;
-                }
-
-                string role, firstName, lastName, email, phone, address, city, state, zip;
-
-                cout << "Role:" << userToManage.getRole() << endl;
-                cout << "New Role: ";
-                cin >> role;
-                cout << "First Name: " << userToManage.getFirstName() << endl;
-                cout << "New First Name: ";
-                cin >> firstName;
-                cout << "Last Name: " << userToManage.getLastName() << endl;
-                cout << "New Last Name: ";
-                cin >> lastName;
-                cout << "Email: " << userToManage.getEmail() << endl;
-                cout << "New Email: ";
-                cin >> email;
-                cout << "Phone: " << userToManage.getPhone() << endl;
-                cout << "New Phone: ";
-                cin >> phone;
-                cout << "Address: " << userToManage.getAddress() << endl;
-                cout << "New Address: ";
-                cin >> address;
-                cout << "City: " << userToManage.getCity() << endl;
-                cout << "New City: ";
-                cin >> city;
-                cout << "State: " << userToManage.getState() << endl;
-                cout << "New State: ";
-                cin >> state;
-                cout << "Zip: " << userToManage.getZip() << endl;
-                cout << "New Zip: ";
-                cin >> zip;
-
-                userToManage.setRole(role);
-                userToManage.setFirstName(firstName);
-                userToManage.setLastName(lastName);
-                userToManage.setEmail(email);
-                userToManage.setPhone(phone);
-                userToManage.setAddress(address);
-                userToManage.setCity(city);
-                userToManage.setState(state);
-                userToManage.setZip(zip);
-                bool managed = manageProfile(userToManage);
+                doManageUserProfile();
                 break;
             }
 
