@@ -88,6 +88,16 @@ public:
      * @param company_name the company name
     */
     void setCompanyName(string company_name);
+
+    /*
+        Overload == operator for comparing Contacts
+    */
+    friend bool operator==(const Contact& lhs, const Contact& rhs);
+
+    /*
+        Overload << operator for printing a Contact
+    */
+    friend std::ostream& operator<<(std::ostream& os, const Contact& contact);
 };
 
 #endif

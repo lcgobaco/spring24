@@ -32,3 +32,30 @@ void Contact::setId(string id) { this->id = id; }
 void Contact::setRole(string role) { this->role = role; }
 
 void Contact::setCompanyName(string company_name) { this->company_name = company_name; }
+
+bool operator==(const Contact& lhs, const Contact& rhs) {
+    // Compare the relevant attributes of both Contact objects
+    return lhs.getId() == rhs.getId() &&
+           lhs.getRole() == rhs.getRole() &&
+           lhs.getCompanyName() == rhs.getCompanyName();
+}
+
+std::ostream& operator<<(std::ostream& os, const Contact& contact) {
+    // Stream out the relevant attributes of the Contact object
+    os << contact.getId() << ","
+             << contact.getFirstName() << ","
+             << contact.getMiddleName() << ","
+             << contact.getLastName() << ","
+             << contact.getRole() << ","
+             << contact.getCompanyName() << ","
+             << contact.getAddress() << ","
+             << contact.getCity() << ","
+             << contact.getCounty() << ","
+             << contact.getState() << ","
+             << contact.getZip() << ","
+             << contact.getPhone1() << ","
+             << contact.getPhone2() << ","
+             << contact.getEmail();
+
+    return os;
+}

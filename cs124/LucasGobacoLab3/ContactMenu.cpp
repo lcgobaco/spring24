@@ -59,20 +59,7 @@ void ContactMenu::doExit() {
 
     for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next()) {
         Contact contact = itr.get();
-        file << contact.getId() << ","
-             << contact.getFirstName() << ","
-             << contact.getMiddleName() << ","
-             << contact.getLastName() << ","
-             << contact.getRole() << ","
-             << contact.getCompanyName() << ","
-             << contact.getAddress() << ","
-             << contact.getCity() << ","
-             << contact.getCounty() << ","
-             << contact.getState() << ","
-             << contact.getZip() << ","
-             << contact.getPhone1() << ","
-             << contact.getPhone2() << ","
-             << contact.getEmail() << endl;
+        file << contact << endl;
     }
 
     file.close();
