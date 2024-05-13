@@ -41,7 +41,7 @@ public:
       is supplied.
       @return the number that the user supplied
    */
-   string get_input() const;
+   char get_input() const;
 private:
     /**
       Displays the menu, with options numbered starting with 1.

@@ -1,0 +1,22 @@
+Your program still needs work.
+Please see the rubrics.
+- Add the comment and documentation as I indicated in class. - 2
+- main - the details implementation should be in UserMenu. All the code in the main makes your program not reusable and UserMenu is not reusable. -4
+It should be,
+int main() {
+UserMenu menu();
+menu.activate(); return 0; }
+ - class Menu ok
+- class UserMenu -2
+This => enum USER_MENU_OPTION
+{ USER_MENU_SIGNIN = '1',
+USER_MENU_SIGNOUT = '2',
+USER_MENU_CREATE = '3',
+USER_MENU_RESET = '4',
+USER_MENU_MANAGE_PROFILE = '5',
+USER_MENU_EXIT = 'x' }; does not match with your function void UserMenu
+
+- class User -4 * Missing the operators
+
+- class Time - ok
+- Class DateTime - ok

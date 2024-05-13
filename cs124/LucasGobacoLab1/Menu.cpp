@@ -31,17 +31,14 @@ void Menu::display() const
    }
 }
 
-string Menu::get_input() const
+char Menu::get_input() const
 {
-   string input;
-   int n = -1;
+   char input;
    do
    {
       display();
       cin >> input;
-      n = std::stoi(input);
-
    }
-   while (n < 1 || n > options.size());
+   while (input < '1' && input > '5' && input != 'x');
    return input;
 }

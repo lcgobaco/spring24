@@ -175,7 +175,7 @@ User UserMenu::getUserByUsername(string username) {
 }
 
 void UserMenu::activate() {
-    string input;
+    char input;
     add_option("Sign-in");
     add_option("Sign-out");
     add_option("Reset Password");
@@ -186,18 +186,10 @@ void UserMenu::activate() {
     {
         input = get_input();
 
-        if (input == "x") {
-            cout << "Quit" << endl;
-            break;
-        }
-
-        int option = std::stoi(input);
-
-        cout << "Option: " << option << endl;
-        switch (option)
+        cout << "Option: " << input << endl;
+        switch (input)
         {
-
-            case 1:
+            case USER_MENU_SIGNIN:
             {
                 int tries = 0;
                 while (tries < 3) {
@@ -216,7 +208,7 @@ void UserMenu::activate() {
                 break;
             }
 
-            case 2:
+            case USER_MENU_SIGNOUT:
             {
                 cout << "Sign-out" << endl;
                 bool signedOut = this->signOut();
@@ -224,7 +216,7 @@ void UserMenu::activate() {
                 break;
             }
 
-            case 3:
+            case USER_MENU_RESET:
             {
                 if (this->isSignedIn() == false) {
                     cout << "Error: You must be signed in to reset your password." << endl;
@@ -241,7 +233,7 @@ void UserMenu::activate() {
                 break;
             }
 
-            case 4:
+            case USER_MENU_CREATE:
             {
                 cout << "Create Account" << endl;
                 string firstName, lastName, phone, email, password, reEnterPassword;
@@ -266,7 +258,7 @@ void UserMenu::activate() {
                 break;
             }
 
-            case 5: {
+            case USER_MENU_MANAGE_PROFILE: {
                 cout << "Manage Profile" << endl;
 
                 User userToManage = getSignedInUser();
@@ -318,11 +310,11 @@ void UserMenu::activate() {
                 break;
             }
 
-            case 6: {
+            case USER_MENU_EXIT: {
                 cout << "Quit" << endl;
                 break;
             }
         }
 
-    } while (input != "6" );
+    } while (input != USER_MENU_EXIT );
 }
