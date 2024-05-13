@@ -7,10 +7,13 @@ New score: 15 New scores: 15.
 1) main.cpp, it should be what I have talked about in class
 Example: int main() { ContactMenu t1; t1.get_input(); return 0; }
 2) Your class Contact was missing the required operators.
-Your linkedlist will not work. - Please see your Canvas Discussions for Lab 3 template.
+Your linkedlist will not work.
+- Please see your Canvas Discussions for Lab 3 template.
 
-3) With LinkedList, you need to implement all the necessary data, methods, and operators.
-Otherwise, your program will not work. Missing requirements. Please see Lab 3 requirements
+3) With LinkedList, you need to implement all the necessary data, methods,
+and operators.
+Otherwise, your program will not work. Missing requirements.
+Please see Lab 3 requirements
 
 4) Move operations, It should be,
 / prefix increment Iterator<T>& operator++()
@@ -20,9 +23,9 @@ Otherwise, your program will not work. Missing requirements. Please see Lab 3 re
 
 Example:
 
-d ContactMenu::move_first() { it = list.begin(); } v
+void ContactMenu::move_first() { it = list.begin(); } v
 
-oid ContactMenu::move_next() { ++it; }
+void ContactMenu::move_next() { ++it; }
 
 void ContactMenu::move_previous() { --it; }
 

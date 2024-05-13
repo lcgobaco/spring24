@@ -101,6 +101,90 @@ void printContact(Contact contact) {
 }
 
 void ContactMenu::doList() {
+
+    cout << "List of contacts:" << endl;
+    cout << "Sort by:" << endl;
+
+    Menu sort_menu;
+    sort_menu.add_option("Sort by ID");
+    sort_menu.add_option("Sort by First Name");
+    sort_menu.add_option("Sort by Middle Name");
+    sort_menu.add_option("Sort by Last Name");
+    sort_menu.add_option("Sort by Role");
+    sort_menu.add_option("Sort by Company Name");
+    sort_menu.add_option("Sort by Address");
+    sort_menu.add_option("Sort by City");
+    sort_menu.add_option("Sort by County");
+    sort_menu.add_option("Sort by State");
+    sort_menu.add_option("Sort by Zip");
+    sort_menu.add_option("Sort by Phone1");
+    sort_menu.add_option("Sort by Phone");
+    sort_menu.add_option("Sort by Email");
+
+
+    int sm = sort_menu.get_input_int();
+    string sort_field = "id";
+    switch (sm) {
+        case 1:
+            sort_field = "id";
+            break;
+        case 2:
+            sort_field = "first_name";
+            break;
+        case 3:
+            sort_field = "middle_name";
+            break;
+        case 4:
+            sort_field = "last_name";
+            break;
+        case 5:
+            sort_field = "role";
+            break;
+        case 6:
+            sort_field = "company_name";
+            break;
+        case 7:
+            sort_field = "address";
+            break;
+        case 8:
+            sort_field = "city";
+            break;
+        case 9:
+            sort_field = "county";
+            break;
+        case 10:
+            sort_field = "state";
+            break;
+        case 11:
+            sort_field = "zip";
+            break;
+        case 12:
+            sort_field = "phone1";
+            break;
+        case 13:
+            sort_field = "phone";
+            break;
+        case 14:
+            sort_field = "email";
+            break;
+
+    }
+
+    Menu sort_order;
+    sort_order.add_option("Ascending");
+    sort_order.add_option("Descending");
+
+    int so = sort_order.get_input_int();
+
+    switch(so) {
+        case 1:
+            doSortBy(sort_field, "asc");
+            break;
+        case 2:
+            doSortBy(sort_field, "desc");
+            break;
+    }
+
     contactList.moveFirst();
 
     Iterator<Contact> current = contactList.getCurrent();
@@ -272,119 +356,37 @@ void ContactMenu::activate() {
         cout << "Option: " << input << endl;
         switch (input)
         {
-            case '1':
+            case CONTACT_MENU_LIST:
             {
-                cout << "List of contacts:" << endl;
-                cout << "Sort by:" << endl;
-
-                Menu sort_menu;
-                sort_menu.add_option("Sort by ID");
-                sort_menu.add_option("Sort by First Name");
-                sort_menu.add_option("Sort by Middle Name");
-                sort_menu.add_option("Sort by Last Name");
-                sort_menu.add_option("Sort by Role");
-                sort_menu.add_option("Sort by Company Name");
-                sort_menu.add_option("Sort by Address");
-                sort_menu.add_option("Sort by City");
-                sort_menu.add_option("Sort by County");
-                sort_menu.add_option("Sort by State");
-                sort_menu.add_option("Sort by Zip");
-                sort_menu.add_option("Sort by Phone1");
-                sort_menu.add_option("Sort by Phone");
-                sort_menu.add_option("Sort by Email");
-
-                int sm = sort_menu.get_input_int();
-                string sort_field = "id";
-                switch (sm) {
-                    case 1:
-                        sort_field = "id";
-                        break;
-                    case 2:
-                        sort_field = "first_name";
-                        break;
-                    case 3:
-                        sort_field = "middle_name";
-                        break;
-                    case 4:
-                        sort_field = "last_name";
-                        break;
-                    case 5:
-                        sort_field = "role";
-                        break;
-                    case 6:
-                        sort_field = "company_name";
-                        break;
-                    case 7:
-                        sort_field = "address";
-                        break;
-                    case 8:
-                        sort_field = "city";
-                        break;
-                    case 9:
-                        sort_field = "county";
-                        break;
-                    case 10:
-                        sort_field = "state";
-                        break;
-                    case 11:
-                        sort_field = "zip";
-                        break;
-                    case 12:
-                        sort_field = "phone1";
-                        break;
-                    case 13:
-                        sort_field = "phone";
-                        break;
-                    case 14:
-                        sort_field = "email";
-                        break;
-
-                }
-
-                Menu sort_order;
-                sort_order.add_option("Ascending");
-                sort_order.add_option("Descending");
-
-                int so = sort_order.get_input_int();
-
-                switch(so) {
-                    case 1:
-                        doSortBy(sort_field, "asc");
-                        break;
-                    case 2:
-                        doSortBy(sort_field, "desc");
-                        break;
-                }
-
                 doList();
                 break;
             }
 
-            case '2':
+            case CONTACT_MENU_VIEW:
             {
 
                 doView();
                 break;
             }
 
-            case '3':
+            case CONTACT_MENU_ADD:
             {
                 doAdd();
                 break;
             }
 
-            case '4':
+            case CONTACT_MENU_EDIT:
             {
                 doEdit();
                 break;
             }
 
-            case '5': {
+            case CONTACT_MENU_DELETE: {
                 doDelete();
                 break;
             }
 
-            case '6': {
+            case CONTACT_MENU_EXIT: {
                 doExit();
                 cout << "Quit" << endl;
                 break;
