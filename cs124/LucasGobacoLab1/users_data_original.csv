@@ -1,0 +1,5 @@
+Id,Role,Username,Password,Sign-in datetime,Sign out datetime,First Name,Last Name,Address,City,State,Zip,Phone,Email
+1001,guess,guess,welcome,1/29/2024 18:30:11,2/10/2024 20:30:14,guess,guess,39399 Cherry St,Fremont,CA,94560,510-7422300,guess@ohlone.edu
+1002,admin,admin,welcome1,2/25/2024 2:18:57,2/10/2024 20:35:45,admin,ohlone,43600 Mission Blvd,Fremont,CA,94539,510-659-6000,admin@ohlone.edu
+1003,admin,john,doe,2/25/2024 2:10:48,2/10/2024 20:45:50,Johnny,Doer,123,V,St.,12345,510-123-4567,x@y.com
+1004,admin1,jpham,admin,2/25/2024 3:3:45,2/10/2024 20:45:50,jordan,michael,f,x,g,234,y,x

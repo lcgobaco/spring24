@@ -31,6 +31,9 @@ void Menu::display() const
    }
 }
 
+/*
+ * This function gets one keystroke character input from the user.
+ */
 char Menu::get_input() const
 {
    char input;
