@@ -4,7 +4,7 @@
 
  * Author: Lucas Gobaco
 
- * Date: 6 April 2024
+ * Date: 24 February 2024
 
  * Description: This program defines a class that displays a menu into the console.
 
@@ -12,13 +12,15 @@
 
 #ifndef MENU_H
 #define MENU_H
-
 #include <string>
 #include <vector>
 #include <iostream>
 
 using namespace std;
 
+/**
+   Outlines a class that displays a menu in the console.
+*/
 class Menu
 {
 public:
@@ -39,10 +41,14 @@ public:
       is supplied.
       @return the number that the user supplied
    */
-   string get_input() const;
+   char get_input() const;
 
-private:
    /**
+    * get the input as an int
+    */
+   int get_input_int() const;
+private:
+    /**
       Displays the menu, with options numbered starting with 1.
    */
    void display() const;

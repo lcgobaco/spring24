@@ -56,9 +56,8 @@ class ContactMenu : public Menu
         /**
          * Initializes the contact data by reading from contacts_data.csv and populating the list.
         */
-        void initContactData(); 
+        void initContactData();
 
-    public:
         /**
          * Displays the contact menu.
         */
@@ -98,6 +97,10 @@ class ContactMenu : public Menu
          * Exits the contact menu.
         */
         void doExit();
+
+    public:
+
+        void activate();
 };
 
 #endif

@@ -1,0 +1,35 @@
+You have a lot of missing requirements.
+Please study for your final exam and complete Lab 5
+. Depending on how you do on the final exam, I will re-evaluate for your final points.
+
+(5/8/2024): I did have some good implementation, like using the comparator for sorting. +10
+New score: 15 New scores: 15.
+1) main.cpp, it should be what I have talked about in class
+Example: int main() { ContactMenu t1; t1.get_input(); return 0; }
+2) Your class Contact was missing the required operators.
+Your linkedlist will not work. - Please see your Canvas Discussions for Lab 3 template.
+
+3) With LinkedList, you need to implement all the necessary data, methods, and operators.
+Otherwise, your program will not work. Missing requirements. Please see Lab 3 requirements
+
+4) Move operations, It should be,
+/ prefix increment Iterator<T>& operator++()
+// postfix increment Iterator<T> operator++(T)
+// prefix decrement Iterator<T>& operator--()
+// postfix decrement Iterator<T> operator--(T)
+
+Example:
+
+d ContactMenu::move_first() { it = list.begin(); } v
+
+oid ContactMenu::move_next() { ++it; }
+
+void ContactMenu::move_previous() { --it; }
+
+void ContactMenu::move_last() { it = list.end(); }
+
+5) Implement the following operations for your ContactList
+
+6) Missing the selectionSort
+You did not do the selectionSort as I discussed in class.
+
