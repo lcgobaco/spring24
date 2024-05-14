@@ -12,6 +12,7 @@
 
 #include "UserMenu.h"
 #include "Utils.h"
+#include <iomanip>
 
 using namespace std;
 void UserMenu::initUserData() {
@@ -293,7 +294,7 @@ void UserMenu::activate() {
     add_option("Reset Password");
     add_option("Create Account");
     add_option("Manage Profiles");
-    add_option("Quit");
+    //add_option("Quit");
     do
     {
         input = get_input();
@@ -332,7 +333,7 @@ void UserMenu::activate() {
             }
 
             case USER_MENU_EXIT: {
-                cout << "Quit" << endl;
+                cout << "Exit" << endl;
                 break;
             }
         }
