@@ -19,7 +19,7 @@
 #include "Menu.h"
 #include "ComputerScienceTransferCourses.h"
 
-
+const string STUDENT_PORTFOLIO_FILENAME = "cs_transfer_courses.txt";
 
 enum STUDENT_PORTFOLIO_MENU {
     STUDENT_PORTFOLIO_MENU_LIST = '1',
@@ -27,7 +27,7 @@ enum STUDENT_PORTFOLIO_MENU {
     STUDENT_PORTFOLIO_MENU_ADD = '3',
     STUDENT_PORTFOLIO_MENU_EDIT = '4',
     STUDENT_PORTFOLIO_MENU_REMOVE = '5',
-    STUDENT_PORTFOLIO_MENU_QUIT = 'x'
+    STUDENT_PORTFOLIO_MENU_EXIT = 'x'
 };
 
 
@@ -40,7 +40,7 @@ private:
     void addCourse();
     void editCourse();
     void removeCourse();
-    void quit();
+    void exit();
 
 public:
     StudentPortfolio();

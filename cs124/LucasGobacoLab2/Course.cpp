@@ -39,14 +39,24 @@ void Course::setPrerequisite(std::string prereq) { prerequisite = prereq; }
 int Course::getUnits() const { return units; }
 void Course::setUnits(int u) { units = u; }
 
+/*
+CS 101
+Introduction to Computers and Information Technology
+This course is a general introduction to the area of computers and information\
+technology, and is designed for all students. This survey course examines a broad\
+overview of topics including software, hardware, the networking of computer systems,\
+information technology, and survey of programming languages. Students explore the\
+implications of this technology with regard to today's information society.
+ENGL 151B
+3
+*/
 // Overloading << operator for printing Course object
 std::ostream& operator<<(std::ostream& os, const Course& course) {
-    os << "Department: " << course.department << "\n";
-    os << "Course Number: " << course.courseNumber << "\n";
-    os << "Title: " << course.title << "\n";
-    os << "Description: " << course.description << "\n";
-    os << "Prerequisite: " << course.prerequisite << "\n";
-    os << "Units: " << course.units << "\n";
+    os << course.department << " " << course.courseNumber << "\n";
+    os << course.title << "\n";
+    os << course.description << "\n";
+    os << course.prerequisite << "\n";
+    os << course.units << "\n";
     return os;
 }
 

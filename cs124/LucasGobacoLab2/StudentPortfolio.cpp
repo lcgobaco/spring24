@@ -216,9 +216,17 @@ void StudentPortfolio::removeCourse() {
     }
 }
 
-void StudentPortfolio::quit() {
-    // Save data to file cs_transfer_course.dat
-    // Implement saving logic here
+void StudentPortfolio::exit() {
+
+     ofstream file(STUDENT_PORTFOLIO_FILENAME);
+        cerr << "Error: Unable to open file " << STUDENT_PORTFOLIO_FILENAME << " for writing." << endl;
+        return;
+
+    for (int i = 0; i < courses.size(); ++i) {
+        file << courses.get(i) << endl;
+    }
+
+    file.close();
 }
 
 void StudentPortfolio::activate() {
@@ -229,14 +237,14 @@ void StudentPortfolio::activate() {
     add_option("Add a new course");
     add_option("Edit course");
     add_option("Remove course");
-    add_option("Quit");
+    //add_option("Exit");
 
     do
     {
         input = get_input();
 
         if (cin.fail()) {
-            cout << "Quit" << endl;
+            cout << "Exit" << endl;
             break;
         }
 
@@ -277,12 +285,13 @@ void StudentPortfolio::activate() {
             }
 
 
-            case STUDENT_PORTFOLIO_MENU_QUIT: // Quit
+            case STUDENT_PORTFOLIO_MENU_EXIT: // Quit
             {
-                cout << "Quit" << endl;
+                exit();
+                cout << "Exit" << endl;
                 break;
             }
         }
 
-    } while (input != STUDENT_PORTFOLIO_MENU_QUIT);
+    } while (input != STUDENT_PORTFOLIO_MENU_EXIT);
 }
