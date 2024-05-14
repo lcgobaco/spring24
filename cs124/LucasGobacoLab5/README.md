@@ -16,10 +16,10 @@ SectionId
 Term
 Course Name
 Faculty (object)
-List of Groups
+List of GradeScales
 
-3.  GROUP class
-GroupId
+3.  GRADE_SCALE class
+GradeScaleId
 Section (object)
 Description
 Weight
@@ -27,7 +27,7 @@ List of Assignments
 
 4. ASSIGNMENT class
 AssignmentId
-Group (object)
+GradeScale (object)
 Description
 StartDate
 EndDate

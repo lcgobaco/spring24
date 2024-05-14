@@ -15,28 +15,28 @@
 
 #include <iostream>
 #include <string>
-#include "group.h"
+#include "gradeScale.h"
 
 using namespace std;
 
 class Assignment {
 private:
     int assignmentId;
-    Group* group; 
+    GradeScale* group;
     string title;
     string description;
     double maxScore;
 
 public:
     /**
-     * Constructs an assignment object with a given ID, group, title, description, and maximum score.
+     * Constructs an assignment object with a given ID, gradeScale, title, description, and maximum score.
      * @param id the assignment ID
-     * @param group the group
+     * @param gradeScale the grade scale
      * @param title the title
      * @param description the description
      * @param maxScore the maximum score
     */
-    Assignment(int id, Group* group, const string& title, const string& description, double maxScore);
+    Assignment(int id, GradeScale* gradeScale, const string& title, const string& description, double maxScore);
 
     /**
      * Returns the assignment ID.
@@ -45,10 +45,10 @@ public:
     int getAssignmentId() const;
 
     /**
-     * Returns the group.
-     * @return the group
+     * Returns the grade scale.
+     * @return the grade scale
     */
-    Group* getGroup() const;
+    GradeScale* getGradeScale() const;
 
     /**
      * Returns the title.
@@ -75,10 +75,10 @@ public:
     void setAssignmentId(int id);
 
     /**
-     * Sets the group.
-     * @param g the group
+     * Sets the grade scale.
+     * @param g the grade scale
     */
-    void setGroup(Group* g);
+    void setGradeScale(GradeScale* g);
 
     /**
      * Sets the title.

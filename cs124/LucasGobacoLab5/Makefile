@@ -1,7 +1,7 @@
 COMPILER = g++ -std=c++17 -g
 all: main
 
-main: main.o assignment.o faculty.o group.o menu.o section.o
+main: main.o assignment.o faculty.o gradeScale.o menu.o section.o
 	$(COMPILER) -o $@ $^
 
 main.o: main.cpp
@@ -13,7 +13,7 @@ assigment.o: assignment.cpp
 faculty.o: faculty.cpp
 	$(COMPILER) -c $<
 
-group.o: group.cpp
+gradeScale.o: gradeScale.cpp
 	$(COMPILER) -c $<
 
 menu.o: menu.cpp

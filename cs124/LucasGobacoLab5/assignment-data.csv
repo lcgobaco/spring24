@@ -1,4 +1,4 @@
-Id,GroupId,Description,Start Date,End Date,Possible Points,Points
+Id,GradeScaleId,Description,Start Date,End Date,Possible Points,Points
 1,1,Classes and Inheritance,2/5/2024 0:00:01,2/8/2024 11:59:00,5,0
 2,1,Classes and Inheritance - In class Assignment,2/8/2024 0:00:01,2/8/2024 11:59:00,10,0
 3,1,Class Overloading etc.,2/5/2024 0:00:01,2/8/2024 11:59:00,5,0

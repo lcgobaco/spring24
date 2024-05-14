@@ -17,7 +17,6 @@
 #include <string>
 #include <vector>
 #include "faculty.h"
-#include "group.h"
 
 using namespace std;
 
@@ -28,7 +27,7 @@ private:
     string courseName;
     int units;
     Faculty* faculty;
-    vector<Group> groups;
+    vector<GradeScale> gradeScales;
 
 public:
     /**
@@ -68,7 +67,7 @@ public:
      * Returns the groups.
      * @return the groups
     */
-    vector<Group> getGroups() const;
+    vector<GradeScale> getGroups() const;
 
     /**
      * Returns the faculty member.
@@ -110,7 +109,7 @@ public:
      * Sets the groups.
      * @param g the groups
      */
-    void setGroups(vector<Group> g);
+    void setGroups(vector<GradeScale> g);
 
 };
 

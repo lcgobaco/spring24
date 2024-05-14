@@ -10,7 +10,7 @@
 
  *******************************************************/
 
-#include "section.h"
+#include "common.h"
 
 Section::Section(string id, const string& term, const string& courseName, int units, Faculty* faculty)
     : sectionId(id), term(term), courseName(courseName), units(units), faculty(faculty) {}
@@ -25,7 +25,7 @@ int Section::getUnits() const { return units; }
 
 Faculty* Section::getFaculty() const { return faculty; }
 
-vector<Group> Section::getGroups() const { return groups; }
+vector<GradeScale> Section::getGradeScales() const { return gradeScales; }
 
 void Section::setSectionId(int id) { sectionId = id; }
 
@@ -37,4 +37,4 @@ void Section::setUnits(int u) { units = u; }
 
 void Section::setFaculty(Faculty* f) { faculty = f; }
 
-void Section::setGroups(vector<Group> g) { groups = g; }
+void Section::setGradeScales(vector<GradeScale> g) { gradeScales = g; }

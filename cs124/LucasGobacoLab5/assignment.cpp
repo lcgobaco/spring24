@@ -10,14 +10,14 @@
 
  *******************************************************/
 
-#include "assignment.h"
+#include "common.h"
 
-Assignment::Assignment(int id, Group* group, const string& title, const string& description, double maxScore)
-    : assignmentId(id), group(group), title(title), description(description), maxScore(maxScore) {}
+Assignment::Assignment(int id, GradeScale* gradeScale, const string& title, const string& description, double maxScore)
+    : assignmentId(id), gradeScale(gradeScale), title(title), description(description), maxScore(maxScore) {}
 
 int Assignment::getAssignmentId() const { return assignmentId; }
 
-Group* Assignment::getGroup() const { return group; }
+GradeScale* Assignment::getGradeScale() const { return gradeScale; }
 
 string Assignment::getTitle() const { return title; }
 
@@ -27,7 +27,7 @@ double Assignment::getMaxScore() const { return maxScore; }
 
 void Assignment::setAssignmentId(int id) { assignmentId = id; }
 
-void Assignment::setGroup(Group* g) { group = g; }
+void Assignment::setGradeScale(GradeScale* g) { gradeScale = g; }
 
 void Assignment::setTitle(const string& t) { title = t; }
 

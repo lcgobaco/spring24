@@ -14,42 +14,42 @@
 
 using namespace std;
 
-Group::Group(int id, const Section& sec, const string& desc, double w)
+GradeScale::GradeScale(int id, const Section& sec, const string& desc, double w)
     : groupId(id), section(sec), description(desc), weight(w) {}
 
-int Group::getGroupId() const {
+int GradeScale::getGroupId() const {
     return groupId;
 }
 
-Section Group::getSection() const {
+Section GradeScale::getSection() const {
     return section;
 }
 
-string Group::getDescription() const {
+string GradeScale::getDescription() const {
     return description;
 }
 
-double Group::getWeight() const {
+double GradeScale::getWeight() const {
     return weight;
 }
 
-void Group::setGroupId(int id) {
+void GradeScale::setGroupId(int id) {
     groupId = id;
 }
 
-void Group::setSection(const Section& sec) {
+void GradeScale::setSection(const Section& sec) {
     section = sec;
 }
 
-void Group::setDescription(const string& desc) {
+void GradeScale::setDescription(const string& desc) {
     description = desc;
 }
 
-void Group::setWeight(double w) {
+void GradeScale::setWeight(double w) {
     weight = w;
 }
 
-void Group::display() const {
+void GradeScale::display() const {
     cout << "Group ID: " << groupId << endl;
     cout << "Section: " << section << endl;
     cout << "Description: " << description << endl;

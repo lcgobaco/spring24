@@ -10,8 +10,7 @@
 
  *******************************************************/
 
-#include "faculty.h"
-#include "section.h"
+#include "common.h"
 
 Faculty::Faculty(string id, const string& fName, const string& lName,
     const string& dept, const string& addr,const   string& city,

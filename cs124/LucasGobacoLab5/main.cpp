@@ -11,10 +11,7 @@
  *******************************************************/
 
 #include <iostream>
-#include "faculty.h"
-#include "section.h"
-#include "group.h"
-#include "assignment.h"
+#include "common.h"
 
 int main() {
    Faculty bnguyen("bnguyen", "Bob", "Nguyen", "CNET", "39399 Cherry St", "Fremont", "CA", "94538", "pnguyen@ohlone.edu", "510-742-2300");
@@ -29,11 +26,11 @@ int main() {
    vector<Section> sections = {section1, section2};
    jpham.setSections(sections);
 
-   Group group(1, &section1, "Group 1", 50.0);
+   GradeScale gradeScale(1, &section1, "Group 1", 50.0);
 
-    Assignment assignment(1, &group, "Assignment 1", "Description of assignment 1", 100.0);
+    Assignment assignment(1, &gradeScale, "Assignment 1", "Description of assignment 1", 100.0);
     vector<Assignment> assignments = {assignment};
-    group.setAssignments(assignments);
+    gradeScale.setAssignments(assignments);
 
     return 0;
 }

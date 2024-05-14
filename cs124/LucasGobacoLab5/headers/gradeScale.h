@@ -10,8 +10,8 @@
 
  *******************************************************/
 
-#ifndef GROUP_H
-#define GROUP_H
+#ifndef GRADESCALE_H
+#define GRADESCALE_H
 
 #include <iostream>
 #include <string>
@@ -20,7 +20,7 @@
 
 using namespace std;
 
-class Group {
+class GradeScale {
 private:
     int groupId;
     Section* section;
@@ -29,13 +29,13 @@ private:
     vector<Assignment> assignments;
 
 public:
-    Group(int id, Section* section, const string& description, double weight);
+    GradeScale(int id, Section* section, const string& description, double weight);
 
     /**
-     * Returns the group ID.
-     * @return the group ID
+     * Returns the grade scale ID.
+     * @return the grade scale ID
     */
-    int getGroupId() const;
+    int getGradeScaleId() const;
 
     /**
      * Returns the section.
@@ -62,10 +62,10 @@ public:
     vector<Assignment> getAssignments() const;
 
     /**
-     * Sets the group ID.
-     * @param id the group ID
+     * Sets the grade scale ID.
+     * @param id the grade scale ID
     */
-    void setGroupId(int id);
+    void setGradeScaleId(int id);
 
     /**
      * Sets the section.

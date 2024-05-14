@@ -19,7 +19,7 @@
 
 using namespace std;
 
-class Group {
+class GradeScale {
 private:
     int groupId;
     Section section;
@@ -34,7 +34,7 @@ public:
      * @param desc the description
      * @param w the weight percentage
     */
-    Group(int id, const Section& sec, const string& desc, double w);
+    GradeScale(int id, const Section& sec, const string& desc, double w);
 
     /**
      * Returns the unique identifier of this group.
