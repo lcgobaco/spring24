@@ -51,7 +51,7 @@ public:
       Changes: now using iterator to traverse the hash table
    */
     string getName(int index) const {
-      Iterator<string> iter = options.begin();
+      HashIterator<string> iter = options.begin();
       for (int i = 0; i < index; i++) 
          iter.next();
       return iter.get();

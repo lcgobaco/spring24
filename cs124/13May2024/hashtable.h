@@ -32,21 +32,21 @@ int hash_code(const T str);
 template<typename T>
 class HashTable;
 template<typename T>
-class Iterator;
+class HashIterator;
 
 template<typename T>
-class Node
+class HashNode
 {
 private:
    T data;
-   Node<T>* next;
+   HashNode<T>* next;
 
 friend class HashTable<T>;
-friend class Iterator<T>;
+friend class HashIterator<T>;
 };
 
 template<typename T>
-class Iterator
+class HashIterator
 {
 public:
    /**
@@ -63,11 +63,11 @@ public:
       @param other the iterator to compare with this iterator
       @return true if this iterator and other are equal
    */
-   bool equals(const Iterator& other) const;
+   bool equals(const HashIterator& other) const;
 private:
    const HashTable<T>* container;
    int bucket_index;
-   Node<T>* current;
+   HashNode<T>* current;
 
 friend class HashTable<T>;
 };
@@ -113,13 +113,13 @@ public:
       Returns an iterator to the beginning of this hash table.
       @return a hash table iterator to the beginning
    */
-   Iterator<T> begin() const;
+   HashIterator<T> begin() const;
 
    /**
       Returns an iterator past the end of this hash table.
       @return a hash table iterator past the end
    */
-   Iterator<T> end() const;
+   HashIterator<T> end() const;
 
    /**
       Gets the number of elements in this set.
@@ -128,10 +128,10 @@ public:
    int size() const;
 
 private:
-   vector<Node<T>*> buckets;
+   vector<HashNode<T>*> buckets;
    int current_size;
 
-friend class Iterator<T>;
+friend class HashIterator<T>;
 };
 
 /**
@@ -161,7 +161,7 @@ int HashTable<T>::count(const T& x)
    h = h % buckets.size();
    if (h < 0) { h = -h; }
 
-   Node<T>* current = buckets[h];
+   HashNode<T>* current = buckets[h];
    while (current != nullptr)
    {
       if (current->data == x) { return 1; }
@@ -181,14 +181,14 @@ void HashTable<T>::insert(const T& x)
    h = h % buckets.size();
    if (h < 0) { h = -h; }
 
-   Node<T>* current = buckets[h];
+   HashNode<T>* current = buckets[h];
    while (current != nullptr)
    {
       if (current-> data == x) { return; }
          // Already in the set
       current = current->next;
    }
-   Node<T>* new_node = new Node<T>;
+   HashNode<T>* new_node = new HashNode<T>;
    new_node->data = x;
    new_node->next = buckets[h];
    buckets[h] = new_node;
@@ -208,8 +208,8 @@ void HashTable<T>::erase(const T& x)
        h = -h;
    }
 
-   Node<T>* current = buckets[h];
-   Node<T>* previous = nullptr;
+   HashNode<T>* current = buckets[h];
+   HashNode<T>* previous = nullptr;
    while (current != nullptr)
    {
       if (current->data == x)
@@ -246,9 +246,9 @@ int HashTable<T>::size() const
  * @return a hash table iterator to the beginning
 */
 template<typename T>
-Iterator<T> HashTable<T>::begin() const
+HashIterator<T> HashTable<T>::begin() const
 {
-   Iterator<T> iter;
+   HashIterator<T> iter;
    iter.current = nullptr;
    iter.bucket_index = -1;
    iter.container = this;
@@ -261,9 +261,9 @@ Iterator<T> HashTable<T>::begin() const
  * @return a hash table iterator past the end
 */
 template<typename T>
-Iterator<T> HashTable<T>::end() const
+HashIterator<T> HashTable<T>::end() const
 {
-   Iterator<T> iter;
+   HashIterator<T> iter;
    iter.current = nullptr;
    iter.bucket_index = (int) buckets.size();
    iter.container = this;
@@ -275,7 +275,7 @@ Iterator<T> HashTable<T>::end() const
  * @return the value of the node to which the iterator points
 */
 template<typename T>
-T Iterator<T>::get() const
+T HashIterator<T>::get() const
 {
    return current->data;
 }
@@ -286,7 +286,7 @@ T Iterator<T>::get() const
  * @return true if this iterator and other are equal
 */
 template<typename T>
-bool Iterator<T>::equals(const Iterator& other) const
+bool HashIterator<T>::equals(const HashIterator& other) const
 {
    return current == other.current;
 }
@@ -295,7 +295,7 @@ bool Iterator<T>::equals(const Iterator& other) const
  * Advances the iterator to the next node.
 */
 template<typename T>
-void Iterator<T>::next()
+void HashIterator<T>::next()
 {
    if (bucket_index >= 0 && current->next != nullptr)
    {

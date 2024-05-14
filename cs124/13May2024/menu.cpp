@@ -42,7 +42,7 @@ void Menu::addOption(string option) {
 void Menu::display() const {
     cout << "***** " << name << " *****" << endl;
     // now using iterator to traverse the hash table
-    for (Iterator<string> iter = options.begin(); !iter.equals(options.end()); iter.next()) {
+    for (HashIterator<string> iter = options.begin(); !iter.equals(options.end()); iter.next()) {
         cout << iter.get() << endl;
     }
     cout << "\nEnter choice: ";
@@ -55,7 +55,7 @@ void Menu::displayPrefixIndex() const {
     cout << "***** " << name << " *****" << endl;
     // now using iterator to traverse the hash table
     int i = 0;
-    for (Iterator<string> iter = options.begin(); !iter.equals(options.end()); iter.next()) {
+    for (HashIterator<string> iter = options.begin(); !iter.equals(options.end()); iter.next()) {
         cout << i + 1 << ") " << iter.get() << endl;
         i++;
     }

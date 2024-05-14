@@ -16,11 +16,11 @@
 #pragma once
 #include <string>
 #include "task.h"
-#include "linkedset.h"
+#include "linkedSet.h"
 
 using namespace std;
 
-class TaskList : public LinkedList<Task> {
+class TaskList : public LinkedSet<Task> {
 
 public:
 	TaskList();
