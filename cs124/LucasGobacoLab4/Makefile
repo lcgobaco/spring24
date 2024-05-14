@@ -1,4 +1,5 @@
 COMPILER = g++ -std=c++17 -g
+ZIPFILE = lab4-LucasGobaco.zip
 all: main
 
 main: main.o dateTime.o dateType.o menu.o task.o taskList.o taskHashTable.o taskMenu.o taskException.o utils.o
@@ -38,5 +39,6 @@ clean:
 	rm -f main *.o
 
 zip: main
-	rm -f lab4-LucasGobaco.zip
-	zip -r lab4-LucasGobaco.zip *.cpp *.h Makefile README.md
+	rm -f $(ZIPFILE)
+	zip -r $(ZIPFILE) *.cpp *.h Makefile README.md
+	zipinfo $(ZIPFILE)
