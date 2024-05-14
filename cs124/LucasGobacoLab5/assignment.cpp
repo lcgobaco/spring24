@@ -12,14 +12,18 @@
 
 #include "common.h"
 
-Assignment::Assignment(int id, GradeScale* gradeScale, const string& title, const string& description, double possiblePoints, double points)
-    : assignmentId(id), gradeScale(gradeScale), title(title), description(description), possiblePoints(possiblePoints), points(points) {}
+Assignment::Assignment(int id, GradeScale* gradeScale,
+const string& description,
+const string& startDate, const string& endDate,
+double possiblePoints, double points)
+    : assignmentId(id), gradeScale(gradeScale),
+    description(description),
+    startDate(startDate), endDate(endDate),
+    possiblePoints(possiblePoints), points(points) {}
 
 int Assignment::getAssignmentId() const { return assignmentId; }
 
 GradeScale* Assignment::getGradeScale() const { return gradeScale; }
-
-string Assignment::getTitle() const { return title; }
 
 string Assignment::getDescription() const { return description; }
 
@@ -30,8 +34,6 @@ double Assignment::getPoints() const { return points; }
 void Assignment::setAssignmentId(int id) { assignmentId = id; }
 
 void Assignment::setGradeScale(GradeScale* g) { gradeScale = g; }
-
-void Assignment::setTitle(const string& t) { title = t; }
 
 void Assignment::setDescription(const string& d) { description = d; }
 

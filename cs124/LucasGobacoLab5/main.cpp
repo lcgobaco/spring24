@@ -11,26 +11,119 @@
  *******************************************************/
 
 #include <iostream>
+#include <string>
 #include "common.h"
+#include "Utils.h"
+#include <fstream>
+#include <map>
 
+using namespace std;
+
+map<int, GradeScale*> loadGradeScales(map<string, Section*> sectionMap) {
+    ifstream inFile;
+    inFile.open("grade-scale-data.csv");
+    if (!inFile) {
+        cerr << "Unable to open file grade-scale-data.csv";
+        exit(1);   // call system to stop
+    }
+
+    map<int, GradeScale*> gradeScales;
+    string line;
+    getline(inFile, line);
+
+    while (getline(inFile, line)) {
+        vector<string> tokens = splitString(line, ',');
+        Section* section = sectionMap[tokens[1]];
+        GradeScale gradeScale(stoi(tokens[0]), section, tokens[2], stod(tokens[3]));
+        gradeScales.insert(std::make_pair(stoi(tokens[0]),&gradeScale));
+    }
+
+    return gradeScales;
+
+}
+
+map<string, Section*> loadSections(map<string, Faculty*> facultyMap) {
+    ifstream inFile;
+    inFile.open("section-data.csv");
+    if (!inFile) {
+        cerr << "Unable to open file section-data.csv";
+        exit(1);   // call system to stop
+    }
+
+    map<string, Section*> sections;
+    string line;
+    getline(inFile, line);
+
+    while (getline(inFile, line)) {
+        if (!line.empty() && line[line.size() - 1] == '\r')
+            line.erase(line.size() - 1);
+        vector<string> tokens = splitString(line, ',');
+        string facultyId = tokens[4];
+
+        Faculty* faculty = facultyMap[facultyId];
+
+        Section section(tokens[1], tokens[0], tokens[2], stoi(tokens[3]), faculty);
+        sections.insert(std::make_pair(tokens[1],&section));
+    }
+
+    return sections;
+}
+map<string, Faculty*> loadFaculties() {
+    ifstream inFile;
+    inFile.open("faculty-data.csv");
+    if (!inFile) {
+        cerr << "Unable to open file faculty-data.csv";
+        exit(1);   // call system to stop
+    }
+
+    map<string, Faculty*> faculties;
+    string line;
+    getline(inFile, line);
+
+    while (getline(inFile, line)) {
+        if (!line.empty() && line[line.size() - 1] == '\r')
+            line.erase(line.size() - 1);
+        vector<string> tokens = splitString(line, ',');
+        Faculty faculty(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]);
+        faculties.insert(std::make_pair(tokens[0],&faculty));
+    }
+
+    return faculties;
+}
+map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap) {
+    ifstream inFile;
+    inFile.open("assignment-data.csv");
+    if (!inFile) {
+        cerr << "Unable to open file assignment-data.csv";
+        exit(1);   // call system to stop
+    }
+
+    map<int, Assignment*> assignments;
+    string line;
+    getline(inFile, line);
+
+    while (getline(inFile, line)) {
+        vector<string> tokens = splitString(line, ',');
+        GradeScale* gradeScale = gradeScaleMap[stoi(tokens[1])];
+        Assignment assignment(stoi(tokens[0]), gradeScale, tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
+        assignments.insert(std::make_pair(stoi(tokens[0]),&assignment));
+    }
+    inFile.close();
+    return assignments;
+}
 int main() {
-   Faculty bnguyen("bnguyen", "Bob", "Nguyen", "CNET", "39399 Cherry St", "Fremont", "CA", "94538", "pnguyen@ohlone.edu", "510-742-2300");
-   Faculty dtopham("dtopham", "David", "Topham", "CS", "43600 Mission Blvd.", "Fremont", "CA", "94538", "dtopham@ohlone.edu", "510-659-6000");
-   Faculty jpham("jpham", "Jim", "Pham", "CS", "39399 Cherry St", "Neward", "CA", "94560", "jpham@ohlone.edu", "510-742-2300");
-   Faculty rsha("rsha", "Ron", "Sha", "CNET", "39399 Cherry St", "Fremont", "CA", "94538", "rsha@ohlone.edu", "510-742-2300");
-   Faculty schenhansa("schenhansa", "Suporn", "Chenhansa", "CS", "43600 Mission Blvd.", "Fremont", "CA", "94538", "schenhansa@ohlone.edu", "510-659-6000");
-   Faculty imalik("imalik", "I", "Malik", "CS", "43600 Mission Blvd.", "Fremont", "CA", "94538", "imalik@ohlone.edu", "510-659-6000");
 
-   Section section1("Spring 2024", "CS-124-01", "Programming W/ Data Structures", 3, &jpham);
-   Section section2("Spring 2024", "CS-124-03", "Programming W/ Data Structures", 3, &jpham);
-   vector<Section> sections = {section1, section2};
-   jpham.setSections(sections);
+    cout << "Loading faculties..." << endl;
+   map<string, Faculty*> facultyMap = loadFaculties();
 
-   GradeScale gradeScale(1, &section1, "Group 1", 50.0);
+   cout << "Loading sections..." << endl;
+   map<string, Section*> sectionMap = loadSections(facultyMap);
 
-    Assignment assignment(1, &gradeScale, "Assignment 1", "Description of assignment 1", 100.0, 95.0);
-    vector<Assignment> assignments = {assignment};
-    gradeScale.setAssignments(assignments);
+   cout << "Loading grade scales..." << endl;
+   map<int, GradeScale*> gradeScaleMap = loadGradeScales(sectionMap);
+
+    cout << "Loading assignments..." << endl;
+    map<int, Assignment*> assignmentMap = loadAssignments(gradeScaleMap);
 
     return 0;
 }

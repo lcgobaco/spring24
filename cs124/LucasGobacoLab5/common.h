@@ -34,7 +34,6 @@ private:
     string zip;
     string email;
     string phone;
-    vector<Section> sections;
 
 public:
     /**
@@ -50,7 +49,8 @@ public:
      * @param email the faculty member's email
      * @param phone the faculty member's phone number
     */
-    Faculty(string id, const string& fName, const string& lName, const string& dept, const string& addr,const   string& city, const string& state, const   string& zip, const string& email, const string& phone);
+    Faculty(string id, const string& fName, const string& lName, const string& dept, const string& addr,
+    const string& city, const string& state, const string& zip, const string& email, const string& phone);
 
     /**
      * Returns the faculty ID.
@@ -113,12 +113,6 @@ public:
     string getPhone() const;
 
     /**
-     * Returns the vector of sections.
-     * @return the vector of sections
-    */
-    vector<Section> getSections() const;
-
-    /**
      * Sets the faculty ID.
      * @param id the faculty ID
     */
@@ -177,12 +171,6 @@ public:
      * @param phone the faculty member's phone number
     */
     void setPhone(const string& phone);
-
-    /**
-     * Sets the vector of sections.
-     * @param s the vector of sections
-    */
-    void setSections(vector<Section> s);
 };
 
 class Section {
@@ -192,7 +180,6 @@ private:
     string courseName;
     int units;
     Faculty* faculty;
-    vector<GradeScale> gradeScales;
 
 public:
     /**
@@ -227,12 +214,6 @@ public:
      * @return the number of units
     */
     int getUnits() const;
-
-    /**
-     * Returns the grade scales.
-     * @return the grade scales
-    */
-    vector<GradeScale> getGradeScales() const;
 
     /**
      * Returns the faculty member.
@@ -270,12 +251,6 @@ public:
     */
     void setFaculty(Faculty* f);
 
-    /**
-     * Sets the groups.
-     * @param g the groups
-     */
-    void setGradeScales(vector<GradeScale> g);
-
 };
 
 class GradeScale {
@@ -284,7 +259,6 @@ private:
     Section* section;
     string description;
     double weight;
-    vector<Assignment> assignments;
 
 public:
     GradeScale(int id, Section* section, const string& description, double weight);
@@ -314,12 +288,6 @@ public:
     double getWeight() const;
 
     /**
-     * Returns the vector of assignments.
-     * @return the vector of assignments
-     */
-    vector<Assignment> getAssignments() const;
-
-    /**
      * Sets the grade scale ID.
      * @param id the grade scale ID
     */
@@ -343,33 +311,32 @@ public:
     */
     void setWeight(double w);
 
-    /**
-     * Sets the vector of assignments.
-     * @param a the vector of assignments
-     * */
-    void setAssignments(vector<Assignment> a);
 };
 
 class Assignment {
 private:
     int assignmentId;
     GradeScale* gradeScale;
-    string title;
     string description;
+    string startDate;
+    string endDate;
     double possiblePoints;
     double points;
 
 public:
     /**
-     * Constructs an assignment object with a given ID, gradeScale, title, description, and maximum score.
+     * Constructs an assignment object with a given ID, gradeScale, description, and maximum score.
      * @param id the assignment ID
      * @param gradeScale the grade scale
-     * @param title the title
      * @param description the description
+     * @param startDate the start date
+     * @param endDate the end date
      * @param possiblePoints the possible points
      * @param points the points
     */
-    Assignment(int id, GradeScale* gradeScale, const string& title, const string& description, double possiblePoints, double points);
+    Assignment(int id, GradeScale* gradeScale, const string& description,
+    const string& startDate, const string& endDate,
+    double possiblePoints, double points);
 
     /**
      * Returns the assignment ID.
@@ -396,11 +363,22 @@ public:
     string getDescription() const;
 
     /**
-     * Returns the maximum score.
-     * @return the maximum score
+     * Returns the start date.
+     * @return the start date
+    */
+    string getStartDate() const;
+
+    /**
+     * Returns the end date.
+     * @return the end date
+     */
+    string getEndDate() const;
+
+    /**
+     * Returns the possible points
+     * @return the possible points
     */
     double getPossiblePoints() const;
-
 
     /**
      * Returns the points.
@@ -420,17 +398,24 @@ public:
     */
     void setGradeScale(GradeScale* g);
 
-    /**
-     * Sets the title.
-     * @param t the title
-    */
-    void setTitle(const string& t);
 
     /**
      * Sets the description.
      * @param d the description
     */
     void setDescription(const string& d);
+
+    /**
+     * Sets the start date.
+     * @param s the start date
+     * */
+    void setStartDate(const string& s);
+
+    /**
+     *  Sets the end date.
+     * @param e the end date
+     * */
+    void setEndDate(const string& e);
 
     /**
      * Sets the maximum score.

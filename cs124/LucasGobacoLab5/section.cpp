@@ -25,8 +25,6 @@ int Section::getUnits() const { return units; }
 
 Faculty* Section::getFaculty() const { return faculty; }
 
-vector<GradeScale> Section::getGradeScales() const { return gradeScales; }
-
 void Section::setSectionId(int id) { sectionId = id; }
 
 void Section::setTerm(const string& t) { term = t; }
@@ -36,5 +34,3 @@ void Section::setCourseName(const string& c) { courseName = c; }
 void Section::setUnits(int u) { units = u; }
 
 void Section::setFaculty(Faculty* f) { faculty = f; }
-
-void Section::setGradeScales(vector<GradeScale> g) { gradeScales = g; }

@@ -38,8 +38,6 @@ string Faculty::getEmail() const { return email; }
 
 string Faculty::getPhone() const { return phone; }
 
-vector<Section> Faculty::getSections() const { return sections; }
-
 void Faculty::setFacultyId(string id) { facultyId = id; }
 
 void Faculty::setFirstName(const string& fName) { firstName = fName; }
@@ -59,5 +57,3 @@ void Faculty::setZip(const string& z) { zip = z; }
 void Faculty::setEmail(const string& e) { email = e; }
 
 void Faculty::setPhone(const string& p) { phone = p; }
-
-void Faculty::setSections(vector<Section> s) { sections = s; }

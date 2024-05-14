@@ -1,4 +1,4 @@
-GroupId,Section,Description,Weight(%)
+GradeScaleId,Section,Description,Weight(%)
 1,CS-124-01,Assignments,10
 2,CS-124-01,Quizzes,10
 3,CS-124-01,Labs,30
