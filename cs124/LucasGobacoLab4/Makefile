@@ -40,7 +40,7 @@ taskException.o: taskException.cpp
 clean:
 	rm -f main *.o
 
-zip: main
+zip: all
 	rm -f $(ZIPFILE)
 	zip -r $(ZIPFILE) *.cpp *.h Makefile README.md
 	zipinfo $(ZIPFILE)

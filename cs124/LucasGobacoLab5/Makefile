@@ -31,7 +31,7 @@ Utils.o: Utils.cpp
 clean:
 	rm *.o
 
-zip: main
+zip: all
 	rm -f $(ZIPFILE)
 	zip -r $(ZIPFILE) *.cpp *.h Makefile README.md
 	zipinfo $(ZIPFILE)
