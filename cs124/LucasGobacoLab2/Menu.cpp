@@ -29,6 +29,7 @@ void Menu::display() const
    {
       cout << i + 1 << ") " << options[i] << endl;
    }
+   cout << "x) Exit" << endl;
 }
 
 char Menu::get_input() const

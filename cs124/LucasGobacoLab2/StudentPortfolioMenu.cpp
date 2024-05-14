@@ -1,6 +1,6 @@
 /*******************************************************
 
- * Program Name: StudentPortfolioMenu.cpp
+ * Program Name: StudentPortfolioMenu.h
 
  * Author: Lucas Gobaco
 

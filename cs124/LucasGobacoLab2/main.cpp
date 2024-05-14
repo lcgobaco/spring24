@@ -10,11 +10,11 @@
 
  *******************************************************/
 
-#include "StudentPortfolio.h"
+#include "StudentPortfolioMenu.h"
 
 int main() {
 
-    StudentPortfolio menu;
+    StudentPortfolioMenu menu;
     menu.activate();
 
     return 0;

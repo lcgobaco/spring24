@@ -1,6 +1,6 @@
 /*******************************************************
 
- * Program Name: StudentPortFolio.h
+ * Program Name: StudentPortFolioMenuh
 
  * Author: Lucas Gobaco
 
@@ -31,7 +31,7 @@ enum STUDENT_PORTFOLIO_MENU {
 };
 
 
-class StudentPortfolio : public Menu {
+class StudentPortfolioMenu : public Menu {
 private:
     ComputerScienceTransferCourses courses;
     void initData();
@@ -43,7 +43,7 @@ private:
     void exit();
 
 public:
-    StudentPortfolio();
+    StudentPortfolioMenu();
     void activate();
 };
 
