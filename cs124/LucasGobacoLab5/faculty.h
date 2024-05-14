@@ -15,6 +15,8 @@
 
 #include <iostream>
 #include <string>
+#include <vector>
+#include "section.h"
 
 using namespace std;
 
@@ -30,6 +32,7 @@ private:
     string zip;
     string email;
     string phone;
+    vector<Section> sections;
 
 public:
     /**
@@ -108,6 +111,12 @@ public:
     string getPhone() const;
 
     /**
+     * Returns the vector of sections.
+     * @return the vector of sections
+    */
+    vector<Section> getSections() const;
+
+    /**
      * Sets the faculty ID.
      * @param id the faculty ID
     */
@@ -166,6 +175,12 @@ public:
      * @param phone the faculty member's phone number
     */
     void setPhone(const string& phone);
+
+    /**
+     * Sets the vector of sections.
+     * @param s the vector of sections
+    */
+    void setSections(vector<Section> s);
 };
 
 #endif

@@ -23,6 +23,8 @@ string Group::getDescription() const { return description; }
 
 double Group::getWeight() const { return weight; }
 
+vector<Assignment> Group::getAssignments() const { return assignments; }
+
 void Group::setGroupId(int id) { groupId = id; }
 
 void Group::setSection(Section* s) { section = s; }
@@ -30,3 +32,5 @@ void Group::setSection(Section* s) { section = s; }
 void Group::setDescription(const string& d) { description = d; }
 
 void Group::setWeight(double w) { weight = w; }
+
+void Group::setAssignments(vector<Assignment> a) { assignments = a; }

@@ -16,15 +16,17 @@
 #include <iostream>
 #include <string>
 #include "section.h"
+#include "assignment.h"
 
 using namespace std;
 
 class Group {
 private:
     int groupId;
-    Section* section; 
+    Section* section;
     string description;
     double weight;
+    vector<Assignment> assignments;
 
 public:
     Group(int id, Section* section, const string& description, double weight);
@@ -54,6 +56,12 @@ public:
     double getWeight() const;
 
     /**
+     * Returns the vector of assignments.
+     * @return the vector of assignments
+     */
+    vector<Assignment> getAssignments() const;
+
+    /**
      * Sets the group ID.
      * @param id the group ID
     */
@@ -76,6 +84,12 @@ public:
      * @param w the weight
     */
     void setWeight(double w);
+
+    /**
+     * Sets the vector of assignments.
+     * @param a the vector of assignments
+     * */
+    void setAssignments(vector<Assignment> a);
 };
 
 #endif
