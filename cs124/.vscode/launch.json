@@ -48,6 +48,34 @@
             //"preLaunchTask": "build_task"
         },
         {
+            "name": "Lab4",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/LucasGobacoLab4/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+            //,
+            //"preLaunchTask": "build_task"
+        },
+        {
+            "name": "Lab5",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${workspaceFolder}/LucasGobacoLab5/main",
+            "args": [],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": true,
+            "MIMode": "lldb"
+            //,
+            //"preLaunchTask": "build_task"
+        },
+        {
             "name": "24April2024",
             "type": "cppdbg",
             "request": "launch",

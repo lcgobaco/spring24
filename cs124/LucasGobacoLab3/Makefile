@@ -33,3 +33,7 @@ ContactList.o: ContactList.cpp
 
 clean:
 	rm -f main *.o
+
+zip: main
+	rm -f lab3-LucasGobaco.zip
+	zip -r lab3-LucasGobaco.zip *.cpp *.h Makefile README.md

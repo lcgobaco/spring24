@@ -18,3 +18,7 @@ Menu.o: Menu.cpp
 
 clean:
 	rm -f main *.o
+
+zip: main
+	rm -f lab2-LucasGobaco.zip
+	zip -r lab2-LucasGobaco.zip *.cpp *.h Makefile README.md

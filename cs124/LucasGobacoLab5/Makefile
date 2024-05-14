@@ -27,3 +27,7 @@ Utils.o: Utils.cpp
 
 clean:
 	rm *.o
+
+zip: main
+	rm -f lab5-LucasGobaco.zip
+	zip -r lab5-LucasGobaco.zip *.cpp *.h Makefile README.md

@@ -36,3 +36,7 @@ taskException.o: taskException.cpp
 
 clean:
 	rm -f main *.o
+
+zip: main
+	rm -f lab4-LucasGobaco.zip
+	zip -r lab4-LucasGobaco.zip *.cpp *.h Makefile README.md

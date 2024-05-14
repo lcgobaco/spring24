@@ -11,7 +11,6 @@
 #include "taskMenu.h"
 #include "menu.h"
 #include "dateTime.h"
-#include "taskException.h"
 
 using namespace std;
 
@@ -23,29 +22,16 @@ TaskMenu::TaskMenu() : Menu("Main Menu") {
 	addOption("c) List completed tasks");
 	addOption("x) Exit");
 
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//list = new TaskList();
-	table = new TaskHashTable();
-	try {
-		init();}
-	catch (const TaskException& e) {
-		cout << e.what() << endl;
-		exit(1);
-	}
+	list = new TaskList();
+	init();
 }
-TaskMenu::~TaskMenu() {
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//delete list;
-	delete table;
+TaskMenu::~TaskMenu() {	
+	delete list;
 	inFile.close();
 }
 
-void TaskMenu::init(){
+void TaskMenu::init() {
 	inFile.open(TASK_DATA);
-
-	if (inFile.fail()) {
-		throw runtime_error("Could not open file " + TASK_DATA);
-	}
 
 	string text;
 	string line = "";
@@ -56,7 +42,7 @@ void TaskMenu::init(){
 			firstRow = false;
 			continue;
 		}
-		stringstream ss(line);
+		stringstream ss(line);		
 		Task task;
 		getline(ss, text, ',');
 		task.setTerm(text);
@@ -68,74 +54,44 @@ void TaskMenu::init(){
 		task.setEndDate(text);
 		getline(ss, text, ',');
 		task.setStatus(stoi(text));	// value =1 means DONE! and value = 0 is pending
-		//list->push(task);
-		table->insert(task.getName(), task);
+		list->push(task);
 	}
 	inFile.close();
 }
 
 void TaskMenu::viewPendingTasks() {
 	showOption(getName(3).substr(3));
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//list->printTable(false);
-	table->printTable(false);
+	list->printTable(false);
 }
 
 void TaskMenu::viewCompletedTasks() {
 	showOption(getName(4).substr(3));
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//list->printTable(true);
-	table->printTable(true);
+	list->printTable(true);
 }
 
 void TaskMenu::addNewTask() {
 	showOption(getName(0).substr(3));
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//list->addNew();
-	try {
-		table->addNew();
-		cout << endl;
-	} catch (const TaskException& e) {
-		cout << e.what() << endl;
-		cout << endl;
-		return;
-	}
+	list->addNew();
 	cout << endl;
 }
 
 void TaskMenu::editTask() {
 	showOption(getName(1).substr(3));
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//list->editTask();
-	try {
-		table->editTask();
-		cout << endl;
-	} catch (const TaskException& e) {
-		cout << e.what() << endl;
-		cout << endl;
-		return;
-	}
+	list->editTask();
+	cout << endl;
 }
 
 void TaskMenu::deleteTask() {
-	showOption(getName(2).substr(3));
-	//TODO and DONE: Replaced TaskList with TaskHashTable
-	//list->deleteTask();
-	try {
-		table->deleteTask();
-		cout << endl;
-	} catch (const TaskException& e) {
-		cout << e.what() << endl;
-		cout << endl;
-		return;
-	}
+	showOption(getName(2).substr(3));	
+	list->deleteTask();
+	cout << endl;
 }
 
 void TaskMenu::activate() {
 	char command = COMMAND::ADD;
 	while (command != EXIT) {
 		command = doMenuOption();
-		switch (command) {
+		switch (command) {		
 		case ADD:
 			addNewTask();
 			break;
@@ -158,7 +114,7 @@ void TaskMenu::activate() {
 			cout << "Not a valid command. Please try again." << endl << endl;
 			break;
 		}
-	}
+	}	
 }
 
 void TaskMenu::showOption(const string title) {

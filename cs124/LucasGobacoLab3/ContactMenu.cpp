@@ -334,7 +334,7 @@ void ContactMenu::activate() {
     add_option("Add new contact");
     add_option("Edit contact");
     add_option("Delete contact");
-    add_option("Exit");
+    //add_option("Exit");
 
     do
     {
