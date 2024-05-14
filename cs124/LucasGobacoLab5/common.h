@@ -201,6 +201,7 @@ private:
     string courseName;
     int units;
     Faculty* faculty;
+    vector<GradeScale*> gradeScales;
 
 public:
     /**
@@ -243,6 +244,12 @@ public:
     Faculty* getFaculty() const;
 
     /**
+     * Returns the grade scales.
+     * @return the grade scales
+    */
+    vector<GradeScale*> getGradeScales() const;
+
+    /**
      * Sets the section ID.
      * @param id the section ID
     */
@@ -271,6 +278,18 @@ public:
      * @param f the faculty member
     */
     void setFaculty(Faculty* f);
+
+    /**
+     * Sets the grade scales.
+     * @param gs the grade scales
+     */
+    void setGradeScales(vector<GradeScale*> gs);
+
+    /**
+     * Adds a grade scale.
+     * @param gs the grade scale
+    */
+    void addGradeScale(GradeScale* gs);
 
 };
 

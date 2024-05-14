@@ -36,6 +36,7 @@ map<int, GradeScale*> loadGradeScales(map<string, Section*> sectionMap) {
         Section* section = sectionMap[tokens[1]];
         GradeScale* gradeScale = new GradeScale(stoi(tokens[0]), section, tokens[2], stod(tokens[3]));
         gradeScales[stoi(tokens[0])] = gradeScale;
+        section->addGradeScale(gradeScale);
     }
 
     return gradeScales;
