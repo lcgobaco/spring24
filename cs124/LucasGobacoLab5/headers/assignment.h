@@ -25,7 +25,7 @@ private:
     GradeScale* group;
     string title;
     string description;
-    double maxScore;
+    double possiblePoints;
 
 public:
     /**

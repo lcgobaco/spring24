@@ -28,7 +28,7 @@ int main() {
 
    GradeScale gradeScale(1, &section1, "Group 1", 50.0);
 
-    Assignment assignment(1, &gradeScale, "Assignment 1", "Description of assignment 1", 100.0);
+    Assignment assignment(1, &gradeScale, "Assignment 1", "Description of assignment 1", 100.0, 95.0);
     vector<Assignment> assignments = {assignment};
     gradeScale.setAssignments(assignments);
 

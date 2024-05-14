@@ -356,7 +356,8 @@ private:
     GradeScale* gradeScale;
     string title;
     string description;
-    double maxScore;
+    double possiblePoints;
+    double points;
 
 public:
     /**
@@ -365,9 +366,10 @@ public:
      * @param gradeScale the grade scale
      * @param title the title
      * @param description the description
-     * @param maxScore the maximum score
+     * @param possiblePoints the possible points
+     * @param points the points
     */
-    Assignment(int id, GradeScale* gradeScale, const string& title, const string& description, double maxScore);
+    Assignment(int id, GradeScale* gradeScale, const string& title, const string& description, double possiblePoints, double points);
 
     /**
      * Returns the assignment ID.
@@ -397,7 +399,14 @@ public:
      * Returns the maximum score.
      * @return the maximum score
     */
-    double getMaxScore() const;
+    double getPossiblePoints() const;
+
+
+    /**
+     * Returns the points.
+     * @return the points
+     * */
+    double getPoints() const;
 
     /**
      * Sets the assignment ID.
@@ -427,7 +436,13 @@ public:
      * Sets the maximum score.
      * @param m the maximum score
     */
-    void setMaxScore(double m);
+    void setPossiblePoints(double m);
+
+    /**
+     * Sets the points.
+     * @param p the points
+     * */
+    void setPoints(double p);
 };
 
 
