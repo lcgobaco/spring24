@@ -85,7 +85,6 @@ map<string, Faculty*> loadFaculties() {
         if (!line.empty() && line[line.size() - 1] == '\r')
             line.erase(line.size() - 1);
         vector<string> tokens = splitString(line, ',');
-        cout << tokens[0] << endl;
 
         //Faculty faculty = new Faculty;
         Faculty* faculty = new Faculty(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]);
@@ -121,29 +120,44 @@ int main() {
 
     cout << "Loading faculties..." << endl;
    map<string, Faculty*> facultyMap = loadFaculties();
-
+   cout << "Finished loading faculties" << endl;
 
    cout << "Loading sections..." << endl;
    map<string, Section*> sectionMap = loadSections(facultyMap);
-   for (auto it = sectionMap.begin(); it != sectionMap.end(); ++it) {
-       cout << it->first << "," << it->second->getFaculty()->getFirstName() << endl;
-   }
-   for (auto it = facultyMap.begin(); it != facultyMap.end(); ++it) {
-       cout << it->first << "," << it->second->getFirstName() << endl;
-       cout << it->first << "," << it->second->getSections().size() << endl;
-   }
+   cout << "Finished loading sections" << endl;
 
    cout << "Loading grade scales..." << endl;
    map<int, GradeScale*> gradeScaleMap = loadGradeScales(sectionMap);
+   cout << "Finished loading grade scales" << endl;
 
     cout << "Loading assignments..." << endl;
     map<int, Assignment*> assignmentMap = loadAssignments(gradeScaleMap);
+    cout << "Finished loading assignments" << endl;
 
-    cout << "Assignments size:." << assignmentMap.size() << endl;
-    for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
-        cout << it->second->getAssignmentId() << endl;
-        cout << it->second->getGradeScale()->getSection()->getSectionId() << endl;
-        cout << it->second->getGradeScale()->getGradeScaleId() << endl;
+
+    cout << "Traversion Faculty->Section->GradeScale->Assignment" << endl;
+   for (auto it = facultyMap.begin(); it != facultyMap.end(); ++it) {
+        vector<Section*> sections = it->second->getSections();
+        for (auto it2 = sections.begin(); it2 != sections.end(); ++it2) {
+            vector<GradeScale*> gradeScales = (*it2)->getGradeScales();
+            for (auto it3 = gradeScales.begin(); it3 != gradeScales.end(); ++it3) {
+                vector<Assignment*> assignments = (*it3)->getAssignments();
+                for (auto it4 = assignments.begin(); it4 != assignments.end(); ++it4) {
+                    cout << it->second->getFacultyId() << ",";
+                    cout << (*it2)->getSectionId() << ",";
+                    cout << (*it3)->getGradeScaleId() << ",";
+                    cout << (*it4)->getAssignmentId() << endl;
+                }
+            }
+        }
+   }
+    cout << "Traversion Assignment->GradeScale->Section->Faculty" << endl;
+        for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+        cout << it->second->getAssignmentId() << ",";
+        cout << it->second->getGradeScale()->getGradeScaleId() << ",";
+        cout << it->second->getGradeScale()->getSection()->getSectionId() << ",";
+        cout << it->second->getGradeScale()->getSection()->getFaculty()->getFacultyId() << endl;
     }
+
     return 0;
 }
