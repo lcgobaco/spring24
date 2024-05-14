@@ -34,8 +34,8 @@ map<int, GradeScale*> loadGradeScales(map<string, Section*> sectionMap) {
     while (getline(inFile, line)) {
         vector<string> tokens = splitString(line, ',');
         Section* section = sectionMap[tokens[1]];
-        GradeScale gradeScale(stoi(tokens[0]), section, tokens[2], stod(tokens[3]));
-        gradeScales.insert(std::make_pair(stoi(tokens[0]),&gradeScale));
+        GradeScale* gradeScale = new GradeScale(stoi(tokens[0]), section, tokens[2], stod(tokens[3]));
+        gradeScales[stoi(tokens[0])] = gradeScale;
     }
 
     return gradeScales;
@@ -62,8 +62,8 @@ map<string, Section*> loadSections(map<string, Faculty*> facultyMap) {
 
         Faculty* faculty = facultyMap[facultyId];
 
-        Section section(tokens[1], tokens[0], tokens[2], stoi(tokens[3]), faculty);
-        sections.insert(std::make_pair(tokens[1],&section));
+        Section* section = new Section(tokens[1], tokens[0], tokens[2], stoi(tokens[3]), faculty);
+        sections[tokens[1]] = section;
     }
 
     return sections;
@@ -84,8 +84,12 @@ map<string, Faculty*> loadFaculties() {
         if (!line.empty() && line[line.size() - 1] == '\r')
             line.erase(line.size() - 1);
         vector<string> tokens = splitString(line, ',');
-        Faculty faculty(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]);
-        faculties.insert(std::make_pair(tokens[0],&faculty));
+        cout << tokens[0] << endl;
+
+        //Faculty faculty = new Faculty;
+        Faculty* faculty = new Faculty(tokens[0], tokens[1], tokens[2], tokens[3], tokens[4], tokens[5], tokens[6], tokens[7], tokens[8], tokens[9]);
+        //faculties.insert(std::make_pair(tokens[0],&faculty));
+        faculties[tokens[0]] = faculty;
     }
 
     return faculties;
@@ -98,15 +102,15 @@ map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap) {
         exit(1);   // call system to stop
     }
 
-    map<int, Assignment*> assignments;
+    map<int, Assignment*> assignments;;
     string line;
     getline(inFile, line);
 
     while (getline(inFile, line)) {
         vector<string> tokens = splitString(line, ',');
         GradeScale* gradeScale = gradeScaleMap[stoi(tokens[1])];
-        Assignment assignment(stoi(tokens[0]), gradeScale, tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
-        assignments.insert(std::make_pair(stoi(tokens[0]),&assignment));
+        Assignment* assignment = new Assignment(stoi(tokens[0]), gradeScale, tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
+        assignments[stoi(tokens[0])] = assignment;
     }
     inFile.close();
     return assignments;
@@ -115,6 +119,9 @@ int main() {
 
     cout << "Loading faculties..." << endl;
    map<string, Faculty*> facultyMap = loadFaculties();
+   for (auto it = facultyMap.begin(); it != facultyMap.end(); ++it) {
+       cout << it->first << "," << it->second->getFirstName() << endl;
+   }
 
    cout << "Loading sections..." << endl;
    map<string, Section*> sectionMap = loadSections(facultyMap);
@@ -125,5 +132,11 @@ int main() {
     cout << "Loading assignments..." << endl;
     map<int, Assignment*> assignmentMap = loadAssignments(gradeScaleMap);
 
+    cout << "Assignments size:." << assignmentMap.size() << endl;
+    for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+        cout << it->second->getAssignmentId() << endl;
+        //cout << it->second->getGradeScale()->getSection()->getSectionId() << endl;
+        //cout << it->second->getGradeScale()->getGradeScaleId() << endl;
+    }
     return 0;
 }
