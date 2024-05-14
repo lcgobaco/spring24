@@ -11,14 +11,14 @@
  *******************************************************/
 
 #include <iostream>
-#include "Faculty.h"
-#include "Section.h"
-#include "Group.h"
-#include "Assignment.h"
+#include "faculty.h"
+#include "section.h"
+#include "group.h"
+#include "assignment.h"
 
 int main() {
-   Faculty bnguyen(1, "bnguyen", "Bob", "Nguyen", "CNET", "39399 Cherry St", "Fremont", "CA", "94538", "pnguyen@ohlone.edu", "510-742-2300");
-   Faculty dtopham(2, "dtopham", "David", "Topham", "CS", "43600 Mission Blvd.", "Fremont", "CA", "94538", "dtopham@ohlone.edu", "510-659-6000");
+   Faculty bnguyen("bnguyen", "Bob", "Nguyen", "CNET", "39399 Cherry St", "Fremont", "CA", "94538", "pnguyen@ohlone.edu", "510-742-2300");
+   Faculty dtopham("dtopham", "David", "Topham", "CS", "43600 Mission Blvd.", "Fremont", "CA", "94538", "dtopham@ohlone.edu", "510-659-6000");
    Faculty jpham("jpham", "Jim", "Pham", "CS", "39399 Cherry St", "Neward", "CA", "94560", "jpham@ohlone.edu", "510-742-2300");
    Faculty rsha("rsha", "Ron", "Sha", "CNET", "39399 Cherry St", "Fremont", "CA", "94538", "rsha@ohlone.edu", "510-742-2300");
    Faculty schenhansa("schenhansa", "Suporn", "Chenhansa", "CS", "43600 Mission Blvd.", "Fremont", "CA", "94538", "schenhansa@ohlone.edu", "510-659-6000");

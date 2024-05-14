@@ -31,11 +31,13 @@ void ContactList::moveLast() {
 }
 
 void ContactList::moveNext() {
-    current.next();
+    ++current;
+    //current.next();
 }
 
 void ContactList::movePrevious() {
-    current.previous();
+    --current;
+    //current.previous();
 }
 
 Iterator<Contact> ContactList::search(string id) {

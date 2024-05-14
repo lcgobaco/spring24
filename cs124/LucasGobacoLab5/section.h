@@ -21,10 +21,12 @@ using namespace std;
 
 class Section {
 private:
-    int sectionId;
+    string sectionId;
     string term;
     string courseName;
-    Faculty* faculty; 
+    int units;
+    Faculty* faculty;
+
 
 public:
     /**
@@ -34,13 +36,13 @@ public:
      * @param courseName the course name
      * @param faculty the faculty member
     */
-    Section(int id, const string& term, const string& courseName, Faculty* faculty);
+    Section(string id, const string& term, const string& courseName, int units, Faculty* faculty);
 
     /**
      * Returns the section ID.
      * @return the section ID
     */
-    int getSectionId() const;
+    string getSectionId() const;
 
     /**
      * Returns the term.
@@ -53,6 +55,12 @@ public:
      * @return the course name
     */
     string getCourseName() const;
+
+    /**
+     * Returns the number of units.
+     * @return the number of units
+    */
+    int getUnits() const;
 
     /**
      * Returns the faculty member.
@@ -77,6 +85,12 @@ public:
      * @param c the course name
     */
     void setCourseName(const string& c);
+
+    /**
+     * Sets the number of units.
+     * @param u the number of units
+    */
+    void setUnits(const int u);
 
     /**
      * Sets the faculty member.

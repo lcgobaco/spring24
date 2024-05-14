@@ -12,14 +12,16 @@
 
 #include "section.h"
 
-Section::Section(int id, const string& term, const string& courseName, Faculty* faculty)
-    : sectionId(id), term(term), courseName(courseName), faculty(faculty) {}
+Section::Section(string id, const string& term, const string& courseName, int units, Faculty* faculty)
+    : sectionId(id), term(term), courseName(courseName), units(units), faculty(faculty) {}
 
-int Section::getSectionId() const { return sectionId; }
+string Section::getSectionId() const { return sectionId; }
 
 string Section::getTerm() const { return term; }
 
 string Section::getCourseName() const { return courseName; }
+
+int Section::getUnits() const { return units; }
 
 Faculty* Section::getFaculty() const { return faculty; }
 
@@ -28,5 +30,7 @@ void Section::setSectionId(int id) { sectionId = id; }
 void Section::setTerm(const string& t) { term = t; }
 
 void Section::setCourseName(const string& c) { courseName = c; }
+
+void Section::setUnits(int u) { units = u; }
 
 void Section::setFaculty(Faculty* f) { faculty = f; }

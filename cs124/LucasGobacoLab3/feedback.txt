@@ -16,7 +16,7 @@ Otherwise, your program will not work. Missing requirements.
 Please see Lab 3 requirements
 
 4) Move operations, It should be,
-/ prefix increment Iterator<T>& operator++()
+// prefix increment Iterator<T>& operator++()
 // postfix increment Iterator<T> operator++(T)
 // prefix decrement Iterator<T>& operator--()
 // postfix decrement Iterator<T> operator--(T)

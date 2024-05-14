@@ -10,7 +10,7 @@
 
  *******************************************************/
 
-#include "Menu.h"
+#include "menu.h"
 #include <iostream>
 #include <string>
 

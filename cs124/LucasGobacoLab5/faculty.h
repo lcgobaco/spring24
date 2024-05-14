@@ -6,7 +6,7 @@
 
  * Date: 22 April 2024
 
- * Description: This program defines a class that stores a faculty member's first name, last name, department, address, city, state, zip code, email, and phone number. 
+ * Description: This program defines a class that stores a faculty member's first name, last name, department, address, city, state, zip code, email, and phone number.
 
  *******************************************************/
 
@@ -20,7 +20,7 @@ using namespace std;
 
 class Faculty {
 private:
-    int facultyId;
+    string facultyId;
     string firstName;
     string lastName;
     string department;
@@ -45,13 +45,13 @@ public:
      * @param email the faculty member's email
      * @param phone the faculty member's phone number
     */
-    Faculty(int id, const string& fName, const string& lName, const string& dept, const string& addr,const   string& city, const string& state, const   string& zip, const string& email, const string& phone);
+    Faculty(string id, const string& fName, const string& lName, const string& dept, const string& addr,const   string& city, const string& state, const   string& zip, const string& email, const string& phone);
 
     /**
      * Returns the faculty ID.
      * @return the faculty ID
     */
-    int getFacultyId() const;
+    string getFacultyId() const;
 
     /**
      * Returns the faculty member's first name.
@@ -111,14 +111,14 @@ public:
      * Sets the faculty ID.
      * @param id the faculty ID
     */
-    void setFacultyId(int id);
+    void setFacultyId(string id);
 
     /**
      * Sets the faculty member's first name.
      * @param fName the faculty member's first name
     */
     void setFirstName(const string& fName);
-    
+
     /**
      * Sets the faculty member's last name.
      * @param lName the faculty member's last name
