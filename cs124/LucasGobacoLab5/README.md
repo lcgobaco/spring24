@@ -1,37 +1,61 @@
 1. FACULTY class
-FacultyId
-FirstName
-LastName
-Department
-Address
-City
-State
-Zip
-Email
-Phone
-List of Sections
+    a. Attributes
+        FacultyId
+        FirstName
+        LastName
+        Department
+        Address
+        City
+        State
+        Zip
+        Email
+        Phone
+        List of Sections
+    b. Sample Data:
+        1. faculty-data.csv
+
 
 2.  SECTION class
-SectionId
-Term
-Course Name
-Faculty (object)
-List of GradeScales
+     a. Attributes
+        SectionId
+        Term
+        Course Name
+        Faculty (object)
+        List of GradeScales
+    b. Sample Data:
+        1. section-data.csv
 
 3.  GRADE_SCALE class
-GradeScaleId
-Section (object)
-Description
-Weight
-List of Assignments
+    a. Attributes
+        GradeScaleId
+        Section (object)
+        Description
+        Weight
+        List of Assignments
+    b. Sample Data:
+        1. grade-scale-data.csv
 
 4. ASSIGNMENT class
-AssignmentId
-GradeScale (object)
-Description
-StartDate
-EndDate
-PossiblePoints
-Points
+    a. Attributes:
+        AssignmentId
+        GradeScale (object)
+        Description
+        StartDate
+        EndDate
+        PossiblePoints
+        Points
+    b. Sample Data:
+        1. assignment-data.csv
 
+
+RELATIONSHIPS:
+
+FACULTY - SECTION
+1 - MANY
+
+SECTION - GRADE_SCALE
+1 - MANY
+
+GRADE-SCALE TO ASSIGNMENT
+1 - MANY
 
