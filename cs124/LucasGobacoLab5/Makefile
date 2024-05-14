@@ -1,6 +1,8 @@
 COMPILER = g++ -std=c++17 -g
 ZIPFILE = lab5-LucasGobaco.zip
-all: main
+default: main
+
+all: clean main
 
 main: main.o assignment.o faculty.o gradeScale.o menu.o section.o Utils.o
 	$(COMPILER) -o $@ $^

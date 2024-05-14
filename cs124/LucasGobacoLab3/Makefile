@@ -1,6 +1,8 @@
 COMPILER = g++ -std=c++14 -g
 ZIPFILE = lab3-LucasGobaco.zip
-all: main
+default: main
+
+all: clean main
 
 main: main.o Person.o DateTime.o Time.o Utils.o ContactMenu.o ContactList.o Menu.o Contact.o
 	$(COMPILER) -o $@ $^

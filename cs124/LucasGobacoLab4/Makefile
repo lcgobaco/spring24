@@ -1,6 +1,8 @@
 COMPILER = g++ -std=c++17 -g
 ZIPFILE = lab4-LucasGobaco.zip
-all: main
+default: main
+
+all: clean main
 
 main: main.o dateTime.o dateType.o menu.o task.o taskList.o taskHashTable.o taskMenu.o taskException.o utils.o
 	$(COMPILER) -o $@ $^
