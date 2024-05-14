@@ -35,6 +35,8 @@ private:
     string email;
     string phone;
 
+    vector<Section*> sections;
+
 public:
     /**
      * Constructs a faculty object with a given ID, first name, last name, department, address, city, state, zip code, email, and phone number.
@@ -113,6 +115,12 @@ public:
     string getPhone() const;
 
     /**
+     * Returns the sections.
+     * @return the sections
+    */
+    vector<Section*> getSections() const;
+
+    /**
      * Sets the faculty ID.
      * @param id the faculty ID
     */
@@ -171,6 +179,19 @@ public:
      * @param phone the faculty member's phone number
     */
     void setPhone(const string& phone);
+
+    /**
+     * Sets the sections.
+     * @param sections the sections
+    */
+    void setSections(vector<Section*> sections);
+
+    /**
+     * Adds a section.
+     * @param section the section
+    */
+    void addSection(Section* section);
+
 };
 
 class Section {

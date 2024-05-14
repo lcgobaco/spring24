@@ -61,9 +61,9 @@ map<string, Section*> loadSections(map<string, Faculty*> facultyMap) {
         string facultyId = tokens[4];
 
         Faculty* faculty = facultyMap[facultyId];
-
         Section* section = new Section(tokens[1], tokens[0], tokens[2], stoi(tokens[3]), faculty);
         sections[tokens[1]] = section;
+        faculty->addSection(section);
     }
 
     return sections;
@@ -119,12 +119,17 @@ int main() {
 
     cout << "Loading faculties..." << endl;
    map<string, Faculty*> facultyMap = loadFaculties();
-   for (auto it = facultyMap.begin(); it != facultyMap.end(); ++it) {
-       cout << it->first << "," << it->second->getFirstName() << endl;
-   }
+
 
    cout << "Loading sections..." << endl;
    map<string, Section*> sectionMap = loadSections(facultyMap);
+   for (auto it = sectionMap.begin(); it != sectionMap.end(); ++it) {
+       cout << it->first << "," << it->second->getFaculty()->getFirstName() << endl;
+   }
+   for (auto it = facultyMap.begin(); it != facultyMap.end(); ++it) {
+       cout << it->first << "," << it->second->getFirstName() << endl;
+       cout << it->first << "," << it->second->getSections().size() << endl;
+   }
 
    cout << "Loading grade scales..." << endl;
    map<int, GradeScale*> gradeScaleMap = loadGradeScales(sectionMap);
@@ -135,8 +140,8 @@ int main() {
     cout << "Assignments size:." << assignmentMap.size() << endl;
     for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
         cout << it->second->getAssignmentId() << endl;
-        //cout << it->second->getGradeScale()->getSection()->getSectionId() << endl;
-        //cout << it->second->getGradeScale()->getGradeScaleId() << endl;
+        cout << it->second->getGradeScale()->getSection()->getSectionId() << endl;
+        cout << it->second->getGradeScale()->getGradeScaleId() << endl;
     }
     return 0;
 }

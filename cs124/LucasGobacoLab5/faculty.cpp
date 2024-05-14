@@ -16,7 +16,9 @@ Faculty::Faculty(string id, const string& fName, const string& lName,
     const string& dept, const string& addr,const   string& city,
     const string& state, const string& zip, const string& email,
     const string& phone)
-    : facultyId(id), firstName(fName), lastName(lName), department(dept), address(addr), city(city), state(state), zip(zip), email(email), phone(phone) {}
+    : facultyId(id), firstName(fName), lastName(lName), department(dept), address(addr), city(city), state(state), zip(zip), email(email), phone(phone) {
+        sections = vector<Section*>();
+    }
 
 string Faculty::getFacultyId() const { return facultyId; }
 
@@ -38,6 +40,8 @@ string Faculty::getEmail() const { return email; }
 
 string Faculty::getPhone() const { return phone; }
 
+vector<Section*> Faculty::getSections() const { return sections; }
+
 void Faculty::setFacultyId(string id) { facultyId = id; }
 
 void Faculty::setFirstName(const string& fName) { firstName = fName; }
@@ -57,3 +61,7 @@ void Faculty::setZip(const string& z) { zip = z; }
 void Faculty::setEmail(const string& e) { email = e; }
 
 void Faculty::setPhone(const string& p) { phone = p; }
+
+void Faculty::setSections(vector<Section*> s) { sections = s; }
+
+void Faculty::addSection(Section* section) { sections.push_back(section); }
