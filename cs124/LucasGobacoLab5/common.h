@@ -299,6 +299,7 @@ private:
     Section* section;
     string description;
     double weight;
+    vector<Assignment*> assignments;
 
 public:
     GradeScale(int id, Section* section, const string& description, double weight);
@@ -328,6 +329,12 @@ public:
     double getWeight() const;
 
     /**
+     * Returns the assignments.
+     * @return the assignments
+    */
+    vector<Assignment*> getAssignments() const;
+
+    /**
      * Sets the grade scale ID.
      * @param id the grade scale ID
     */
@@ -350,6 +357,18 @@ public:
      * @param w the weight
     */
     void setWeight(double w);
+
+    /**
+     * Returns the assignments.
+     * @return the assignments
+    */
+    void setAssignments(vector<Assignment*> a);
+
+    /**
+     * Adds an assignment.
+     * @param a the assignment
+    */
+    void addAssignment(Assignment* a);
 
 };
 

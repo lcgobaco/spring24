@@ -21,6 +21,8 @@ Section* GradeScale::getSection() const { return section; }
 
 string GradeScale::getDescription() const { return description; }
 
+vector<Assignment*> GradeScale::getAssignments() const { return assignments; }
+
 double GradeScale::getWeight() const { return weight; }
 
 void GradeScale::setGradeScaleId(int id) { gradeScaleId = id; }
@@ -30,3 +32,7 @@ void GradeScale::setSection(Section* s) { section = s; }
 void GradeScale::setDescription(const string& d) { description = d; }
 
 void GradeScale::setWeight(double w) { weight = w; }
+
+void GradeScale::setAssignments(vector<Assignment*> a) { assignments = a; }
+
+void GradeScale::addAssignment(Assignment* a) { assignments.push_back(a); }

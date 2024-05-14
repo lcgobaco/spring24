@@ -112,6 +112,7 @@ map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap) {
         GradeScale* gradeScale = gradeScaleMap[stoi(tokens[1])];
         Assignment* assignment = new Assignment(stoi(tokens[0]), gradeScale, tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
         assignments[stoi(tokens[0])] = assignment;
+        gradeScale->addAssignment(assignment);
     }
     inFile.close();
     return assignments;
