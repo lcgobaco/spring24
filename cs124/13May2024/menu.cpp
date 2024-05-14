@@ -12,6 +12,7 @@
     * 1. Changed the options.push_back(option) to options.insert(option) in addOption method
     * 2. In display() method, changed the for loop to use an iterator to traverse the hash table
     * 3. In displayPrefixIndex() method, changed the for loop to use an iterator to traverse the hash table
+    * 4. Changed fill characters from '*' to '-'
 
  *******************************************************/
 
@@ -40,7 +41,7 @@ void Menu::addOption(string option) {
 * Displays the menu
 */
 void Menu::display() const {
-    cout << "***** " << name << " *****" << endl;
+    cout << "----- " << name << " -----" << endl;
     // now using iterator to traverse the hash table
     for (HashIterator<string> iter = options.begin(); !iter.equals(options.end()); iter.next()) {
         cout << iter.get() << endl;

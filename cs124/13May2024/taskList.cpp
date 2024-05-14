@@ -11,6 +11,8 @@
  * Changes: 
     * 1. In addNew method, changed the push_back(task) to push(task) in order to use the push method from the LinkedSet class
     * 2. In the editTask, deleteTask, printTable, and printRaw method used the iterator to travesre the set to achieve the same functionality
+	* 3. Added 1 to all setw values in printHeader and printRow methods
+	* 4. Changed fill characters from '*' to '-'
 
  *******************************************************/
 
@@ -46,7 +48,9 @@ void TaskList::editTask() {
             cout << "Enter new name: ";
             cin >> name;
             iter.get().setName(name);
+			break;
         }
+		iter.next();
     }
 }
 void TaskList::deleteTask() {
@@ -62,6 +66,7 @@ void TaskList::deleteTask() {
         if (iter.get().getName() == name) {
             erase(iter);
         }
+		iter.next();
     }
 }
 
@@ -71,29 +76,31 @@ void TaskList::printTable(bool complete) {
 	// use iterator to traverse the list
     Iterator<Task> iter = this->begin();
     while (!iter.equals(this->end())) {
-        printRow(iter.get());
+		if (iter.get().isCompleted() == complete)
+        	printRow(iter.get());
+		iter.next();
     }
 }
 
 void TaskList::printHeader() {
 	const char originalFill = cout.fill();
-	cout << left << setw(10) << "Term"
-		<< left << setw(30) << "Name"
-		<< left << setw(15) << "Start Date"
-		<< left << setw(15) << "End Date"
-		<< left << setw(10) << "Status"
+	cout << left << setw(16) << "Term"
+		<< left << setw(31) << "Name"
+		<< left << setw(16) << "Start Date"
+		<< left << setw(16) << "End Date"
+		<< left << setw(11) << "Status"
 		<< endl;
-	cout << setfill('=') << setw(80) << "=" << endl;
+	cout << setfill('-') << setw(81) << "-" << endl;
 	cout.fill(originalFill);
 }
 
 void TaskList::printRow(const Task task) {
 	const char originalFill = cout.fill();
-	cout << left << setw(10) << task.getTerm()
-		<< left << setw(30) << task.getName()
-		<< left << setw(15) << task.getStartDate().toString()
-		<< left << setw(15) << task.getEndDate().toString()
-		<< left << setw(10) << (task.isCompleted() ? "Done" : "Pending")
+	cout << left << setw(16) << task.getTerm()
+		<< left << setw(31) << task.getName()
+		<< left << setw(16) << task.getStartDate().toString()
+		<< left << setw(16) << task.getEndDate().toString()
+		<< left << setw(11) << (task.isCompleted() ? "Done" : "Pending")
 		<< endl;
 	cout.fill(originalFill);
 }
@@ -103,5 +110,6 @@ void TaskList::printRaw(bool complete) {
     Iterator<Task> iter = this->begin();
     while (!iter.equals(this->end())) {
         cout << iter.get() << endl;
+		iter.next();
     }
 }

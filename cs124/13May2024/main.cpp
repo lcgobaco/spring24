@@ -9,7 +9,8 @@
  * Description: This program tests the TaskMenu class
 
  * Changes: 
-    * 1. None - taken from Lab 4 template
+    * 1. Changed fill characters from '*' to '-'
+	* 2. Added 1 to all setw values in showBanner method
 
  *******************************************************/
 
@@ -34,12 +35,12 @@ int main() {
  **/
 void showBanner() {
 	const char originalFill = cout.fill();
-	cout << setfill('*') << setw(50) << "*" << endl << endl;
+	cout << setfill('-') << setw(51) << "-" << endl << endl;
 	cout << "\tApplication to Manage Tasks" << endl;
-	cout << "\t===========================" << endl;
-	cout << "\tProgram written by: John Doe"<< endl;
+	cout << "\t---------------------------" << endl;
+	cout << "\tProgram written by: Lucas Gobaco"<< endl;
 	cout << "\tCourse info: CS-124-03" << endl;
-	cout << "\tDue date: 4/20/2024"<< endl << endl;
-	cout << setfill('*') << setw(50) << "*" << endl << endl;
+	cout << "\tDue date: 5/13/2024"<< endl << endl;
+	cout << setfill('-') << setw(51) << "-" << endl << endl;
 	cout.fill(originalFill);
 }

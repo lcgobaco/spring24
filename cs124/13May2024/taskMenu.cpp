@@ -9,7 +9,7 @@
  * Description: This program implements a TaskMenu class
  
  * Changes: 
-    * 1. None - taken from Lab 4 template
+    * 1. Changed the fill characters from '*' to '-'
 
  *******************************************************/
 
@@ -127,5 +127,5 @@ void TaskMenu::activate() {
 }
 
 void TaskMenu::showOption(const string title) {
-	cout << "***** " << title << " *****" << endl;
+	cout << "----- " << title << " -----" << endl;
 }

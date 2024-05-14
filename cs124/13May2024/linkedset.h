@@ -316,7 +316,7 @@ Iterator<T>::Iterator() {
 
 template <typename T>
 T Iterator<T>::get() const {
-    return position->data;
+    return position-> data;
 }
 
 template <typename T>
