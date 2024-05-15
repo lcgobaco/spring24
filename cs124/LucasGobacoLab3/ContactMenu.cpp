@@ -17,6 +17,9 @@
 
 using namespace std;
 
+/**
+ * This function initializes the contact data from contacts_data.csv
+*/
 void ContactMenu::initContactData() {
 
     inFile.open(CONTACTS_DATA);
@@ -47,6 +50,78 @@ void ContactMenu::initContactData() {
     inFile.close();
 }
 
+
+/**
+ * Constructor for ContactMenu.   Initializes the contact data.
+*/
+ContactMenu::ContactMenu() {
+    initContactData();
+}
+
+ContactMenu::~ContactMenu() {}
+
+void ContactMenu::activate() {
+    char input;
+    ContactMenu contact_menu;
+
+    add_option("List of contacts");
+    add_option("View a contact");
+    add_option("Add new contact");
+    add_option("Edit contact");
+    add_option("Delete contact");
+    //add_option("Exit");
+
+    do
+    {
+        input = get_input();
+
+        cout << "Option: " << input << endl;
+        switch (input)
+        {
+            case CONTACT_MENU_LIST:
+            {
+                doList();
+                break;
+            }
+
+            case CONTACT_MENU_VIEW:
+            {
+
+                doView();
+                break;
+            }
+
+            case CONTACT_MENU_ADD:
+            {
+                doAdd();
+                break;
+            }
+
+            case CONTACT_MENU_EDIT:
+            {
+                doEdit();
+                break;
+            }
+
+            case CONTACT_MENU_DELETE: {
+                doDelete();
+                break;
+            }
+
+            case CONTACT_MENU_EXIT: {
+                doExit();
+                cout << "Quit" << endl;
+                break;
+            }
+        }
+
+    } while (input != 'x' );
+}
+
+
+/**
+ * This function displays the UI for exiting the program.
+*/
 void ContactMenu::doExit() {
     ofstream file(CONTACTS_DATA);
 
@@ -87,6 +162,9 @@ void printContact(Contact contact) {
         cout << endl;
 }
 
+/**
+ * This function displays the UI for listing the contacts
+*/
 void ContactMenu::doList() {
 
     cout << "List of contacts:" << endl;
@@ -184,6 +262,9 @@ void ContactMenu::doList() {
 
 }
 
+/**
+ * This function prints out the contacts with an iterator.
+*/
 void ContactMenu::doListWithIterator() {
     for (Iterator<Contact> itr = contactList.begin(); !itr.equals(contactList.end()); itr.next())
     {
@@ -281,6 +362,9 @@ void ContactMenu::doAdd() {
     printContact(contact);
 }
 
+/**
+ * This function displays the UI for editing a contact.
+*/
 void ContactMenu::doEdit() {
     cout << "Edit Contact:" << endl;
     cout << "Enter Contact ID: ";
@@ -294,6 +378,9 @@ void ContactMenu::doEdit() {
     found.getPosition()->setData(contact);
 }
 
+/**
+ * This function displays the UI for deleting a contact.
+*/
 void ContactMenu::doDelete() {
     cout << "Delete Contact:" << endl;
     cout << "Enter Contact ID: ";
@@ -305,6 +392,9 @@ void ContactMenu::doDelete() {
     cout << "Contact deleted" << endl;
 }
 
+/**
+ * This function displays the UI for viewing a contact.
+*/
 void ContactMenu::doView() {
     cout << "View Contact:" << endl;
     cout << "Enter Contact ID: ";
@@ -315,70 +405,9 @@ void ContactMenu::doView() {
 
 }
 
+/**
+ * This function sorts the list of contacts.
+*/
 void ContactMenu::doSortBy(string fieldName, string direction) {
     contactList.sortBy(fieldName, direction);
-}
-
-ContactMenu::ContactMenu() {
-    initContactData();
-}
-
-ContactMenu::~ContactMenu() {}
-
-void ContactMenu::activate() {
-    char input;
-    ContactMenu contact_menu;
-
-    add_option("List of contacts");
-    add_option("View a contact");
-    add_option("Add new contact");
-    add_option("Edit contact");
-    add_option("Delete contact");
-    //add_option("Exit");
-
-    do
-    {
-        input = get_input();
-
-        cout << "Option: " << input << endl;
-        switch (input)
-        {
-            case CONTACT_MENU_LIST:
-            {
-                doList();
-                break;
-            }
-
-            case CONTACT_MENU_VIEW:
-            {
-
-                doView();
-                break;
-            }
-
-            case CONTACT_MENU_ADD:
-            {
-                doAdd();
-                break;
-            }
-
-            case CONTACT_MENU_EDIT:
-            {
-                doEdit();
-                break;
-            }
-
-            case CONTACT_MENU_DELETE: {
-                doDelete();
-                break;
-            }
-
-            case CONTACT_MENU_EXIT: {
-                doExit();
-                cout << "Quit" << endl;
-                break;
-            }
-        }
-
-    } while (input != 'x' );
 }
