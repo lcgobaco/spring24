@@ -1,0 +1,342 @@
+/*******************************************************
+
+ * Program Name: hashtable.h
+
+ * Author: Lucas Gobaco
+
+ * Date: 13 May 2024
+
+ * Description: This program implements a hash table class and an iterator class.
+
+ * Changes:
+    * None - taken from in class assignment
+
+ *******************************************************/
+
+#ifndef HASHTABLE_H
+#define HASHTABLE_H
+
+#include <string>
+#include <vector>
+
+using namespace std;
+
+/**
+   Computes the hash code for a string.
+   @param str a string
+   @return the hash code
+*/
+template<typename T>
+int hash_code(const T str);
+
+template<typename T>
+class HashTable;
+template<typename T>
+class HashIterator;
+
+template<typename T>
+class HashNode
+{
+private:
+   T data;
+   HashNode<T>* next;
+
+friend class HashTable<T>;
+friend class HashIterator<T>;
+};
+
+template<typename T>
+class HashIterator
+{
+public:
+   /**
+      Looks up the value at a position.
+      @return the value of the node to which the iterator points
+   */
+   T get() const;
+   /**
+      Advances the iterator to the next node.
+   */
+   void next();
+   /**
+      Compares two iterators.
+      @param other the iterator to compare with this iterator
+      @return true if this iterator and other are equal
+   */
+   bool equals(const HashIterator& other) const;
+private:
+   const HashTable<T>* container;
+   int bucket_index;
+   HashNode<T>* current;
+
+friend class HashTable<T>;
+};
+
+/**
+   This class implements a hash table using separate chaining.
+*/
+template<typename T>
+class HashTable
+{
+public:
+   /**
+      Constructs an empty hash table.
+   */
+   HashTable() : HashTable(10) {}
+
+   /**
+      Constructs a hash table.
+      @param nbuckets the number of buckets
+   */
+   HashTable(int nbuckets);
+
+   /**
+      Tests for set membership.
+      @param x the potential element to test
+      @return 1 if x is an element of this set, 0 otherwise
+   */
+   int count(const T& x);
+
+   /**
+      Adds an element to this hash table if it is not already present.
+      @param x the element to add
+   */
+   void insert(const T& x);
+
+   /**
+      Removes an element from this hash table if it is present.
+      @param x the potential element to remove
+   */
+   void erase(const T& x);
+
+   /**
+      Returns an iterator to the beginning of this hash table.
+      @return a hash table iterator to the beginning
+   */
+   HashIterator<T> begin() const;
+
+   /**
+      Returns an iterator past the end of this hash table.
+      @return a hash table iterator past the end
+   */
+   HashIterator<T> end() const;
+
+   /**
+      Gets the number of elements in this set.
+      @return the number of elements
+   */
+   int size() const;
+
+private:
+   vector<HashNode<T>*> buckets;
+   int current_size;
+
+friend class HashIterator<T>;
+};
+
+/**
+ * Constructs a hash table.
+ * @param nbuckets the number of buckets
+ * @return a hash table iterator to the beginning
+*/
+template<typename T>
+HashTable<T>::HashTable(int nbuckets)
+{
+   for (int i = 0; i < nbuckets; i++)
+   {
+      buckets.push_back(nullptr);
+   }
+   current_size = 0;
+}
+
+/**
+ * Tests for set membership.
+ * @param x the potential element to test
+ * @return 1 if x is an element of this set, 0 otherwise
+*/
+template<typename T>
+int HashTable<T>::count(const T& x)
+{
+   int h = hash_code(x);
+   h = h % buckets.size();
+   if (h < 0) { h = -h; }
+
+   HashNode<T>* current = buckets[h];
+   while (current != nullptr)
+   {
+      if (current->data == x) { return 1; }
+      current = current->next;
+   }
+   return 0;
+}
+
+/**
+ * Adds an element to this hash table if it is not already present.
+ * @param x the element to add
+*/
+template<typename T>
+void HashTable<T>::insert(const T& x)
+{
+   int h = hash_code(x);
+   h = h % buckets.size();
+   if (h < 0) { h = -h; }
+
+   HashNode<T>* current = buckets[h];
+   while (current != nullptr)
+   {
+      if (current-> data == x) { return; }
+         // Already in the set
+      current = current->next;
+   }
+   HashNode<T>* new_node = new HashNode<T>;
+   new_node->data = x;
+   new_node->next = buckets[h];
+   buckets[h] = new_node;
+   current_size++;
+}
+
+/**
+ * Removes an element from this hash table if it is present.
+ * @param x the potential element to remove
+*/
+template<typename T>
+void HashTable<T>::erase(const T& x)
+{
+   int h = hash_code(x);
+   h = h % buckets.size();
+   if (h < 0) {
+       h = -h;
+   }
+
+   HashNode<T>* current = buckets[h];
+   HashNode<T>* previous = nullptr;
+   while (current != nullptr)
+   {
+      if (current->data == x)
+      {
+         if (previous == nullptr)
+         {
+            buckets[h] = current->next;
+         }
+         else
+         {
+            previous->next = current->next;
+         }
+         delete current;
+         current_size--;
+         return;
+      }
+      previous = current;
+      current = current->next;
+   }
+}
+
+/**
+ * Gets the number of elements in this set.
+ * @return the number of elements
+*/
+template<typename T>
+int HashTable<T>::size() const
+{
+   return current_size;
+}
+
+/**
+ * Returns an iterator to the beginning of this hash table.
+ * @return a hash table iterator to the beginning
+*/
+template<typename T>
+HashIterator<T> HashTable<T>::begin() const
+{
+   HashIterator<T> iter;
+   iter.current = nullptr;
+   iter.bucket_index = -1;
+   iter.container = this;
+   iter.next();
+   return iter;
+}
+
+/**
+ * Returns an iterator past the end of this hash table.
+ * @return a hash table iterator past the end
+*/
+template<typename T>
+HashIterator<T> HashTable<T>::end() const
+{
+   HashIterator<T> iter;
+   iter.current = nullptr;
+   iter.bucket_index = (int) buckets.size();
+   iter.container = this;
+   return iter;
+}
+
+/**
+ * Looks up the value at a position.
+ * @return the value of the node to which the iterator points
+*/
+template<typename T>
+T HashIterator<T>::get() const
+{
+   return current->data;
+}
+
+/**
+ * Compares two iterators.
+ * @param other the iterator to compare with this iterator
+ * @return true if this iterator and other are equal
+*/
+template<typename T>
+bool HashIterator<T>::equals(const HashIterator& other) const
+{
+   return current == other.current;
+}
+
+/**
+ * Advances the iterator to the next node.
+*/
+template<typename T>
+void HashIterator<T>::next()
+{
+   if (bucket_index >= 0 && current->next != nullptr)
+   {
+      // Advance in the same bucket
+      current = current->next;
+   }
+   else
+   {
+      // Move to the next bucket
+      do
+      {
+         bucket_index++;
+      }
+      while (bucket_index < container->buckets.size()
+         && container->buckets[bucket_index] == nullptr);
+      if (bucket_index < container->buckets.size())
+      {
+         // Start of next bucket
+         current = container->buckets[bucket_index];
+      }
+      else
+      {
+         // No more buckets
+         current = nullptr;
+      }
+   }
+}
+
+/**
+ * Computes the hash code for a string.
+ * @param str a string
+ * @return the hash code
+*/
+template<typename T>
+int hash_code(const T str)
+{
+   int h = 0;
+   for (int i = 0; i < str.length(); i++) {
+      h = 31 * h + str.at(i);
+   }
+   return h;
+}
+
+#endif
