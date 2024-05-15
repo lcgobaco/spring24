@@ -169,6 +169,7 @@ void ContactMenu::doList() {
 
     cout << "List of contacts:" << endl;
 
+    /**
     cout << "Sort by:" << endl;
 
     Menu sort_menu;
@@ -235,6 +236,7 @@ void ContactMenu::doList() {
             break;
 
     }
+    */
 
     Menu sort_order;
     sort_order.add_option("Ascending");
@@ -242,23 +244,19 @@ void ContactMenu::doList() {
 
     int so = sort_order.get_input_int();
 
+    bool asc = so == 1;
     switch(so) {
         case 1:
-            doSortBy(sort_field, "asc");
+            doSortBy(asc);
             break;
         case 2:
-            doSortBy(sort_field, "desc");
+            doSortBy(asc);
             break;
     }
+
     contactList.moveFirst();
 
-    Iterator<Contact> current = contactList.getCurrent();
-    while (!current.equals(contactList.end())) {
-        Contact contact = current.get();
-        printContact(contact);
-        contactList.moveNext();
-        current = contactList.getCurrent();
-    }
+    contactList.print();
 
 }
 
@@ -375,7 +373,8 @@ void ContactMenu::doEdit() {
     printContact(found.get());
     cout << "Enter new values" << endl;
     Contact contact = inputContact(found.get());
-    found.getPosition()->setData(contact);
+    //TODO:
+    //found.getPosition()->setData(contact);
 }
 
 /**
@@ -408,6 +407,6 @@ void ContactMenu::doView() {
 /**
  * This function sorts the list of contacts.
 */
-void ContactMenu::doSortBy(string fieldName, string direction) {
-    contactList.sortBy(fieldName, direction);
+void ContactMenu::doSortBy(bool direction) {
+    contactList.sortBy(direction);
 }

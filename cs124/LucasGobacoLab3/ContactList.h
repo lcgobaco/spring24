@@ -30,10 +30,14 @@ public:
 
     /**
      * Uses selection sort to sort the contacts in this list by a field name and direction.
-     * @param fieldName the name of the field to sort by
      * @param direction the direction to sort in, either "ascending" or "descending"
     */
-    void sortBy(string fieldName, string direction);
+    void sortBy(bool direction);
+
+    /**
+     * Prints out contactList
+    */
+    void print();
 
     /**
      * Searches for a contact by an ID.

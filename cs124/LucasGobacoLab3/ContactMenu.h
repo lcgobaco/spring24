@@ -70,7 +70,7 @@ class ContactMenu : public Menu
         /**
          * Uses selection sort to sort the contacts in this list by a field name and direction.
         */
-        void doSortBy(string fieldName, string direction);
+        void doSortBy(bool direction);
 
         /**
          * Selects a contact from the list and shows the contact details.

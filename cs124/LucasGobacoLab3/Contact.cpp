@@ -33,13 +33,6 @@ void Contact::setRole(string role) { this->role = role; }
 
 void Contact::setCompanyName(string company_name) { this->company_name = company_name; }
 
-// bool Contact::operator==(const Contact& lhs, const Contact& rhs) {
-//     // Compare the relevant attributes of both Contact objects
-//     return lhs.getId() == rhs.getId() &&
-//            lhs.getRole() == rhs.getRole() &&
-//            lhs.getCompanyName() == rhs.getCompanyName();
-// }
-
 std::ostream& operator<<(std::ostream& os, const Contact& contact) {
     // Stream out the relevant attributes of the Contact object
     os << contact.getId() << ","
@@ -60,18 +53,16 @@ std::ostream& operator<<(std::ostream& os, const Contact& contact) {
     return os;
 }
 
-// bool Contact::operator<(const Contact& lhs, const Contact& rhs) {
-//     return lhs.getId() < rhs.getId();
-// }
+string Contact::sortByField = "id";
 
 bool Contact::operator==(const Contact& c) {
-	return true;
+	return this->getId() == c.getId();
 
 }
 bool Contact::operator>(const Contact& c) {
-	return true;
+	return this->getId() > c.getId();
 }
 
 bool Contact::operator<(const Contact& c) {
-	return true;
+	return this->getId() < c.getId();;
 }

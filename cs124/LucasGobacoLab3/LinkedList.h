@@ -109,6 +109,10 @@ public:
     */
     Iterator<T> end();
 
+protected:
+    void selectionSort(bool ascending);
+    void swap(Node<T>* first, Node<T>* second);
+
 private:
     Node<T> *first;
     Node<T> *last;
@@ -318,40 +322,33 @@ Iterator<T> LinkedList<T>::end() {
 
 template <typename T>
 Iterator<T>& Iterator<T>::operator++() {
-    next();
-    Iterator<T> iter;
-    iter.position = position;
-    iter.container = this->container;
-    return iter;
+    position = position->next;
+    return *this;
+}
+
+template <typename T>
+Iterator<T> Iterator<T>::operator++(int step) {
+    Iterator before_increment = *this;
+    for (int i = 0; i < step; i++) {
+        position = position->next;
+    }
+    return *this;
 }
 
 template <typename T>
 Iterator<T>& Iterator<T>::operator--() {
-    previous();
-    Iterator<T> iter;
-    iter.position = position;
-    iter.container = this->container;
-    return iter;
+    position = position->previous;
+    return *this;
 }
 
 template <typename T>
-Iterator<T> Iterator<T>::operator++(int) {
-    next();
-    Iterator<T> iter;
-    iter.position = position;
-    iter.container = this->container;
-    return iter;
+Iterator<T> Iterator<T>::operator--(int step) {
+    Iterator before_increment = *this;
+    for (int i = 0; i < step; i++) {
+        position = position->previous;
+    }
+    return *this;
 }
-
-template <typename T>
-Iterator<T> Iterator<T>::operator--(int) {
-    previous();
-    Iterator<T> iter;
-    iter.position = position;
-    iter.container = this->container;
-    return iter;
-}
-
 
 template <typename T>
 Iterator<T>::Iterator() {
@@ -383,5 +380,29 @@ template <typename T>
 bool Iterator<T>::equals(Iterator<T> other) const {
     return position == other.position;
 }
+
+template <typename T>
+void LinkedList<T>::selectionSort(bool ascending) {
+    Node<T>* last = this->last;
+    Node<T>* key = this->first;
+
+    while (key != nullptr) {
+        Node<T>* temp = key->next;
+        while (temp != nullptr) {
+            if ((key->data > temp->data) == ascending) { //by ascending or descending
+                swap(key, temp);
+            }
+            temp = temp->next;
+        }
+        key = key->next;
+    }
+}
+
+template <typename T>
+void LinkedList<T>::swap(Node<T>* first, Node<T>* second) {
+    T temp = first->data;
+    first->data = second->data;
+    second->data = temp;
+};
 
 #endif
