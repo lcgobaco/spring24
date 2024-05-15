@@ -14,8 +14,12 @@
 #include <string>
 #include <fstream>
 #include <map>
-#include "common.h"
+#include "assignment.h"
+#include "faculty.h"
+#include "gradeScale.h"
+#include "section.h"
 #include "Utils.h"
+#include "assignmentBST.h"
 
 using namespace std;
 map<string, Faculty*> loadFaculties() {
@@ -152,13 +156,35 @@ int main() {
             }
         }
    }
+
+   AssignmentBST assignmentBST;
     cout << "Traversion Assignment->GradeScale->Section->Faculty" << endl;
-        for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+    for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+        assignmentBST.insert(it->second);
         cout << it->second->getAssignmentId() << ",";
         cout << it->second->getGradeScale()->getGradeScaleId() << ",";
         cout << it->second->getGradeScale()->getSection()->getSectionId() << ",";
         cout << it->second->getGradeScale()->getSection()->getFaculty()->getFacultyId() << endl;
     }
+
+    for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+        int count = assignmentBST.count(it->second);
+        cout << it->second->getAssignmentId() << "," << count << endl;
+     }
+
+
+    for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+        assignmentBST.erase(it->second);
+        cout << it->second->getAssignmentId() << ",";
+        cout << it->second->getGradeScale()->getGradeScaleId() << ",";
+        cout << it->second->getGradeScale()->getSection()->getSectionId() << ",";
+        cout << it->second->getGradeScale()->getSection()->getFaculty()->getFacultyId() << endl;
+    }
+
+    for (auto it = assignmentMap.begin(); it != assignmentMap.end(); ++it) {
+        int count = assignmentBST.count(it->second);
+        cout << it->second->getAssignmentId() << "," << count << endl;
+     }
 
     return 0;
 }

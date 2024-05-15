@@ -1,10 +1,11 @@
 COMPILER = g++ -std=c++17 -g
 ZIPFILE = lab5-LucasGobaco.zip
+
 default: main
 
 all: clean main
 
-main: main.o menu.o sectionHT.o gradeScaleHT.o facultyHT.o faculty.o gradeScale.o section.o assignment.o Utils.o
+main: main.o menu.o sectionHT.o gradeScaleHT.o facultyHT.o assignmentBST.o faculty.o gradeScale.o section.o assignment.o Utils.o
 	$(COMPILER) -o $@ $^
 
 main.o: main.cpp
@@ -35,6 +36,9 @@ gradeScaleHT.o: gradeScaleHT.cpp gradeScaleHT.h
 	$(COMPILER) -c $<
 
 facultyHT.o: facultyHT.cpp facultyHT.h
+	$(COMPILER) -c $<
+
+assignmentBST.o: assignmentBST.cpp
 	$(COMPILER) -c $<
 
 clean:
