@@ -8,7 +8,7 @@
 
  * Description: This program defines a general purpose class menu.
 
- * Changes: 
+ * Changes:
    * 1. Changed options member from vector to HashTable
    * 2. Changed getName method to use iterator to traverse the hash table
 
@@ -52,7 +52,7 @@ public:
    */
     string getName(int index) const {
       HashIterator<string> iter = options.begin();
-      for (int i = 0; i < index; i++) 
+      for (int i = 0; i < index; i++)
          iter.next();
       return iter.get();
     }
