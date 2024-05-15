@@ -18,26 +18,46 @@ TaskHashTable::TaskHashTable(int nbuckets)
 }
 TaskHashTable::~TaskHashTable() {}
 
-// TODO:
 bool TaskHashTable::contains(string name) {
-	return true;
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get().getName() == name) {
+			return true;
+		}
+		iter.next();
+	}
+	return false;
 }
 
-// TODO:
 Task TaskHashTable::get(string name) {
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get().getName() == name) {
+			return iter.get();
+		}
+		iter.next();
+	}
 	return Task();
 }
 
-// TODO:
 void TaskHashTable::remove(string name) {
-
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get().getName() == name) {
+			this->erase(iter.get());
+		}
+		iter.next();
+	}
 }
-
-// TODO:
 vector<Task> TaskHashTable::values() {
-	return vector<Task>();
+	vector<Task> tasks;
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		tasks.push_back(iter.get());
+		iter.next();
+	}
+	return tasks;
 }
-
 
 void TaskHashTable::addNew() {
 	Task task;
@@ -92,7 +112,7 @@ void TaskHashTable::printTable(bool complete) {
 
 void TaskHashTable::printHeader() {
 	const char originalFill = cout.fill();
-	cout << left << setw(10) << "Term"
+	cout << left << setw(15) << "Term"
 		<< left << setw(30) << "Name"
 		<< left << setw(15) << "Start Date"
 		<< left << setw(15) << "End Date"
@@ -104,7 +124,7 @@ void TaskHashTable::printHeader() {
 
 void TaskHashTable::printRow(const Task task) {
 	const char originalFill = cout.fill();
-	cout << left << setw(10) << task.getTerm()
+	cout << left << setw(15) << task.getTerm()
 		<< left << setw(30) << task.getName()
 		<< left << setw(15) << task.getStartDate().toString()
 		<< left << setw(15) << task.getEndDate().toString()

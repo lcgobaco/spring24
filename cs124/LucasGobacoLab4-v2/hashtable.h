@@ -182,7 +182,7 @@ void HashTable<T>::insert(const T& x)
 template<typename T>
 void HashTable<T>::erase(const T& x)
 {
-    int h = hash_code(x);
+    int h = hash_code(x.getName());
     h = h % buckets.size();
     if (h < 0) {
         h = -h;
@@ -279,8 +279,5 @@ void Iterator<T>::next()
         }
     }
 }
-
-
-
 
 #endif // HASHTABLE_H

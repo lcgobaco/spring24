@@ -26,4 +26,5 @@ private:
 	Task get(string name);
 	void remove(string name);
 	vector<Task> values();
+	int hash_code(Task* task);
 };
