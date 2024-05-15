@@ -9,7 +9,6 @@
 #include <string>
 #include <sstream>
 #include "taskMenu.h"
-#include "menu.h"
 #include "dateTime.h"
 #include "taskException.h"
 
@@ -25,7 +24,7 @@ TaskMenu::TaskMenu() : Menu("Main Menu") {
 
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list = new TaskList();
-	table = new TaskHashTable();
+	table = new TaskHashTable(100);
 	try {
 		init();}
 	catch (const TaskException& e) {
@@ -69,7 +68,7 @@ void TaskMenu::init(){
 		getline(ss, text, ',');
 		task.setStatus(stoi(text));	// value =1 means DONE! and value = 0 is pending
 		//list->push(task);
-		table->insert(task.getName(), task);
+		table->insert(task);
 	}
 	inFile.close();
 }

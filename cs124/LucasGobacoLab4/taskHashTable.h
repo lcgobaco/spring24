@@ -5,10 +5,10 @@
 
 using namespace std;
 
-class TaskHashTable : public HashTable<string, Task> {
+class TaskHashTable : public HashTable<Task> {
 
 public:
-	TaskHashTable();
+	TaskHashTable(int nbuckets);
 	~TaskHashTable();
 
 	void addNew();
@@ -22,4 +22,9 @@ protected:
 
 private:
 	void printHeader();
+	bool contains(string name);
+	Task get(string name);
+	void remove(string name);
+	vector<Task> values();
+	int hash_code(Task* task);
 };

@@ -8,14 +8,56 @@
 #include <iomanip>
 #include <string>
 #include "taskHashTable.h"
-#include "task.h"
 #include "taskException.h"
 
 using namespace std;
 
-TaskHashTable::TaskHashTable() {}
+TaskHashTable::TaskHashTable(int nbuckets)
+: HashTable(nbuckets) {
 
+}
 TaskHashTable::~TaskHashTable() {}
+
+bool TaskHashTable::contains(string name) {
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get().getName() == name) {
+			return true;
+		}
+		iter.next();
+	}
+	return false;
+}
+
+Task TaskHashTable::get(string name) {
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get().getName() == name) {
+			return iter.get();
+		}
+		iter.next();
+	}
+	return Task();
+}
+
+void TaskHashTable::remove(string name) {
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get().getName() == name) {
+			this->erase(iter.get());
+		}
+		iter.next();
+	}
+}
+vector<Task> TaskHashTable::values() {
+	vector<Task> tasks;
+	Iterator<Task> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		tasks.push_back(iter.get());
+		iter.next();
+	}
+	return tasks;
+}
 
 void TaskHashTable::addNew() {
 	Task task;
@@ -24,7 +66,7 @@ void TaskHashTable::addNew() {
 	if (contains(name)) {
 		throw TaskException(name, "Cannot add. Task already exists");
 	} else {
-		insert(task.getName(), task);
+		insert(task);
 	}
 }
 
@@ -37,7 +79,8 @@ void TaskHashTable::editTask() {
 
 	if (contains(name)) {
 		cin >> task;
-		insert(name, task);
+		erase(task);
+		insert(task);
 	} else {
 		throw TaskException(name, "Cannot edit. Task not found");
 	}
@@ -70,7 +113,7 @@ void TaskHashTable::printTable(bool complete) {
 
 void TaskHashTable::printHeader() {
 	const char originalFill = cout.fill();
-	cout << left << setw(10) << "Term"
+	cout << left << setw(15) << "Term"
 		<< left << setw(30) << "Name"
 		<< left << setw(15) << "Start Date"
 		<< left << setw(15) << "End Date"
@@ -82,7 +125,7 @@ void TaskHashTable::printHeader() {
 
 void TaskHashTable::printRow(const Task task) {
 	const char originalFill = cout.fill();
-	cout << left << setw(10) << task.getTerm()
+	cout << left << setw(15) << task.getTerm()
 		<< left << setw(30) << task.getName()
 		<< left << setw(15) << task.getStartDate().toString()
 		<< left << setw(15) << task.getEndDate().toString()

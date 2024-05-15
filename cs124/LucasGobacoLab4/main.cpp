@@ -28,7 +28,7 @@ void showBanner() {
 	cout << setfill('*') << setw(50) << "*" << endl << endl;
 	cout << "\tApplication to Manage Tasks" << endl;
 	cout << "\t===========================" << endl;
-	cout << "\tProgram written by: John Doe"<< endl;
+	cout << "\tProgram written by: Lucas Gobaco"<< endl;
 	cout << "\tCourse info: CS-124-03" << endl;
 	cout << "\tDue date: 4/20/2024"<< endl << endl;
 	cout << setfill('*') << setw(50) << "*" << endl << endl;

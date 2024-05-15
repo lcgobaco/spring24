@@ -55,17 +55,17 @@ Task& Task::operator=(const Task& task) {
 }
 
 istream& operator>>(istream& in, Task& task) {
-	string term, name, sdate, edate, status;	
+	string term, name, sdate, edate, status;
 	string s = task.getTerm() != "" ? "(" + task.getTerm() + ")" : "";
 	cout << "Enter term " << s << ": ";
-	in.ignore();
+	//in.ignore();
 	getline(in, term);
 	if (!term.empty()) {
 		task.setTerm(term);
 	}
 
 	s = task.getName() != "" ? "(" + task.getName() + ")" : "";
-	cout << "Enter name " << s << ": ";		
+	cout << "Enter name " << s << ": ";
 	getline(in, name);
 	if (!name.empty()) {
 		task.setName(name);
@@ -73,7 +73,7 @@ istream& operator>>(istream& in, Task& task) {
 
 	s = !task.getStartDate().toString().empty() ? task.getStartDate().toString() : "MM-DD-YYYY";
 	s = "(" + s + ")";
-	cout << "Enter start date " << s << ": ";	
+	cout << "Enter start date " << s << ": ";
 	getline(in, sdate);
 	if (!sdate.empty()) {
 		task.setStartDate(sdate + " 00:00:00");
@@ -81,7 +81,7 @@ istream& operator>>(istream& in, Task& task) {
 
 	s = !task.getEndDate().toString().empty() ? task.getEndDate().toString() : "MM-DD-YYYY";
 	s = "(" + s + ")";
-	cout << "Enter end date " << s << ": ";	
+	cout << "Enter end date " << s << ": ";
 	getline(in, edate);
 	if (!edate.empty()) {
 		task.setEndDate(edate + " 00:00:00");
@@ -102,7 +102,7 @@ ostream& operator<<(ostream& out, const Task& task) {
 	s += "," + task.getName();
 	s += "," + task.getStartDate().toString();
 	s += "," + task.getEndDate().toString();
-	s += "," + task.isCompleted();	
+	s += "," + task.isCompleted();
 	out << s;
 	return out;
 }

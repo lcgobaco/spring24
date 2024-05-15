@@ -4,7 +4,9 @@ default: main
 
 all: clean main
 
-main: main.o dateTime.o dateType.o menu.o task.o taskList.o taskHashTable.o taskMenu.o taskException.o utils.o
+main: main.o dateTime.o dateType.o menu.o task.o \
+	taskHashTable.o \
+	taskMenu.o taskException.o utils.o
 	$(COMPILER) -o $@ $^
 
 main.o: main.cpp
@@ -16,19 +18,16 @@ dateTime.o: dateTime.cpp
 dateType.o: dateType.cpp
 	$(COMPILER) -c $<
 
-menu.o: menu.cpp
+menu.o: menu.cpp menu.h
 	$(COMPILER) -c $<
 
-task.o: task.cpp
+task.o: task.cpp task.h
 	$(COMPILER) -c $<
 
-taskList.o: taskList.cpp
+taskHashTable.o: taskHashTable.cpp taskHashTable.h
 	$(COMPILER) -c $<
 
-taskHashTable.o: taskHashTable.cpp
-	$(COMPILER) -c $<
-
-taskMenu.o: taskMenu.cpp
+taskMenu.o: taskMenu.cpp taskMenu.h
 	$(COMPILER) -c $<
 
 utils.o: utils.cpp
