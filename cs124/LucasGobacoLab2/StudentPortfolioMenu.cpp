@@ -101,6 +101,10 @@ void StudentPortfolioMenu::initData() {
     file.close();
     courses.sort(true);
 }
+
+/**
+ * This function displays the UI for showing the list of courses
+*/
 void StudentPortfolioMenu::showList() {
     // Sort the courses
     string ascending;
@@ -120,6 +124,9 @@ void StudentPortfolioMenu::showList() {
 
 }
 
+/**
+ * This function displays the UI for viewing the details of a course
+*/
 void StudentPortfolioMenu::viewCourse() {
     // Search for the course
     string title;
@@ -136,6 +143,9 @@ void StudentPortfolioMenu::viewCourse() {
     }
 }
 
+/**
+ * This function displays the UI for adding a course
+*/
 void StudentPortfolioMenu::addCourse() {
 
     string department;
@@ -167,6 +177,9 @@ void StudentPortfolioMenu::addCourse() {
     courses.add(newCourse);
 }
 
+/**
+ * This function displays the UI for editing a course
+*/
 void StudentPortfolioMenu::editCourse() {
 
     string title;
@@ -211,6 +224,9 @@ void StudentPortfolioMenu::editCourse() {
     }
 }
 
+/**
+ * This function displays the UI for removing a course
+*/
 void StudentPortfolioMenu::removeCourse() {
     string title;
     cout << "Title:";
@@ -225,6 +241,9 @@ void StudentPortfolioMenu::removeCourse() {
     }
 }
 
+/**
+ * This function displays the UI for exiting
+*/
 void StudentPortfolioMenu::exit() {
 
      ofstream file(STUDENT_PORTFOLIO_FILENAME);
@@ -238,6 +257,9 @@ void StudentPortfolioMenu::exit() {
     file.close();
 }
 
+/**
+ * This function activates the UI
+*/
 void StudentPortfolioMenu::activate() {
 
     char input;
@@ -292,7 +314,6 @@ void StudentPortfolioMenu::activate() {
                 removeCourse();
                 break;
             }
-
 
             case STUDENT_PORTFOLIO_MENU_EXIT: // Quit
             {
