@@ -90,7 +90,7 @@ bool UserMenu::signIn(string username, string password) {
         if (users[i].getUsername() == username && users[i].getPassword() == password) {
             user = users[i];
             users[i].setLoginDateTime(DateTime(std::chrono::system_clock::now()));
-            cout << "User " << user.getUsername() << " signed in." << endl;
+            cout << setw(10) << "User " << user.getUsername() << " signed in." << endl;
             saveUserData();
             return true;
         }
@@ -110,7 +110,7 @@ bool UserMenu::signOut() {
         if (users[i].getUsername() == user.getUsername()) {
             users[i].setLogoutDateTime(DateTime(std::chrono::system_clock::now()));
             saveUserData();
-            cout << "User " << user.getUsername() << " signed out." << endl;
+            cout << setw(10) << "User " << user.getUsername() << " signed out." << endl;
             return true;
         }
     }
@@ -131,7 +131,7 @@ bool UserMenu::resetPassword(string oldPassword, string newPassword) {
             if (users[i].getPassword() == oldPassword) {
                 users[i].setPassword(newPassword);
                 saveUserData();
-                cout << "User " << user.getUsername() << " password reset." << endl;
+                cout << setw(10) << "User " << user.getUsername() << " password reset." << endl;
                 return true;
             }
             cout << "Incorrect password." << endl;
@@ -187,7 +187,7 @@ bool UserMenu::manageProfile(User user) {
         if (users[i].getUsername() == user.getUsername()) {
             users[i] = user;
             saveUserData();
-            cout << "User " << user.getUsername() << " profile updated." << endl;
+            cout << setw(10) << "User " << user.getUsername() << " profile updated." << endl;
             return true;
         }
     }
