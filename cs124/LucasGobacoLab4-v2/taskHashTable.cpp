@@ -79,6 +79,7 @@ void TaskHashTable::editTask() {
 
 	if (contains(name)) {
 		cin >> task;
+		erase(task);
 		insert(task);
 	} else {
 		throw TaskException(name, "Cannot edit. Task not found");
