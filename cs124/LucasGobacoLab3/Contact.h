@@ -22,6 +22,7 @@ private:
     string id;
     string role;
     string company_name;
+    static string sortByField;
 
 public:
     /**
@@ -89,20 +90,24 @@ public:
     */
     void setCompanyName(string company_name);
 
-    /*
-        Overload == operator for comparing Contacts
-    */
-    friend bool operator==(const Contact& lhs, const Contact& rhs);
+    // /*
+    //     Overload == operator for comparing Contacts
+    // */
+    // bool operator==(const Contact& lhs, const Contact& rhs);
 
     /*
         Overload << operator for printing a Contact
     */
     friend std::ostream& operator<<(std::ostream& os, const Contact& contact);
 
-    /*
-        Overload < operator for comparing Contacts
-    */
-    friend bool operator<(const Contact& lhs, const Contact& rhs);
+    // /*
+    //     Overload < operator for comparing Contacts
+    // */
+    // bool operator<(const Contact& lhs, const Contact& rhs);
+
+    bool operator==(const Contact&);
+	bool operator>(const Contact&);
+	bool operator<(const Contact&);
 };
 
 #endif

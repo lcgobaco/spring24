@@ -45,12 +45,12 @@ void ContactList::moveLast() {
 }
 
 void ContactList::moveNext() {
-    ++current;
+    current++;
     //current.next();
 }
 
 void ContactList::movePrevious() {
-    --current;
+    current--;
     //current.previous();
 }
 

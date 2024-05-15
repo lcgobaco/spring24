@@ -31,8 +31,10 @@ Menu.o: Menu.cpp Menu.h
 Contact.o: Contact.cpp Contact.h
 	$(COMPILER) -c $<
 
-ContactList.o: ContactList.cpp ContactList.h selectionSort.h
+ContactList.o: ContactList.cpp ContactList.h
 	$(COMPILER) -c $<
+
+ContactList.h: LinkedList.h
 
 clean:
 	rm -f main *.o
