@@ -1,0 +1,10 @@
+1) Use the try-catch exception (okay)
+
+2) Use map (-5) - You did not tell me where you make the changes
+
+3) Use of hashtable (-5)
+
+4) Compile, Run, and screenshot (-5)
+
+5) Use <iomanip> to format the output for cout
+and follow the C++ Programming guidelines (-2) - No screenshot of the output Partial credit for your attempt
