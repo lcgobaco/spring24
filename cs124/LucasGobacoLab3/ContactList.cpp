@@ -16,6 +16,18 @@
 
 ContactList::ContactList() {
     current = begin();
+
+    vector<Contact> contacts;
+    Iterator<Contact> itr = begin();
+
+    int i = 0;
+    while (!itr.equals(end())) {
+        contacts.push_back(itr.get());
+        itr.next();
+        i++;
+    }
+
+    selectionSort(&contacts[0], contacts.size());
 }
 
 ContactList::~ContactList() {}
@@ -113,21 +125,6 @@ bool compareContacts(Contact a, Contact b, string fieldName, string direction) {
     return result;
 }
 
-
-void ContactList::sortBy(string fieldName, string direction) {
-
-    vector<Contact> contacts;
-    Iterator<Contact> itr = begin();
-
-    int i = 0;
-    while (!itr.equals(end())) {
-        contacts.push_back(itr.get());
-        itr.next();
-        i++;
-    }
-    selectionSort(&contacts[0], contacts.size());
-}
-/*
 void ContactList::sortBy(string fieldName, string direction) {
 
     Iterator<Contact> b = begin();
@@ -152,4 +149,4 @@ void ContactList::sortBy(string fieldName, string direction) {
         b.next();
     }
 }
-*/
+

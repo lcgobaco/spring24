@@ -91,7 +91,6 @@ void ContactMenu::doList() {
 
     cout << "List of contacts:" << endl;
 
-    /*
     cout << "Sort by:" << endl;
 
     Menu sort_menu;
@@ -173,7 +172,6 @@ void ContactMenu::doList() {
             doSortBy(sort_field, "desc");
             break;
     }
-    */
     contactList.moveFirst();
 
     Iterator<Contact> current = contactList.getCurrent();
