@@ -7,31 +7,31 @@ all: clean main
 main: main.o Person.o DateTime.o Time.o Utils.o ContactMenu.o ContactList.o Menu.o Contact.o
 	$(COMPILER) -o $@ $^
 
-main.o: main.cpp
+main.o: main.cpp Person.h ContactMenu.h
 	$(COMPILER) -c $<
 
-Person.o: Person.cpp
+Person.o: Person.cpp Person.h
 	$(COMPILER) -c $<
 
-DateTime.o: DateTime.cpp
+DateTime.o: DateTime.cpp DateTime.h Utils.h
 	$(COMPILER) -c $<
 
-Time.o: Time.cpp
+Time.o: Time.cpp Time.h
 	$(COMPILER) -c $<
 
 Utils.o: Utils.cpp
 	$(COMPILER) -c $<
 
-ContactMenu.o: ContactMenu.cpp
+ContactMenu.o: ContactMenu.cpp ContactMenu.h Contact.h Utils.h
 	$(COMPILER) -c $<
 
-Menu.o: Menu.cpp
+Menu.o: Menu.cpp Menu.h
 	$(COMPILER) -c $<
 
-Contact.o: Contact.cpp
+Contact.o: Contact.cpp Contact.h
 	$(COMPILER) -c $<
 
-ContactList.o: ContactList.cpp
+ContactList.o: ContactList.cpp ContactList.h selectionSort.h
 	$(COMPILER) -c $<
 
 clean:
