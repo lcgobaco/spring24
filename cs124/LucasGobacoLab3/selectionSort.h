@@ -67,7 +67,6 @@ void print(T a[], int size) {
     cout << endl;
 }
 
-
 /**
    Sorts an array in ascending order using the selection sort algorithm.
    @param list the array to sort

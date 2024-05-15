@@ -98,6 +98,11 @@ public:
         Overload << operator for printing a Contact
     */
     friend std::ostream& operator<<(std::ostream& os, const Contact& contact);
+
+    /*
+        Overload < operator for comparing Contacts
+    */
+    friend bool operator<(const Contact& lhs, const Contact& rhs);
 };
 
 #endif

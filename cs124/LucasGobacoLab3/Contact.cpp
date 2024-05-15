@@ -59,3 +59,7 @@ std::ostream& operator<<(std::ostream& os, const Contact& contact) {
 
     return os;
 }
+
+bool operator<(const Contact& lhs, const Contact& rhs) {
+    return lhs.getId() < rhs.getId();
+}
