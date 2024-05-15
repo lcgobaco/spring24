@@ -15,6 +15,9 @@
 #include <iomanip>
 
 using namespace std;
+/**
+ * This function initializes the user data from the users_data.csv file
+*/
 void UserMenu::initUserData() {
 
     inFile.open(USERS_DATA);
@@ -42,6 +45,9 @@ void UserMenu::initUserData() {
     inFile.close();
 }
 
+/**
+ * This function saves the user data to the users_data.csv file
+*/
 void UserMenu::saveUserData() {
     ofstream outFile;
     outFile.open(USERS_DATA);
@@ -65,15 +71,20 @@ void UserMenu::saveUserData() {
     outFile.close();
 }
 
-
+/**
+ * Constructor for UserMenu.   Initializes the user data.
+*/
 UserMenu::UserMenu() {
     initUserData();
 };
 
-    // Destructor
+// Destructor
 UserMenu::~UserMenu() {
 }
 
+/**
+ * This function signs in a user
+*/
 bool UserMenu::signIn(string username, string password) {
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == username && users[i].getPassword() == password) {
@@ -106,6 +117,9 @@ bool UserMenu::signOut() {
     return false;
 }
 
+/**
+ * This function resets a user's password
+*/
 bool UserMenu::resetPassword(string oldPassword, string newPassword) {
     if (user.getUserId() == 0) {
         cout << "No user signed in." << endl;
@@ -128,6 +142,16 @@ bool UserMenu::resetPassword(string oldPassword, string newPassword) {
     return true;
 }
 
+/**
+ * This function creates a new account
+ * @param firstName the user's first name
+ * @param lastName the user's last name
+ * @param phone the user's phone number
+ * @param email the user's email
+ * @param password the user's password
+ * @return true if the account was created, false otherwise
+ * @throws runtime_error if the user is not an admin
+*/
 bool UserMenu::createAccount(string firstName, string lastName, string phone, string email, string password) {
 
     if (user.getRole() != "admin") {
@@ -146,10 +170,18 @@ bool UserMenu::isSignedIn() {
     return user.getUserId() != 0;
 }
 
+/**
+ * This function checks if the user is an admin
+ * @return true if the user is an admin, false otherwise
+*/
 bool UserMenu::isAdmin() {
     return user.getRole() == "admin";
 }
 
+/**
+ * This function manages a user's profile
+ * @param user the user to manage
+*/
 bool UserMenu::manageProfile(User user) {
         for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == user.getUsername()) {
@@ -162,10 +194,19 @@ bool UserMenu::manageProfile(User user) {
     return false;
 }
 
+/**
+ * This function returns the signed in user
+ * @return the signed in user
+*/
 User UserMenu::getSignedInUser() {
     return user;
 }
 
+/**
+ * This function gets a user by username
+ * @param username the username of the user
+ * @return the user
+*/
 User UserMenu::getUserByUsername(string username) {
     for (int i = 0; i < users.size(); i++) {
         if (users[i].getUsername() == username) {
@@ -175,6 +216,9 @@ User UserMenu::getUserByUsername(string username) {
     return User();
 }
 
+/**
+ * This function displays the UI for signing in
+*/
 void UserMenu::doSignIn() {
     int tries = 0;
     while (tries < 3) {
@@ -192,12 +236,18 @@ void UserMenu::doSignIn() {
     }
 }
 
+/**
+ * This function displays the UI for signing out
+*/
 void UserMenu::doSignOut() {
     cout << "Sign-out" << endl;
     bool signedOut = signOut();
     cout << "Signed out: " << signedOut << endl;
 }
 
+/**
+ * This function displays the UI for resetting a user's password
+*/
 void UserMenu::doResetPassword() {
     if (!isSignedIn()) {
         cout << "Error: You must be signed in to reset your password." << endl;
@@ -213,6 +263,9 @@ void UserMenu::doResetPassword() {
     bool reset = this->resetPassword(oldPassword, newPassword);
 }
 
+/**
+ * This function displays the UI for creating a new user
+*/
 void UserMenu::doCreateUser() {
 cout << "Create Account" << endl;
     string firstName, lastName, phone, email, password, reEnterPassword;
@@ -236,6 +289,9 @@ cout << "Create Account" << endl;
     cout << "Created: " << created << endl;
 }
 
+/**
+ * This function displays the UI for managing a user's profile
+*/
 void UserMenu::doManageUserProfile() {
     cout << "Manage Profile" << endl;
 
@@ -287,6 +343,9 @@ void UserMenu::doManageUserProfile() {
     bool managed = manageProfile(userToManage);
 }
 
+/**
+ * Activates the user menu
+*/
 void UserMenu::activate() {
     char input;
     add_option("Sign-in");

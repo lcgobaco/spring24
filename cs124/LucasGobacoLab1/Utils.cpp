@@ -3,6 +3,9 @@
 #include <vector>
 using namespace std;
 
+/**
+ * This function splits a string into a vector of tokens based on a delimiter
+*/
 std::vector<std::string> splitString(const std::string str, char delimiter) {
     std::vector<std::string> tokens;
     int start = 0;
