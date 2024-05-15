@@ -20,6 +20,7 @@
 #include "section.h"
 #include "Utils.h"
 #include "assignmentBST.h"
+#include "assignmentMenu.h"
 
 using namespace std;
 map<string, Faculty*> loadFaculties() {
@@ -122,6 +123,9 @@ map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap) {
     return assignments;
 }
 int main() {
+
+    AssignmentMenu menu;
+    menu.activate();
 
     cout << "Loading faculties..." << endl;
    map<string, Faculty*> facultyMap = loadFaculties();

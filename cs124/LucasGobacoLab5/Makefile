@@ -5,10 +5,13 @@ default: main
 
 all: clean main
 
-main: main.o menu.o sectionHT.o gradeScaleHT.o facultyHT.o assignmentBST.o faculty.o gradeScale.o section.o assignment.o Utils.o
+main: main.o assignmentMenu.o menu.o sectionHT.o gradeScaleHT.o facultyHT.o assignmentBST.o faculty.o gradeScale.o section.o assignment.o Utils.o
 	$(COMPILER) -o $@ $^
 
 main.o: main.cpp
+	$(COMPILER) -c $<
+
+assignmentMenu.o: assignmentMenu.cpp
 	$(COMPILER) -c $<
 
 faculty.o: faculty.cpp
