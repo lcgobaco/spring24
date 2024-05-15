@@ -1,53 +1,55 @@
-/*******************************************************
+#pragma once
 
- * Program Name: menu.h
-
- * Author: Lucas Gobaco
-
- * Date: 22 April 2024
-
- * Description: This program defines a class that displays a menu into the console.
-
- *******************************************************/
-
-#ifndef MENU_H
-#define MENU_H
-
+#include <iostream>
 #include <string>
 #include <vector>
-#include <iostream>
+#include <map>
 
 using namespace std;
 
-class Menu
-{
+/**
+   General purpose class menu
+*/
+class Menu {
 public:
-   /**
-      Constructor for menu class with no options
-   */
-   Menu();
+    Menu() {};
 
-   /**
-      Adds an option to the end of the menu.
-      @param option the option to add to the menu
-   */
-   void add_option(string option);
+    /**
+       Constructs a menu with no options.
+    */
+    Menu(string name);
 
-   /**
-      Displays the menu, with options numbered starting with 1,
-      and prompts the user for input. Repeats until a valid input
-      is supplied.
-      @return the number that the user supplied
-   */
-   string get_input() const;
+    void setName(string name) {
+        this->name = name;
+    }
 
+    string getName(string index) const {
+        return options.at(index);
+    }
+
+    /**
+       Adds an option to the end of this menu.
+       @param option the option to add
+    */
+    void addOption(string index, string option);
+    /**
+       Displays the menu, with options numbered starting with 1,
+       and prompts the user for input. Repeats until a valid input
+       is supplied.
+       @return the number that the user supplied
+    */
+    int doMenu() const;
+    int doMenuIndex() const;
+    char doMenuOption() const;
+
+    bool hasOption() const {
+        return options.size() > 0;
+    };
 private:
-   /**
-      Displays the menu, with options numbered starting with 1.
-   */
-   void display() const;
+    void display() const;
+    void displayPrefixIndex() const;
 
-   vector<string> options;
+    string name;
+    //vector<string> options;
+    map<string, string> options;
 };
-
-#endif

@@ -9,8 +9,8 @@
  * Description: This program implements a class that stores a faculty member's first name, last name, department, address, city, state, zip code, email, and phone number.
 
  *******************************************************/
-
-#include "common.h"
+#include <vector>
+#include "faculty.h"
 
 Faculty::Faculty(string id, const string& fName, const string& lName,
     const string& dept, const string& addr,const   string& city,
@@ -20,7 +20,11 @@ Faculty::Faculty(string id, const string& fName, const string& lName,
         sections = vector<Section*>();
     }
 
+Faculty::Faculty() {}
+
 string Faculty::getFacultyId() const { return facultyId; }
+
+string Faculty::getName() const { return facultyId; }
 
 string Faculty::getFirstName() const { return firstName; }
 
@@ -65,3 +69,32 @@ void Faculty::setPhone(const string& p) { phone = p; }
 void Faculty::setSections(vector<Section*> s) { sections = s; }
 
 void Faculty::addSection(Section* section) { sections.push_back(section); }
+
+istream& operator>>(istream& in, Faculty& course) {
+    //TODO:
+    // cout << "Enter the department: ";
+    // in >> course.department;
+    // cout << "Enter the course number: ";
+    // in >> course.course;
+    // cout << "Enter the title: ";
+    // in.ignore();
+    // getline(in, course.title);
+    // cout << "Enter the description: ";
+    // getline(in, course.description);
+    // cout << "Enter the prerequisite: ";
+    // in >> course.prereq;
+    // cout << "Enter the units: ";
+    // in >> course.units;
+    return in;
+}
+
+ostream& operator<<(ostream& out, Faculty& course) {
+    //TODO:
+    // out << "Department: " << course.department << endl;
+    // out << "Course: " << course.course << endl;
+    // out << "Title: " << course.title << endl;
+    // out << "Description: " << course.description << endl;
+    // out << "Prerequisite: " << course.prereq << endl;
+    // out << "Units: " << course.units << endl;
+    return out;
+}

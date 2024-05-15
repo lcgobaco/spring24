@@ -1,47 +1,86 @@
-/*******************************************************
+/**
+* Author: John Doe
+* Description: Manage Tasks using Map, HashTable, and Try-Catch
+* Due Date: 10/24/2024
+*/
 
- * Program Name: menu.cpp
-
- * Author: Lucas Gobaco
-
- * Date: 22 April 2024
-
- * Description: This program implements a class that displays a menu into the console.
-
- *******************************************************/
-
-#include "menu.h"
 #include <iostream>
 #include <string>
+#include <vector>
+#include "menu.h"
 
 using namespace std;
 
-Menu::Menu() {}
-
-void Menu::add_option(string option)
-{
-   options.push_back(option);
+/**
+* Initial menu name
+*/
+Menu::Menu(string name) {
+    this->name = name;
 }
 
-void Menu::display() const
-{
-   for (int i = 0; i < options.size(); i++)
-   {
-      cout << i + 1 << ") " << options[i] << endl;
-   }
+/**
+* Add menu open name
+*/
+void Menu::addOption(string index, string option) {
+    options[index] = option;
 }
 
-string Menu::get_input() const
-{
-   string input;
-   int n = -1;
-   do
-   {
-      display();
-      cin >> input;
-      n = stoi(input);
+/**
+* Dipslay option nam
+*/
+void Menu::display() const {
+    cout << "***** " << name << " *****" << endl;
+    for (auto const& value : options) {
+        cout << value.first << ") " << value.second << endl;
+    }
+    cout << "\nEnter choice: ";
+}
 
-   }
-   while (n < 1 || n > options.size());
-   return input;
+/**
+* Display ordered index and option name
+*/
+void Menu::displayPrefixIndex() const {
+    cout << "***** " << name << " *****" << endl;
+
+    int i = 0;
+    for (auto const& value : options) {
+        cout << i + 1 << ") " << value.second << endl;
+        i++;
+    }
+    cout << "\nEnter choice: ";
+}
+/**
+* Display option menu, option name; and ask users to select a choice by index
+*/
+int Menu::doMenuIndex() const {
+    char ch;
+    int input = 0;
+    do {
+        displayPrefixIndex();
+        cin >> ch;
+        input = static_cast<int>(ch) - 48;
+    } while (input < 1 || input >(int)options.size());
+    return input;
+}
+
+/**
+* Display option menu, option name; and ask users to select a choice
+*/
+int Menu::doMenu() const {
+    int input = 0;
+    do {
+        display();
+        cin >> input;
+    } while (input < 1 || input >(int)options.size());
+    return input;
+}
+
+/**
+* Display option menu, option name; and ask users to select a choice
+*/
+char Menu::doMenuOption() const {
+    char input;
+    display();
+    cin >> input;
+    return input;
 }

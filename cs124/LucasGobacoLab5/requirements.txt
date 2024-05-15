@@ -1,0 +1,40 @@
+The B-tree generalizes the binary search tree, allowing for nodes with more than two children.[2]
+
+1)
+We will be working together in class the B-Trees classes implementing the tree interface template
+using an underlying binary tree representation.
+You need
+to use Tree structures, B-Trees, maps, or hashtable, and you may also use the classes that we
+have learned this semester.
+
+2)
+** The only requirement is to populate the assignment-data.csv into the BinarySearchTree. For any
+other list, you may use any classes or lists we have learned this semester to structure your
+program.
+
+Example:
+template <typename T>
+class BinarySearchTree
+or
+template <typename T>
+class BinaryTree
+
+template <typename T>
+class Tree
+
+3) Implement the classes using the tree interface using an underlying binary tree
+representation.
+See your in-class assignment tree.h and binaryTree.h
+
+4) Implement your menu to include the following operations
+doList - display all data from the root of the tree.
+doView - view individual assignment and view group of assignments in rows and columns
+doAdd - add to tree.
+doEdit - edit any fields
+doRemove - remove a node from the tree
+calculateGrade - Implement your grade and display.
+doSave - save data to .csv file
+
+
+5.)
+ Be sure to use <iomanip> to format your output and follow the coding guidelines.

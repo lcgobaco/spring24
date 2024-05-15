@@ -10,7 +10,7 @@
 
  *******************************************************/
 
-#include "common.h"
+#include "assignment.h"
 
 Assignment::Assignment(int id, GradeScale* gradeScale,
 const string& description,

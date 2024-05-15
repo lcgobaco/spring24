@@ -1,0 +1,16 @@
+Store Assignments in a BinarySearchTree
+
+4. ASSIGNMENT class
+    a. Attributes:
+        AssignmentId
+        GradeScale (object)
+        Description
+        StartDate
+        EndDate
+        PossiblePoints
+        Points
+    b. Sample Data:
+        1. assignment-data.csv
+
+
+Load Faculty, Section, and GradeScale into Hashtables

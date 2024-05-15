@@ -27,7 +27,7 @@ private:
     T data;
     Node* left;
     Node* right;
-friend class BinaryTree<T>;
+    friend class BinaryTree<T>;
 };
 
 /*

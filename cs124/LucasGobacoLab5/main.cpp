@@ -12,10 +12,10 @@
 
 #include <iostream>
 #include <string>
-#include "common.h"
-#include "Utils.h"
 #include <fstream>
 #include <map>
+#include "common.h"
+#include "Utils.h"
 
 using namespace std;
 map<string, Faculty*> loadFaculties() {
@@ -85,7 +85,7 @@ map<int, GradeScale*> loadGradeScales(map<string, Section*> sectionMap) {
     while (getline(inFile, line)) {
         vector<string> tokens = splitString(line, ',');
         Section* section = sectionMap[tokens[1]];
-        GradeScale* gradeScale = new GradeScale(stoi(tokens[0]), section, tokens[2], stod(tokens[3]));
+        GradeScale* gradeScale = new GradeScale(tokens[0], section, tokens[2], stod(tokens[3]));
         gradeScales[stoi(tokens[0])] = gradeScale;
         section->addGradeScale(gradeScale);
     }

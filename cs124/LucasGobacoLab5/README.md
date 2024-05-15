@@ -33,7 +33,6 @@ assignment-data.csv loads into a collection of ASSIGNMENT objects.
     b. Sample Data:
         1. faculty-data.csv
 
-
 2.  SECTION class
      a. Attributes
         SectionId
