@@ -90,6 +90,7 @@ void printContact(Contact contact) {
 void ContactMenu::doList() {
 
     cout << "List of contacts:" << endl;
+
     /*
     cout << "Sort by:" << endl;
 
@@ -173,8 +174,6 @@ void ContactMenu::doList() {
             break;
     }
     */
-
-    doSortBy("id", "asc");
     contactList.moveFirst();
 
     Iterator<Contact> current = contactList.getCurrent();

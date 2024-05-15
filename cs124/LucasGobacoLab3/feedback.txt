@@ -37,4 +37,5 @@ void ContactMenu::move_last() { it = list.end(); }
 
 6) Missing the selectionSort
 You did not do the selectionSort as I discussed in class.
+** DONE *** called in doList();
 
