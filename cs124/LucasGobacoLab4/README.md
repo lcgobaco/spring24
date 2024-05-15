@@ -1,3 +1,6 @@
+Changes:
+
+I. TASKMENU
 In taskMenu.cpp, any line with a comment:
 
 //TODO and DONE: Replaced TaskList with TaskHashTable
@@ -48,3 +51,7 @@ list->deleteTask();
 replaced with
 table->deleteTask() wrapped in a try/catch.
 
+
+II. MENU OPTIONS
+
+In Menu.h, replaced vector<string> options with map<int, string> options.

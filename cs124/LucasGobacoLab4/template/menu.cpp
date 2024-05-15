@@ -21,8 +21,8 @@ Menu::Menu(string name) {
 /**
 * Add menu open name
 */
-void Menu::addOption(string index, string option) {
-    options[index] = option;
+void Menu::addOption(string option) {
+    options.push_back(option);
 }
 
 /**
@@ -30,8 +30,8 @@ void Menu::addOption(string index, string option) {
 */
 void Menu::display() const {
     cout << "***** " << name << " *****" << endl;
-    for (auto const& value : options) {
-        cout << value.first << ") " << value.second << endl;
+    for (int i = 0; i < (int)options.size(); i++) {
+        cout << options[i] << endl;
     }
     cout << "\nEnter choice: ";
 }
@@ -41,11 +41,8 @@ void Menu::display() const {
 */
 void Menu::displayPrefixIndex() const {
     cout << "***** " << name << " *****" << endl;
-
-    int i = 0;
-    for (auto const& value : options) {
-        cout << i + 1 << ") " << value.second << endl;
-        i++;
+    for (int i = 0; i < (int)options.size(); i++) {
+        cout << i + 1 << ") " << options[i] << endl;
     }
     cout << "\nEnter choice: ";
 }

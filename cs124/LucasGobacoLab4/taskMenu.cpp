@@ -15,12 +15,12 @@
 using namespace std;
 
 TaskMenu::TaskMenu() : Menu("Main Menu") {
-	addOption("a) Add task");
-	addOption("e) Edit task");
-	addOption("d) Delete task");
-	addOption("p) List pending tasks");
-	addOption("c) List completed tasks");
-	addOption("x) Exit");
+	addOption("a", "Add task");
+	addOption("e", "Edit task");
+	addOption("d", "Delete task");
+	addOption("p", "List pending tasks");
+	addOption("c", "List completed tasks");
+	addOption("x", "Exit");
 
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list = new TaskList();
@@ -74,21 +74,21 @@ void TaskMenu::init(){
 }
 
 void TaskMenu::viewPendingTasks() {
-	showOption(getName(3).substr(3));
+	showOption(getName("p"));
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list->printTable(false);
 	table->printTable(false);
 }
 
 void TaskMenu::viewCompletedTasks() {
-	showOption(getName(4).substr(3));
+	showOption(getName("c"));
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list->printTable(true);
 	table->printTable(true);
 }
 
 void TaskMenu::addNewTask() {
-	showOption(getName(0).substr(3));
+	showOption(getName("a"));
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list->addNew();
 	try {
@@ -103,7 +103,7 @@ void TaskMenu::addNewTask() {
 }
 
 void TaskMenu::editTask() {
-	showOption(getName(1).substr(3));
+	showOption(getName("e"));
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list->editTask();
 	try {
@@ -117,7 +117,7 @@ void TaskMenu::editTask() {
 }
 
 void TaskMenu::deleteTask() {
-	showOption(getName(2).substr(3));
+	showOption(getName("d"));
 	//TODO and DONE: Replaced TaskList with TaskHashTable
 	//list->deleteTask();
 	try {

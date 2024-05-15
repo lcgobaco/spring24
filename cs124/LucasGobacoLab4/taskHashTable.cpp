@@ -61,6 +61,7 @@ vector<Task> TaskHashTable::values() {
 
 void TaskHashTable::addNew() {
 	Task task;
+	cin.ignore();
 	cin >> task;
 	string name = task.getName();
 	if (contains(name)) {

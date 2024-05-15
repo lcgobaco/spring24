@@ -3,7 +3,6 @@
 #include <iostream>
 #include <string>
 #include <vector>
-#include <map>
 
 using namespace std;
 
@@ -23,7 +22,7 @@ public:
         this->name = name;
     }
 
-    string getName(string index) const {
+    string getName(int index) const {
         return options.at(index);
     }
 
@@ -31,7 +30,7 @@ public:
        Adds an option to the end of this menu.
        @param option the option to add
     */
-    void addOption(string index, string option);
+    void addOption(string option);
     /**
        Displays the menu, with options numbered starting with 1,
        and prompts the user for input. Repeats until a valid input
@@ -50,6 +49,5 @@ private:
     void displayPrefixIndex() const;
 
     string name;
-    //vector<string> options;
-    map<string, string> options;
+    vector<string> options;
 };
