@@ -4,23 +4,22 @@ default: main
 
 all: clean main
 
-main: main.o assignment.o faculty.o gradeScale.o menu.o section.o Utils.o Utils.h \
-	sectionHT.o gradeScaleHT.o facultyHT.o
+main: main.o menu.o sectionHT.o gradeScaleHT.o facultyHT.o faculty.o gradeScale.o section.o assignment.o Utils.o
 	$(COMPILER) -o $@ $^
 
-main.o: main.cpp binary_tree.h binary_search_tree.h common.h
+main.o: main.cpp
 	$(COMPILER) -c $<
 
-assigment.o: assignment.cpp common.h
+faculty.o: faculty.cpp
 	$(COMPILER) -c $<
 
-faculty.o: faculty.cpp common.h
+assigment.o: assignment.cpp
 	$(COMPILER) -c $<
 
-gradeScale.o: gradeScale.cpp common.h
+gradeScale.o: gradeScale.cpp
 	$(COMPILER) -c $<
 
-section.o: section.cpp common.h
+section.o: section.cpp
 	$(COMPILER) -c $<
 
 menu.o: menu.cpp menu.h
