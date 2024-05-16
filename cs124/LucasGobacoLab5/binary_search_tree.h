@@ -68,7 +68,7 @@ public:
     /**
      * Tries to find an element in the tree.
     */
-    T find(T element) const;
+    //T find(T element) const;
 
     /**
        Tries to remove an element from the tree. Does nothing
@@ -253,27 +253,27 @@ int BinarySearchTree<T>::count(T element) const
     return 0;
 }
 
-template <typename T>
-T BinarySearchTree<T>::find(T element) const
-{
-    BSTNode<T>* current = root;
-    while (current != nullptr)
-    {
-        if (element < current->data)
-        {
-            current = current->left;
-        }
-        else if (element > current->data)
-        {
-            current = current->right;
-        }
-        else
-        {
-            return current->data;
-        }
-    }
-    return nullptr;
-}
+// template <typename T>
+// T BinarySearchTree<T>::find(T element) const
+// {
+//     BSTNode<T>* current = root;
+//     while (current != nullptr)
+//     {
+//         if (element < current->data)
+//         {
+//             current = current->left;
+//         }
+//         else if (element > current->data)
+//         {
+//             current = current->right;
+//         }
+//         else
+//         {
+//             return current->data;
+//         }
+//     }
+//     return end();
+// }
 
 template <typename T>
 void BinarySearchTree<T>::erase(T element)

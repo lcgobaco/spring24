@@ -78,13 +78,13 @@ istream& operator>>(istream& in, Assignment& assignment) {
     return in;
 }
 
-ostream& operator<<(ostream& out, Assignment*& assignment) {
+ostream& operator<<(ostream& out, Assignment& assignment) {
 
-    out << "Assignment ID: " << assignment->assignmentId << endl;
-    out << "Description: " << assignment->description << endl;
-    out << "Start Date: " << assignment->startDate << endl;
-    out << "End Date: " << assignment->endDate << endl;
-    out << "Possible Points: " << assignment->possiblePoints << endl;
-    out << "Points: " << assignment->points << endl;
+    out << "Assignment ID: " << assignment.assignmentId << endl;
+    out << "Description: " << assignment.description << endl;
+    out << "Start Date: " << assignment.startDate << endl;
+    out << "End Date: " << assignment.endDate << endl;
+    out << "Possible Points: " << assignment.possiblePoints << endl;
+    out << "Points: " << assignment.points << endl;
     return out;
 }

@@ -85,7 +85,7 @@ void AssignmentMenu::doView() {
 	// For debugging:
 	//	Assignment* assignment = assignmentBST->find(amap[id]);
 
-	cout << assignment;
+	cout << *assignment;
 }
 
 void AssignmentMenu::doAdd() {
@@ -360,7 +360,7 @@ void AssignmentMenu::test() {
 	for (auto it = amap.begin(); it != amap.end(); ++it) {
 	 	Assignment* assignment = it->second;
 	 	assignmentBST->insert(assignment);
-	 	cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(assignment) << endl;
+	 	cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(*assignment) << endl;
 	}
 
 	// //assignmentBST->print();

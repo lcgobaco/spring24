@@ -47,7 +47,7 @@ public:
     bool operator<(const Assignment&) const;
 
     friend istream& operator>>(istream& in, Assignment&);
-    friend ostream& operator<<(ostream& out, Assignment*&);
+    friend ostream& operator<<(ostream& out, Assignment&);
 };
 
 #endif // ASSIGNMENT_H
