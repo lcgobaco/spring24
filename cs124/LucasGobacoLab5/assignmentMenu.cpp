@@ -43,7 +43,12 @@ AssignmentMenu::AssignmentMenu() : Menu("Main Menu") {
 	init();
 }
 
+// Forward declarations
 map<string, Faculty*> loadFaculties();
+map<string, Section*> loadSections(map<string, Faculty*> facultyMap);
+map<int, GradeScale*> loadGradeScales(map<string, Section*> sectionMap);
+map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap);
+void test();
 
 AssignmentMenu::~AssignmentMenu() {
 	delete facultyHT;
@@ -53,11 +58,9 @@ AssignmentMenu::~AssignmentMenu() {
 	inFile.close();
 }
 
+
 void AssignmentMenu::init(){
-	map<string, Faculty*> fmap = loadFaculties();
-	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
-		facultyHT->insert(it->second);
-	}
+	test();
 }
 
 void AssignmentMenu::doList() {
@@ -224,4 +227,154 @@ map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap) {
     }
     inFile.close();
     return assignments;
+}
+
+void AssignmentMenu::test() {
+	cout << "Test insert faculty" << endl;
+	map<string, Faculty*> fmap = loadFaculties();
+	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
+		Faculty* faculty = it->second;
+		facultyHT->insert(faculty);
+		cout << "Faculty: " << faculty->getFacultyId() << " inserted," << facultyHT->count(faculty) << endl;
+	}
+
+	cout << "Test find faculty after insert" << endl;
+	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
+		Faculty* faculty = it->second;
+		Iterator<Faculty *> iter = facultyHT->find(faculty->getFacultyId());
+		string id = iter.get()->getFacultyId();
+		cout << "Faculty: " << faculty->getFacultyId() << " found," << id << endl;
+	}
+
+	// Test erase
+	cout << "Test erase faculty" << endl;
+	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
+		Faculty* faculty = it->second;
+		facultyHT->erase(faculty);
+		cout << "Faculty: " << faculty->getFacultyId() << " inserted," << facultyHT->count(faculty) << endl;
+	}
+
+	cout << "Test find faculty after erase" << endl;
+	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
+		Faculty* faculty = it->second;
+		Iterator<Faculty *> iter = facultyHT->find(faculty->getFacultyId());
+		if (iter.equals(facultyHT->end())) {
+			cout << "Faculty: " << faculty->getName() << " not found" << endl;
+			continue;
+		}
+		string id = iter.get()->getFacultyId();
+		cout << "Faculty: " << faculty->getFacultyId() << " found," << id << endl;
+	}
+
+	cout << "Test insert section" << endl;
+	map<string, Section*> smap = loadSections(fmap);
+	for (auto it = smap.begin(); it != smap.end(); ++it) {
+		Section* section = it->second;
+		sectionHT->insert(section);
+		cout << "Section: " << section->getSectionId() << " inserted," << sectionHT->count(section) << endl;
+	}
+
+	cout << "Test find section after insert" << endl;
+	for (auto it = smap.begin(); it != smap.end(); ++it) {
+		Section* section = it->second;
+		Iterator<Section *> iter = sectionHT->find(section->getName());
+		string id = iter.get()->getSectionId();
+		cout << "Section: " << section->getSectionId() << " found," << id << endl;
+	}
+
+	// test erase
+	cout << "Test erase section" << endl;
+	for (auto it = smap.begin(); it != smap.end(); ++it) {
+		Section* section = it->second;
+		sectionHT->erase(section);
+		cout << "Section: " << section->getSectionId() << " inserted," << sectionHT->count(section) << endl;
+	}
+
+	cout << "Test find section after erase" << endl;
+	for (auto it = smap.begin(); it != smap.end(); ++it) {
+		Section* section = it->second;
+		Iterator<Section *> iter = sectionHT->find(section->getName());
+		if (iter.equals(sectionHT->end())) {
+			cout << "Section: " << section->getSectionId() << " not found" << endl;
+			continue;
+		}
+		string id = iter.get()->getSectionId();
+		cout << "Section: " << section->getSectionId() << " found," << id << endl;
+	}
+
+	cout << "Test insert gradeScale" << endl;
+	map<int, GradeScale*> gmap = loadGradeScales(smap);
+	for (auto it = gmap.begin(); it != gmap.end(); ++it) {
+		GradeScale* gradeScale = it->second;
+		gradeScaleHT->insert(gradeScale);
+		cout << "GradeScale: " << gradeScale->getGradeScaleId() << " inserted," << gradeScaleHT->count(gradeScale) << endl;
+	}
+
+	cout << "Test find gradeScale after insert" << endl;
+	for (auto it = gmap.begin(); it != gmap.end(); ++it) {
+		GradeScale* gradeScale = it->second;
+		Iterator<GradeScale *> iter = gradeScaleHT->find(gradeScale->getName());
+		string id = iter.get()->getGradeScaleId();
+		cout << "GradeScale: " << gradeScale->getGradeScaleId() << " found," << id << endl;
+	}
+
+	// test erase
+	cout << "Test erase gradeScale" << endl;
+	for (auto it = gmap.begin(); it != gmap.end(); ++it) {
+		GradeScale* gradeScale = it->second;
+		gradeScaleHT->erase(gradeScale);
+		cout << "GradeScale: " << gradeScale->getGradeScaleId() << " inserted," << gradeScaleHT->count(gradeScale) << endl;
+	}
+
+	cout << "Test find gradeScale after erase" << endl;
+	for (auto it = gmap.begin(); it != gmap.end(); ++it) {
+		GradeScale* gradeScale = it->second;
+		Iterator<GradeScale *> iter = gradeScaleHT->find(gradeScale->getGradeScaleId());
+		if (iter.equals(gradeScaleHT->end())) {
+			cout << "GradeScale: " << gradeScale->getGradeScaleId() << " not found" << endl;
+			continue;
+		}
+		string id = iter.get()->getGradeScaleId();
+		cout << "GradeScale: " << gradeScale->getGradeScaleId() << " found," << id << endl;
+	}
+
+	cout << "Test insert assignment" << endl;
+	map<int, Assignment*> amap = loadAssignments(gmap);
+	for (auto it = amap.begin(); it != amap.end(); ++it) {
+		Assignment* assignment = it->second;
+		assignmentBST->insert(assignment);
+		cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(assignment) << endl;
+	}
+
+	cout << "Test find assignment after insert" << endl;
+	for (auto it = amap.begin(); it != amap.end(); ++it) {
+		Assignment* assignment = it->second;
+		Assignment* a = assignmentBST->find(assignment);
+		if (a == nullptr) {
+			cout << "Assignment: " << assignment->getAssignmentId() << " not found" << endl;
+			continue;
+		}
+		int id = a->getAssignmentId();
+		cout << "Assignment: " << assignment->getAssignmentId() << " found," << id << endl;
+	}
+
+	// test erase
+	cout << "Test erase assignment" << endl;
+	for (auto it = amap.begin(); it != amap.end(); ++it) {
+		Assignment* assignment = it->second;
+		assignmentBST->erase(assignment);
+		cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(assignment) << endl;
+	}
+
+	cout << "Test find assignment after erase" << endl;
+	for (auto it = amap.begin(); it != amap.end(); ++it) {
+		Assignment* assignment = it->second;
+		Assignment* a = assignmentBST->find(assignment);
+		if (a == nullptr) {
+			cout << "Assignment: " << assignment->getAssignmentId() << " not found" << endl;
+			continue;
+		}
+		int id = a->getAssignmentId();
+		cout << "Assignment: " << assignment->getAssignmentId() << " found," << id << endl;
+	}
 }

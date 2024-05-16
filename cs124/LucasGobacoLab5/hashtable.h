@@ -105,17 +105,24 @@ public:
     */
     int size() const;
 
+    /**
+     * Finds an element in the hash table
+     * @param x the element to find
+     * @return an iterator to the element if found, otherwise an iterator to the end
+     */
+    Iterator<T> find(const string& key) const;
+
 private:
     vector<Node<T>*> buckets;
     int current_size;
 
-    int hash_code(const string& str);
+    int hash_code(const string& str) const;
 
     friend class Iterator<T>;
 };
 
 template<typename T>
-int HashTable<T>::hash_code(const string& str)
+int HashTable<T>::hash_code(const string& str) const
 {
     int h = 0;
     for (int i = 0; i < str.length(); i++)
@@ -138,7 +145,7 @@ HashTable<T>::HashTable(int nbuckets)
 template<typename T>
 int HashTable<T>::count(const T& x)
 {
-    int h = hash_code(x);
+    int h = hash_code(x->getName());
     h = h % buckets.size();
     if (h < 0) { h = -h; }
 
@@ -271,6 +278,28 @@ void Iterator<T>::next()
             current = nullptr;
         }
     }
+}
+
+template<typename T>
+Iterator<T> HashTable<T>::find(const string& key) const
+{
+    int h = hash_code(key);
+    h = h % buckets.size();
+    if (h < 0) { h = -h; }
+
+    Node<T>* current = buckets[h];
+    while (current != nullptr)
+    {
+
+        if (current->data->getName() == key) {
+            Iterator<T> iter;
+            iter.container = this;
+            iter.current = current;
+            return iter;
+        }
+        current = current->next;
+    }
+    return end();
 }
 
 #endif // HASHTABLE_H

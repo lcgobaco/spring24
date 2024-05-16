@@ -36,6 +36,7 @@ public:
 
 protected:
     void init();
+    void test();
     void showOption(string title);
 
 private:
