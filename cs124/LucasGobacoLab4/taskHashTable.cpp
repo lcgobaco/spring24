@@ -134,8 +134,3 @@ void TaskHashTable::printRow(const Task task) {
 		<< endl;
 	cout.fill(originalFill);
 }
-
-void TaskHashTable::printRaw(bool complete) {
-
-	cout << endl;
-}
