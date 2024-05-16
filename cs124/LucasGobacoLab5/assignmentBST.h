@@ -14,6 +14,7 @@ public:
     Assignment findById(string id);
     void save_node(ofstream* f, BSTNode<Assignment>* node);
     vector<Assignment>* values();
+    void print();
 private:
     int size_ = 0;
 };

@@ -98,4 +98,37 @@ void getValues(BSTNode<Assignment>* node, vector<Assignment>* values) {
 
 }
 
+void AssignmentBST::print()
+{
+    int max_index = 0;
+    map<int, BSTNode<Assignment>*> index_map;
+
+    // Creating index_map
+    cout << "In tree form: " << endl;
+    print_tree(getRoot(), &index_map, 0, &max_index);
+
+    // Printing the tree
+    double previous_depth = 0;
+    for (int i = 0; i <= index_map.size(); i++) {
+
+        double current_depth = floor(log2(i+1));
+        if (current_depth != previous_depth) {
+            cout << "\n";
+            previous_depth = current_depth;
+        }
+        if (index_map.find(i) != index_map.end()) {
+            cout << index_map[i]->getData().getAssignmentId() << " ";
+        } else {
+            cout << "null ";
+        }
+    }
+    cout << "\n";
+
+    cout << "In order traversal: " << endl;
+    print_node(getRoot());
+
+    cout << "\n";
+
+}
+
 

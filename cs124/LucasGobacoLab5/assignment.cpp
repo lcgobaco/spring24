@@ -64,15 +64,21 @@ void Assignment::setPossiblePoints(double m) { possiblePoints = m; }
 void Assignment::setPoints(double p) { points = p; }
 
 bool Assignment::operator==(const Assignment& c) const {
-	return stoi(this->getAssignmentId()) == stoi(c.getAssignmentId());
+    bool result = stoi(this->getAssignmentId()) == stoi(c.getAssignmentId());
+    // cout << "Comparing: " << this->getAssignmentId() << " == " << c.getAssignmentId() << " = " << result << endl;
+	return result;
 }
 
 bool Assignment::operator>(const Assignment& c) const {
-	return stoi(this->getAssignmentId()) > stoi(c.getAssignmentId());
+    bool result = stoi(this->getAssignmentId()) > stoi(c.getAssignmentId());
+    // cout << "Comparing: " << this->getAssignmentId() << " > " << c.getAssignmentId() << " = " << result << endl;
+	return result;
 }
 
 bool Assignment::operator<(const Assignment& c) const {
-	return stoi(this->getAssignmentId()) < stoi(c.getAssignmentId());
+    bool result = stoi(this->getAssignmentId()) < stoi(c.getAssignmentId());
+    // cout << "Comparing: " << this->getAssignmentId() << " < " << c.getAssignmentId() << " = " << result << endl;
+	return result;
 }
 
 istream& operator>>(istream& in, Assignment& assignment) {
