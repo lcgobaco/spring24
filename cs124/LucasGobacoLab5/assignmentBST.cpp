@@ -20,16 +20,13 @@ int AssignmentBST::size() {
     return size_;
 }
 
-Assignment* AssignmentBST::findById(string id)
+Assignment AssignmentBST::findById(string id)
 {
-    cout << "AssignmentBST::findById " << id << endl;
-    Assignment* a = new Assignment(id, nullptr, "", "", "", 0, 0);
     BSTNode<Assignment>* current = getRoot();
     while (current != nullptr)
     {
         int x = stoi(id);
         int y = stoi(current->getData().getAssignmentId());
-       //cout << id << " " << current->getData()->getAssignmentId() << " " << cmp << endl;
         if (x < y)
         {
             current = current->getLeft();
@@ -40,9 +37,8 @@ Assignment* AssignmentBST::findById(string id)
         }
         else
         {
-            Assignment assignment = current->getData();
-            return &assignment;
+            return current->getData();
         }
     }
-    return nullptr;
+    return Assignment();
 }

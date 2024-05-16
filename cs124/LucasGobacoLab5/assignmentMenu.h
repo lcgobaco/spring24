@@ -14,7 +14,9 @@
 
 using namespace std;
 
-enum COMMAND { LIST='l', VIEW='v', ADD='a', EDIT = 'e', REMOVE = 'r', SAVE = 's', EXIT = 'x' };
+enum COMMAND
+{ LIST='l', VIEW='v', ADD='a', EDIT = 'e', REMOVE = 'r',
+SAVE = 's', EXIT = 'x', GRADE_SCALE = 'g', CALCULATE = 'c'};
 
 class AssignmentMenu :public Menu {
 public:
@@ -28,6 +30,8 @@ public:
     void doRemove();
     void doSave();
     void activate();
+    void doGradeScale();
+    void doCalculate();
 
     FacultyHT* getFacultyHT();
     GradeScaleHT* getGradeScaleHT();
@@ -36,7 +40,7 @@ public:
 
 protected:
     void init();
-    void test();
+    void load();
     void showOption(string title);
 
 private:

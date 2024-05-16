@@ -4,6 +4,8 @@
 #include<string>
 #include<vector>
 
+#include "section.h"
+
 using namespace std;
 
 class Section;

@@ -33,6 +33,7 @@ AssignmentMenu::AssignmentMenu() : Menu("Main Menu") {
 	addOption("e", "Edit Assignment");
 	addOption("r", "Remove Assignment");
 	addOption("c", "Calculate Grade");
+	addOption("g", "View Grade Scale");
 	addOption("s", "Save");
 	addOption("x", "Exit");
 
@@ -60,7 +61,7 @@ AssignmentMenu::~AssignmentMenu() {
 
 
 void AssignmentMenu::init(){
-	test();
+	load();
 }
 
 void AssignmentMenu::doList() {
@@ -75,17 +76,13 @@ void AssignmentMenu::doView() {
 	string id;
 	cin >> id;
 
-	Assignment* assignment = assignmentBST->findById(id);
-	if (assignment == nullptr) {
+	Assignment assignment = assignmentBST->findById(id);
+	if (assignment.getAssignmentId() == "") {
 		cout << "Assignment not found." << endl;
 		return;
 	}
 
-
-	// For debugging:
-	//	Assignment* assignment = assignmentBST->find(amap[id]);
-
-	cout << *assignment;
+	cout << assignment;
 }
 
 void AssignmentMenu::doAdd() {
@@ -103,11 +100,30 @@ void AssignmentMenu::doEdit() {
 
 void AssignmentMenu::doRemove() {
 	showOption(getName("r"));
-	// TODO:
+	cout << "Enter the assignment ID: ";
+	string id;
+	cin >> id;
+
+	Assignment assignment = assignmentBST->findById(id);
+	if (assignment.getAssignmentId() == "") {
+		cout << "Assignment not found." << endl;
+		return;
+	}
+	assignmentBST->erase(&assignment);
 }
 
 void AssignmentMenu::doSave() {
 	showOption(getName("S"));
+	// TODO:
+}
+
+void AssignmentMenu::doGradeScale() {
+	showOption(getName("g"));
+	gradeScaleHT->printTable();
+}
+
+void AssignmentMenu::doCalculate() {
+	showOption(getName("c"));
 	// TODO:
 }
 
@@ -130,6 +146,12 @@ void AssignmentMenu::activate() {
 			break;
 		case REMOVE:
 			doRemove();
+			break;
+		case CALCULATE:
+			doCalculate();
+			break;
+		case GRADE_SCALE:
+			doGradeScale();
 			break;
 		case SAVE:
 			doSave();
@@ -246,14 +268,16 @@ map<string, Assignment*> loadAssignments(map<string, GradeScale*> gradeScaleMap)
     return assignments;
 }
 
-void AssignmentMenu::test() {
+void AssignmentMenu::load() {
 	//cout << "Test insert faculty" << endl;
+
+	// Load from file in Faculty Hash Table
 	fmap = loadFaculties();
-	// for (auto it = fmap.begin(); it != fmap.end(); ++it) {
-	// 	Faculty* faculty = it->second;
-	// 	facultyHT->insert(faculty);
-	// 	cout << "Faculty: " << faculty->getFacultyId() << " inserted," << facultyHT->count(faculty) << endl;
-	// }
+	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
+	 	Faculty* faculty = it->second;
+	 	facultyHT->insert(faculty);
+	 	//cout << "Faculty: " << faculty->getFacultyId() << " inserted," << facultyHT->count(faculty) << endl;
+	}
 
 	// cout << "Test find faculty after insert" << endl;
 	// for (auto it = fmap.begin(); it != fmap.end(); ++it) {
@@ -284,12 +308,14 @@ void AssignmentMenu::test() {
 	// }
 
 	//cout << "Test insert section" << endl;
+
+	// Load from file into Section Hash Table
 	smap = loadSections(fmap);
-	// for (auto it = smap.begin(); it != smap.end(); ++it) {
-	// 	Section* section = it->second;
-	// 	sectionHT->insert(section);
+	for (auto it = smap.begin(); it != smap.end(); ++it) {
+		Section* section = it->second;
+		sectionHT->insert(section);
 	// 	cout << "Section: " << section->getSectionId() << " inserted," << sectionHT->count(section) << endl;
-	// }
+	}
 
 	// cout << "Test find section after insert" << endl;
 	// for (auto it = smap.begin(); it != smap.end(); ++it) {
@@ -320,12 +346,14 @@ void AssignmentMenu::test() {
 	// }
 
 	// cout << "Test insert gradeScale" << endl;
+
+	// Load from file into GradeScale Hash Table
 	gmap = loadGradeScales(smap);
-	// for (auto it = gmap.begin(); it != gmap.end(); ++it) {
-	// 	GradeScale* gradeScale = it->second;
-	// 	gradeScaleHT->insert(gradeScale);
+	for (auto it = gmap.begin(); it != gmap.end(); ++it) {
+		GradeScale* gradeScale = it->second;
+		gradeScaleHT->insert(gradeScale);
 	// 	cout << "GradeScale: " << gradeScale->getGradeScaleId() << " inserted," << gradeScaleHT->count(gradeScale) << endl;
-	// }
+	}
 
 	// cout << "Test find gradeScale after insert" << endl;
 	// for (auto it = gmap.begin(); it != gmap.end(); ++it) {
@@ -356,11 +384,13 @@ void AssignmentMenu::test() {
 	// }
 
 	// cout << "Test insert assignment" << endl;
+
+	// Load from file into Assignment Binary Search Tree
 	amap = loadAssignments(gmap);
 	for (auto it = amap.begin(); it != amap.end(); ++it) {
 	 	Assignment* assignment = it->second;
 	 	assignmentBST->insert(assignment);
-	 	cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(*assignment) << endl;
+	 	//cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(*assignment) << endl;
 	}
 
 	// //assignmentBST->print();

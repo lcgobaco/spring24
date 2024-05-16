@@ -25,7 +25,15 @@ double possiblePoints, double points)
     startDate(startDate), endDate(endDate),
     possiblePoints(possiblePoints), points(points) {}
 
-Assignment::Assignment() {}
+Assignment::Assignment() {
+    assignmentId = "";
+    gradeScale = nullptr;
+    description = "";
+    startDate = "";
+    endDate = "";
+    possiblePoints = 0;
+    points = 0;
+}
 
 string Assignment::getAssignmentId() const { return assignmentId; }
 
@@ -48,17 +56,14 @@ void Assignment::setPossiblePoints(double m) { possiblePoints = m; }
 void Assignment::setPoints(double p) { points = p; }
 
 bool Assignment::operator==(const Assignment& c) const {
-    cout << "Assignment::operator== called" << endl;
 	return stoi(this->getAssignmentId()) == stoi(c.getAssignmentId());
 }
 
 bool Assignment::operator>(const Assignment& c) const {
-    cout << "Assignment::operator> called" << endl;
 	return stoi(this->getAssignmentId()) < stoi(c.getAssignmentId());
 }
 
 bool Assignment::operator<(const Assignment& c) const {
-    cout << "Assignment::operator< called" << endl;
 	return stoi(this->getAssignmentId()) > stoi(c.getAssignmentId());
 }
 

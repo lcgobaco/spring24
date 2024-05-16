@@ -9,7 +9,7 @@ public:
     void insert(Assignment *assignment);
     void erase(Assignment *assignment);
     int size();
-    Assignment* findById(string id);
+    Assignment findById(string id);
 private:
     int size_ = 0;
 };

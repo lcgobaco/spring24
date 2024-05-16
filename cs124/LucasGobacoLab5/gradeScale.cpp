@@ -10,7 +10,7 @@
 
  *******************************************************/
 
-
+#include <iostream>
 #include "gradeScale.h"
 
 GradeScale::GradeScale(string id, Section* section, const string& description, double weight)
@@ -60,14 +60,11 @@ istream& operator>>(istream& in, GradeScale& course) {
     return in;
 }
 
-ostream& operator<<(ostream& out, GradeScale& course) {
-    //TODO:
-    // out << "Department: " << course.department << endl;
-    // out << "Course: " << course.course << endl;
-    // out << "Title: " << course.title << endl;
-    // out << "Description: " << course.description << endl;
-    // out << "Prerequisite: " << course.prereq << endl;
-    // out << "Units: " << course.units << endl;
+ostream& operator<<(ostream& out, GradeScale& gradeScale) {
+    out << "Grade Scale ID: " << gradeScale.getGradeScaleId() << endl;
+    out << "Description: " << gradeScale.getDescription() << endl;
+    out << "Weight: " << gradeScale.getWeight() << endl;
+    out << "Section ID: " << gradeScale.getSection()->getSectionId() << endl;
     return out;
 }
 

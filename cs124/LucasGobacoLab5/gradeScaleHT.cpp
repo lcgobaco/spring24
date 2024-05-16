@@ -86,24 +86,22 @@ void GradeScaleHT::deleteGradeScale() {
 	remove(name);
 }
 
-void GradeScaleHT::printTable(bool complete) {
+void GradeScaleHT::printTable() {
 
 	printHeader();
 	// loop thru map
 	for (auto const& value : values()) {
 			printRow(value);
 	}
-
 	cout << endl;
 }
 
 void GradeScaleHT::printHeader() {
 	const char originalFill = cout.fill();
-	cout << left << setw(15) << "Term"
-		<< left << setw(30) << "Name"
-		<< left << setw(15) << "Start Date"
-		<< left << setw(15) << "End Date"
-		<< left << setw(10) << "Status"
+	cout << left << setw(15) << "ID"
+		<< left << setw(20) << "Description"
+		<< left << setw(20) << "Section ID"
+		<< left << setw(15) << "Weight"
 		<< endl;
 	cout << setfill('=') << setw(80) << "=" << endl;
 	cout.fill(originalFill);
@@ -111,12 +109,10 @@ void GradeScaleHT::printHeader() {
 
 void GradeScaleHT::printRow(const GradeScale* gradeScale) {
 	const char originalFill = cout.fill();
-	// TODO:
-	// cout << left << setw(15) << GradeScale.getTerm()
-	// 	<< left << setw(30) << GradeScale.getName()
-	// 	<< left << setw(15) << GradeScale.getStartDate().toString()
-	// 	<< left << setw(15) << GradeScale.getEndDate().toString()
-	// 	<< left << setw(10) << (GradeScale.isCompleted() ? "Done" : "Pending")
-	// 	<< endl;
+	cout << left << setw(15) << gradeScale->getGradeScaleId()
+		<< left << setw(20) << gradeScale->getDescription()
+		<< left << setw(20) << gradeScale->getSection()->getSectionId()
+	 	<< left << setw(15) << gradeScale->getWeight()
+		<< endl;
 	cout.fill(originalFill);
 }

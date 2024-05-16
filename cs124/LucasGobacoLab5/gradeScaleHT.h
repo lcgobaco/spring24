@@ -13,7 +13,7 @@ class GradeScaleHT : public HashTable<GradeScale*> {
 		void addNew();
 		void editGradeScale();
 		void deleteGradeScale();
-		void printTable(bool complete = true);
+		void printTable();
 
 	protected:
 		void printRow(const GradeScale* GradeScale);

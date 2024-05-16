@@ -20,6 +20,8 @@
 
 using namespace std;
 
+class GradeScale;
+
 class Section {
 private:
     string sectionId;
@@ -109,7 +111,7 @@ public:
      * Sets the groups.
      * @param g the groups
      */
-    void setGroups(vector<GradeScale> g);
+    void setGradeScales(vector<GradeScale> g);
 
 };
 
