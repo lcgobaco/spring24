@@ -224,7 +224,7 @@ void AssignmentMenu::doCalculate() {
 		string gradeScaleId = value.first;
 		double possiblePoints = gradeScalePossiblePoints[gradeScaleId];
 		double points = gradeScalePoints[gradeScaleId];
-		double percentage = (points / possiblePoints) * 100;
+		double percentage = (points / possiblePoints);
 		GradeScale* gradeScale = gradeScaleHT->findById(gradeScaleId);
 		grade += gradeScale->getWeight() * percentage;
 	}
