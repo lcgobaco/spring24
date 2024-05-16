@@ -11,7 +11,7 @@ main: main.o assignmentMenu.o menu.o sectionHT.o gradeScaleHT.o facultyHT.o assi
 main.o: main.cpp
 	$(COMPILER) -c $<
 
-assignmentMenu.o: assignmentMenu.cpp
+assignmentMenu.o: assignmentMenu.cpp binary_search_tree.h assignmentMenu.h
 	$(COMPILER) -c $<
 
 faculty.o: faculty.cpp

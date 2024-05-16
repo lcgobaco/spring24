@@ -45,4 +45,10 @@ private:
     GradeScaleHT* gradeScaleHT;
     SectionHT* sectionHT;
     AssignmentBST* assignmentBST;
+
+    // for debugging;
+    map<string, Faculty*> fmap;
+    map<string, Section*> smap;
+    map<string, GradeScale*> gmap;
+    map<string, Assignment*> amap;
 };

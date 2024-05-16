@@ -22,6 +22,8 @@ public:
                const string& startDate, const string& endDate,
                double possiblePoints, double points);
 
+    Assignment();
+
     // Getter methods
     string getAssignmentId() const;
     GradeScale* getGradeScale() const;
@@ -40,7 +42,12 @@ public:
     void setPossiblePoints(double m);
     void setPoints(double p);
 
-    bool operator==(const Assignment&);
+    bool operator==(const Assignment&) const;
+    bool operator>(const Assignment&) const;
+    bool operator<(const Assignment&) const;
+
+    friend istream& operator>>(istream& in, Assignment&);
+    friend ostream& operator<<(ostream& out, Assignment*&);
 };
 
 #endif // ASSIGNMENT_H

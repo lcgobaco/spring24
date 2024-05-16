@@ -22,6 +22,18 @@ private:
        @param new_node the node to insert
     */
    public:
+    T getData() const {
+        return data;
+    }
+
+    BSTNode<T>* getLeft() const {
+        return left;
+    }
+
+    BSTNode<T>* getRight() const {
+        return right;
+    }
+
     friend class BinarySearchTree<T>;
 };
 
@@ -69,6 +81,12 @@ public:
        Prints the contents of the tree in sorted order.
     */
     void print() const;
+
+    /**
+     * Returns the root of the tree
+     * @return the root of the tree
+     */
+    BSTNode<T>* getRoot() const;
 
    private:
     /**
@@ -153,12 +171,16 @@ void BinarySearchTree<T>::print() const
     map<int, BSTNode<T>*> index_map;
 
     // Creating index_map
+    cout << "Creating index map:" << endl;
     print_tree(root, &index_map, 0, &max_index);
+
+    cout << "Max index: " << max_index << endl;
+    cout << "Index map size: " << index_map.size() << endl;
 
     // Printing the tree
     cout << "Print the tree:" << endl;
     double previous_depth = 0;
-    for (int i = 0; i <= max_index; i++) {
+    for (int i = 0; i <= index_map.size(); i++) {
 
         double current_depth = floor(log2(i+1));
         if (current_depth != previous_depth) {
@@ -179,6 +201,11 @@ void BinarySearchTree<T>::print() const
     cout << "\n";
 
 
+}
+
+template <typename T>
+BSTNode<T>* BinarySearchTree<T>::getRoot() const {
+    return root;
 }
 
 template <typename T>

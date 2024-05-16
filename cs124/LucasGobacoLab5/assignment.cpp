@@ -11,6 +11,10 @@
  *******************************************************/
 
 #include "assignment.h"
+#include <iostream>
+
+using namespace std;
+
 
 Assignment::Assignment(string id, GradeScale* gradeScale,
 const string& description,
@@ -20,6 +24,8 @@ double possiblePoints, double points)
     description(description),
     startDate(startDate), endDate(endDate),
     possiblePoints(possiblePoints), points(points) {}
+
+Assignment::Assignment() {}
 
 string Assignment::getAssignmentId() const { return assignmentId; }
 
@@ -41,6 +47,44 @@ void Assignment::setPossiblePoints(double m) { possiblePoints = m; }
 
 void Assignment::setPoints(double p) { points = p; }
 
-bool Assignment::operator==(const Assignment& c) {
-	return this->getAssignmentId() == c.getAssignmentId();
+bool Assignment::operator==(const Assignment& c) const {
+    cout << "Assignment::operator== called" << endl;
+	return stoi(this->getAssignmentId()) == stoi(c.getAssignmentId());
+}
+
+bool Assignment::operator>(const Assignment& c) const {
+    cout << "Assignment::operator> called" << endl;
+	return stoi(this->getAssignmentId()) < stoi(c.getAssignmentId());
+}
+
+bool Assignment::operator<(const Assignment& c) const {
+    cout << "Assignment::operator< called" << endl;
+	return stoi(this->getAssignmentId()) > stoi(c.getAssignmentId());
+}
+
+istream& operator>>(istream& in, Assignment& assignment) {
+    cout << "Enter the assignment ID: ";
+    in >> assignment.assignmentId;
+    cout << "Enter the description: ";
+    in >> assignment.description;
+    cout << "Enter the start date: ";
+    in >> assignment.startDate;
+    cout << "Enter the end date: ";
+    in >> assignment.endDate;
+    cout << "Enter the possible points: ";
+    in >> assignment.possiblePoints;
+    cout << "Enter the points: ";
+    in >> assignment.points;
+    return in;
+}
+
+ostream& operator<<(ostream& out, Assignment*& assignment) {
+
+    out << "Assignment ID: " << assignment->assignmentId << endl;
+    out << "Description: " << assignment->description << endl;
+    out << "Start Date: " << assignment->startDate << endl;
+    out << "End Date: " << assignment->endDate << endl;
+    out << "Possible Points: " << assignment->possiblePoints << endl;
+    out << "Points: " << assignment->points << endl;
+    return out;
 }
