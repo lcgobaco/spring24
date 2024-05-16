@@ -8,6 +8,9 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include <vector>
+#include <random>
+#include <algorithm>
 #include "assignment.h"
 #include "faculty.h"
 #include "gradeScale.h"
@@ -377,6 +380,18 @@ map<string, Assignment*> loadAssignments(string filename, map<string, GradeScale
     return assignments;
 }
 
+void bstOrder(vector<int>* input, int start, int end, vector<int>* output) {
+
+	if (start > end) {
+		return;
+	}
+
+	int mid = (start + end) / 2;
+	output->push_back(input->at(mid));
+	bstOrder(input, start, mid - 1, output);
+	bstOrder(input, mid + 1, end, output);
+}
+
 void AssignmentMenu::load() {
 
 	// Load from file in Faculty Hash Table
@@ -402,8 +417,20 @@ void AssignmentMenu::load() {
 
 	// Load from file into Assignment Binary Search Tree
 	amap = loadAssignments(ASSIGNMENT_FILE, gmap);
+	vector<int> keys = vector<int>();
+
 	for (auto it = amap.begin(); it != amap.end(); ++it) {
-	 	Assignment* assignment = it->second;
-	 	assignmentBST->insert(assignment);
+	 	keys.push_back(stoi(it->first));
+	}
+
+	sort(keys.begin(), keys.end());
+	vector<int> bst = vector<int>();
+
+	bstOrder(&keys, 0, keys.size() - 1, &bst);
+
+	for (auto it = bst.begin(); it != bst.end(); ++it) {
+		assignmentBST->insert(amap[to_string(*it)]);
 	}
 }
+
+
