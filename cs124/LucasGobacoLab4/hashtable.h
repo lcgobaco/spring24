@@ -12,13 +12,6 @@
 
 using namespace std;
 
-/**
-   Computes the hash code for a string.
-   @param str a string
-   @return the hash code
-*/
-int hash_code(const string& str);
-
 template<typename T>
 class HashTable;
 template<typename T>
