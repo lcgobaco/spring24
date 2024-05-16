@@ -94,6 +94,7 @@ void AssignmentMenu::doAdd() {
 	cout << assignment;
 
 	assignmentBST->insert(assignment);
+	amap[assignment->getAssignmentId()] = assignment;
 }
 
 void AssignmentMenu::doEdit() {
@@ -162,6 +163,7 @@ void AssignmentMenu::doEdit() {
 
 	assignmentBST->erase(&assignment);
 	assignmentBST->insert(newAssignment);
+	amap[newAssignment->getAssignmentId()] = newAssignment;
 }
 
 void AssignmentMenu::doRemove() {
@@ -176,6 +178,8 @@ void AssignmentMenu::doRemove() {
 		return;
 	}
 	assignmentBST->erase(&assignment);
+	amap.erase(assignment.getAssignmentId());
+	cout << "Assignment removed." << endl;
 }
 
 void AssignmentMenu::doSave() {
@@ -202,17 +206,30 @@ grade_scale -> assignment
                 - possible points*/
 void AssignmentMenu::doCalculate() {
 	showOption(getName("c"));
-	cout << "Before assignmentBST->values()->size()" << endl;
-	cout << assignmentBST->values()->size() << endl;
-	cout << "After assignmentBST->values()->size()" << endl;
 
-	for (int i = 0; i < assignmentBST->values()->size(); i++) {
-		cout << assignmentBST->values()->at(i).getAssignmentId() << endl;
+	double grade = 0.0;
+
+	map<string, int> gradeScalePossiblePoints;
+	map<string, double> gradeScalePoints;
+
+	vector<Assignment>* assignments = assignmentBST->values();
+	for (int i = 0; i < assignments->size(); i++) {
+		Assignment assignment = assignments->at(i);
+		gradeScalePossiblePoints[assignment.getGradeScale()->getGradeScaleId()] += assignment.getPossiblePoints();
+		gradeScalePoints[assignment.getGradeScale()->getGradeScaleId()] += assignment.getPoints();
 	}
 
-	for (GradeScale* gradeScale : gradeScaleHT->values()) {
-		gradeScale->getAssignments();
+	// loop thru gradeScalePossiblePoints
+	for (auto const& value : gradeScalePossiblePoints) {
+		string gradeScaleId = value.first;
+		double possiblePoints = gradeScalePossiblePoints[gradeScaleId];
+		double points = gradeScalePoints[gradeScaleId];
+		double percentage = (points / possiblePoints) * 100;
+		GradeScale* gradeScale = gradeScaleHT->findById(gradeScaleId);
+		grade += gradeScale->getWeight() * percentage;
 	}
+
+	cout << "Grade: " << grade << "%" << endl;
 }
 
 void AssignmentMenu::activate() {

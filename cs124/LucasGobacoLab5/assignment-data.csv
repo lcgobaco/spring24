@@ -1,9 +1,9 @@
 Id,GradeScaleId,Description,Start Date,End Date,Possible Points,Points
-1,2,Mazinger Z,/1/1980,1/31/1980,435,-1
+1,1,Classes and Inheritance,2/5/2024 0:00:01,2/8/2024 11:59:00,5,0
 2,1,Classes and Inheritance - In class Assignment,2/8/2024 0:00:01,2/8/2024 11:59:00,10,0
 3,1,Class Overloading etc.,2/5/2024 0:00:01,2/8/2024 11:59:00,5,0
 4,1,Class Overloading - In class Assignment,2/9/2024 0:00:01,2/9/2024 11:59:00,10,0
-5,2,DS and A,/1/1980,/31/1980,54,-3
+5,1,Data Structures and Algorithms,2/8/2024 0:00:01,2/22/2024 11:59:00,5,0
 6,1,Data Structures - In class Assignment,2/11/2024 0:00:01,2/11/2024 11:59:00,10,0
 7,1,Arrays and Vectors,2/22/2024 0:00:01,2/29/2024 11:59:00,5,0
 8,1,Arrays and Template - In class Assignment,2/22/2024 0:00:01,2/22/2024 11:59:00,10,0
@@ -11,7 +11,7 @@ Id,GradeScaleId,Description,Start Date,End Date,Possible Points,Points
 10,1,Arrays and Template - In class Assignment,3/6/2024 0:00:01,3/6/2024 11:59:00,10,0
 11,1,Sorting and Searching,3/13/2024 0:00:01,3/27/2024 11:59:00,5,0
 12,1,Sorting and Searching - In class Assignment,3/27/2024 0:00:01,3/27/2024 11:59:00,10,0
-13,1,"Maps, Hashtable and etc.",3/27/2024 0:00:01,4,5
+13,1,"Maps, Hashtable and etc.",3/27/2024 0:00:01,4/17/2024 11:59:00,5,0
 14,1,Maps and and Hashtable - In class Assignment,4/17/2024 0:00:01,4/17/2024 11:59:00,10,0
 15,1,Tree Structures,4/10/2024 0:00:01,4/18/2024 11:59:00,5,0
 16,1,Tree Structures - In class Assignment,4/18/2024 0:00:01,4/18/2024 11:59:00,10,0
@@ -39,4 +39,3 @@ Id,GradeScaleId,Description,Start Date,End Date,Possible Points,Points
 38,5,Final Exam Part 1 - True/False,5/12/2024 0:00:01,5/14/2024 11:59:00,50,0
 39,5,Final Exam 2 – Multiple Choice,5/12/2024 0:00:01,5/14/2024 11:59:00,50,0
 40,5,Final Exam Part 3 – Program,5/14/2024 18:30:00,5/14/2024 20:00:00,200,0
-41,1,Desc41,01/01/1980,01/31/1980,100,2

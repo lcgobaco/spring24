@@ -64,13 +64,7 @@ void AssignmentBST::save_node(ofstream* file, BSTNode<Assignment>* node)
 
     // Visit the current node
     Assignment assignment = node->getData();
-    *file << assignment.getAssignmentId() << ",";
-    *file << assignment.getGradeScale()->getGradeScaleId() << ",";
-    *file << assignment.getDescription() << ",";
-    *file << assignment.getStartDate() << ",";
-    *file << assignment.getEndDate() << ",";
-    *file << assignment.getPossiblePoints() << ",";
-    *file << assignment.getPoints() << endl;
+    *file << assignment << endl;
 
     // Traverse the right subtree
     save_node(file, node->getRight());
@@ -100,7 +94,7 @@ void getValues(BSTNode<Assignment>* node, vector<Assignment>* values) {
     values->push_back(node->getData());
 
     // Traverse the Right subtree
-    getValues(node->getLeft(), values);
+    getValues(node->getRight(), values);
 
 }
 
