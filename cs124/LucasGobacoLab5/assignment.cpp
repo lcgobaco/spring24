@@ -12,7 +12,7 @@
 
 #include "assignment.h"
 
-Assignment::Assignment(int id, GradeScale* gradeScale,
+Assignment::Assignment(string id, GradeScale* gradeScale,
 const string& description,
 const string& startDate, const string& endDate,
 double possiblePoints, double points)
@@ -21,7 +21,7 @@ double possiblePoints, double points)
     startDate(startDate), endDate(endDate),
     possiblePoints(possiblePoints), points(points) {}
 
-int Assignment::getAssignmentId() const { return assignmentId; }
+string Assignment::getAssignmentId() const { return assignmentId; }
 
 GradeScale* Assignment::getGradeScale() const { return gradeScale; }
 
@@ -31,7 +31,7 @@ double Assignment::getPossiblePoints() const { return possiblePoints; }
 
 double Assignment::getPoints() const { return points; }
 
-void Assignment::setAssignmentId(int id) { assignmentId = id; }
+void Assignment::setAssignmentId(string id) { assignmentId = id; }
 
 void Assignment::setGradeScale(GradeScale* g) { gradeScale = g; }
 

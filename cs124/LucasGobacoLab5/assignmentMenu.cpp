@@ -221,7 +221,7 @@ map<int, Assignment*> loadAssignments(map<int, GradeScale*> gradeScaleMap) {
     while (getline(inFile, line)) {
         vector<string> tokens = splitString(line, ',');
         GradeScale* gradeScale = gradeScaleMap[stoi(tokens[1])];
-        Assignment* assignment = new Assignment(stoi(tokens[0]), gradeScale, tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
+        Assignment* assignment = new Assignment(tokens[0], gradeScale, tokens[2], tokens[3], tokens[4], stod(tokens[5]), stod(tokens[6]));
         assignments[stoi(tokens[0])] = assignment;
         gradeScale->addAssignment(assignment);
     }
@@ -354,7 +354,7 @@ void AssignmentMenu::test() {
 			cout << "Assignment: " << assignment->getAssignmentId() << " not found" << endl;
 			continue;
 		}
-		int id = a->getAssignmentId();
+		string id = a->getAssignmentId();
 		cout << "Assignment: " << assignment->getAssignmentId() << " found," << id << endl;
 	}
 
@@ -374,7 +374,7 @@ void AssignmentMenu::test() {
 			cout << "Assignment: " << assignment->getAssignmentId() << " not found" << endl;
 			continue;
 		}
-		int id = a->getAssignmentId();
+		string id = a->getAssignmentId();
 		cout << "Assignment: " << assignment->getAssignmentId() << " found," << id << endl;
 	}
 }

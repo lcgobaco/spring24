@@ -8,7 +8,7 @@ class GradeScale;
 
 class Assignment {
 private:
-    int assignmentId;
+    string assignmentId;
     GradeScale* gradeScale;
     string description;
     string startDate;
@@ -18,12 +18,12 @@ private:
 
 public:
     // Constructor
-    Assignment(int id, GradeScale* gradeScale, const string& description,
+    Assignment(string id, GradeScale* gradeScale, const string& description,
                const string& startDate, const string& endDate,
                double possiblePoints, double points);
 
     // Getter methods
-    int getAssignmentId() const;
+    string getAssignmentId() const;
     GradeScale* getGradeScale() const;
     string getDescription() const;
     string getStartDate() const;
@@ -32,7 +32,7 @@ public:
     double getPoints() const;
 
     // Setter methods
-    void setAssignmentId(int id);
+    void setAssignmentId(string id);
     void setGradeScale(GradeScale* g);
     void setDescription(const string& d);
     void setStartDate(const string& startDate);
