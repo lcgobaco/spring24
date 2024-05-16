@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class GradeScaleHT : public HashTable<GradeScale> {
+class GradeScaleHT : public HashTable<GradeScale*> {
 	public:
 		GradeScaleHT(int nbuckets);
 		~GradeScaleHT();
@@ -16,13 +16,13 @@ class GradeScaleHT : public HashTable<GradeScale> {
 		void printTable(bool complete = true);
 
 	protected:
-		void printRow(const GradeScale GradeScale);
+		void printRow(const GradeScale* GradeScale);
 
 	private:
 		void printHeader();
 		bool contains(string name);
-		GradeScale get(string name);
+		GradeScale* get(string name);
 		void remove(string name);
-		vector<GradeScale> values();
+		vector<GradeScale*> values();
 		int hash_code(GradeScale* GradeScale);
 };

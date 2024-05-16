@@ -19,9 +19,9 @@ GradeScaleHT::GradeScaleHT(int nbuckets)
 GradeScaleHT::~GradeScaleHT() {}
 
 bool GradeScaleHT::contains(string name) {
-	Iterator<GradeScale> iter = this->begin();
+	Iterator<GradeScale*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getGradeScaleId() == name) {
+		if (iter.get()->getGradeScaleId() == name) {
 			return true;
 		}
 		iter.next();
@@ -29,42 +29,41 @@ bool GradeScaleHT::contains(string name) {
 	return false;
 }
 
-GradeScale GradeScaleHT::get(string name) {
-	Iterator<GradeScale> iter = this->begin();
+GradeScale* GradeScaleHT::get(string name) {
+	Iterator<GradeScale*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getGradeScaleId() == name) {
+		if (iter.get()->getGradeScaleId() == name) {
 			return iter.get();
 		}
 		iter.next();
 	}
-	return GradeScale();
+	return nullptr;
 }
 
 void GradeScaleHT::remove(string name) {
-	Iterator<GradeScale> iter = this->begin();
+	Iterator<GradeScale*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getGradeScaleId() == name) {
+		if (iter.get()->getGradeScaleId() == name) {
 			this->erase(iter.get());
 		}
 		iter.next();
 	}
 }
-vector<GradeScale> GradeScaleHT::values() {
-	vector<GradeScale> GradeScales;
-	Iterator<GradeScale> iter = this->begin();
+vector<GradeScale*> GradeScaleHT::values() {
+	vector<GradeScale*> gradeScales;
+	Iterator<GradeScale*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		GradeScales.push_back(iter.get());
+		gradeScales.push_back(iter.get());
 		iter.next();
 	}
-	return GradeScales;
+	return gradeScales;
 }
 
 void GradeScaleHT::addNew() {
-	GradeScale GradeScale;
+	GradeScale* gradeScale = new GradeScale();
 	cin.ignore();
-	cin >> GradeScale;
-	string name = GradeScale.getGradeScaleId();
-	insert(GradeScale);
+	cin >> *gradeScale;
+	insert(gradeScale);
 }
 
 void GradeScaleHT::editGradeScale() {
@@ -72,11 +71,11 @@ void GradeScaleHT::editGradeScale() {
 	cout << "Edit GradeScale name: ";
 	cin.ignore();
 	getline(cin, name);
-	GradeScale GradeScale = get(name);
+	GradeScale* gradeScale = get(name);
 
-		cin >> GradeScale;
-		erase(GradeScale);
-		insert(GradeScale);
+	cin >> *gradeScale;
+	erase(gradeScale);
+	insert(gradeScale);
 
 }
 void GradeScaleHT::deleteGradeScale() {
@@ -110,7 +109,7 @@ void GradeScaleHT::printHeader() {
 	cout.fill(originalFill);
 }
 
-void GradeScaleHT::printRow(const GradeScale GradeScale) {
+void GradeScaleHT::printRow(const GradeScale* gradeScale) {
 	const char originalFill = cout.fill();
 	// TODO:
 	// cout << left << setw(15) << GradeScale.getTerm()

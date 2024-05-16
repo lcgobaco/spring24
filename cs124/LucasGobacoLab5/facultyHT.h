@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class FacultyHT : public HashTable<Faculty> {
+class FacultyHT : public HashTable<Faculty*> {
 
 public:
 	FacultyHT(int nbuckets);
@@ -17,13 +17,13 @@ public:
 	void printTable();
 
 protected:
-	void printRow(const Faculty Faculty);
+	void printRow(const Faculty* Faculty);
 
 private:
 	void printHeader();
 	bool contains(string name);
-	Faculty get(string name);
+	Faculty* get(string name);
 	void remove(string name);
-	vector<Faculty> values();
+	vector<Faculty*> values();
 	int hash_code(Faculty* Faculty);
 };

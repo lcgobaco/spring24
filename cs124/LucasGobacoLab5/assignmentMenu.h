@@ -7,6 +7,10 @@
 #pragma once
 #include <fstream>
 #include "menu.h"
+#include "facultyHT.h"
+#include "gradeScaleHT.h"
+#include "sectionHT.h"
+#include "assignmentBST.h"
 
 using namespace std;
 
@@ -17,16 +21,6 @@ public:
     AssignmentMenu();
     ~AssignmentMenu();
 
-    /*
-doList - display all data from the root of the tree.
-doView - view individual assignment and view group of assignments in rows and columns
-doAdd - add to tree.
-doEdit - edit any fields
-doRemove - remove a node from the tree
-calculateGrade - Implement your grade and display.
-doSave - save data to .csv file
-*/
-
     void doList();
     void doView();
     void doAdd();
@@ -35,10 +29,19 @@ doSave - save data to .csv file
     void doSave();
     void activate();
 
+    FacultyHT* getFacultyHT();
+    GradeScaleHT* getGradeScaleHT();
+    SectionHT* getSectionHT();
+    AssignmentBST* getAssignmentBST();
+
 protected:
     void init();
     void showOption(string title);
 
 private:
     fstream inFile;
+    FacultyHT* facultyHT;
+    GradeScaleHT* gradeScaleHT;
+    SectionHT* sectionHT;
+    AssignmentBST* assignmentBST;
 };

@@ -5,7 +5,7 @@
 
 using namespace std;
 
-class SectionHT : public HashTable<Section> {
+class SectionHT : public HashTable<Section*> {
 
 public:
 	SectionHT(int nbuckets);
@@ -17,13 +17,13 @@ public:
 	void printTable(bool complete = true);
 
 protected:
-	void printRow(const Section Section);
+	void printRow(const Section* Section);
 
 private:
 	void printHeader();
 	bool contains(string name);
-	Section get(string name);
+	Section* get(string name);
 	void remove(string name);
-	vector<Section> values();
+	vector<Section*> values();
 	int hash_code(Section* Section);
 };

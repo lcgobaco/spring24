@@ -18,9 +18,9 @@ FacultyHT::FacultyHT(int nbuckets)
 FacultyHT::~FacultyHT() {}
 
 bool FacultyHT::contains(string name) {
-	Iterator<Faculty> iter = this->begin();
+	Iterator<Faculty*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getFacultyId() == name) {
+		if (iter.get()->getFacultyId() == name) {
 			return true;
 		}
 		iter.next();
@@ -28,41 +28,40 @@ bool FacultyHT::contains(string name) {
 	return false;
 }
 
-Faculty FacultyHT::get(string name) {
-	Iterator<Faculty> iter = this->begin();
+Faculty* FacultyHT::get(string name) {
+	Iterator<Faculty*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getFacultyId() == name) {
+		if (iter.get()->getFacultyId() == name) {
 			return iter.get();
 		}
 		iter.next();
 	}
-	return Faculty();
+	return nullptr;
 }
 
 void FacultyHT::remove(string name) {
-	Iterator<Faculty> iter = this->begin();
+	Iterator<Faculty*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getFacultyId() == name) {
+		if (iter.get()->getFacultyId() == name) {
 			this->erase(iter.get());
 		}
 		iter.next();
 	}
 }
-vector<Faculty> FacultyHT::values() {
-	vector<Faculty> Facultys;
-	Iterator<Faculty> iter = this->begin();
+vector<Faculty*> FacultyHT::values() {
+	vector<Faculty*> faculties;
+	Iterator<Faculty*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		Facultys.push_back(iter.get());
+		faculties.push_back(iter.get());
 		iter.next();
 	}
-	return Facultys;
+	return faculties;
 }
 
 void FacultyHT::addNew() {
-	Faculty faculty;
+	Faculty* faculty = new Faculty();
 	cin.ignore();
-	cin >> faculty;
-	string name = faculty.getFacultyId();
+	cin >> *faculty;
 	insert(faculty);
 }
 
@@ -71,9 +70,8 @@ void FacultyHT::editFaculty() {
 	cout << "Edit Faculty name: ";
 	cin.ignore();
 	getline(cin, name);
-	Faculty faculty = get(name);
-
-	cin >> faculty;
+	Faculty* faculty = get(name);
+	cin >> *faculty;
 	erase(faculty);
 	insert(faculty);
 
@@ -109,13 +107,12 @@ void FacultyHT::printHeader() {
 	cout.fill(originalFill);
 }
 
-void FacultyHT::printRow(const Faculty Faculty) {
+void FacultyHT::printRow(const Faculty* faculty) {
 	const char originalFill = cout.fill();
-	cout << left << setw(15) << Faculty.getFacultyId()
-		<< left << setw(30) << Faculty.getFirstName()
-		<< left << setw(15) << Faculty.getLastName()
-		<< left << setw(15) << Faculty.getDepartment()
+	cout << left << setw(15) << faculty->getFacultyId()
+		<< left << setw(30) << faculty->getFirstName()
+		<< left << setw(15) << faculty->getLastName()
+		<< left << setw(15) << faculty->getDepartment()
 		<< endl;
 	cout.fill(originalFill);
 }
-

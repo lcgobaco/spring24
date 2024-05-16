@@ -9,12 +9,12 @@ template <typename T>
 class BinarySearchTree;
 
 template <typename T>
-class Node
+class BSTNode
 {
 private:
     T data;
-    Node<T>* left;
-    Node<T>* right;
+    BSTNode<T>* left;
+    BSTNode<T>* right;
 
     /**
        Inserts a new node as a descendant of a given node.
@@ -22,9 +22,7 @@ private:
        @param new_node the node to insert
     */
    public:
-
     friend class BinarySearchTree<T>;
-
 };
 
 /*
@@ -71,30 +69,30 @@ public:
     /**
        Prints the contents of the tree in sorted order.
     */
-   void print_node(Node<T>* node) const;
+   void print_node(BSTNode<T>* node) const;
 
-    void print_tree(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const;
+    void print_tree(BSTNode<T>* node, map<int, BSTNode<T>*> *index_map, int index, int *max_index) const;
 
 
    // BinarySearchTree add_node
-    void add_node(Node<T>* new_node) ;
+    void add_node(BSTNode<T>* new_node) ;
 
-    void add_node(Node<T>*& parent, Node<T>* new_node) ;
+    void add_node(BSTNode<T>*& parent, BSTNode<T>* new_node) ;
 
-    Node<T>* root;
+    BSTNode<T>* root;
 
 };
 
 //  IMPLEMENTATION OF THE CLASSES
 
 template <typename T>
-void BinarySearchTree<T>::add_node(Node<T>* new_node)
+void BinarySearchTree<T>::add_node(BSTNode<T>* new_node)
 {
     add_node(root, new_node);
 }
 
 template <typename T>
-void BinarySearchTree<T>::add_node(Node<T>*& parent, Node<T>* new_node) {
+void BinarySearchTree<T>::add_node(BSTNode<T>*& parent, BSTNode<T>* new_node) {
     if (parent == nullptr) {
         // If the tree is empty, create a new node as the root
         parent = new_node;
@@ -108,7 +106,7 @@ void BinarySearchTree<T>::add_node(Node<T>*& parent, Node<T>* new_node) {
 }
 
 template <typename T>
-void BinarySearchTree<T>::print_tree(Node<T>* node, map<int, Node<T>*> *index_map, int index, int *max_index) const
+void BinarySearchTree<T>::print_tree(BSTNode<T>* node, map<int, BSTNode<T>*> *index_map, int index, int *max_index) const
 {
     if (node == nullptr) {
         return;
@@ -127,7 +125,7 @@ void BinarySearchTree<T>::print_tree(Node<T>* node, map<int, Node<T>*> *index_ma
 }
 
 template <typename T>
-void BinarySearchTree<T>::print_node(Node<T>* node) const
+void BinarySearchTree<T>::print_node(BSTNode<T>* node) const
 {
     if (node == nullptr) {
         return;
@@ -147,7 +145,7 @@ template <typename T>
 void BinarySearchTree<T>::print() const
 {
     int max_index = 0;
-    map<int, Node<T>*> index_map;
+    map<int, BSTNode<T>*> index_map;
 
     // Creating index_map
     print_tree(root, &index_map, 0, &max_index);
@@ -187,7 +185,7 @@ BinarySearchTree<T>::BinarySearchTree()
 template <typename T>
 void BinarySearchTree<T>::insert(T element)
 {
-    Node<T>* new_node = new Node<T>;
+    BSTNode<T>* new_node = new BSTNode<T>;
     new_node->data = element;
     new_node->left = nullptr;
     new_node->right = nullptr;
@@ -204,7 +202,7 @@ void BinarySearchTree<T>::insert(T element)
 template <typename T>
 int BinarySearchTree<T>::count(T element) const
 {
-    Node<T>* current = root;
+    BSTNode<T>* current = root;
     while (current != nullptr)
     {
         if (element < current->data)
@@ -228,8 +226,8 @@ void BinarySearchTree<T>::erase(T element)
 {
     // Find node to be removed
 
-    Node<T>* to_be_removed = root;
-    Node<T>* parent = nullptr;
+    BSTNode<T>* to_be_removed = root;
+    BSTNode<T>* parent = nullptr;
     bool found = false;
     while (!found && to_be_removed != nullptr)
     {
@@ -262,7 +260,7 @@ void BinarySearchTree<T>::erase(T element)
 
     if (to_be_removed->left == nullptr || to_be_removed->right == nullptr)
     {
-        Node<T>* new_child;
+        BSTNode<T>* new_child;
         if (to_be_removed->left == nullptr)
         {
             new_child = to_be_removed->right;
@@ -291,8 +289,8 @@ void BinarySearchTree<T>::erase(T element)
 
     // Find smallest element of the right subtree
 
-    Node<T>* smallest_parent = to_be_removed;
-    Node<T>* smallest = to_be_removed->right;
+    BSTNode<T>* smallest_parent = to_be_removed;
+    BSTNode<T>* smallest = to_be_removed->right;
     while (smallest->left != nullptr)
     {
         smallest_parent = smallest;

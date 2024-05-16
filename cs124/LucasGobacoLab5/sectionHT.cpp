@@ -18,9 +18,9 @@ SectionHT::SectionHT(int nbuckets)
 SectionHT::~SectionHT() {}
 
 bool SectionHT::contains(string name) {
-	Iterator<Section> iter = this->begin();
+	Iterator<Section*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getSectionId() == name) {
+		if (iter.get()->getSectionId() == name) {
 			return true;
 		}
 		iter.next();
@@ -28,54 +28,53 @@ bool SectionHT::contains(string name) {
 	return false;
 }
 
-Section SectionHT::get(string name) {
-	Iterator<Section> iter = this->begin();
+Section* SectionHT::get(string name) {
+	Iterator<Section*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getSectionId() == name) {
+		if (iter.get()->getSectionId() == name) {
 			return iter.get();
 		}
 		iter.next();
 	}
-	return Section();
+	return nullptr;
 }
 
 void SectionHT::remove(string name) {
-	Iterator<Section> iter = this->begin();
+	Iterator<Section*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		if (iter.get().getSectionId() == name) {
+		if (iter.get()->getSectionId() == name) {
 			this->erase(iter.get());
 		}
 		iter.next();
 	}
 }
-vector<Section> SectionHT::values() {
-	vector<Section> tasks;
-	Iterator<Section> iter = this->begin();
+vector<Section*> SectionHT::values() {
+	vector<Section*> sections;
+	Iterator<Section*> iter = this->begin();
 	while (!iter.equals(this->end())) {
-		tasks.push_back(iter.get());
+		sections.push_back(iter.get());
 		iter.next();
 	}
-	return tasks;
+	return sections;
 }
 
 void SectionHT::addNew() {
-	Section task;
+	Section* section = new Section();
 	cin.ignore();
-	cin >> task;
-	string name = task.getSectionId();
-	insert(task);
+	cin >> *section;
+	insert(section);
 }
 
 void SectionHT::editSection() {
 	string name;
-	cout << "Edit task name: ";
+	cout << "Edit section name: ";
 	cin.ignore();
 	getline(cin, name);
-	Section task = get(name);
+	Section* section = get(name);
 
-	cin >> task;
-	erase(task);
-	insert(task);
+	cin >> *section;
+	erase(section);
+	insert(section);
 
 }
 void SectionHT::deleteSection() {
@@ -109,11 +108,11 @@ void SectionHT::printHeader() {
 	cout.fill(originalFill);
 }
 
-void SectionHT::printRow(const Section task) {
+void SectionHT::printRow(const Section* section) {
 	const char originalFill = cout.fill();
-	cout << left << setw(15) << task.getSectionId()
-		<< left << setw(30) << task.getTerm()
-		<< left << setw(15) << task.getCourseName()
+	cout << left << setw(15) << section->getSectionId()
+		<< left << setw(30) << section->getTerm()
+		<< left << setw(15) << section->getCourseName()
 		<< endl;
 	cout.fill(originalFill);
 }

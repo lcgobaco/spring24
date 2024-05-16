@@ -154,7 +154,7 @@ int HashTable<T>::count(const T& x)
 template<typename T>
 void HashTable<T>::insert(const T& x)
 {
-    int h = hash_code(x.getName());
+    int h = hash_code(x->getName());
     h = h % buckets.size();
     if (h < 0) { h = -h; }
 
@@ -175,7 +175,7 @@ void HashTable<T>::insert(const T& x)
 template<typename T>
 void HashTable<T>::erase(const T& x)
 {
-    int h = hash_code(x.getName());
+    int h = hash_code(x->getName());
     h = h % buckets.size();
     if (h < 0) {
         h = -h;
