@@ -120,7 +120,7 @@ void BinarySearchTree<T>::add_node(BSTNode<T>*& parent, BSTNode<T>* new_node) {
         parent = new_node;
     } else if (new_node->data < parent->data) {
        // If the value is less than the root, go to the left subtree
-      add_node(parent->left, new_node);
+       add_node(parent->left, new_node);
     } else {
         // If the value is greater than or equal to the root, go to the right subtree
         add_node(parent->right, new_node);
@@ -157,7 +157,7 @@ void BinarySearchTree<T>::print_node(BSTNode<T>* node) const
     print_node(node->left);
 
     // Visit the current node
-    cout << node->data << " ";
+    cout << node->data << " " << endl;
 
     // Traverse the right subtree
     print_node(node->right);
@@ -166,11 +166,11 @@ void BinarySearchTree<T>::print_node(BSTNode<T>* node) const
 template <typename T>
 void BinarySearchTree<T>::print() const
 {
-    /*
     int max_index = 0;
     map<int, BSTNode<T>*> index_map;
 
     // Creating index_map
+    cout << "In tree form: " << endl;
     print_tree(root, &index_map, 0, &max_index);
 
     // Printing the tree
@@ -190,8 +190,7 @@ void BinarySearchTree<T>::print() const
     }
     cout << "\n";
 
-    cout << "In order travesal: " << endl;
-    */
+    cout << "In order traversal: " << endl;
     print_node(root);
 
     cout << "\n";

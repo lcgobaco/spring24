@@ -190,9 +190,29 @@ void AssignmentMenu::doGradeScale() {
 	gradeScaleHT->printTable();
 }
 
+
+	/**
+ To calculate the percentage of each group multiply by its weight (percentage)
+ and add all the groups together,
+ then divide by the sum of the weights.
+To calculate the percentage of each group, the sum of the total points divided by the possible points multiplied by 100.
+
+grade_scale -> assignment
+                - points
+                - possible points*/
 void AssignmentMenu::doCalculate() {
 	showOption(getName("c"));
-	// TODO:
+	cout << "Before assignmentBST->values()->size()" << endl;
+	cout << assignmentBST->values()->size() << endl;
+	cout << "After assignmentBST->values()->size()" << endl;
+
+	for (int i = 0; i < assignmentBST->values()->size(); i++) {
+		cout << assignmentBST->values()->at(i).getAssignmentId() << endl;
+	}
+
+	for (GradeScale* gradeScale : gradeScaleHT->values()) {
+		gradeScale->getAssignments();
+	}
 }
 
 void AssignmentMenu::activate() {

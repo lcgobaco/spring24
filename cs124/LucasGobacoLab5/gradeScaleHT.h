@@ -15,6 +15,7 @@ class GradeScaleHT : public HashTable<GradeScale*> {
 		void deleteGradeScale();
 		void printTable();
 		GradeScale* findById(string id);
+		vector<GradeScale*> values();
 
 	protected:
 		void printRow(const GradeScale* GradeScale);
@@ -24,6 +25,5 @@ class GradeScaleHT : public HashTable<GradeScale*> {
 		bool contains(string name);
 		GradeScale* get(string name);
 		void remove(string name);
-		vector<GradeScale*> values();
 		int hash_code(GradeScale* GradeScale);
 };

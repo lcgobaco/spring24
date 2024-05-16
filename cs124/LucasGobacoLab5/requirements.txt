@@ -38,3 +38,14 @@ doSave - save data to .csv file
 
 5.)
  Be sure to use <iomanip> to format your output and follow the coding guidelines.
+
+ 6)
+ To calculate the percentage of each group multiply by its weight (percentage)
+ and add all the groups together,
+ then divide by the sum of the weights.
+To calculate the percentage of each group, the sum of the total points divided by the possible points multiplied by 100.
+
+
+grade_scale -> assignment
+                - points
+                - possible points

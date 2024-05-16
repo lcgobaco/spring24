@@ -77,5 +77,31 @@ void AssignmentBST::save_node(ofstream* file, BSTNode<Assignment>* node)
 }
 
 void AssignmentBST::list() {
-    print_node(getRoot());
+    //TODO:
+    print();
 }
+
+void getValues(BSTNode<Assignment>* node, vector<Assignment>* values);
+
+vector<Assignment>* AssignmentBST::values() {
+    vector<Assignment>* values = new vector<Assignment>();
+    getValues(getRoot(), values);
+    return values;
+}
+
+void getValues(BSTNode<Assignment>* node, vector<Assignment>* values) {
+    if (node == nullptr) {
+        return;
+    }
+
+    // Traverse the left subtree
+    getValues(node->getLeft(), values);
+
+    values->push_back(node->getData());
+
+    // Traverse the Right subtree
+    getValues(node->getLeft(), values);
+
+}
+
+

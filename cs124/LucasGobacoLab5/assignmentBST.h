@@ -13,6 +13,7 @@ public:
     void list();
     Assignment findById(string id);
     void save_node(ofstream* f, BSTNode<Assignment>* node);
+    vector<Assignment>* values();
 private:
     int size_ = 0;
 };
