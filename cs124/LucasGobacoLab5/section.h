@@ -48,6 +48,8 @@ public:
     friend istream& operator>>(istream& in, Section&);
     friend ostream& operator<<(ostream& out, Section&);
 
+    bool operator==(const Section& c);
+
 };
 
 #endif // SECTION_H

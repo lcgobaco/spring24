@@ -98,3 +98,7 @@ ostream& operator<<(ostream& out, Faculty& course) {
     // out << "Units: " << course.units << endl;
     return out;
 }
+
+bool Faculty::operator==(const Faculty& c) {
+	return this->getFacultyId() == c.getFacultyId();
+}

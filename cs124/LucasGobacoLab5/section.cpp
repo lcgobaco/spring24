@@ -45,7 +45,7 @@ void Section::setGradeScales(vector<GradeScale*> g) { gradeScales = g; }
 
 void Section::addGradeScale(GradeScale* g) { gradeScales.push_back(g); }
 
-istream& operator>>(istream& in, Section& course) {
+istream& operator>>(istream& in, Section& section) {
     //TODO:
     // cout << "Enter the department: ";
     // in >> course.department;
@@ -63,7 +63,7 @@ istream& operator>>(istream& in, Section& course) {
     return in;
 }
 
-ostream& operator<<(ostream& out, Section& course) {
+ostream& operator<<(ostream& out, Section& section) {
     //TODO:
     // out << "Department: " << course.department << endl;
     // out << "Course: " << course.course << endl;
@@ -72,4 +72,8 @@ ostream& operator<<(ostream& out, Section& course) {
     // out << "Prerequisite: " << course.prereq << endl;
     // out << "Units: " << course.units << endl;
     return out;
+}
+
+bool Section::operator==(const Section& c) {
+	return this->getSectionId() == c.getSectionId();
 }

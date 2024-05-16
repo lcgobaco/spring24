@@ -70,3 +70,7 @@ ostream& operator<<(ostream& out, GradeScale& course) {
     // out << "Units: " << course.units << endl;
     return out;
 }
+
+bool GradeScale::operator==(const GradeScale& c) {
+	return this->getGradeScaleId() == c.getGradeScaleId();
+}

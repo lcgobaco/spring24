@@ -8,6 +8,10 @@
 #include <fstream>
 #include <string>
 #include <sstream>
+#include "assignment.h"
+#include "faculty.h"
+#include "gradeScale.h"
+#include "section.h"
 #include "assignmentMenu.h"
 
 using namespace std;

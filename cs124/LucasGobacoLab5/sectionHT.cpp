@@ -43,8 +43,7 @@ void SectionHT::remove(string name) {
 	Iterator<Section> iter = this->begin();
 	while (!iter.equals(this->end())) {
 		if (iter.get().getSectionId() == name) {
-			//TODO
-			//this->erase(iter.get());
+			this->erase(iter.get());
 		}
 		iter.next();
 	}
@@ -64,8 +63,7 @@ void SectionHT::addNew() {
 	cin.ignore();
 	cin >> task;
 	string name = task.getSectionId();
-	//TODO:
-	//insert(task);
+	insert(task);
 }
 
 void SectionHT::editSection() {
@@ -76,9 +74,8 @@ void SectionHT::editSection() {
 	Section task = get(name);
 
 	cin >> task;
-	//TODO:
-	//erase(task);
-	//insert(task);
+	erase(task);
+	insert(task);
 
 }
 void SectionHT::deleteSection() {

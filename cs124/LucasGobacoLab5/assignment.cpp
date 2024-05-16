@@ -40,3 +40,7 @@ void Assignment::setDescription(const string& d) { description = d; }
 void Assignment::setPossiblePoints(double m) { possiblePoints = m; }
 
 void Assignment::setPoints(double p) { points = p; }
+
+bool Assignment::operator==(const Assignment& c) {
+	return this->getAssignmentId() == c.getAssignmentId();
+}

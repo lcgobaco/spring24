@@ -39,6 +39,8 @@ public:
     void setEndDate(const string& endDate);
     void setPossiblePoints(double m);
     void setPoints(double p);
+
+    bool operator==(const Assignment&);
 };
 
 #endif // ASSIGNMENT_H

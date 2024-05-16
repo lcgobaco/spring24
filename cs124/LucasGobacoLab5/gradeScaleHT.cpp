@@ -44,8 +44,7 @@ void GradeScaleHT::remove(string name) {
 	Iterator<GradeScale> iter = this->begin();
 	while (!iter.equals(this->end())) {
 		if (iter.get().getGradeScaleId() == name) {
-			//TODO:
-			//this->erase(iter.get());
+			this->erase(iter.get());
 		}
 		iter.next();
 	}
@@ -65,8 +64,7 @@ void GradeScaleHT::addNew() {
 	cin.ignore();
 	cin >> GradeScale;
 	string name = GradeScale.getGradeScaleId();
-	//TODO:
-	// insert(GradeScale);
+	insert(GradeScale);
 }
 
 void GradeScaleHT::editGradeScale() {
@@ -77,9 +75,8 @@ void GradeScaleHT::editGradeScale() {
 	GradeScale GradeScale = get(name);
 
 		cin >> GradeScale;
-		// TODO:
-		//erase(GradeScale);
-		//insert(GradeScale);
+		erase(GradeScale);
+		insert(GradeScale);
 
 }
 void GradeScaleHT::deleteGradeScale() {
@@ -87,8 +84,7 @@ void GradeScaleHT::deleteGradeScale() {
 	cout << "Delete GradeScale name: ";
 	cin.ignore();
 	getline(cin, name);
-	// TODO:
-	//	remove(name);
+	remove(name);
 }
 
 void GradeScaleHT::printTable(bool complete) {

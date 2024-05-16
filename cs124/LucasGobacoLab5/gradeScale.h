@@ -38,9 +38,10 @@ public:
     void setAssignments(vector<Assignment*> a);
     void addAssignment(Assignment* assignment);
 
-
     friend istream& operator>>(istream& in, GradeScale&);
     friend ostream& operator<<(ostream& out, GradeScale&);
+
+    bool operator==(const GradeScale& c);
 
 };
 

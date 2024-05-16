@@ -60,8 +60,9 @@ public:
     // Additional methods
     void addSection(Section* section);
 
-    friend istream& operator>>(istream& in, Faculty& course);
-    friend ostream& operator<<(ostream& out, Faculty& course);
+    friend istream& operator>>(istream& in, Faculty& faculty);
+    friend ostream& operator<<(ostream& out, Faculty& faculty);
+    bool operator==(const Faculty&);
 };
 
 #endif // FACULTY_H

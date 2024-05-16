@@ -43,8 +43,7 @@ void FacultyHT::remove(string name) {
 	Iterator<Faculty> iter = this->begin();
 	while (!iter.equals(this->end())) {
 		if (iter.get().getFacultyId() == name) {
-			// TODO
-			//this->erase(iter.get());
+			this->erase(iter.get());
 		}
 		iter.next();
 	}
@@ -64,8 +63,7 @@ void FacultyHT::addNew() {
 	cin.ignore();
 	cin >> faculty;
 	string name = faculty.getFacultyId();
-	//TODO:
-	//insert(faculty);
+	insert(faculty);
 }
 
 void FacultyHT::editFaculty() {
@@ -76,9 +74,8 @@ void FacultyHT::editFaculty() {
 	Faculty faculty = get(name);
 
 	cin >> faculty;
-	//TODO:
-	//erase(faculty);
-	//insert(faculty);
+	erase(faculty);
+	insert(faculty);
 
 }
 void FacultyHT::deleteFaculty() {
@@ -86,8 +83,7 @@ void FacultyHT::deleteFaculty() {
 	cout << "Delete Faculty name: ";
 	cin.ignore();
 	getline(cin, name);
-	// TODO:
-	// remove(name);
+	remove(name);
 }
 
 void FacultyHT::printTable(bool complete) {
