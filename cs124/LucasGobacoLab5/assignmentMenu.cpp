@@ -17,15 +17,8 @@
 
 using namespace std;
 
-/*
-doList - display all data from the root of the tree.
-doView - view individual assignment and view group of assignments in rows and columns
-doAdd - add to tree.
-doEdit - edit any fields
-doRemove - remove a node from the tree
-calculateGrade - Implement your grade and display.
-doSave - save data to .csv file
-*/
+const string ASSIGNMENT_FILE = "assignment-data.csv";
+
 AssignmentMenu::AssignmentMenu() : Menu("Main Menu") {
 	addOption("l", "List Assignments");
 	addOption("v", "View Assignment");
@@ -67,7 +60,7 @@ void AssignmentMenu::init(){
 void AssignmentMenu::doList() {
 	showOption(getName("l"));
 	cout << assignmentBST->size() << " assignments found." << endl;
-	assignmentBST->print();
+	assignmentBST->list();
 }
 
 void AssignmentMenu::doView() {
@@ -89,13 +82,86 @@ void AssignmentMenu::doAdd() {
 	showOption(getName("a"));
 	Assignment* assignment = new Assignment();
 	cin >> *assignment;
+	cout << "Enter Grade Scale ID: ";
+	string gradeScaleId;
+	cin >> gradeScaleId;
+	GradeScale* gradeScale = gradeScaleHT->findById(gradeScaleId);
+	if (gradeScale == nullptr) {
+		cout << "Grade Scale not found." << endl;
+		return;
+	}
+	assignment->setGradeScale(gradeScale);
 	cout << assignment;
+
 	assignmentBST->insert(assignment);
 }
 
 void AssignmentMenu::doEdit() {
 	showOption(getName("e"));
-	// TODO:
+	cout << "Enter the assignment ID: ";
+	string id;
+	cin >> id;
+	Assignment assignment = assignmentBST->findById(id);
+	if (assignment.getAssignmentId() == "") {
+		cout << "Assignment not found." << endl;
+		return;
+	}
+
+	Assignment* newAssignment = new Assignment();
+	newAssignment->setAssignmentId(assignment.getAssignmentId());
+
+	cout << "Enter the new description (" << assignment.getDescription() << "): ";
+	string description;
+	cin.ignore();
+	getline(cin, description);
+	if (description == "") {
+		description = assignment.getDescription();
+	}
+	newAssignment->setDescription(description);
+	cout << "Enter the new start date (" << assignment.getStartDate() << "): ";
+	string startDate;
+	cin.ignore();
+	getline(cin, startDate);
+	if (startDate == "") {
+		startDate = assignment.getStartDate();
+	}
+	newAssignment->setStartDate(startDate);
+	cout << "Enter the new end date (" << assignment.getEndDate() << "):";
+	string endDate;
+	cin.ignore();
+	getline(cin, endDate);
+	if (endDate == "") {
+		endDate = assignment.getEndDate();
+	}
+	newAssignment->setEndDate(endDate);
+	cout << "Enter the new possible points (" << assignment.getPossiblePoints() << "): ";
+	double possiblePoints;
+	cin >> possiblePoints;
+	if (possiblePoints == 0) {
+		possiblePoints = assignment.getPossiblePoints();
+	}
+	newAssignment->setPossiblePoints(possiblePoints);
+	cout << "Enter the new points (" << assignment.getPoints() << "): ";
+	double points;
+	cin >> points;
+	if (points == 0) {
+		points = assignment.getPoints();
+	}
+	newAssignment->setPoints(points);
+	cout << "Enter the Grade Scale ID (" << assignment.getGradeScale()->getGradeScaleId() << "): ";
+	string gradeScaleId;
+	cin >> gradeScaleId;
+	if (gradeScaleId == "") {
+		gradeScaleId = assignment.getGradeScale()->getGradeScaleId();
+	}
+	GradeScale* gradeScale = gradeScaleHT->findById(gradeScaleId);
+	if (gradeScale == nullptr) {
+		cout << "Grade Scale not found." << endl;
+	}
+	newAssignment->setGradeScale(gradeScale);
+
+	assignmentBST->erase(&assignment);
+	assignmentBST->insert(newAssignment);
 }
 
 void AssignmentMenu::doRemove() {
@@ -113,8 +179,10 @@ void AssignmentMenu::doRemove() {
 }
 
 void AssignmentMenu::doSave() {
-	showOption(getName("S"));
-	// TODO:
+	showOption(getName("s"));
+
+	assignmentBST->save(ASSIGNMENT_FILE);
+
 }
 
 void AssignmentMenu::doGradeScale() {
@@ -191,6 +259,7 @@ map<string, Faculty*> loadFaculties() {
         faculties[tokens[0]] = faculty;
     }
 
+	inFile.close();
     return faculties;
 }
 
@@ -218,6 +287,8 @@ map<string, Section*> loadSections(map<string, Faculty*> facultyMap) {
         faculty->addSection(section);
     }
 
+	inFile.close();
+
     return sections;
 }
 
@@ -241,13 +312,14 @@ map<string, GradeScale*> loadGradeScales(map<string, Section*> sectionMap) {
         section->addGradeScale(gradeScale);
     }
 
+	inFile.close();
     return gradeScales;
 }
 
 
-map<string, Assignment*> loadAssignments(map<string, GradeScale*> gradeScaleMap) {
+map<string, Assignment*> loadAssignments(string filename, map<string, GradeScale*> gradeScaleMap) {
     ifstream inFile;
-    inFile.open("assignment-data.csv");
+    inFile.open(filename);
     if (!inFile) {
         cerr << "Unable to open file assignment-data.csv";
         exit(1);   // call system to stop
@@ -269,166 +341,32 @@ map<string, Assignment*> loadAssignments(map<string, GradeScale*> gradeScaleMap)
 }
 
 void AssignmentMenu::load() {
-	//cout << "Test insert faculty" << endl;
 
 	// Load from file in Faculty Hash Table
 	fmap = loadFaculties();
 	for (auto it = fmap.begin(); it != fmap.end(); ++it) {
 	 	Faculty* faculty = it->second;
 	 	facultyHT->insert(faculty);
-	 	//cout << "Faculty: " << faculty->getFacultyId() << " inserted," << facultyHT->count(faculty) << endl;
 	}
-
-	// cout << "Test find faculty after insert" << endl;
-	// for (auto it = fmap.begin(); it != fmap.end(); ++it) {
-	// 	Faculty* faculty = it->second;
-	// 	Iterator<Faculty *> iter = facultyHT->find(faculty->getFacultyId());
-	// 	string id = iter.get()->getFacultyId();
-	// 	cout << "Faculty: " << faculty->getFacultyId() << " found," << id << endl;
-	// }
-
-	// // Test erase
-	// cout << "Test erase faculty" << endl;
-	// for (auto it = fmap.begin(); it != fmap.end(); ++it) {
-	// 	Faculty* faculty = it->second;
-	// 	facultyHT->erase(faculty);
-	// 	cout << "Faculty: " << faculty->getFacultyId() << " erased," << facultyHT->count(faculty) << endl;
-	// }
-
-	// cout << "Test find faculty after erase" << endl;
-	// for (auto it = fmap.begin(); it != fmap.end(); ++it) {
-	// 	Faculty* faculty = it->second;
-	// 	Iterator<Faculty *> iter = facultyHT->find(faculty->getFacultyId());
-	// 	if (iter.equals(facultyHT->end())) {
-	// 		cout << "Faculty: " << faculty->getName() << " not found" << endl;
-	// 		continue;
-	// 	}
-	// 	string id = iter.get()->getFacultyId();
-	// 	cout << "Faculty: " << faculty->getFacultyId() << " found," << id << endl;
-	// }
-
-	//cout << "Test insert section" << endl;
 
 	// Load from file into Section Hash Table
 	smap = loadSections(fmap);
 	for (auto it = smap.begin(); it != smap.end(); ++it) {
 		Section* section = it->second;
 		sectionHT->insert(section);
-	// 	cout << "Section: " << section->getSectionId() << " inserted," << sectionHT->count(section) << endl;
 	}
-
-	// cout << "Test find section after insert" << endl;
-	// for (auto it = smap.begin(); it != smap.end(); ++it) {
-	// 	Section* section = it->second;
-	// 	Iterator<Section *> iter = sectionHT->find(section->getName());
-	// 	string id = iter.get()->getSectionId();
-	// 	cout << "Section: " << section->getSectionId() << " found," << id << endl;
-	// }
-
-	// // test erase
-	// cout << "Test erase section" << endl;
-	// for (auto it = smap.begin(); it != smap.end(); ++it) {
-	// 	Section* section = it->second;
-	// 	sectionHT->erase(section);
-	// 	cout << "Section: " << section->getSectionId() << " erased," << sectionHT->count(section) << endl;
-	// }
-
-	// cout << "Test find section after erase" << endl;
-	// for (auto it = smap.begin(); it != smap.end(); ++it) {
-	// 	Section* section = it->second;
-	// 	Iterator<Section *> iter = sectionHT->find(section->getName());
-	// 	if (iter.equals(sectionHT->end())) {
-	// 		cout << "Section: " << section->getSectionId() << " not found" << endl;
-	// 		continue;
-	// 	}
-	// 	string id = iter.get()->getSectionId();
-	// 	cout << "Section: " << section->getSectionId() << " found," << id << endl;
-	// }
-
-	// cout << "Test insert gradeScale" << endl;
 
 	// Load from file into GradeScale Hash Table
 	gmap = loadGradeScales(smap);
 	for (auto it = gmap.begin(); it != gmap.end(); ++it) {
 		GradeScale* gradeScale = it->second;
 		gradeScaleHT->insert(gradeScale);
-	// 	cout << "GradeScale: " << gradeScale->getGradeScaleId() << " inserted," << gradeScaleHT->count(gradeScale) << endl;
 	}
 
-	// cout << "Test find gradeScale after insert" << endl;
-	// for (auto it = gmap.begin(); it != gmap.end(); ++it) {
-	// 	GradeScale* gradeScale = it->second;
-	// 	Iterator<GradeScale *> iter = gradeScaleHT->find(gradeScale->getName());
-	// 	string id = iter.get()->getGradeScaleId();
-	// 	cout << "GradeScale: " << gradeScale->getGradeScaleId() << " found," << id << endl;
-	// }
-
-	// // test erase
-	// cout << "Test erase gradeScale" << endl;
-	// for (auto it = gmap.begin(); it != gmap.end(); ++it) {
-	// 	GradeScale* gradeScale = it->second;
-	// 	gradeScaleHT->erase(gradeScale);
-	// 	cout << "GradeScale: " << gradeScale->getGradeScaleId() << " erased," << gradeScaleHT->count(gradeScale) << endl;
-	// }
-
-	// cout << "Test find gradeScale after erase" << endl;
-	// for (auto it = gmap.begin(); it != gmap.end(); ++it) {
-	// 	GradeScale* gradeScale = it->second;
-	// 	Iterator<GradeScale *> iter = gradeScaleHT->find(gradeScale->getGradeScaleId());
-	// 	if (iter.equals(gradeScaleHT->end())) {
-	// 		cout << "GradeScale: " << gradeScale->getGradeScaleId() << " not found" << endl;
-	// 		continue;
-	// 	}
-	// 	string id = iter.get()->getGradeScaleId();
-	// 	cout << "GradeScale: " << gradeScale->getGradeScaleId() << " found," << id << endl;
-	// }
-
-	// cout << "Test insert assignment" << endl;
-
 	// Load from file into Assignment Binary Search Tree
-	amap = loadAssignments(gmap);
+	amap = loadAssignments(ASSIGNMENT_FILE, gmap);
 	for (auto it = amap.begin(); it != amap.end(); ++it) {
 	 	Assignment* assignment = it->second;
 	 	assignmentBST->insert(assignment);
-	 	//cout << "Assignment: " << assignment->getAssignmentId() << " inserted," << assignmentBST->count(*assignment) << endl;
 	}
-
-	// //assignmentBST->print();
-
-	// cout << "Test findById assignment after insert" << endl;
-	// for (auto it = amap.begin(); it != amap.end(); ++it) {
-	// 	Assignment* assignment = it->second;
-	// 	Assignment* a = assignmentBST->findById(assignment->getAssignmentId());
-	// 	Assignment* b = assignmentBST->find(assignment);
-
-	// 	if (a == nullptr) {
-	// 		cout << "Assignment: " << assignment->getAssignmentId() << " not found" << endl;
-	// 		if (b != nullptr) {
-	// 			cout << "But Assignment: " << assignment->getAssignmentId() << " found" << endl;
-	// 		}
-	// 		continue;
-	// 	}
-	// 	string id = a->getAssignmentId();
-	// 	cout << "Assignment: " << assignment->getAssignmentId() << " found," << id << endl;
-	// }
-
-	// // test erase
-	// cout << "Test erase assignment" << endl;
-	// for (auto it = amap.begin(); it != amap.end(); ++it) {
-	// 	Assignment* assignment = it->second;
-	// 	assignmentBST->erase(assignment);
-	// 	cout << "Assignment: " << assignment->getAssignmentId() << " erased," << assignmentBST->count(assignment) << endl;
-	// }
-
-	// cout << "Test findById assignment after erase" << endl;
-	// for (auto it = amap.begin(); it != amap.end(); ++it) {
-	// 	Assignment* assignment = it->second;
-	// 	Assignment* a = assignmentBST->find(assignment);
-	// 	if (a == nullptr) {
-	// 		cout << "Assignment: " << assignment->getAssignmentId() << " not found" << endl;
-	// 		continue;
-	// 	}
-	// 	string id = a->getAssignmentId();
-	// 	cout << "Assignment: " << assignment->getAssignmentId() << " found," << id << endl;
-	// }
 }

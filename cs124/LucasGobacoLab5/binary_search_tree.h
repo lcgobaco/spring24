@@ -88,7 +88,6 @@ public:
      */
     BSTNode<T>* getRoot() const;
 
-   private:
     /**
        Prints the contents of the tree in sorted order.
     */
@@ -96,7 +95,7 @@ public:
 
     void print_tree(BSTNode<T>* node, map<int, BSTNode<T>*> *index_map, int index, int *max_index) const;
 
-
+   private:
    // BinarySearchTree add_node
     void add_node(BSTNode<T>* new_node) ;
 
@@ -158,7 +157,7 @@ void BinarySearchTree<T>::print_node(BSTNode<T>* node) const
     print_node(node->left);
 
     // Visit the current node
-    cout << node->data<< " ";
+    cout << node->data << " ";
 
     // Traverse the right subtree
     print_node(node->right);
@@ -167,18 +166,14 @@ void BinarySearchTree<T>::print_node(BSTNode<T>* node) const
 template <typename T>
 void BinarySearchTree<T>::print() const
 {
+    /*
     int max_index = 0;
     map<int, BSTNode<T>*> index_map;
 
     // Creating index_map
-    cout << "Creating index map:" << endl;
     print_tree(root, &index_map, 0, &max_index);
 
-    cout << "Max index: " << max_index << endl;
-    cout << "Index map size: " << index_map.size() << endl;
-
     // Printing the tree
-    cout << "Print the tree:" << endl;
     double previous_depth = 0;
     for (int i = 0; i <= index_map.size(); i++) {
 
@@ -196,6 +191,7 @@ void BinarySearchTree<T>::print() const
     cout << "\n";
 
     cout << "In order travesal: " << endl;
+    */
     print_node(root);
 
     cout << "\n";

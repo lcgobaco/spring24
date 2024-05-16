@@ -14,6 +14,7 @@ class GradeScaleHT : public HashTable<GradeScale*> {
 		void editGradeScale();
 		void deleteGradeScale();
 		void printTable();
+		GradeScale* findById(string id);
 
 	protected:
 		void printRow(const GradeScale* GradeScale);

@@ -58,6 +58,16 @@ vector<GradeScale*> GradeScaleHT::values() {
 	}
 	return gradeScales;
 }
+GradeScale* GradeScaleHT::findById(string id) {
+	Iterator<GradeScale*> iter = this->begin();
+	while (!iter.equals(this->end())) {
+		if (iter.get()->getGradeScaleId() == id) {
+			return iter.get();
+		}
+		iter.next();
+	}
+	return nullptr;
+}
 
 void GradeScaleHT::addNew() {
 	GradeScale* gradeScale = new GradeScale();

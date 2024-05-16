@@ -41,6 +41,10 @@ GradeScale* Assignment::getGradeScale() const { return gradeScale; }
 
 string Assignment::getDescription() const { return description; }
 
+string Assignment::getStartDate() const { return startDate; }
+
+string Assignment::getEndDate() const { return endDate; }
+
 double Assignment::getPossiblePoints() const { return possiblePoints; }
 
 double Assignment::getPoints() const { return points; }
@@ -51,6 +55,10 @@ void Assignment::setGradeScale(GradeScale* g) { gradeScale = g; }
 
 void Assignment::setDescription(const string& d) { description = d; }
 
+void Assignment::setStartDate(const string& s) { startDate = s; }
+
+void Assignment::setEndDate(const string& e) { endDate = e; }
+
 void Assignment::setPossiblePoints(double m) { possiblePoints = m; }
 
 void Assignment::setPoints(double p) { points = p; }
@@ -60,11 +68,11 @@ bool Assignment::operator==(const Assignment& c) const {
 }
 
 bool Assignment::operator>(const Assignment& c) const {
-	return stoi(this->getAssignmentId()) < stoi(c.getAssignmentId());
+	return stoi(this->getAssignmentId()) > stoi(c.getAssignmentId());
 }
 
 bool Assignment::operator<(const Assignment& c) const {
-	return stoi(this->getAssignmentId()) > stoi(c.getAssignmentId());
+	return stoi(this->getAssignmentId()) < stoi(c.getAssignmentId());
 }
 
 istream& operator>>(istream& in, Assignment& assignment) {

@@ -2,9 +2,9 @@
 #define ASSIGNMENT_H
 
 #include <string>
+#include "gradeScale.h"
 
 using namespace std;
-class GradeScale;
 
 class Assignment {
 private:
