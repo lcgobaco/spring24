@@ -107,6 +107,12 @@ void AssignmentBST::print()
     cout << "In tree form: " << endl;
     print_tree(getRoot(), &index_map, 0, &max_index);
 
+
+    for (auto it = index_map.begin(); it != index_map.end(); it++) {
+        cout << it->first << " ";
+        cout << it->second->getData().getAssignmentId() << endl;
+    }
+
     // Printing the tree
     double previous_depth = 0;
     for (int i = 0; i <= index_map.size(); i++) {

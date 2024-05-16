@@ -9,15 +9,6 @@
  * Description: This program contains the main function to test the classes.
 
  *******************************************************/
-
-#include <iostream>
-#include <string>
-#include <fstream>
-#include <map>
-#include "assignment.h"
-#include "faculty.h"
-#include "gradeScale.h"
-#include "section.h"
 #include "assignmentMenu.h"
 
 using namespace std;
