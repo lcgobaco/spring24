@@ -9,13 +9,15 @@ The main binary is generated as "main"
 
 The main() function loads the types of data into four classes.
 
-faculty-data.csv loads into a collection of FACULTY objects.
+faculty-data.csv loads into a HashTable of FACULTY objects.
 
-section-data.csv loads into a collection of SECTION objects.
+section-data.csv loads into a HashTable of SECTION objects.
 
-grade-scale-data.csv loads into a collection of GRADE_SCALE objects
+grade-scale-data.csv loads into a HashTable of GRADE_SCALE objects
 
-assignment-data.csv loads into a collection of ASSIGNMENT objects.
+assignment-data.csv loads into a BinarySearchTree of ASSIGNMENT objects.
+
+menu.h uses a map<string, string> options instead of vector<string>
 
 1. FACULTY class
     a. Attributes

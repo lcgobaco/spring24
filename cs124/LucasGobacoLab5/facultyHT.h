@@ -14,10 +14,9 @@ public:
 	void addNew();
 	void editFaculty();
 	void deleteFaculty();
-	void printTable(bool complete = true);
+	void printTable();
 
 protected:
-	void printRaw(bool complete = true);
 	void printRow(const Faculty Faculty);
 
 private:

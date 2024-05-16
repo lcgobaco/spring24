@@ -117,7 +117,3 @@ void SectionHT::printRow(const Section task) {
 		<< endl;
 	cout.fill(originalFill);
 }
-
-void SectionHT::printRaw(bool complete) {
-	cout << endl;
-}

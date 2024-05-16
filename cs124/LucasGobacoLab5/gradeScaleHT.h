@@ -16,7 +16,6 @@ class GradeScaleHT : public HashTable<GradeScale> {
 		void printTable(bool complete = true);
 
 	protected:
-		void printRaw(bool complete = true);
 		void printRow(const GradeScale GradeScale);
 
 	private:

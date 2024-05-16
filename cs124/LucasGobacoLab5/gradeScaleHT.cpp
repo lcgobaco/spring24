@@ -121,8 +121,3 @@ void GradeScaleHT::printRow(const GradeScale GradeScale) {
 	// 	<< endl;
 	cout.fill(originalFill);
 }
-
-void GradeScaleHT::printRaw(bool complete) {
-
-	cout << endl;
-}

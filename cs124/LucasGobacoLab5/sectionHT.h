@@ -17,7 +17,6 @@ public:
 	void printTable(bool complete = true);
 
 protected:
-	void printRaw(bool complete = true);
 	void printRow(const Section Section);
 
 private:

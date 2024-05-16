@@ -86,7 +86,7 @@ void FacultyHT::deleteFaculty() {
 	remove(name);
 }
 
-void FacultyHT::printTable(bool complete) {
+void FacultyHT::printTable() {
 
 	printHeader();
 	// loop thru map
@@ -119,7 +119,3 @@ void FacultyHT::printRow(const Faculty Faculty) {
 	cout.fill(originalFill);
 }
 
-void FacultyHT::printRaw(bool complete) {
-
-	cout << endl;
-}
